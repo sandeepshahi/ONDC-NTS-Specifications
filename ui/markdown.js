@@ -2,7 +2,7 @@ async function fetchMarkdown(branchName) {
   try {
     const container = document.getElementById("markdown-container").innerHTML;
     const response = await fetch(
-      `https://api.github.com/repos/ondc-official/ONDC-FIS-Specifications/contents/api/components/docs?ref=${branchName}`
+      `https://api.github.com/repos/ondc-official/ONDC-NTS-Specifications/contents/api/components/docs?ref=${branchName}`
     );
     const data = await response.json();
     if (data?.length == 0) container.innerHTML = "No files present";
@@ -30,7 +30,7 @@ async function fetchMarkdown(branchName) {
 
 function renderMarkdown(branchName,file) {
   fetch(
-    `https://raw.githubusercontent.com/ONDC-Official/ONDC-FIS-Specifications/${branchName}/api/components/docs/${file}.md`
+    `https://raw.githubusercontent.com/ONDC-Official/ONDC-NTS-Specifications/${branchName}/api/components/docs/${file}.md`
   )
     .then((response) => response.text())
     .then((text) => {

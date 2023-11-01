@@ -9,7 +9,7 @@ function getStringAfterEquals(inputString) {
 
 async function readBuildFile(branchName) {
   if (!branchName) return;
-  const url = `https://api.github.com/repos/ondc-official/ONDC-FIS-Specifications/contents/ui/build.js?ref=${branchName}`;
+  const url = `https://api.github.com/repos/ondc-official/ONDC-NTS-Specifications/contents/ui/build.js?ref=${branchName}`;
 
   try {
     const response = await fetch(url, {
@@ -53,8 +53,8 @@ async function fetchRequest(url){
 
 async function loadContracts() {
   //fetch branches & tags from repo
-  const BRANCHES_URL= "https://api.github.com/repos/ondc-official/ONDC-FIS-Specifications/branches";
-  const TAGS_URL= "https://api.github.com/repos/ondc-official/ONDC-FIS-Specifications/tags";
+  const BRANCHES_URL= "https://api.github.com/repos/ondc-official/ONDC-NTS-Specifications/branches";
+  const TAGS_URL= "https://api.github.com/repos/ondc-official/ONDC-NTS-Specifications/tags";
                   
   let response1, response2;
   response1 = await fetchRequest(BRANCHES_URL)
