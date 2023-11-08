@@ -1,16 +1,16 @@
 context:
-  domain: ONDC:RET10
+  domain: ONDC:RET
   country: IND
   city: std:080
   action: issue
   core_version: 1.0.0
   bap_id: buyerapp.com
-  bap_uri: https://buyerapp.com/ondc
+  bap_uri: https://preprod-ondc.addble.com
   bpp_id: sellerapp.com
-  bpp_uri: https://sellerapp.com/ondc
+  bpp_uri: https://beta.mystore.in/ondc/1.0/
   transaction_id: T1
   message_id: M1
-  timestamp: 2023-01-15T10:00:00.469Z
+  timestamp: "2023-01-15T10:00:00.469Z"
   ttl: PT30S
 message:
   issue:
@@ -18,8 +18,8 @@ message:
     category: ITEM
     sub_category: ITM04
     complainant_info:
-      person:
-        name: Sam Manuel
+      # person:
+      #   name: Sam Manuel
       contact:
         phone: "9879879870"
         email: sam@yahoo.com
@@ -55,14 +55,14 @@ message:
       complainant_actions:
         - complainant_action: OPEN
           short_desc: Complaint created
-          updated_at: 2023-01-15T10:00:00.469Z
+          updated_at: "2023-01-15T10:00:00.469Z"
           updated_by:
             org:
-              name: buyerapp.com::ONDC:RET10
+              name: buyerapp.com
             contact:
               phone: "9450394039"
               email: buyerapp@interface.com
-            person:
-              name: John Doe
-    created_at: 2023-01-15T10:00:00.469Z
-    updated_at: 2023-01-15T10:00:00.469Z
+            # person:
+            #   name: John Doe
+    created_at: "2023-01-15T10:00:00.469Z"
+    updated_at: "2023-01-15T10:00:00.469Z"

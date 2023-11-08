@@ -1,0 +1,223 @@
+issue:
+  message:
+    issue:
+      id:
+        required: false
+        type: false
+        owner: false
+        usage: false
+        description: false
+      category:
+        required: false
+        type: false
+        owner: false
+        usage: false
+        description: false
+      sub_catagory:
+        required: false
+        type: false
+        owner: false
+        usage: false
+        description: false
+      complainant_info:
+        person:
+          name:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+        contact:
+          phone:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          email:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+      order_details:
+        id:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+        state:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+        items:
+          id:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          quantity:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+        fulfillments:
+          id:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          '':
+            state:
+              required: false
+              type: false
+              owner: false
+              usage: false
+              description: false
+        provider_id:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+      descriptor:
+        short_desc:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+        long_desc:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+        additional_desc:
+          url:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          content_type:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+      description:
+        image:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+      source:
+        network_participant_id:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+        type:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+      expected_response_time:
+        duration:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+      expected_resolution_time:
+        duration:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+      status:
+        required: false
+        type: false
+        owner: false
+        usage: false
+        description: false
+      issue_type:
+        required: false
+        type: false
+        owner: false
+        usage: false
+        description: false
+      issue_action:
+        complainant_actions:
+          complainant_action:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          short_desc:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          updated_at:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          updated_by:
+            org:
+              name:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+            contact:
+              phone:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+              email:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+            person:
+              name:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+      created_at:
+        required: false
+        type: false
+        owner: false
+        usage: false
+        description: false
+      ' updated_at':
+        required: false
+        type: false
+        owner: false
+        usage: false
+        description: false
+on_issue: {}
+issue_status: {}
+Sheet4: {}

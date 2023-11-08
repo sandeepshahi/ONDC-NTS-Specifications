@@ -1,0 +1,14 @@
+summary: IGM Flow
+details:
+references: if any
+steps:
+  - summary: search
+    api: issue
+    details:
+      - description: issue
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/issue/issue.yaml"
+  - summary: raise issue
+  
