@@ -8,8 +8,8 @@ security:
 paths:
   /issue:
     post:
-      tags:
-        - Complaint lifecycle management
+      # tags:
+      #   - Complaint lifecycle management
       description: |
         ###  Operation Description 
          * Create an issue for the following entities  of intrest, for which an issue is faced by the buyer: 
@@ -207,8 +207,9 @@ components:
           $ref: "../../core/core.yaml#/components/schemas/Person"
         contact:
           allOf:
-            - $ref: "../../core/ondc_core.yaml#/components/schemas/Contact"
-            - required:
+            - $ref: "#/components/schemas/Contact"
+            - type: object
+              required:
               - phone
       required:
         - contact
@@ -283,7 +284,7 @@ components:
         org:
          $ref: "../../core/ondc_core.yaml#/components/schemas/Organization"
         contact: 
-         $ref: "../../core/ondc_core.yaml#/components/schemas/Contact"
+         $ref: "#/components/schemas/Contact"
         person:
           $ref: "../../core/core.yaml#/components/schemas/Person"
     ResolutionSupport:
@@ -336,7 +337,7 @@ components:
         person:
           $ref: "../../core/core.yaml#/components/schemas/Person"
         contact:
-          $ref: "../../core/core.yaml#/components/schemas/Contact"
+          $ref: "#/components/schemas/Contact"
         gro_type:
           type: string
           description: |
@@ -456,9 +457,9 @@ components:
         source:
           $ref: "#/components/schemas/IssueSource"
         expected_response_time:
-          $ref: "../../core/core.yaml#/components/schemas/Time"
+          $ref: "#/components/schemas/Time"
         expected_resolution_time:
-          $ref: "../../core/core.yaml#/components/schemas/Time"
+          $ref: "#/components/schemas/Time"
         status:
           description: |
             ### Statues
@@ -695,6 +696,57 @@ components:
         cascaded_level:
           description: the default value will be 1, whenever the issue will be cascaded to the next level the value of this field should be incremented by 1 it will upgrade it indicates to the next sub-level.
           type: integer
+    Contact:
+      type: object
+      properties:
+        phone:
+          type: string
+        email:
+          type: string
+    Time:
+      description: Describes time in its various forms. It can be a single point in time; duration; or a structured timetable of operations
+      type: object
+      properties:
+        label:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        duration:
+          $ref: '#/components/schemas/Duration'
+        range:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date-time
+            end:
+              type: string
+              format: date-time
+        days:
+          type: string
+          description: comma separated values representing days of the week
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+    Duration:
+      description: Describes duration as per ISO8601 format
+      type: string
+    Schedule:
+      description: Describes a schedule
+      type: object
+      properties:
+        frequency:
+          $ref: '#/components/schemas/Duration'
+        holidays:
+          type: array
+          items:
+            type: string
+            format: date-time
+        times:
+          type: array
+          items:
+            type: string
+            format: date-time
     Context:
       description: Describes a beckn message context
       type: object

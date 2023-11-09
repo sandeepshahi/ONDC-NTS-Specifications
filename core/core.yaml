@@ -1561,8 +1561,6 @@ components:
           type: string
         email:
           type: string
-        tags:
-          $ref: '#/components/schemas/Tags'
     Context:
       description: Describes a beckn message context
       type: object
@@ -2472,7 +2470,7 @@ components:
           properties:
             start:
               type: string
-              format: date-time
+              format: date-time,
             end:
               type: string
               format: date-time
