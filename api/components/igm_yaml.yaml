@@ -291,8 +291,6 @@ components:
     Organization:
       type: object
       properties:
-        org:
-         $ref: "#/components/schemas/Organization"
         contact: 
          $ref: "#/components/schemas/Contact"
         person:
@@ -573,13 +571,6 @@ components:
         6. Service : Indicactes that the issue is related to  Service.
         7. Payment : Indicactes that the issue is related to  Payments.
       type: string
-      enum:
-        - ORDER
-        - ITEM
-        - FULFILLMENT
-        - AGENT
-        - PAYMENT
-        - TRANSACTION
     IssueSubCategory:
       description:
         Identifies what is the sub-category of this issue

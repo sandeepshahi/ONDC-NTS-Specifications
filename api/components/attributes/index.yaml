@@ -1,0 +1,3 @@
+IGM:
+  attribute_set:
+    $ref: "./IGM/index.yaml"

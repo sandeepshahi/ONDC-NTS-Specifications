@@ -1,0 +1,22 @@
+issue:
+  message:
+    issue:
+      category: 
+        - code: ITEM
+          description: 
+          reference: 
+        - code: ORDER
+          description: 
+          reference: <PR/Issue/Discussion Links md format text  
+        - code: FULFILLMENT
+          description: 
+          reference: <PR/Issue/Discussion Links md format text 
+        - code: AGENT
+          description: 
+          reference: <PR/Issue/Discussion] Links md format text  
+        - code: PAYMENT
+          description: 
+          reference: <PR/Issue/Discussion Links md format text
+        - code: TRANSACTION
+          description: 
+          reference: <PR/Issue/Discussion Links md format text       

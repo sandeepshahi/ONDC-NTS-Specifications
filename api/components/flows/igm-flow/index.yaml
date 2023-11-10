@@ -10,5 +10,4 @@ steps:
     example:
       value:
         $ref: "../../examples/issue/issue.yaml"
-  - summary: raise issue
   
