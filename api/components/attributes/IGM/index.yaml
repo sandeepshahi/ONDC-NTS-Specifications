@@ -218,6 +218,418 @@ issue:
         owner: false
         usage: false
         description: false
-on_issue: {}
-issue_status: {}
-Sheet4: {}
+on_issue:
+  message:
+    issue:
+      id:
+        required: false
+        type: false
+        owner: false
+        usage: false
+        description: false
+      issue_action:
+        respondent__actions:
+          respondent_action:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          short_desc:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          updated_at:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          updated_by:
+            org:
+              name:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+            contact:
+              phone:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+              email:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+            person:
+              name:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+        respondent_actiomn:
+          cascaded_level:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+      created_at:
+        required: false
+        type: false
+        owner: false
+        usage: false
+        description: false
+      updated_at:
+        required: false
+        type: false
+        owner: false
+        usage: false
+        description: false
+      resolution_provider:
+        respondent_info:
+          type:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          organization:
+            org:
+              name:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+            contact:
+              email:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+            person:
+              name:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+          resolution_support:
+            chat_link:
+              required: false
+              type: false
+              owner: false
+              usage: false
+              description: false
+            contact:
+              phone:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+              email:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+            gros:
+              person:
+                name:
+                  required: false
+                  type: false
+                  owner: false
+                  usage: false
+                  description: false
+              contact:
+                phone:
+                  required: false
+                  type: false
+                  owner: false
+                  usage: false
+                  description: false
+              gro_type:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+      resolution:
+        short_desc:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+        long_desc:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+        action_triggered:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+        refund_amount:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+issue_status:
+  message:
+    issue:
+      id:
+        required: false
+        type: false
+        owner: false
+        usage: false
+        description: false
+      created_at:
+        required: false
+        type: false
+        owner: false
+        usage: false
+        description: false
+      updated_at:
+        required: false
+        type: false
+        owner: false
+        usage: false
+        description: false
+  mesage:
+    issue:
+      issue_actions:
+        respondent_actions:
+          respondent_action:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          short_desc:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          updated_at:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          updated_by:
+            org:
+              name:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+            contact:
+              phone:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+              email:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+            person:
+              name:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+on_issue_status:
+  message:
+    issue:
+      id:
+        required: false
+        type: false
+        owner: false
+        usage: false
+        description: false
+      issue_action:
+        respondent__actions:
+          respondent_action:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          short_desc:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          updated_at:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          updated_by:
+            org:
+              name:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+            contact:
+              phone:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+              email:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+            person:
+              name:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+        respondent_actiomn:
+          cascaded_level:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+      created_at:
+        required: false
+        type: false
+        owner: false
+        usage: false
+        description: false
+      updated_at:
+        required: false
+        type: false
+        owner: false
+        usage: false
+        description: false
+      resolution_provider:
+        respondent_info:
+          type:
+            required: false
+            type: false
+            owner: false
+            usage: false
+            description: false
+          organization:
+            org:
+              name:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+            contact:
+              email:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+            person:
+              name:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+          resolution_support:
+            chat_link:
+              required: false
+              type: false
+              owner: false
+              usage: false
+              description: false
+            contact:
+              phone:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+              email:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+            gros:
+              person:
+                name:
+                  required: false
+                  type: false
+                  owner: false
+                  usage: false
+                  description: false
+              contact:
+                phone:
+                  required: false
+                  type: false
+                  owner: false
+                  usage: false
+                  description: false
+              gro_type:
+                required: false
+                type: false
+                owner: false
+                usage: false
+                description: false
+      resolution:
+        short_desc:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+        long_desc:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+        action_triggered:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
+        refund_amount:
+          required: false
+          type: false
+          owner: false
+          usage: false
+          description: false
