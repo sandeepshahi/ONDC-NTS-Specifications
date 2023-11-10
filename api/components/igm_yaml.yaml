@@ -53,7 +53,7 @@ paths:
                     required:
                       - ack
                   error:
-                    $ref: "../../core/core.yaml#/components/schemas/Error"
+                    $ref: "#/components/schemas/Error"
                 required:
                   - message
   /on_issue:
@@ -204,7 +204,7 @@ components:
       type: object
       properties:
         person:
-          $ref: "../../core/core.yaml#/components/schemas/Person"
+          $ref: "#/components/schemas/Person"
         contact:
           allOf:
             - $ref: "#/components/schemas/Contact"
@@ -282,11 +282,11 @@ components:
       type: object
       properties:
         org:
-         $ref: "../../core/ondc_core.yaml#/components/schemas/Organization"
+         $ref: "#/components/schemas/Organization"
         contact: 
          $ref: "#/components/schemas/Contact"
         person:
-          $ref: "../../core/core.yaml#/components/schemas/Person"
+          $ref: "#/components/schemas/Person"
     ResolutionSupport:
       description: |
         Any one of these resolution support deatils are mandatory to be speficed whenever an issue resolution is proposed.
@@ -300,7 +300,7 @@ components:
           description: chatbot link for the respondent for complainant to interact with the respondent
           type: string
         contact:
-          $ref: "../../core/ondc_core.yaml#/components/schemas/Contact"
+          $ref: "#/components/schemas/Contact"
         faqs:
           description: frequently asked questions for the respondent for complainant to get information as required
           type: array
@@ -335,7 +335,7 @@ components:
       type: object
       properties:
         person:
-          $ref: "../../core/core.yaml#/components/schemas/Person"
+          $ref: "#/components/schemas/Person"
         contact:
           $ref: "#/components/schemas/Contact"
         gro_type:
@@ -356,7 +356,7 @@ components:
         - gro_type
     Faq:
       description: |
-       type: object
+        type: object
       properties:
         question:
           type: string
@@ -437,8 +437,8 @@ components:
           $ref: "#/components/schemas/Complainant"
         order_details:
           $ref: "#/components/schemas/OrderDetails"
-        description:
-          $ref: "../../core/core.yaml#/components/schemas/Descriptor"
+        # description:
+        #   $ref: "#/components/schemas/Descriptor"
         category:
           $ref: "#/components/schemas/IssueCategory"
         sub_category:
@@ -510,8 +510,8 @@ components:
     SupplementaryInformation:
       type: object
       properties:
-        issue_update_info:
-                $ref: "../../core/core.yaml#/components/schemas/Descriptor"
+        # issue_update_info:
+        #         $ref: "#/components/schemas/issue_update_info"
         updated_at:
           description: timestamp for the capturing the time an issue was last updated
           type: string
@@ -703,6 +703,25 @@ components:
           type: string
         email:
           type: string
+    Person:
+      description: Describes a person.
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'Describes the name of a person in format: ./{given_name}/{honorific_prefix}/{first_name}/{middle_name}/{last_name}/{honorific_suffix}'
+          pattern: '^\./[^/]+/[^/]*/[^/]*/[^/]*/[^/]*/[^/]*$'
+        Image:
+         description: 'Image of an object. <br/><br/> A url based image will look like <br/><br/>```uri:http://path/to/image``` <br/><br/> An image can also be sent as a data string. For example : <br/><br/> ```data:js87y34ilhriuho84r3i4```'
+         type: string
+        dob:
+          type: string
+          format: date
+        gender:
+          type: string
+          description: 'Gender of something, typically a Person, but possibly also fictional characters, animals, etc. While Male and Female may be used, text strings are also acceptable for people who do not identify as a binary gender'
+        cred:
+          type: string
     Time:
       description: Describes time in its various forms. It can be a single point in time; duration; or a structured timetable of operations
       type: object
@@ -809,3 +828,4 @@ servers:
   # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/ONDC/ONDC-Protocol-IGM/1.0.0
+    
