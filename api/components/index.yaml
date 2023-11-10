@@ -4,8 +4,8 @@ examples:
 #   $ref: "./enums/index.yaml"
 # tags:
 #   $ref: "./tags/index.yaml"
-flows:
-  $ref: "./flows/index.yaml"
+# flows:
+#   $ref: "./flows/index.yaml"
 # attributes:
 #   $ref: "./attributes/index.yaml"  
 # error_codes:
