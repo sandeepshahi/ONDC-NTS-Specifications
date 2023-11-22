@@ -1,7 +1,7 @@
 context:
-  domain: ONDC:RET10
+  domain: ONDC:FIS12
   country: IND
-  city: std:080
+  city: "*"
   action: issue_status
   core_version: 1.0.0
   bap_id: buyerapp.com
@@ -10,7 +10,7 @@ context:
   bpp_uri: https://sellerapp.com/ondc
   transaction_id: T1
   message_id: M2
-  timestamp: 2023-01-15T10:30:00.469Z
+  timestamp: "2023-01-15T10:30:00.469Z"
   ttl: PT30S
 message:
-  issue_id: I1
+  issue_id: "1"

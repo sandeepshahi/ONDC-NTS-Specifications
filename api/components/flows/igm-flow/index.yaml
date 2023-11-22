@@ -2,12 +2,36 @@ summary: IGM Flow
 details:
 references: if any
 steps:
-  - summary: search
+  - summary: issue
     api: issue
     details:
       - description: issue
     reference: if any
     example:
       value:
-        $ref: "../../examples/issue/issue.yaml"
+        $ref: "../../examples/igm/issue/issue.yaml"
+  - summary: on_issue
+    api: on_issue
+    details:
+      - description: on_issue
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/igm/on_issue/on_issue.yaml"  
+  - summary: issue_status
+    api: issue_status
+    details:
+      - description: on_issue
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/igm/issue_status/issue_status.yaml" 
+  - summary: on_issue_status
+    api: on_issue_status
+    details:
+      - description: on_issue
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/igm/on_issue_status/on_issue_status.yaml"             
   

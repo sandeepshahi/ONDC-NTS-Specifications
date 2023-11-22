@@ -1,7 +1,7 @@
-context:
-  domain: ONDC:RET
+context: 
+  domain: ONDC:FIS12
   country: IND
-  city: std:080
+  city: "*"
   action: issue
   core_version: 1.0.0
   bap_id: buyerapp.com
@@ -14,28 +14,22 @@ context:
   ttl: PT30S
 message:
   issue:
-    id: I1
-    category: ITEM
-    sub_category: ITM04
+    id: "1"
+    category: FULFILMENT
+    sub_category: FLM01
     complainant_info:
-      # person:
-      #   name: Sam Manuel
-      contact:
+       person:
+        name: Sam Manuel
+       contact:
         phone: "9879879870"
         email: sam@yahoo.com
     order_details:
       id: 4597f703-e84f-431e-a96a-d147cfa142f9
-      state: Completed
-      items:
-        - id: 18275-ONDC-1-9
-          quantity: 1
-      fulfillments:
-        - id: Fulfillment1
-          state: Order-delivered
+      state: SANCTIONED
       provider_id: P1
     description:
-      short_desc: Issue with product quality
-      long_desc: product quality is not correct. facing issues while using the product
+      short_desc: Delay in disbursement/not disbursed
+      Long_desc: Loan not disbursed by the lender
       additional_desc:
         url: https://buyerapp.com/additonal-details/desc.txt
         content_type: text/plain
@@ -58,7 +52,7 @@ message:
           updated_at: "2023-01-15T10:00:00.469Z"
           updated_by:
             org:
-              name: buyerapp.com
+              name: buyerapp.com::ONDC:FIS12
             contact:
               phone: "9450394039"
               email: buyerapp@interface.com
@@ -66,3 +60,5 @@ message:
             #   name: John Doe
     created_at: "2023-01-15T10:00:00.469Z"
     updated_at: "2023-01-15T10:00:00.469Z"
+
+

@@ -60,7 +60,7 @@ async function validateSchema(schema, data) {
   const validate = ajv.compile(schema);
   const valid = validate(data?.value);
   if (!valid) {
-    console.log(JSON.stringify(validate.errors));
+    console.log(validate.errors);
     return true;
   }
   return false;
@@ -176,11 +176,12 @@ async function checkObjectKeys(currentExamplePos, currentSchemaPos, logObject) {
 }
 
 async function validateEnumsTags(exampleEnums, schemaMap) {
+  console.log(exampleEnums);
   for (const example of Object.keys(exampleEnums)) {
     const currentExample = exampleEnums[example];
     const currentSchema = schemaMap[example];
 
-    //context & message loop
+    //context & mesage loop
     for (const currentExamples of Object.keys(currentExample)) {
       const currentSchemaPos =
         currentSchema?.properties[currentExamples]?.properties ||
@@ -305,16 +306,16 @@ async function getSwaggerYaml(example_set, outputPath) {
     }
 
     //move to separate files
-    if (!process.argv.includes(SKIP_VALIDATION.enums) && !hasTrueResult) {
-      hasTrueResult = await validateEnumsTags(enums, schemaMap);
-    }
-    if (!process.argv.includes(SKIP_VALIDATION.tags) && !hasTrueResult) {
-      hasTrueResult = await validateTags(tags, schemaMap);
-    }
+    // if (!process.argv.includes(SKIP_VALIDATION.enums) && !hasTrueResult) {
+    //   hasTrueResult = await validateEnumsTags(enums, schemaMap);
+    // }
+    // if (!process.argv.includes(SKIP_VALIDATION.tags) && !hasTrueResult) {
+    //   hasTrueResult = await validateTags(tags, schemaMap);
+    // }
 
-    if (!process.argv.includes(SKIP_VALIDATION.attributes) && !hasTrueResult) {
-      hasTrueResult = await validateAttributes(attributes, schemaMap);
-    }
+    // if (!process.argv.includes(SKIP_VALIDATION.attributes) && !hasTrueResult) {
+    //   hasTrueResult = await validateAttributes(attributes, schemaMap);
+    // }
 
     if (hasTrueResult) return;
 

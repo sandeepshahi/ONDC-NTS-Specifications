@@ -1,5 +1,6 @@
-IGM : 
+igm : 
  summary: IGM implementation
- description: IGM use case
+ description: IGM examples
  example_set:
-  $ref:"../examples/index.yaml"
+   $ref: "./igm/index.yaml"
+ 
