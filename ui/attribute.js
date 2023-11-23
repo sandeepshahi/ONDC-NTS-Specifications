@@ -16,6 +16,7 @@ function updateSetsAttribute() {
 }
 
 function loadAttributes(data) {
+  console.log(data);
   attributes = data;
   var attributesDropDown = document.getElementById("attribute-dropdown");
   attributesDropDown.innerHTML = "";
