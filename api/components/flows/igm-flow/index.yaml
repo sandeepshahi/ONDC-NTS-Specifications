@@ -9,14 +9,14 @@ details:
         participant Seller App
         Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
         Buyer App  ->>+ Seller App: ISSUE 
-        Seller App ->>+ Buyer App : ON_ISSUE
-        Seller App ->>-Buyer App: Seller App started processing the issue
-        Buyer App  ->>+ Seller App: ISSUE STATUS
-        Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
-        Seller App ->>+ Buyer App : On_ISSUE _STATUS
-        Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
-        Seller App ->>+ Buyer App: ISSUE CLOSED
-        Buyer App ->>+ Buyer:  ISSUE Resolution provided 
+        Seller App ->>+ Buyer App : ON_ISSUE (Seller App started processing the issue)
+        # Seller App ->>-Buyer App: Seller App started processing the issue
+        Buyer App  ->>+ Seller App: ISSUE STATUS(Buyer app requesting status update on the complaint)
+        # Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
+        Seller App ->>+ Buyer App : On_ISSUE _STATUS (Seller app providing status update on the complaint  )
+        # Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
+         Seller App ->>+ Buyer App:  ISSUE Resolution provided 
+           Buyer App ->>+ Buyer:  ISSUE CLOSED
 references: if any
 steps:
   - summary: issue
@@ -29,16 +29,18 @@ steps:
            participant Buyer 
            participant Buyer App
            participant Seller App
+           rect rgb(0,195,255)
            Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
            Buyer App  ->>+ Seller App: ISSUE 
-           Seller App ->>+ Buyer App : ON_ISSUE
-           Seller App ->>-Buyer App: Seller App started processing the issue
+           end
+            Seller App ->>+ Buyer App : ON_ISSUE (Seller App started processing the issue)
+          #  Seller App ->>-Buyer App: Seller App started processing the issue
            Buyer App  ->>+ Seller App: ISSUE STATUS
            Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
            Seller App ->>+ Buyer App : On_ISSUE _STATUS
            Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
-           Seller App ->>+ Buyer App: ISSUE CLOSED
-           Buyer App ->>+ Buyer:  ISSUE Resolution provided 
+            Seller App ->>+ Buyer App:  ISSUE Resolution provided 
+           Buyer App ->>+ Buyer:  ISSUE CLOSED
     reference: if any
     example:
       value:
@@ -55,14 +57,16 @@ steps:
            participant Seller App
            Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
            Buyer App  ->>+ Seller App: ISSUE 
+           rect rgb(0,195,255)
            Seller App ->>+ Buyer App : ON_ISSUE
            Seller App ->>-Buyer App: Seller App started processing the issue
+           end
            Buyer App  ->>+ Seller App: ISSUE STATUS
            Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
            Seller App ->>+ Buyer App : On_ISSUE _STATUS
            Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
-           Seller App ->>+ Buyer App: ISSUE CLOSED
-           Buyer App ->>+ Buyer:  ISSUE Resolution provided 
+            Seller App ->>+ Buyer App:  ISSUE Resolution provided 
+           Buyer App ->>+ Buyer:  ISSUE CLOSED
         
     reference: if any
     example:
@@ -82,12 +86,14 @@ steps:
            Buyer App  ->>+ Seller App: ISSUE 
            Seller App ->>+ Buyer App : ON_ISSUE
            Seller App ->>-Buyer App: Seller App started processing the issue
+           rect rgb(0,195,255)
            Buyer App  ->>+ Seller App: ISSUE STATUS
            Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
+           end
            Seller App ->>+ Buyer App : On_ISSUE _STATUS
            Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
-           Seller App ->>+ Buyer App: ISSUE CLOSED
-           Buyer App ->>+ Buyer:  ISSUE Resolution provided 
+           Seller App ->>+ Buyer App:  ISSUE Resolution provided 
+           Buyer App ->>+ Buyer:  ISSUE CLOSED
     reference: if any
     example:
       value:
@@ -108,10 +114,12 @@ steps:
            Seller App ->>-Buyer App: Seller App started processing the issue
            Buyer App  ->>+ Seller App: ISSUE STATUS
            Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
+           rect rgb(0,195,255)
            Seller App ->>+ Buyer App : On_ISSUE _STATUS
            Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
-           Seller App ->>+ Buyer App: ISSUE CLOSED
-           Buyer App ->>+ Buyer:  ISSUE Resolution provided 
+           end
+           Seller App ->>+ Buyer App:  ISSUE Resolution provided 
+           Buyer App ->>+ Buyer:  ISSUE CLOSED
     reference: if any
     example:
       value:
