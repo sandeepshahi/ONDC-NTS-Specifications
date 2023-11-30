@@ -11,7 +11,7 @@ function onFirstLoad(build_spec) {
               initSchema(data[xProperty]);
               break;
             case "x-tags":
-              initTag(data[xProperty]);
+              //initTag(data[xProperty]);
               break;
             case "x-examples":
               loadExample(data[xProperty]);
