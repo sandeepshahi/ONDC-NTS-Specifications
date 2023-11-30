@@ -1059,6 +1059,171 @@ x-enum:
       - code: ORD04
         description: Errors in loan agreements or contracts
         reference: <PR/Issue/Discussion Links md format text
+  on_issue:
+    code:
+      - code: FLM01
+        description: Delay in disbursement/not disbursed
+        reference: null
+      - code: FLM02
+        description: Incorrect amount disbursed
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT01
+        description: EMI not deducted
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT02
+        description: Incorrect amount debited against the EMI
+        reference: <PR/Issue/Discussion] Links md format text
+      - code: PMT03
+        description: EMI deducted twice
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT04
+        description: Automatic debits not canceled after loan closure
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT05
+        description: Issues with payment receipts and acknowledgment
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT06
+        description: Unable to prepay or make partpay
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT07
+        description: Prepayment not reflecting in loan summary
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT08
+        description: incorrect fees charged even during the cool-off period
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT09
+        description: Loan completion certificate/NOC not received after full payment
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PTM09
+        description: RoI related issues
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PTM10
+        description: >-
+          Interest to be charged as per initial loan offer was 18% however the
+          final loan agreement has 20% mentioned
+        reference: <PR/Issue/Discussion Links md format text
+      - code: ORD01
+        description: Incorrect info on the credit report
+        reference: <PR/Issue/Discussion Links md format text
+      - code: ORD02
+        description: delay in updating payment information
+        reference: <PR/Issue/Discussion Links md format text
+      - code: ORD03
+        description: Missing or lost loan documents
+        reference: <PR/Issue/Discussion Links md format text
+      - code: ORD04
+        description: Errors in loan agreements or contracts
+        reference: <PR/Issue/Discussion Links md format text
+  issue_status:
+    code:
+      - code: FLM01
+        description: Delay in disbursement/not disbursed
+        reference: null
+      - code: FLM02
+        description: Incorrect amount disbursed
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT01
+        description: EMI not deducted
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT02
+        description: Incorrect amount debited against the EMI
+        reference: <PR/Issue/Discussion] Links md format text
+      - code: PMT03
+        description: EMI deducted twice
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT04
+        description: Automatic debits not canceled after loan closure
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT05
+        description: Issues with payment receipts and acknowledgment
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT06
+        description: Unable to prepay or make partpay
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT07
+        description: Prepayment not reflecting in loan summary
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT08
+        description: incorrect fees charged even during the cool-off period
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT09
+        description: Loan completion certificate/NOC not received after full payment
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PTM09
+        description: RoI related issues
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PTM10
+        description: >-
+          Interest to be charged as per initial loan offer was 18% however the
+          final loan agreement has 20% mentioned
+        reference: <PR/Issue/Discussion Links md format text
+      - code: ORD01
+        description: Incorrect info on the credit report
+        reference: <PR/Issue/Discussion Links md format text
+      - code: ORD02
+        description: delay in updating payment information
+        reference: <PR/Issue/Discussion Links md format text
+      - code: ORD03
+        description: Missing or lost loan documents
+        reference: <PR/Issue/Discussion Links md format text
+      - code: ORD04
+        description: Errors in loan agreements or contracts
+        reference: <PR/Issue/Discussion Links md format text
+  on_issue_status:
+    code:
+      - code: FLM01
+        description: Delay in disbursement/not disbursed
+        reference: null
+      - code: FLM02
+        description: Incorrect amount disbursed
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT01
+        description: EMI not deducted
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT02
+        description: Incorrect amount debited against the EMI
+        reference: <PR/Issue/Discussion] Links md format text
+      - code: PMT03
+        description: EMI deducted twice
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT04
+        description: Automatic debits not canceled after loan closure
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT05
+        description: Issues with payment receipts and acknowledgment
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT06
+        description: Unable to prepay or make partpay
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT07
+        description: Prepayment not reflecting in loan summary
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT08
+        description: incorrect fees charged even during the cool-off period
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PMT09
+        description: Loan completion certificate/NOC not received after full payment
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PTM09
+        description: RoI related issues
+        reference: <PR/Issue/Discussion Links md format text
+      - code: PTM10
+        description: >-
+          Interest to be charged as per initial loan offer was 18% however the
+          final loan agreement has 20% mentioned
+        reference: <PR/Issue/Discussion Links md format text
+      - code: ORD01
+        description: Incorrect info on the credit report
+        reference: <PR/Issue/Discussion Links md format text
+      - code: ORD02
+        description: delay in updating payment information
+        reference: <PR/Issue/Discussion Links md format text
+      - code: ORD03
+        description: Missing or lost loan documents
+        reference: <PR/Issue/Discussion Links md format text
+      - code: ORD04
+        description: Errors in loan agreements or contracts
+        reference: <PR/Issue/Discussion Links md format text
 x-tags:
   issue:
     message:
@@ -1090,13 +1255,48 @@ x-tags:
                 reference: <PR/Issue/Discussion Links md format text>
 x-flows:
   - summary: IGM Flow
-    details: null
+    details:
+      - description: detailed flow
+        mermaid: |-
+          sequenceDiagram
+             title  A buyer raises an issue on the buyer app 
+             participant Buyer 
+             participant Buyer App
+             participant Seller App
+             Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
+             Buyer App  ->>+ Seller App: ISSUE 
+             Seller App ->>+ Buyer App : ON_ISSUE (Seller App started processing the issue)
+             # Seller App ->>-Buyer App: Seller App started processing the issue
+             Buyer App  ->>+ Seller App: ISSUE STATUS(Buyer app requesting status update on the complaint)
+             # Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
+             Seller App ->>+ Buyer App : On_ISSUE _STATUS (Seller app providing status update on the complaint  )
+             # Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
+              Seller App ->>+ Buyer App:  ISSUE Resolution provided 
+                Buyer App ->>+ Buyer:  ISSUE CLOSED
     references: if any
     steps:
       - summary: issue
         api: issue
         details:
           - description: issue
+            mermaid: |-
+              sequenceDiagram
+                title  A buyer raises an issue on the buyer app 
+                participant Buyer 
+                participant Buyer App
+                participant Seller App
+                rect rgb(0,195,255)
+                Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
+                Buyer App  ->>+ Seller App: ISSUE 
+                end
+                 Seller App ->>+ Buyer App : ON_ISSUE (Seller App started processing the issue)
+               #  Seller App ->>-Buyer App: Seller App started processing the issue
+                Buyer App  ->>+ Seller App: ISSUE STATUS
+                Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
+                Seller App ->>+ Buyer App : On_ISSUE _STATUS
+                Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
+                 Seller App ->>+ Buyer App:  ISSUE Resolution provided 
+                Buyer App ->>+ Buyer:  ISSUE CLOSED
         reference: if any
         example:
           value: &ref_0
@@ -1164,6 +1364,24 @@ x-flows:
         api: on_issue
         details:
           - description: on_issue
+            mermaid: |-
+              sequenceDiagram
+                title  A buyer raises an issue on the buyer app 
+                participant Buyer 
+                participant Buyer App
+                participant Seller App
+                Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
+                Buyer App  ->>+ Seller App: ISSUE 
+                rect rgb(0,195,255)
+                Seller App ->>+ Buyer App : ON_ISSUE
+                Seller App ->>-Buyer App: Seller App started processing the issue
+                end
+                Buyer App  ->>+ Seller App: ISSUE STATUS
+                Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
+                Seller App ->>+ Buyer App : On_ISSUE _STATUS
+                Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
+                 Seller App ->>+ Buyer App:  ISSUE Resolution provided 
+                Buyer App ->>+ Buyer:  ISSUE CLOSED
         reference: if any
         example:
           value: &ref_1
@@ -1202,7 +1420,25 @@ x-flows:
       - summary: issue_status
         api: issue_status
         details:
-          - description: on_issue
+          - description: issue_status
+            mermaid: |-
+              sequenceDiagram
+                title  A buyer raises an issue on the buyer app 
+                participant Buyer 
+                participant Buyer App
+                participant Seller App
+                Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
+                Buyer App  ->>+ Seller App: ISSUE 
+                Seller App ->>+ Buyer App : ON_ISSUE
+                Seller App ->>-Buyer App: Seller App started processing the issue
+                rect rgb(0,195,255)
+                Buyer App  ->>+ Seller App: ISSUE STATUS
+                Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
+                end
+                Seller App ->>+ Buyer App : On_ISSUE _STATUS
+                Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
+                Seller App ->>+ Buyer App:  ISSUE Resolution provided 
+                Buyer App ->>+ Buyer:  ISSUE CLOSED
         reference: if any
         example:
           value: &ref_2
@@ -1225,7 +1461,25 @@ x-flows:
       - summary: on_issue_status
         api: on_issue_status
         details:
-          - description: on_issue
+          - description: on_issue_status
+            mermaid: |-
+              sequenceDiagram
+                title  A buyer raises an issue on the buyer app 
+                participant Buyer 
+                participant Buyer App
+                participant Seller App
+                Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
+                Buyer App  ->>+ Seller App: ISSUE 
+                Seller App ->>+ Buyer App : ON_ISSUE
+                Seller App ->>-Buyer App: Seller App started processing the issue
+                Buyer App  ->>+ Seller App: ISSUE STATUS
+                Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
+                rect rgb(0,195,255)
+                Seller App ->>+ Buyer App : On_ISSUE _STATUS
+                Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
+                end
+                Seller App ->>+ Buyer App:  ISSUE Resolution provided 
+                Buyer App ->>+ Buyer:  ISSUE CLOSED
         reference: if any
         example:
           value: &ref_3
@@ -1333,19 +1587,19 @@ x-attributes:
         message:
           issue:
             id:
-              required: false
+              required: true
               type: false
               owner: false
               usage: false
               description: false
             category:
-              required: false
+              required: true
               type: false
               owner: false
               usage: false
               description: false
             sub_catagory:
-              required: false
+              required: true
               type: false
               owner: false
               usage: false
@@ -1353,138 +1607,138 @@ x-attributes:
             complainant_info:
               person:
                 name:
-                  required: false
+                  required: true
                   type: false
                   owner: false
                   usage: false
                   description: false
               contact:
                 phone:
-                  required: false
+                  required: true
                   type: false
                   owner: false
                   usage: false
                   description: false
                 email:
-                  required: false
+                  required: true
                   type: false
                   owner: false
                   usage: false
                   description: false
             order_details:
               id:
-                required: false
+                required: true
                 type: false
                 owner: false
                 usage: false
                 description: false
               state:
-                required: false
+                required: true
                 type: false
                 owner: false
                 usage: false
                 description: false
               items:
                 id:
-                  required: false
+                  required: true
                   type: false
                   owner: false
                   usage: false
                   description: false
                 quantity:
-                  required: false
+                  required: true
                   type: false
                   owner: false
                   usage: false
                   description: false
               fulfillments:
                 id:
-                  required: false
+                  required: true
                   type: false
                   owner: false
                   usage: false
                   description: false
                 '':
                   state:
-                    required: false
+                    required: true
                     type: false
                     owner: false
                     usage: false
                     description: false
               provider_id:
-                required: false
+                required: true
                 type: false
                 owner: false
                 usage: false
                 description: false
             descriptor:
               short_desc:
-                required: false
+                required: true
                 type: false
                 owner: false
                 usage: false
                 description: false
               long_desc:
-                required: false
+                required: true
                 type: false
                 owner: false
                 usage: false
                 description: false
               additional_desc:
                 url:
-                  required: false
+                  required: true
                   type: false
                   owner: false
                   usage: false
                   description: false
                 content_type:
-                  required: false
+                  required: true
                   type: false
                   owner: false
                   usage: false
                   description: false
             description:
               image:
-                required: false
+                required: true
                 type: false
                 owner: false
                 usage: false
                 description: false
             source:
               network_participant_id:
-                required: false
+                required: true
                 type: false
                 owner: false
                 usage: false
                 description: false
               type:
-                required: false
+                required: true
                 type: false
                 owner: false
                 usage: false
                 description: false
             expected_response_time:
               duration:
-                required: false
+                required: true
                 type: false
                 owner: false
                 usage: false
                 description: false
             expected_resolution_time:
               duration:
-                required: false
+                required: true
                 type: false
                 owner: false
                 usage: false
                 description: false
             status:
-              required: false
+              required: true
               type: false
               owner: false
               usage: false
               description: false
             issue_type:
-              required: false
+              required: true
               type: false
               owner: false
               usage: false
@@ -1492,19 +1746,19 @@ x-attributes:
             issue_action:
               complainant_actions:
                 complainant_action:
-                  required: false
+                  required: true
                   type: false
                   owner: false
                   usage: false
                   description: false
                 short_desc:
-                  required: false
+                  required: true
                   type: false
                   owner: false
                   usage: false
                   description: false
                 updated_at:
-                  required: false
+                  required: true
                   type: false
                   owner: false
                   usage: false
@@ -1512,39 +1766,39 @@ x-attributes:
                 updated_by:
                   org:
                     name:
-                      required: false
+                      required: true
                       type: false
                       owner: false
                       usage: false
                       description: false
                   contact:
                     phone:
-                      required: false
+                      required: true
                       type: false
                       owner: false
                       usage: false
                       description: false
                     email:
-                      required: false
+                      required: true
                       type: false
                       owner: false
                       usage: false
                       description: false
                   person:
                     name:
-                      required: false
+                      required: true
                       type: false
                       owner: false
                       usage: false
                       description: false
             created_at:
-              required: false
+              required: true
               type: false
               owner: false
               usage: false
               description: false
             ' updated_at':
-              required: false
+              required: true
               type: false
               owner: false
               usage: false
