@@ -17,7 +17,7 @@ const process = require("process");
 
 const args = process.argv.slice(2);
 // var example_set = args[0]
-// var flow_set = args[1]
+var flow_set = args[1]
 var base_yaml = "./igm_yaml.yaml"; //args[0];
 var example_yaml = "./index.yaml"; //args[1];
 var outputPath = "../build/build.yaml";
