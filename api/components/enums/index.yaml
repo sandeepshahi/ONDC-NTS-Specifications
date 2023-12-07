@@ -13,7 +13,7 @@ issue:
           reference: <PR/Issue/Discussion Links md format text         
 
       sub-category: 
-        - code: FLM01
+        - code: FLM100
           description: Delay in disbursement/not disbursed
           reference: 
         - code: FLM02
