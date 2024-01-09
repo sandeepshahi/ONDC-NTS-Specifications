@@ -1,0 +1,5 @@
+info-service:
+  summary: Info Service
+  description: Info Service used by Network Participant(NP) details for business on boaring at NPs end
+  example_set:
+    $ref: "./info/index.yaml"

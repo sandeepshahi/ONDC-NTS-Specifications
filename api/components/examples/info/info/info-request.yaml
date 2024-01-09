@@ -1,0 +1,18 @@
+context:
+  domain: ONDC:RET10
+  country: IND
+  city: std:080
+  action: info
+  core_version: 1.2.0
+  bap_id: example-test-bap.com
+  bap_uri: https://example-test-bap.com
+  bpp_id: example-test-bpp.com
+  bpp_uri: https://example-test-bap.com
+  transaction_id: T1
+  message_id: M1
+  timestamp: 2023-09-26T23:04:05.254Z
+  ttl: PT30S
+message:
+  intent:
+    descriptor:
+      code: INFO

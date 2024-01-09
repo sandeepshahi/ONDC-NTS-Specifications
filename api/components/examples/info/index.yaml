@@ -1,0 +1,16 @@
+info:
+  examples:
+    - summary: Request for Info of Counter Party
+      description: TBD
+      value:
+        $ref: "./info/info-request.yaml"
+on_info:
+  examples:
+    - summary: Provide Info BPP
+      description: TBD
+      value:
+        $ref: "./on_info/on_info-request-bpp.yaml"
+    - summary: Provide Info BAP
+      description: TBD
+      value:
+        $ref: "./on_info/on_info-request-bap.yaml"
