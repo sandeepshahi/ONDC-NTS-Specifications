@@ -3,8 +3,9 @@ const yaml = require("js-yaml");
 const fs = require("fs");
 
 async function buildAttribiutes() {
+ console.log("hi"); 
   let attributes = {};
-  const workSheetsFromBuffer = xlsx.parse(`../../metro_attributes.xlsx`);
+  const workSheetsFromBuffer = xlsx.parse(`../../abc.xlsx`);
   for (let i = 0; i < workSheetsFromBuffer.length; i++) {
     const array = workSheetsFromBuffer[i];
     const filterArray = array.data.filter((subArr) => subArr.length > 0);

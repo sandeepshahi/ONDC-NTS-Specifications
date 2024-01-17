@@ -1,0 +1,92 @@
+info:
+  message:
+    intent:
+      descriptor:
+        "code\n":
+          required: 'true '
+          type: String
+          owner: Requester
+on_info:
+  message:
+    info:
+      type:
+        required: 'true '
+        type: String
+        owner: Provider
+      entity:
+        gst:
+          legal_entity_name:
+            required: 'true '
+            type: String
+            owner: Provider
+          business_address:
+            required: 'true '
+            type: String
+            owner: Provider
+          city_code:
+            required: 'true '
+            type: String
+            owner: Provider
+          gst_no:
+            required: 'true '
+            type: String
+            owner: Provider
+        name_of_authorised_signatory:
+          required: 'true '
+          type: String
+          owner: Provider
+        address_of_authorised_signatory:
+          required: 'true '
+          type: String
+          owner: Provider
+        email_id:
+          required: 'true '
+          type: String
+          owner: Provider
+    info,:
+      entity:
+        pan:
+          name_as_per_pan:
+            required: 'true '
+            type: String
+            owner: Provider
+          pan_no:
+            required: 'true '
+            type: String
+            owner: Provider
+          date_of_incorporation:
+            required: 'true '
+            type: String
+            owner: Provider
+  meesage:
+    info:
+      entity:
+        mobile_no:
+          required: 'true '
+          type: String
+          owner: Provider
+        country:
+          required: 'true '
+          type: String
+          owner: Provider
+        bank_details:
+          account_no:
+            required: 'true '
+            type: String
+            owner: Provider
+          ifsc_code:
+            required: 'true '
+            type: String
+            owner: Provider
+          beneficiary_name:
+            required: 'true '
+            type: String
+            owner: Provider
+          bank_name:
+            required: 'true '
+            type: String
+            owner: Provider
+          branch_name:
+            required: 'true '
+            type: String
+            owner: Provider

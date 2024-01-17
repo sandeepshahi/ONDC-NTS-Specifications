@@ -17,7 +17,7 @@ const process = require("process");
 
 const args = process.argv.slice(2);
 // var example_set = args[0]
-// var flow_set = args[1]
+var flow_set = args[1]
 var base_yaml = "./beckn_yaml.yaml"; //args[0];
 var example_yaml = "./index.yaml"; //args[1];
 var outputPath = "../build/build.yaml";
@@ -31,8 +31,8 @@ writeFilenamesToYaml(markdownFiles);
 compareFiles();
 getSwaggerYaml("example_set", outputPath);
 const { buildAttribiutes } = require('./build-attributes.js')
-const { buildErrorCodes } = require('./build-error-code.js')
-const { buildTlc } = require('./build-tlc.js')
+// const { buildErrorCodes } = require('./build-error-code.js')
+// const { buildTlc } = require('./build-tlc.js')
 
 const SKIP_VALIDATION = {
   flows: "skip1",
@@ -43,8 +43,8 @@ const SKIP_VALIDATION = {
 
 const BUILD = {
   attributes: "attributes",
-  error: "errorCode",
-  tlc: "tlc"
+  // error: "errorCode",
+  // tlc: "tlc"
 };
 
 async function baseYMLFile(file) {
@@ -87,7 +87,7 @@ async function validateFlows(flows, schemaMap) {
 }
 
 async function validateExamples(exampleSets, schemaMap) {
-
+// console.log("Ex", exampleSets);
   for (const example of Object.keys(exampleSets)) {
     for (const api of Object.keys(schemaMap)) {
       const exampleList = exampleSets[example].example_set[api]?.examples;
@@ -176,11 +176,12 @@ async function checkObjectKeys(currentExamplePos, currentSchemaPos, logObject) {
 }
 
 async function validateEnumsTags(exampleEnums, schemaMap) {
+  console.log(exampleEnums);
   for (const example of Object.keys(exampleEnums)) {
     const currentExample = exampleEnums[example];
     const currentSchema = schemaMap[example];
 
-    //context & message loop
+    // context & message loop
     for (const currentExamples of Object.keys(currentExample)) {
       const currentSchemaPos =
         currentSchema?.properties[currentExamples]?.properties ||
@@ -297,24 +298,24 @@ async function getSwaggerYaml(example_set, outputPath) {
       schemaMap[path.substring(1)] = pathSchema;
     }
     
-    if (!process.argv.includes(SKIP_VALIDATION.flows)) {
-      hasTrueResult = await validateFlows(flows, schemaMap);
-    }
+    // if (!process.argv.includes(SKIP_VALIDATION.flows)) {
+    //   hasTrueResult = await validateFlows(flows, schemaMap);
+    // }
     if (!process.argv.includes(SKIP_VALIDATION.examples) && !hasTrueResult) {
       hasTrueResult = await validateExamples(exampleSets, schemaMap);
     }
 
     //move to separate files
-    if (!process.argv.includes(SKIP_VALIDATION.enums) && !hasTrueResult) {
-      hasTrueResult = await validateEnumsTags(enums, schemaMap);
-    }
-    if (!process.argv.includes(SKIP_VALIDATION.tags) && !hasTrueResult) {
-      hasTrueResult = await validateTags(tags, schemaMap);
-    }
-​
-    if (!process.argv.includes(SKIP_VALIDATION.attributes) && !hasTrueResult) {
-      hasTrueResult = await validateAttributes(attributes, schemaMap);
-    }
+//     if (!process.argv.includes(SKIP_VALIDATION.enums) && !hasTrueResult) {
+//       hasTrueResult = await validateEnumsTags(enums, schemaMap);
+//     }
+//     if (!process.argv.includes(SKIP_VALIDATION.tags) && !hasTrueResult) {
+//       hasTrueResult = await validateTags(tags, schemaMap);
+//     }
+// ​
+//     if (!process.argv.includes(SKIP_VALIDATION.attributes) && !hasTrueResult) {
+//       hasTrueResult = await validateAttributes(attributes, schemaMap);
+//     }
 
     if (hasTrueResult) return;
 
@@ -372,6 +373,8 @@ function addEnumTag(base, layer) {
   base["x-attributes"] = layer["attributes"];
 base["x-errorcodes"] = layer["error_codes"];
   base["x-tlc"] = layer["tlc"];
+  base["x-featureui"] = layer["feature-ui"]
+  base["x-sandboxui"] = layer["sandbox-ui"]
 }
 
 function GenerateYaml(base, layer, output_yaml) {
@@ -388,6 +391,7 @@ function GenerateYaml(base, layer, output_yaml) {
 
 function checkMDFiles(){
   const filePath = './docs';
+  if(!fs.existsSync(path.join(filePath)))fs.mkdirSync(filePath) //create docs folder if not exists
   const files = fs.readdirSync(filePath);
   const markdownFiles=files.filter((file)=>file.endsWith(".md"))
  return markdownFiles
