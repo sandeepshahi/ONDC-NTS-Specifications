@@ -22,7 +22,7 @@ async function buildAttribiutes() {
 function formObject(attributes) {
   const result = {};
   let dataValue = {};
-  attributes.slice(1~).forEach((item) => {
+  attributes.slice(1).forEach((item) => {
     const keys = item[0].split(".");
     let temp = result;
     const tempAtt = attributes[0].slice(1);

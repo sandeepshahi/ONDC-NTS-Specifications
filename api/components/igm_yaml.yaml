@@ -601,6 +601,7 @@ components:
         - PMT02
         - PMT03
         - PMT04
+        - FLM201
     OrderDetails:
       type: object
       properties:
