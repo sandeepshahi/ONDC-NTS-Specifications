@@ -1,6 +1,28 @@
-igm : 
+retail_igm : 
  summary: IGM implementation
  description: IGM examples
  example_set:
-   $ref: "./igm/index.yaml"
+   $ref: "./retail_igm/index.yaml"
+
+fis_igm:
+ summary: IGM implementation for fis 
+ description: IGM examples for fis
+ example_set:
+   $ref: "./fis_igm/index.yaml"
+
+Motor_igm:
+  summary: IGM implementation for fis 
+  description: IGM examples for fis
+  example_set:
+   $ref: "./Motor_igm/index.yaml"
+
+# Marine_igm:
+#   summary: IGM implementation for fis 
+#   description: IGM examples for fis
+#   example_set:
+#    $ref: "./Marine_igm/index.yaml"
+
+
+
+
  
