@@ -1,0 +1,9 @@
+IGM:
+  attribute_set:
+    $ref: "./IGM/index.yaml"
+FIS_IGM:
+  attribute_set:
+    $ref: "./FIS_IGM/index.yaml" 
+MOTOR_IGM:
+  attribute_set:
+    $ref: "./MOTOR_IGM/index.yaml"     
