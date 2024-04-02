@@ -44,7 +44,7 @@ steps:
     reference: if any
     example:
       value:
-        $ref: "../../examples/Motor_igm/issue/issue.yaml"
+        $ref: "../../examples/Insurance/issue/issue.yaml"
   - summary: on_issue
     api: on_issue
     details:
@@ -71,7 +71,7 @@ steps:
     reference: if any
     example:
       value:
-        $ref: "../../examples/Motor_igm/on_issue/on_issue.yaml"  
+        $ref: "../../examples/Insurance/on_issue/on_issue.yaml"  
   - summary: issue_status
     api: issue_status
     details:
@@ -97,7 +97,7 @@ steps:
     reference: if any
     example:
       value:
-        $ref: "../../examples/Motor_igm/issue_status/issue_status.yaml" 
+        $ref: "../../examples/Insurance/issue_status/issue_status.yaml" 
   - summary: on_issue_status
     api: on_issue_status
     details:
@@ -123,5 +123,5 @@ steps:
     reference: if any
     example:
       value:
-        $ref: "../../examples/Motor_igm/on_issue_status/on_issue_status.yaml"             
+        $ref: "../../examples/Insurance/on_issue_status/on_issue_status.yaml"             
   
