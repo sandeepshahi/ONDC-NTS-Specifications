@@ -177,7 +177,7 @@ issue:
         - code: FLM211
           description: revoke consent already granted to collect personal data
           reference: <PR/Issue/Discussion Links md format text
-        - code: FLM212
+        - code: FLM2122
           description: delete/forget existing data against my profile
           reference: <PR/Issue/Discussion Links md format text  
 
