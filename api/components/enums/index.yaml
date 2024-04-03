@@ -66,9 +66,7 @@ issue:
           description: Errors in loan agreements or contracts
           reference: <PR/Issue/Discussion Links md format text
 
-        - code: FLM201
-          description: Issuance - Policy Issuance Status policy document not received 
-          reference: <PR/Issue/Discussion Links md format text
+        
         - code: PMT202
           description:  Issuance - Incorrect premium Amount
           reference: <PR/Issue/Discussion Links md format text 
@@ -144,6 +142,51 @@ issue:
         - code: ORD226
           description: Issuance - Nominee Updation
           reference: <PR/Issue/Discussion Links md format text  
+
+
+        - code: FLM201
+          description: Issuance - Policy Issuance Status policy document not received 
+          reference: <PR/Issue/Discussion Links md format text
+        - code: FLM202
+          description: Not able to complete the KYC
+          reference: <PR/Issue/Discussion Links md format text    
+        - code: FLM203
+          description: Not able to set up E-mandate
+          reference: <PR/Issue/Discussion Links md format text  
+        - code: FLM204
+          description: OTP not received during the e-sign of agreement
+          reference: <PR/Issue/Discussion Links md format text 
+        - code: FLM205
+          description: Not able to view the agreement
+          reference: <PR/Issue/Discussion Links md format text    
+        - code: FLM206 
+          description: Need to update the e-mandate details
+          reference: <PR/Issue/Discussion Links md format text 
+        - code: FLM207
+          description: Feedback on collection call
+          reference: <PR/Issue/Discussion Links md format text    
+        - code: FLM208
+          description: Stop Marketing Communications
+          reference: <PR/Issue/Discussion Links md format text 
+        - code: FLM209
+          description: Request for documents
+          reference: <PR/Issue/Discussion Links md format text    
+        - code: FLM210
+          description: Need to update personal details
+          reference: <PR/Issue/Discussion Links md format text\
+        - code: FLM211
+          description: revoke consent already granted to collect personal data
+          reference: <PR/Issue/Discussion Links md format text
+        - code: FLM212
+          description: delete/forget existing data against my profile
+          reference: <PR/Issue/Discussion Links md format text  
+
+
+
+
+
+
+
       order_details:
         state:
          - code: GRANTED
