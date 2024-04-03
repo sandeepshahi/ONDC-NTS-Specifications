@@ -1,9 +1,9 @@
-IGM:
+RETAIL:
   attribute_set:
-    $ref: "./IGM/index.yaml"
-FIS_IGM:
+    $ref: "./RETAIL/index.yaml"
+CREDIT:
   attribute_set:
-    $ref: "./FIS_IGM/index.yaml" 
-MOTOR_IGM:
+    $ref: "./CREDIT/index.yaml" 
+INSURANCE:
   attribute_set:
-    $ref: "./MOTOR_IGM/index.yaml"     
+    $ref: "./INSURANCE/index.yaml"     
