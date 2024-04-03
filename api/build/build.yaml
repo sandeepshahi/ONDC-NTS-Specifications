@@ -2485,7 +2485,7 @@ x-examples:
             description: TBD
             value: *ref_8
 x-attributes:
-  IGM:
+  RETAIL:
     attribute_set:
       issue:
         message:
@@ -3239,7 +3239,7 @@ x-attributes:
                 description: >-
                   Amount refunded as part of the resolution process, if
                   applicable.
-  FIS_IGM:
+  CREDIT:
     attribute_set:
       issue:
         message:
@@ -3993,7 +3993,7 @@ x-attributes:
                 description: >-
                   Amount refunded as part of the resolution process, if
                   applicable.
-  MOTOR_IGM:
+  INSURANCE:
     attribute_set:
       issue:
         message:

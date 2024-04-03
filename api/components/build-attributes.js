@@ -17,9 +17,9 @@ async function buildAttribiutes() {
   }
   if (Object.keys(attributes)?.length) {
     const attributesYaml = yaml.dump(attributes);
-    fs.writeFileSync(`./attributes/IGM/index.yaml`, attributesYaml);
-    fs.writeFileSync(`./attributes/FIS_IGM/index.yaml`, attributesYaml);
-    fs.writeFileSync(`./attributes/MOTOR_IGM/index.yaml`, attributesYaml);
+    // fs.writeFileSync(`./attributes/RETAIL/index.yaml`, attributesYaml);
+    // fs.writeFileSync(`./attributes/CREDIT/index.yaml`, attributesYaml);
+    fs.writeFileSync(`./attributes/INSURANCE/index.yaml`, attributesYaml);
 
   }
 }
