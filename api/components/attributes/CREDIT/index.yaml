@@ -46,7 +46,7 @@ issue:
             description: Describes the email
       order_details:
         id:
-          required: mandatory
+          required: Optional
           type: String
           owner: BAP
           usage: wtewetydug
@@ -54,14 +54,14 @@ issue:
             the value of this field will be the combination of
             context.transaction_id and order.id.
         state:
-          required: mandatory
+          required: Optional
           type: String
           owner: BAP
           usage: Completed
           description: Describes the state
         items:
           id:
-            required: mandatory
+            required: Optional
             type: String
             owner: BAP
             usage: 1123456677
@@ -69,21 +69,21 @@ issue:
               the value of this field will be the combination of
               context.transaction_id and order.id.
           quantity:
-            required: mandatory
+            required: Optional
             type: String
             owner: BAP
             usage: 6
             description: describes the quantity of the ordere
         fulfillments:
           id:
-            required: mandatory
+            required: Optional
             type: String
             owner: BAP
             usage: eufhruefhe12344
             description: 'describes the fulfillment states id '
           '':
             state:
-              required: mandatory
+              required: Optional
               type: String
               owner: BAP
               usage: Delevered
@@ -725,4 +725,4 @@ on_issue_status:
           type: String
           owner: BPP
           usage: false
-          description: Amount refunded as part of the resolution process, if applicable.
+          description: false

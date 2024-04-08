@@ -548,7 +548,7 @@ components:
           description: |
             ### Statues
               1. Open : indicating that the issue is opened and further action is yet to be taken on the issue
-              2. Closed : indicating that the issue is closed and no further action/update/info/resolution action/status change are expected/accepted on this issue. 
+              2. CLOSED : indicating that the issue is closed and no further action/update/info/resolution action/status change are expected/accepted on this issue. 
           type: string
           enum:
             - OPEN
@@ -1636,7 +1636,7 @@ x-flows:
              Seller App ->>+ Buyer App : On_ISSUE _STATUS (Seller app providing status update on the complaint  )
              # Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
               Seller App ->>+ Buyer App:  ISSUE Resolution provided 
-                Buyer App ->>+ Buyer:  ISSUE CLOSED
+               Buyer App ->>+ Buyer:  ISSUE CLOSED
     references: if any
     steps:
       - summary: issue
@@ -1907,6 +1907,91 @@ x-flows:
                   long_desc: For this complaint, loan is now disbursed
                   action_triggered: CANCEL
                   refund_amount: '100'
+      - summary: issue_close
+        api: issue_close
+        details:
+          - description: issue_close
+            mermaid: |-
+              sequenceDiagram
+                title  A buyer raises an issue on the buyer app 
+                participant Buyer 
+                participant Buyer App
+                participant Seller App
+                Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
+                Buyer App  ->>+ Seller App: ISSUE 
+                Seller App ->>+ Buyer App : ON_ISSUE
+                Seller App ->>-Buyer App: Seller App started processing the issue
+                Buyer App  ->>+ Seller App: ISSUE STATUS
+                Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
+                rect rgb(0,195,255)
+                Seller App ->>+ Buyer App : On_ISSUE _STATUS
+                Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
+                end
+                Seller App ->>+ Buyer App:  ISSUE Resolution provided 
+                Buyer App ->>+ Buyer:  ISSUE CLOSED
+        reference: if any
+        example:
+          value:
+            context:
+              domain: ONDC:FIS12
+              country: IND
+              city: '*'
+              action: issue
+              core_version: 1.0.0
+              bap_id: buyerapp.com
+              bap_uri: https://preprod-ondc.addble.com
+              bpp_id: sellerapp.com
+              bpp_uri: https://beta.mystore.in/ondc/1.0/
+              transaction_id: T1
+              message_id: M1
+              timestamp: '2023-01-15T10:00:00.469Z'
+              ttl: PT30S
+            message:
+              issue:
+                id: '1'
+                category: FULFILMENT
+                sub_category: FLM01
+                complainant_info:
+                  person:
+                    name: Sam Manuel
+                  contact:
+                    phone: '9879879870'
+                    email: sam@yahoo.com
+                order_details:
+                  id: 4597f703-e84f-431e-a96a-d147cfa142f9
+                  state: SANCTIONED
+                  provider_id: P1
+                description:
+                  short_desc: Delay in disbursement/not disbursed
+                  Long_desc: Loan not disbursed by the lender
+                  additional_desc:
+                    url: https://buyerapp.com/additonal-details/desc.txt
+                    content_type: text/plain
+                  images:
+                    - http://buyerapp.com/addtional-details/img1.png
+                    - http://buyerapp.com/addtional-details/img2.png
+                source:
+                  network_participant_id: buyerapp.com/ondc
+                  type: CONSUMER
+                expected_response_time:
+                  duration: PT2H
+                expected_resolution_time:
+                  duration: P1D
+                status: CLOSED
+                issue_type: ISSUE
+                issue_actions:
+                  complainant_actions:
+                    - complainant_action: OPEN
+                      short_desc: Complaint created
+                      updated_at: '2023-01-15T10:00:00.469Z'
+                      updated_by:
+                        org:
+                          name: buyerapp.com::ONDC:FIS12
+                        contact:
+                          phone: '9450394039'
+                          email: buyerapp@interface.com
+                created_at: '2023-01-15T10:00:00.469Z'
+                updated_at: '2023-01-15T10:00:00.469Z'
   - summary: INSURANCE
     details:
       - description: detailed flow
@@ -2206,6 +2291,77 @@ x-examples:
           - summary: issue
             description: TBD
             value: *ref_1
+          - summary: issue
+            description: TBD
+            value:
+              context:
+                domain: ONDC:RET10
+                country: IND
+                city: std:0522
+                action: issue
+                core_version: 1.0.0
+                bap_id: buyer-app-preprod-v2.ondc.org
+                bap_uri: https://buyer-app-preprod-v2.ondc.org/protocol/v1
+                bpp_uri: https://ondc-seller-preprod.chattybao.com/ondc/bpp
+                transaction_id: bab28a40-7c1d-4930-a789-5018e3414ed5
+                message_id: 7ed3b150-95c6-11ee-9475-039cd8109d55
+                timestamp: '2023-12-19T05:39:05.893Z'
+                bpp_id: ondc-seller-preprod.chattybao.com/ondc
+                ttl: PT30S
+              message:
+                issue:
+                  id: 7ed3b150-95c6-11ee-9475-039cd8109d56
+                  complainant_info:
+                    person:
+                      name: Jatin Khurana
+                    contact:
+                      phone: '9891691269'
+                      email: jatin@chattybao.com
+                  order_details:
+                    id: 2023-12-19-514155
+                    state: Completed
+                    items:
+                      - id: >-
+                          988d4f70-b340-11ed-b67d-b356d861831b:MR8mcezPPQEA-r8EhP6UN9
+                        quantity: 2
+                    fulfillments:
+                      - id: '1'
+                        state: Delivered
+                    provider_id: MR8mcezPPQEA-r8EhP6UN9
+                  description:
+                    short_desc: Item quality
+                    long_desc: Item quality is not good
+                    additional_desc:
+                      url: ''
+                    images:
+                      - >-
+                        https://storage.googleapis.com/adya_upload_pdf/image/file-df7ea687-448d-464d-bf1f-4a23707beadf.png
+                  category: ITEM
+                  sub_category: ITM02
+                  issue_type: ISSUE
+                  source:
+                    network_participant_id: buyer-app-preprod-v2.ondc.org
+                    type: CONSUMER
+                  expected_response_time:
+                    duration: PT2H
+                  expected_resolution_time:
+                    duration: P1D
+                  status: CLOSED
+                  issue_actions:
+                    complainant_actions:
+                      - complainant_action: OPEN
+                        short_desc: Complaint created
+                        updated_at: '2023-12-19T05:39:05.893Z'
+                        updated_by:
+                          org:
+                            name: buyer-app-preprod-v2.ondc.org::ONDC:RET10
+                          contact:
+                            phone: '9963548006'
+                            email: buyer@ondc.org
+                          person:
+                            name: Buyer Admin
+                  created_at: '2023-12-19T05:39:05.893Z'
+                  updated_at: '2023-12-19T05:39:05.893Z'
       on_issue:
         examples:
           - summary: on_issue
@@ -2276,6 +2432,69 @@ x-examples:
                   expected_resolution_time:
                     duration: P1D
                   status: OPEN
+                  issue_type: ISSUE
+                  issue_actions:
+                    complainant_actions:
+                      - complainant_action: OPEN
+                        short_desc: Complaint created
+                        updated_at: '2023-01-15T10:00:00.469Z'
+                        updated_by:
+                          org:
+                            name: buyerapp.com::ONDC:FIS12
+                          contact:
+                            phone: '9450394039'
+                            email: buyerapp@interface.com
+                  created_at: '2023-01-15T10:00:00.469Z'
+                  updated_at: '2023-01-15T10:00:00.469Z'
+          - summary: issue
+            description: TBD
+            value:
+              context:
+                domain: ONDC:FIS12
+                country: IND
+                city: '*'
+                action: issue
+                core_version: 1.0.0
+                bap_id: buyerapp.com
+                bap_uri: https://preprod-ondc.addble.com
+                bpp_id: sellerapp.com
+                bpp_uri: https://beta.mystore.in/ondc/1.0/
+                transaction_id: T1
+                message_id: M1
+                timestamp: '2023-01-15T10:00:00.469Z'
+                ttl: PT30S
+              message:
+                issue:
+                  id: '1'
+                  category: FULFILMENT
+                  sub_category: FLM01
+                  complainant_info:
+                    person:
+                      name: Sam Manuel
+                    contact:
+                      phone: '9879879870'
+                      email: sam@yahoo.com
+                  order_details:
+                    id: 4597f703-e84f-431e-a96a-d147cfa142f9
+                    state: SANCTIONED
+                    provider_id: P1
+                  description:
+                    short_desc: Delay in disbursement/not disbursed
+                    Long_desc: Loan not disbursed by the lender
+                    additional_desc:
+                      url: https://buyerapp.com/additonal-details/desc.txt
+                      content_type: text/plain
+                    images:
+                      - http://buyerapp.com/addtional-details/img1.png
+                      - http://buyerapp.com/addtional-details/img2.png
+                  source:
+                    network_participant_id: buyerapp.com/ondc
+                    type: CONSUMER
+                  expected_response_time:
+                    duration: PT2H
+                  expected_resolution_time:
+                    duration: P1D
+                  status: CLOSED
                   issue_type: ISSUE
                   issue_actions:
                     complainant_actions:
@@ -2485,7 +2704,7 @@ x-examples:
             description: TBD
             value: *ref_8
 x-attributes:
-  IGM:
+  RETAIL:
     attribute_set:
       issue:
         message:
@@ -3239,7 +3458,7 @@ x-attributes:
                 description: >-
                   Amount refunded as part of the resolution process, if
                   applicable.
-  FIS_IGM:
+  CREDIT:
     attribute_set:
       issue:
         message:
@@ -3289,7 +3508,7 @@ x-attributes:
                   description: Describes the email
             order_details:
               id:
-                required: mandatory
+                required: Optional
                 type: String
                 owner: BAP
                 usage: wtewetydug
@@ -3297,14 +3516,14 @@ x-attributes:
                   the value of this field will be the combination of
                   context.transaction_id and order.id.
               state:
-                required: mandatory
+                required: Optional
                 type: String
                 owner: BAP
                 usage: Completed
                 description: Describes the state
               items:
                 id:
-                  required: mandatory
+                  required: Optional
                   type: String
                   owner: BAP
                   usage: 1123456677
@@ -3312,21 +3531,21 @@ x-attributes:
                     the value of this field will be the combination of
                     context.transaction_id and order.id.
                 quantity:
-                  required: mandatory
+                  required: Optional
                   type: String
                   owner: BAP
                   usage: 6
                   description: describes the quantity of the ordere
               fulfillments:
                 id:
-                  required: mandatory
+                  required: Optional
                   type: String
                   owner: BAP
                   usage: eufhruefhe12344
                   description: 'describes the fulfillment states id '
                 '':
                   state:
-                    required: mandatory
+                    required: Optional
                     type: String
                     owner: BAP
                     usage: Delevered
@@ -3990,10 +4209,8 @@ x-attributes:
                 type: String
                 owner: BPP
                 usage: false
-                description: >-
-                  Amount refunded as part of the resolution process, if
-                  applicable.
-  MOTOR_IGM:
+                description: false
+  INSURANCE:
     attribute_set:
       issue:
         message:
