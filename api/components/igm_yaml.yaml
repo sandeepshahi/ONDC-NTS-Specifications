@@ -477,7 +477,7 @@ components:
           description: |
             ### Statues
               1. Open : indicating that the issue is opened and further action is yet to be taken on the issue
-              2. Closed : indicating that the issue is closed and no further action/update/info/resolution action/status change are expected/accepted on this issue. 
+              2. CLOSED : indicating that the issue is closed and no further action/update/info/resolution action/status change are expected/accepted on this issue. 
           type: string
           enum:
              - OPEN
