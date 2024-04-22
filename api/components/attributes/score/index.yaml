@@ -9,9 +9,8 @@ publish:
         description: >-
           Provides Persistent ID of the seller / entity, where this is generated
           based on the below formula. Hash(PREFIX:<Identity>), Example:
-          Hash(“GSTIN:22AAAAA0000A1Z5”), Hash(“PAN:XYZRN1234A”),
-          Hash(“UIDAI:123412341234”) (in this order of availability of
-          documents.
+          Hash(GSTIN:22AAAAA0000A1Z5), Hash(PAN:XYZRN1234A),
+          Hash(UIDAI:123412341234) (in this order of availability of documents.
       " entity_name\n":
         required: false
         type: String
@@ -217,9 +216,8 @@ revise:
         description: >-
           Provides Persistent ID of the seller / entity, where this is generated
           based on the below formula. Hash(PREFIX:<Identity>), Example:
-          Hash(“GSTIN:22AAAAA0000A1Z5”), Hash(“PAN:XYZRN1234A”),
-          Hash(“UIDAI:123412341234”) (in this order of availability of
-          documents.
+          Hash(GSTIN:22AAAAA0000A1Z5), Hash(PAN:XYZRN1234A),
+          Hash(UIDAI:123412341234) (in this order of availability of documents.
       " rating_type\n":
         required: true
         type: ENUM
@@ -417,9 +415,8 @@ query:
         description: >-
           Provides Persistent ID of the seller / entity, where this is generated
           based on the below formula. Hash(PREFIX:<Identity>), Example:
-          Hash(“GSTIN:22AAAAA0000A1Z5”), Hash(“PAN:XYZRN1234A”),
-          Hash(“UIDAI:123412341234”) (in this order of availability of
-          documents.
+          Hash(GSTIN:22AAAAA0000A1Z5), Hash(PAN:XYZRN1234A),
+          Hash(UIDAI:123412341234) (in this order of availability of documents.
       " rating_type\n\n":
         required: true
         type: Enum
