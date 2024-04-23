@@ -808,12 +808,30 @@ components:
           type: string
         city:
           type: string
+        location:
+         type: object
+         properties:
+           city:
+            type: object
+            properties:
+              code:
+                type: string
+                description: defines code for city
+           country:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: defines code for city          
         action:
           type: string
           description: Defines the Beckn API call. Any actions other than the enumerated actions are not supported by Beckn Protocol
         core_version:
           type: string
           description: Version of Beckn core API specification being used
+        version:
+          type: string
+          description: Version of Beckn core API specification being used  
         bap_id:
           type: string
           description: Unique id of the BAP. By default it is the fully qualified domain name of the BAP
@@ -847,14 +865,16 @@ components:
       required:
         - domain
         - action
-        - country
-        - city
-        - core_version
+        # - country
+        # - city
+        # - core_version
+        # - version
         - transaction_id
         - message_id
         - bap_id
         - bap_uri
         - timestamp
+        # - location
     Error:
       description: Describes an error object
       type: object

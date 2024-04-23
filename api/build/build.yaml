@@ -928,12 +928,30 @@ components:
           type: string
         city:
           type: string
+        location:
+          type: object
+          properties:
+            city:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: defines code for city
+            country:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: defines code for city
         action:
           type: string
           description: >-
             Defines the Beckn API call. Any actions other than the enumerated
             actions are not supported by Beckn Protocol
         core_version:
+          type: string
+          description: Version of Beckn core API specification being used
+        version:
           type: string
           description: Version of Beckn core API specification being used
         bap_id:
@@ -981,9 +999,6 @@ components:
       required:
         - domain
         - action
-        - country
-        - city
-        - core_version
         - transaction_id
         - message_id
         - bap_id
@@ -1666,10 +1681,13 @@ x-flows:
           value:
             context:
               domain: ONDC:FIS12
-              country: IND
-              city: '*'
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
               action: issue
-              core_version: 1.0.0
+              version: 2.0.0
               bap_id: buyerapp.com
               bap_uri: https://preprod-ondc.addble.com
               bpp_id: sellerapp.com
@@ -1751,10 +1769,13 @@ x-flows:
           value:
             context:
               domain: ONDC:FIS12
-              country: IND
-              city: '*'
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
               action: on_issue
-              core_version: 1.0.0
+              version: 2.0.0
               bap_id: buyerapp.com
               bap_uri: https://buyerapp.com/ondc
               bpp_id: sellerapp.com
@@ -1808,10 +1829,13 @@ x-flows:
           value:
             context:
               domain: ONDC:FIS12
-              country: IND
-              city: '*'
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
               action: issue_status
-              core_version: 1.0.0
+              core_version: 2.0.0
               bap_id: buyerapp.com
               bap_uri: https://buyerapp.com/ondc
               bpp_id: sellerapp.com
@@ -1849,10 +1873,13 @@ x-flows:
           value:
             context:
               domain: ONDC:FIS12
-              country: IND
-              city: '*'
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
               action: on_issue_status
-              core_version: 1.0.0
+              version: 2.0.0
               bap_id: buyerapp.com
               bap_uri: https://buyerapp.com/ondc
               bpp_id: sellerapp.com
@@ -1955,10 +1982,13 @@ x-flows:
           value: &ref_5
             context:
               domain: ONDC:FIS13
-              country: IND
-              city: '*'
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
               action: issue
-              core_version: 1.0.0
+              version: 2.0.0
               bap_id: buyerapp.com
               bap_uri: https://preprod-ondc.addble.com
               bpp_id: sellerapp.com
@@ -2040,10 +2070,13 @@ x-flows:
           value: &ref_6
             context:
               domain: ONDC:FIS13
-              country: IND
-              city: '*'
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
               action: on_issue
-              core_version: 1.0.0
+              version: 2.0.0
               bap_id: buyerapp.com
               bap_uri: https://buyerapp.com/ondc
               bpp_id: sellerapp.com
@@ -2097,10 +2130,13 @@ x-flows:
           value: &ref_7
             context:
               domain: ONDC:FIS13
-              country: IND
-              city: '*'
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
               action: issue_status
-              core_version: 1.0.0
+              version: 2.0.0
               bap_id: buyerapp.com
               bap_uri: https://buyerapp.com/ondc
               bpp_id: sellerapp.com
@@ -2138,10 +2174,13 @@ x-flows:
           value: &ref_8
             context:
               domain: ONDC:FIS13
-              country: IND
-              city: '*'
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
               action: on_issue_status
-              core_version: 1.0.0
+              version: 2.0.0
               bap_id: buyerapp.com
               bap_uri: https://buyerapp.com/ondc
               bpp_id: sellerapp.com
@@ -2232,10 +2271,13 @@ x-examples:
             value:
               context:
                 domain: ONDC:FIS12
-                country: IND
-                city: '*'
+                location:
+                  country:
+                    code: IND
+                  city:
+                    code: '*'
                 action: issue
-                core_version: 1.0.0
+                version: 2.0.0
                 bap_id: buyerapp.com
                 bap_uri: https://preprod-ondc.addble.com
                 bpp_id: sellerapp.com
@@ -2297,10 +2339,13 @@ x-examples:
             value:
               context:
                 domain: ONDC:FIS12
-                country: IND
-                city: '*'
+                location:
+                  country:
+                    code: IND
+                  city:
+                    code: '*'
                 action: on_issue
-                core_version: 1.0.0
+                version: 2.0.0
                 bap_id: buyerapp.com
                 bap_uri: https://buyerapp.com/ondc
                 bpp_id: sellerapp.com
@@ -2334,10 +2379,13 @@ x-examples:
             value:
               context:
                 domain: ONDC:FIS12
-                country: IND
-                city: '*'
+                location:
+                  country:
+                    code: IND
+                  city:
+                    code: '*'
                 action: issue_status
-                core_version: 1.0.0
+                core_version: 2.0.0
                 bap_id: buyerapp.com
                 bap_uri: https://buyerapp.com/ondc
                 bpp_id: sellerapp.com
@@ -2355,10 +2403,13 @@ x-examples:
             value:
               context:
                 domain: ONDC:FIS12
-                country: IND
-                city: '*'
+                location:
+                  country:
+                    code: IND
+                  city:
+                    code: '*'
                 action: on_issue_status
-                core_version: 1.0.0
+                version: 2.0.0
                 bap_id: buyerapp.com
                 bap_uri: https://buyerapp.com/ondc
                 bpp_id: sellerapp.com
@@ -2427,10 +2478,13 @@ x-examples:
             value:
               context:
                 domain: ONDC:FIS13
-                country: IND
-                city: '*'
+                location:
+                  country:
+                    code: IND
+                  city:
+                    code: '*'
                 action: issue
-                core_version: 1.0.0
+                version: 2.0.0
                 bap_id: buyerapp.com
                 bap_uri: https://buyerapp.com/ondc
                 bpp_id: sellerapp.com
