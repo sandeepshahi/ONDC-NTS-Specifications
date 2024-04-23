@@ -19,10 +19,10 @@ details:
            Buyer App ->>+ Buyer:  ISSUE CLOSED
 references: if any
 steps:
-  - summary: issue
+  - summary: ISSUE
     api: issue
     details:
-      - description: issue
+      - description:  issue request creating a complaint
         mermaid: >-
          sequenceDiagram
            title  A buyer raises an issue on the buyer app 
@@ -45,10 +45,10 @@ steps:
     example:
       value:
         $ref: "../../examples/Insurance/issue/issue.yaml"
-  - summary: on_issue
+  - summary: ON_ISSUE
     api: on_issue
     details:
-      - description: on_issue
+      - description: on_issue response marking the complaint as processing
         mermaid: >-
          sequenceDiagram
            title  A buyer raises an issue on the buyer app 
@@ -72,10 +72,10 @@ steps:
     example:
       value:
         $ref: "../../examples/Insurance/on_issue/on_issue.yaml"  
-  - summary: issue_status
+  - summary: ISSUE_STATUS
     api: issue_status
     details:
-      - description: issue_status
+      - description: issue_status request seeking updates on the complaint
         mermaid: >-
          sequenceDiagram
            title  A buyer raises an issue on the buyer app 
@@ -98,10 +98,10 @@ steps:
     example:
       value:
         $ref: "../../examples/Insurance/issue_status/issue_status.yaml" 
-  - summary: on_issue_status
+  - summary: ON_ISSUE_STATUS
     api: on_issue_status
     details:
-      - description: on_issue_status
+      - description: on_issue_status response providing update (resolution) on the complaint
         mermaid: >-
          sequenceDiagram
            title  A buyer raises an issue on the buyer app 
@@ -124,10 +124,10 @@ steps:
     example:
       value:
         $ref: "../../examples/Insurance/on_issue_status/on_issue_status.yaml"    
-  - summary: issue close
+  - summary: ISSUE_CLOSE
     api: issue
     details:
-      - description: issue closed
+      - description: issue close request to marking the complaint as closed
         mermaid: >-
          sequenceDiagram
            title  A buyer raises an issue on the buyer app 
