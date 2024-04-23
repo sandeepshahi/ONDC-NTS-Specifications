@@ -1633,6 +1633,99 @@ x-flows:
                   short_desc: No action is required
                   long_desc: No action is required for this complaint
                   action_triggered: NO-ACTION
+      - summary: issue close
+        api: issue
+        details:
+          - description: issue closed
+            mermaid: |-
+              sequenceDiagram
+                title  A buyer raises an issue on the buyer app 
+                participant Buyer 
+                participant Buyer App
+                participant Seller App
+                rect rgb(0,195,255)
+                Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
+                Buyer App  ->>+ Seller App: ISSUE 
+                end
+                 Seller App ->>+ Buyer App : ON_ISSUE (Seller App started processing the issue)
+               #  Seller App ->>-Buyer App: Seller App started processing the issue
+                Buyer App  ->>+ Seller App: ISSUE STATUS
+                Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
+                Seller App ->>+ Buyer App : On_ISSUE _STATUS
+                Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
+                 Seller App ->>+ Buyer App:  ISSUE Resolution provided 
+                Buyer App ->>+ Buyer:  ISSUE CLOSED
+        reference: if any
+        example:
+          value:
+            context:
+              domain: ONDC:RET10
+              country: IND
+              city: std:0522
+              action: issue
+              core_version: 1.0.0
+              bap_id: buyer-app-preprod-v2.ondc.org
+              bap_uri: https://buyer-app-preprod-v2.ondc.org/protocol/v1
+              bpp_uri: https://ondc-seller-preprod.chattybao.com/ondc/bpp
+              transaction_id: bab28a40-7c1d-4930-a789-5018e3414ed5
+              message_id: 7ed3b150-95c6-11ee-9475-039cd8109d55
+              timestamp: '2023-12-19T05:39:05.893Z'
+              bpp_id: ondc-seller-preprod.chattybao.com/ondc
+              ttl: PT30S
+            message:
+              issue:
+                id: 7ed3b150-95c6-11ee-9475-039cd8109d56
+                complainant_info:
+                  person:
+                    name: Jatin Khurana
+                  contact:
+                    phone: '9891691269'
+                    email: jatin@chattybao.com
+                order_details:
+                  id: 2023-12-19-514155
+                  state: Completed
+                  items:
+                    - id: >-
+                        988d4f70-b340-11ed-b67d-b356d861831b:MR8mcezPPQEA-r8EhP6UN9
+                      quantity: 2
+                  fulfillments:
+                    - id: '1'
+                      state: Delivered
+                  provider_id: MR8mcezPPQEA-r8EhP6UN9
+                description:
+                  short_desc: Item quality
+                  long_desc: Item quality is not good
+                  additional_desc:
+                    url: ''
+                  images:
+                    - >-
+                      https://storage.googleapis.com/adya_upload_pdf/image/file-df7ea687-448d-464d-bf1f-4a23707beadf.png
+                category: ITEM
+                sub_category: ITM02
+                issue_type: ISSUE
+                source:
+                  network_participant_id: buyer-app-preprod-v2.ondc.org
+                  type: CONSUMER
+                expected_response_time:
+                  duration: PT2H
+                expected_resolution_time:
+                  duration: P1D
+                status: OPEN
+                issue_actions:
+                  complainant_actions:
+                    - complainant_action: OPEN
+                      short_desc: Complaint created
+                      updated_at: '2023-12-19T05:39:05.893Z'
+                      updated_by:
+                        org:
+                          name: buyer-app-preprod-v2.ondc.org::ONDC:RET10
+                        contact:
+                          phone: '9963548006'
+                          email: buyer@ondc.org
+                        person:
+                          name: Buyer Admin
+                created_at: '2023-12-19T05:39:05.893Z'
+                updated_at: '2023-12-19T05:39:05.893Z'
   - summary: CREDIT
     details:
       - description: detailed flow
@@ -1934,6 +2027,78 @@ x-flows:
                   long_desc: For this complaint, loan is now disbursed
                   action_triggered: CANCEL
                   refund_amount: '100'
+      - summary: issue close
+        api: issue
+        details:
+          - description: issue closed
+            mermaid: |-
+              sequenceDiagram
+                title  A buyer raises an issue on the buyer app 
+                participant Buyer 
+                participant Buyer App
+                participant Seller App
+                rect rgb(0,195,255)
+                Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
+                Buyer App  ->>+ Seller App: ISSUE 
+                end
+                 Seller App ->>+ Buyer App : ON_ISSUE (Seller App started processing the issue)
+               #  Seller App ->>-Buyer App: Seller App started processing the issue
+                Buyer App  ->>+ Seller App: ISSUE STATUS
+                Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
+                Seller App ->>+ Buyer App : On_ISSUE _STATUS
+                Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
+                 Seller App ->>+ Buyer App:  ISSUE Resolution provided 
+                Buyer App ->>+ Buyer:  ISSUE CLOSED
+        reference: if any
+        example:
+          value:
+            context:
+              domain: ONDC:FIS12
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
+              action: issue
+              version: 2.0.0
+              bap_id: buyerapp.com
+              bap_uri: https://buyerapp.com/ondc
+              bpp_id: sellerapp.com
+              bpp_uri: https://sellerapp.com/ondc
+              transaction_id: T1
+              message_id: M1
+              timestamp: '2023-01-15T10:10:01.142Z'
+            message:
+              issue:
+                id: b6f88798-baae-4534-9b47-0a95a5054997
+                status: CLOSED
+                issue_actions:
+                  complainant_actions:
+                    - complainant_action: OPEN
+                      short_desc: test, Complaint created
+                      updated_at: '2023-12-19T12:25:12.974Z'
+                      updated_by:
+                        org:
+                          name: sellerapp.com/ondc
+                        contact:
+                          phone: '9963548005'
+                          email: buyer@adya.ai
+                        person:
+                          name: Buyer Admin
+                    - complainant_action: CLOSE
+                      short_desc: Complaint closed
+                      updated_at: '2023-12-19T13:06:39.576Z'
+                      updated_by:
+                        org:
+                          name: preprod.ondc.adya.ai::ONDC:RET12
+                        contact:
+                          phone: '9963548005'
+                          email: buyer@adya.ai
+                        person:
+                          name: Buyer Admin
+                rating: THUMBS-UP
+                created_at: '2023-12-19T12:25:12.974Z'
+                updated_at: '2023-12-19T13:06:39.576Z'
   - summary: INSURANCE
     details:
       - description: detailed flow
@@ -2067,7 +2232,7 @@ x-flows:
                 Buyer App ->>+ Buyer:  ISSUE CLOSED
         reference: if any
         example:
-          value: &ref_6
+          value: &ref_7
             context:
               domain: ONDC:FIS13
               location:
@@ -2127,7 +2292,7 @@ x-flows:
                 Buyer App ->>+ Buyer:  ISSUE CLOSED
         reference: if any
         example:
-          value: &ref_7
+          value: &ref_8
             context:
               domain: ONDC:FIS13
               location:
@@ -2171,7 +2336,7 @@ x-flows:
                 Buyer App ->>+ Buyer:  ISSUE CLOSED
         reference: if any
         example:
-          value: &ref_8
+          value: &ref_9
             context:
               domain: ONDC:FIS13
               location:
@@ -2235,6 +2400,78 @@ x-flows:
                   long_desc: For this complaint, loan is now disbursed
                   action_triggered: CANCEL
                   refund_amount: '100'
+      - summary: issue close
+        api: issue
+        details:
+          - description: issue closed
+            mermaid: |-
+              sequenceDiagram
+                title  A buyer raises an issue on the buyer app 
+                participant Buyer 
+                participant Buyer App
+                participant Seller App
+                rect rgb(0,195,255)
+                Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
+                Buyer App  ->>+ Seller App: ISSUE 
+                end
+                 Seller App ->>+ Buyer App : ON_ISSUE (Seller App started processing the issue)
+               #  Seller App ->>-Buyer App: Seller App started processing the issue
+                Buyer App  ->>+ Seller App: ISSUE STATUS
+                Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
+                Seller App ->>+ Buyer App : On_ISSUE _STATUS
+                Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
+                 Seller App ->>+ Buyer App:  ISSUE Resolution provided 
+                Buyer App ->>+ Buyer:  ISSUE CLOSED
+        reference: if any
+        example:
+          value: &ref_6
+            context:
+              domain: ONDC:FIS13
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
+              action: issue
+              version: 2.0.0
+              bap_id: buyerapp.com
+              bap_uri: https://buyerapp.com/ondc
+              bpp_id: sellerapp.com
+              bpp_uri: https://sellerapp.com/ondc
+              transaction_id: T1
+              message_id: M1
+              timestamp: '2023-01-15T10:10:01.142Z'
+            message:
+              issue:
+                id: b6f88798-baae-4534-9b47-0a95a5054997
+                status: CLOSED
+                issue_actions:
+                  complainant_actions:
+                    - complainant_action: OPEN
+                      short_desc: test, Complaint created
+                      updated_at: '2023-12-19T12:25:12.974Z'
+                      updated_by:
+                        org:
+                          name: sellerapp.com/ondc
+                        contact:
+                          phone: '9963548005'
+                          email: buyer@adya.ai
+                        person:
+                          name: Buyer Admin
+                    - complainant_action: CLOSE
+                      short_desc: Complaint closed
+                      updated_at: '2023-12-19T13:06:39.576Z'
+                      updated_by:
+                        org:
+                          name: preprod.ondc.adya.ai::ONDC:RET12
+                        contact:
+                          phone: '9963548005'
+                          email: buyer@adya.ai
+                        person:
+                          name: Buyer Admin
+                rating: THUMBS-UP
+                created_at: '2023-12-19T12:25:12.974Z'
+                updated_at: '2023-12-19T13:06:39.576Z'
 x-examples:
   Retail:
     summary: IGM implementation
@@ -2475,69 +2712,22 @@ x-examples:
             value: *ref_5
           - summary: issue_closed
             description: TBD
-            value:
-              context:
-                domain: ONDC:FIS13
-                location:
-                  country:
-                    code: IND
-                  city:
-                    code: '*'
-                action: issue
-                version: 2.0.0
-                bap_id: buyerapp.com
-                bap_uri: https://buyerapp.com/ondc
-                bpp_id: sellerapp.com
-                bpp_uri: https://sellerapp.com/ondc
-                transaction_id: T1
-                message_id: M1
-                timestamp: '2023-01-15T10:10:01.142Z'
-              message:
-                issue:
-                  id: b6f88798-baae-4534-9b47-0a95a5054997
-                  status: CLOSED
-                  issue_actions:
-                    complainant_actions:
-                      - complainant_action: OPEN
-                        short_desc: test, Complaint created
-                        updated_at: '2023-12-19T12:25:12.974Z'
-                        updated_by:
-                          org:
-                            name: sellerapp.com/ondc
-                          contact:
-                            phone: '9963548005'
-                            email: buyer@adya.ai
-                          person:
-                            name: Buyer Admin
-                      - complainant_action: CLOSE
-                        short_desc: Complaint closed
-                        updated_at: '2023-12-19T13:06:39.576Z'
-                        updated_by:
-                          org:
-                            name: preprod.ondc.adya.ai::ONDC:RET12
-                          contact:
-                            phone: '9963548005'
-                            email: buyer@adya.ai
-                          person:
-                            name: Buyer Admin
-                  rating: THUMBS-UP
-                  created_at: '2023-12-19T12:25:12.974Z'
-                  updated_at: '2023-12-19T13:06:39.576Z'
+            value: *ref_6
       on_issue:
         examples:
           - summary: on_issue
             description: TBD
-            value: *ref_6
+            value: *ref_7
       issue_status:
         examples:
           - summary: issue_status
             description: TBD
-            value: *ref_7
+            value: *ref_8
       on_issue_status:
         examples:
           - summary: on_issue_status
             description: TBD
-            value: *ref_8
+            value: *ref_9
 x-attributes:
   RETAIL:
     attribute_set:

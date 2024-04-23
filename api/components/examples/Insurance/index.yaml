@@ -7,7 +7,7 @@ issue:
     - summary: issue_closed
       description: TBD
       value:
-        $ref: "./issue_closed/issue_closed.yaml"
+        $ref: "./issue/issue_closed.yaml"
 on_issue:
    examples:
     - summary: on_issue
@@ -26,9 +26,19 @@ on_issue_status:
       description: TBD
       value:
         $ref: "./on_issue_status/on_issue_status.yaml"
-# issue_closed:
+# issue:
 #   examples:
 #     - summary: issue_closed
 #       description: TBD
 #       value:
 #         $ref: "./issue_closed/issue_closed.yaml"
+# issue:
+#   examples:
+#     - summary: issue
+#       description: TBD
+#       value:
+#         $ref: "./issue/issue.yaml"
+#     - summary: issue_closed
+#       description: TBD
+#       value:
+#         $ref: "./issue/issue_closed.yaml"

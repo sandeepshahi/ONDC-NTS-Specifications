@@ -123,5 +123,31 @@ steps:
     reference: if any
     example:
       value:
-        $ref: "../../examples/credit/on_issue_status/on_issue_status.yaml"             
+        $ref: "../../examples/credit/on_issue_status/on_issue_status.yaml"  
+  - summary: issue close
+    api: issue
+    details:
+      - description: issue closed
+        mermaid: >-
+         sequenceDiagram
+           title  A buyer raises an issue on the buyer app 
+           participant Buyer 
+           participant Buyer App
+           participant Seller App
+           rect rgb(0,195,255)
+           Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
+           Buyer App  ->>+ Seller App: ISSUE 
+           end
+            Seller App ->>+ Buyer App : ON_ISSUE (Seller App started processing the issue)
+          #  Seller App ->>-Buyer App: Seller App started processing the issue
+           Buyer App  ->>+ Seller App: ISSUE STATUS
+           Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
+           Seller App ->>+ Buyer App : On_ISSUE _STATUS
+           Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
+            Seller App ->>+ Buyer App:  ISSUE Resolution provided 
+           Buyer App ->>+ Buyer:  ISSUE CLOSED
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/Credit/issue/issue_closed.yaml"                  
   
