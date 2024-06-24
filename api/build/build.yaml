@@ -2484,22 +2484,18 @@ x-examples:
       issue:
         examples:
           - summary: issue
-            description: TBD
             value: *ref_1
       on_issue:
         examples:
           - summary: on_issue
-            description: TBD
             value: *ref_2
       issue_status:
         examples:
           - summary: issue_status
-            description: TBD
             value: *ref_3
       on_issue_status:
         examples:
           - summary: on_issue_status
-            description: TBD
             value: *ref_4
   Credit:
     summary: IGM implementation for fis
