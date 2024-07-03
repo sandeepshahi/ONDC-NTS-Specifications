@@ -1,9 +1,3 @@
-RETAIL:
+RSF:
   attribute_set:
-    $ref: "./RETAIL/index.yaml"
-CREDIT:
-  attribute_set:
-    $ref: "./CREDIT/index.yaml" 
-INSURANCE:
-  attribute_set:
-    $ref: "./INSURANCE/index.yaml"     
+    $ref: ./RSF/index.yaml

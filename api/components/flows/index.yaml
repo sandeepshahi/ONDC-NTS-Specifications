@@ -1,3 +1,1 @@
-- $ref: "./Retail/index.yaml"
-- $ref: "./Credit/index.yaml"
-- $ref: "./Insurance/index.yaml"
+- $ref: ./rsf-flow/index.yaml

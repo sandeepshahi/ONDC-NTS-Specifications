@@ -1,0 +1,32 @@
+receiver_recon:
+  message:
+    orderbook:
+      orders:
+        order_recon_status:
+          - code: "01"
+            description: Provisional
+            reference: <PR/Issue/Discussion Links md format text
+          - code: "02"
+            description: Finale
+            reference: <PR/Issue/Discussion Links md format text
+          - code: "03"
+            description: Deemed Settled
+            reference: <PR/Issue/Discussion Links md format text
+        recon_status: &a1
+          - code: "01"
+            description: Paid
+            reference: <PR/Issue/Discussion Links md format text
+          - code: "02"
+            description: OverPaid
+            reference: <PR/Issue/Discussion Links md format text
+          - code: "03"
+            description: underPaid
+            reference: <PR/Issue/Discussion Links md format text
+          - code: "04"
+            description: notPaid
+            reference: <PR/Issue/Discussion Links md format text
+on_receiver_recon:
+  message:
+    orderbook:
+      orders:
+        counterparty_recon_status: *a1
