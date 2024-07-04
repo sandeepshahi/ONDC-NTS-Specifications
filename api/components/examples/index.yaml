@@ -1,26 +1,32 @@
-Retail : 
- summary: IGM implementation
- description: IGM examples
- example_set:
-   $ref: "./Retail/index.yaml"
+# Retail : 
+#  summary: IGM implementation
+#  description: IGM examples
+#  example_set:
+#    $ref: "./Retail/index.yaml"
 
-Credit:
- summary: IGM implementation for fis 
- description: IGM examples for fis
- example_set:
-   $ref: "./Credit/index.yaml"
+# Credit:
+#  summary: IGM implementation for fis 
+#  description: IGM examples for fis
+#  example_set:
+#    $ref: "./Credit/index.yaml"
 
-Insurance:
-  summary: IGM implementation for fis 
-  description: IGM examples for fis
-  example_set:
-   $ref: "./Insurance/index.yaml"
+# Insurance:
+#   summary: IGM implementation for fis 
+#   description: IGM examples for fis
+#   example_set:
+#    $ref: "./Insurance/index.yaml"
 
 # Marine_igm:
 #   summary: IGM implementation for fis 
 #   description: IGM examples for fis
 #   example_set:
 #    $ref: "./Marine_igm/index.yaml"
+RSF:
+  summary: RSF implementation
+  description: RSF implementation
+  example_set:
+   $ref: "./RSF/index.yaml"
+
 
 
 

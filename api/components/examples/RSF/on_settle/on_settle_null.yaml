@@ -1,0 +1,50 @@
+context:
+  domain: ONDC:NTS10
+  location:
+    country:
+      code: IND
+    city:
+      code: "*"
+  version: 2.0.0
+  action: on_settle
+  bap_id: beta.mystore.in
+  bap_uri: https://beta.mystore.in/ondc/1.0/
+  bpp_id: sa_nocs.nbbl.com
+  bpp_uri: https://ondcnbbl.npci.org.in/nocs_test
+  transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
+  message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
+  timestamp: "2024-05-07T06:36:51.897Z"
+  ttl: PT30S
+message:
+  collector_app_id: ""
+  receiver_app_id: ""
+  settlement:
+    type: "Null"
+    id: ""
+    orders:
+      - id: ""
+        inter_participant:
+          currency: INR
+          value: ""
+          status: SETTLED
+          reference_no: "3718683618631"
+          error_code: "01"
+          error_message: Account inactive
+        collector:
+          currency: INR
+          value: ""
+        provider:
+          id: ""
+          currency: ""
+          value: ""
+          status: NOT-SETTLED
+          reference_no: "3718683618631"
+          error_code: "01"
+          error_message: Account inactive
+        self:
+          currency: ""
+          "value  ": ""
+          status: ""
+          reference_no: "3718683618631"
+          error_code: "01"
+          error_message: Account inactive

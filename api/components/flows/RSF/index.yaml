@@ -1,0 +1,48 @@
+summary: RSF_NP-NP
+details:
+ - description: detailed flow of RSF NP to NP
+   mermaid: >-
+     sequenceDiagram
+      participant Collector
+       participant Settlement_Agency
+      participant Receiver
+      Collector ->> Settlement_Agency: settle API 
+      Receiver ->> Settlement_Agency: settle API
+      Settlement_Agency ->> Collector : on_setttle API
+      Settlement_Agency ->> Receiver : on_setttle API
+references: if any
+steps:
+  - summary: SETTLE
+    api: settle
+    details:
+      - description: issue request creating a complaint
+        mermaid: >-
+         sequenceDiagram
+         participant Collector
+          participant Settlement_Agency
+          participant Receiver
+          Collector ->> Settlement_Agency: settle API 
+          Receiver ->> Settlement_Agency: settle API
+          Settlement_Agency ->> Collector : on_setttle API
+          Settlement_Agency ->> Receiver : on_setttle API
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/RSF/settle/settle_np_np.yaml"
+  - summary: ON_SETTLE
+    api: on _settle
+    details:
+      - description: on_settle
+        mermaid: >-
+         sequenceDiagram
+         participant Collector
+          participant Settlement_Agency
+          participant Receiver
+          Collector ->> Settlement_Agency: settle API 
+          Receiver ->> Settlement_Agency: settle API
+          Settlement_Agency ->> Collector : on_setttle API
+          Settlement_Agency ->> Receiver : on_setttle API
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/RSF/on_settle/on_settle_np_np.yaml"

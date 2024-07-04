@@ -1,3 +1,8 @@
-- $ref: "./Retail/index.yaml"
-- $ref: "./Credit/index.yaml"
-- $ref: "./Insurance/index.yaml"
+# - $ref: "./Retail/index.yaml"
+# - $ref: "./Credit/index.yaml"
+# - $ref: "./Insurance/index.yaml"
+
+- $ref: "./RSF/index.yaml"
+# - $ref: "./RSF_mics/index.yaml"
+# - $ref: "./RSF_null/index.yaml"
+-

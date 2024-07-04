@@ -18,7 +18,7 @@ const process = require("process");
 const args = process.argv.slice(2);
 // var example_set = args[0]
 var flow_set = args[1]
-var base_yaml = "./igm_yaml.yaml"; //args[0];
+var base_yaml = "./rsf_yaml.yaml"; //args[0];
 var example_yaml = "./index.yaml"; //args[1];
 var outputPath = "../build/build.yaml";
 var uiPath = "../../ui/build.js";
@@ -37,8 +37,8 @@ const { buildAttribiutes } = require('./build-attributes.js')
 const SKIP_VALIDATION = {
   flows: "skip1",
   examples: "skip2",
-  enums: "skip3",
-  tags: "skip4",
+  // enums: "skip3",
+  // tags: "skip4",
 };
 
 const BUILD = {
@@ -67,8 +67,10 @@ async function validateSchema(schema, data) {
 }
 
 async function validateFlows(flows, schemaMap) {
+  console.log("hi",flows);
   for (const flowItem of flows) {
     const { steps } = flowItem;
+    console.log("hello",flowItem);
     if (steps && steps?.length) {
       for (const step of steps) {
         for (const api of Object.keys(schemaMap)) {
@@ -276,6 +278,7 @@ async function getSwaggerYaml(example_set, outputPath) {
     const schema = await baseYMLFile(example_yaml);
     const baseYAML = await baseYMLFile(base_yaml);
     const { flows, examples: exampleSets, enum: enums, tags,attributes } = schema || [];
+    console.log(schema);
     const { paths } = baseYAML;
     let hasTrueResult = false; // Flag variable
     let schemaMap = {};

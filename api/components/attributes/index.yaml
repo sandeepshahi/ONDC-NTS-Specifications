@@ -6,4 +6,8 @@ CREDIT:
     $ref: "./CREDIT/index.yaml" 
 INSURANCE:
   attribute_set:
-    $ref: "./INSURANCE/index.yaml"     
+    $ref: "./INSURANCE/index.yaml"    
+RSF:    
+  attribute_set:
+    $ref: "./RSF/index.yaml"    
+

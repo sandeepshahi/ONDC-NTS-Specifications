@@ -1,0 +1,12 @@
+settle:
+  examples:
+    - summary: settle
+      # description: TBD
+      value:
+        $ref: "./settle/settle_np_np.yaml"
+on_settle:
+   examples:
+    - summary: on_settle
+      # description: TBD
+      value:
+        $ref: "./on_settle/on_settle_np_np.yaml"
