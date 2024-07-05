@@ -30,7 +30,7 @@ steps:
       value:
         $ref: "../../examples/RSF/settle/settle_np_np.yaml"
   - summary: ON_SETTLE
-    api: on _settle
+    api: on_settle
     details:
       - description: on_settle
         mermaid: >-
