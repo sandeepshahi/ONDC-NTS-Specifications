@@ -22,6 +22,10 @@ paths:
                 message:
                   type: object
                   properties:
+                    collector_app_id:
+                      type: string
+                    receiver_app_id:
+                      type: string
                     settlement:
                       $ref: '#/components/schemas/Settlement'
               required:
@@ -51,9 +55,8 @@ paths:
       tags:
         - Collector
         - Receiver
-      description: Send the issue resolution details object
       requestBody:
-        description: Seller confirms order
+        description: SA responds with /on_settle
         content:
           application/json:
             schema:
@@ -64,7 +67,11 @@ paths:
                 message:
                   type: object
                   properties:
-                    setlement:
+                    collector_app_id:
+                      type: string
+                    receiver_app_id:
+                      type: string
+                    settlement:
                       $ref: '#/components/schemas/Settlement'
                   required:
                     - settlement
@@ -122,15 +129,19 @@ components:
       properties:
         currency:
           type: string
+          example: INR
         value:
           type: string
+          example: ''
     BankDetails:
       type: object
       properties:
         account_no:
           type: string
+          example: ''
         ifsc_code:
           type: string
+          example: ''
     Context:
       description: Describes a beckn message context
       type: object
@@ -145,11 +156,13 @@ components:
               properties:
                 code:
                   type: string
+                  example: IND
             city:
               type: object
               properties:
                 code:
                   type: string
+                  example: '*'
         action:
           type: string
           description: >-
@@ -258,8 +271,10 @@ components:
             properties:
               id:
                 type: string
+                example: ''
               name:
                 type: string
+                example: ''
               bank_details:
                 $ref: '#/components/schemas/BankDetails'
               status:
@@ -298,7 +313,7 @@ components:
           type: string
         id:
           description: |
-            * Network issue identifier is an unique number assigned to any
+            * settlement id of the settlement file
           type: string
         order:
           $ref: '#/components/schemas/Orders'
