@@ -7,6 +7,10 @@ details:
       participant Settlement_Agency
       Collector ->> Settlement_Agency: settle API 
       Settlement_Agency ->> Collector : on_setttle API
+      participant Receiver
+      participant Settlement_Agency
+      Receiver ->> Settlement_Agency: settle API 
+      Settlement_Agency ->> Receiver : on_setttle API
 references: if any
 steps:
   - summary: SETTLE

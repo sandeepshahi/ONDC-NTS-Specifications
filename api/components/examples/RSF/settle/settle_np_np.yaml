@@ -7,17 +7,17 @@ context:
       code: "*"
   version: 2.0.0
   action: settle
-  bap_id: buyerapp.com
-  bap_uri: https://buyerapp.com/ondc/1.0/
+  bap_id: collectorapp.com
+  bap_uri: https://collectorapp.com/ondc/1.0/
   bpp_id: sa_nocs.nbbl.com
-  bpp_uri: https://abc.abc.org.in/nocs_test
+  bpp_uri: https://abc.nbbl.in/nocs_test
   transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
   message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
   timestamp: "2024-05-07T06:36:51.897Z"
   ttl: PT30S
 message:
-  collector_app_id: "buyerapp.com"
-  receiver_app_id: "sellerapp.com"
+  collector_app_id: "collectorapp.com"
+  receiver_app_id: "receiver.com"
   settlement:
     type: NP-NP
     id: "settlement-id-123"
