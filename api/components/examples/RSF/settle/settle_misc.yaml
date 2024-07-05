@@ -10,25 +10,25 @@ context:
   bap_id: buyerapp.com
   bap_uri: https://buyerapp.com/ondc/1.0/
   bpp_id: sa_nocs.nbbl.com
-  bpp_uri: https://ondcnbbl.npci.org.in/nocs_test
+  bpp_uri: https://abc.abci.org.in/nocs_test
   transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
   message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
   timestamp: "2024-05-07T06:36:51.897Z"
   ttl: PT30S
 message:
   collector_app_id: buyerapp.com
-  receiver_app_id: ""
+  receiver_app_id: "sellerapp.com"
   settlement:
     type: Misc
-    id: ""
+    id: "941ef6d7-d74d-4411"
     orders:
       - self:
-          currency: ""
-          value: ""
+          currency: "INR"
+          value: "1000"
         provider:
-          id: ""
-          name: ""
-          account_no: ""
-          ifsc_code: ""
-          currency: ""
-          value: ""
+          id: "abdccsgg"
+          name: "RAVI"
+          account_no: "0112345678"
+          ifsc_code: " SBIN0005943"
+          currency: "INR"
+          value: "1000"

@@ -359,35 +359,35 @@ x-flows:
               bap_id: buyerapp.com
               bap_uri: https://buyerapp.com/ondc/1.0/
               bpp_id: sa_nocs.nbbl.com
-              bpp_uri: https://ondcnbbl.npci.org.in/nocs_test
+              bpp_uri: https://abc.abc.org.in/nocs_test
               transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
               message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
               timestamp: '2024-05-07T06:36:51.897Z'
               ttl: PT30S
             message:
-              collector_app_id: ''
-              receiver_app_id: ''
+              collector_app_id: buyerapp.com
+              receiver_app_id: sellerapp.com
               settlement:
                 type: NP-NP
-                id: ''
+                id: settlement-id-123
                 orders:
-                  - id: ''
+                  - id: order-id-456
                     inter_participant:
                       currency: INR
-                      value: ''
+                      value: '1000.00'
                     collector:
                       currency: INR
-                      value: ''
+                      value: '950.00'
                     provider:
-                      id: ''
-                      name: ''
-                      account_no: ''
-                      ifsc_code: ''
-                      currency: ''
-                      value: ''
+                      id: provider-id-789
+                      name: Provider Name
+                      account_no: '1234567890'
+                      ifsc_code: IFSC0001
+                      currency: INR
+                      value: '900.00'
                     self:
-                      currency: ''
-                      value: ''
+                      currency: INR
+                      value: '50.00'
       - summary: ON_SETTLE
         api: on_settle
         details:
@@ -413,49 +413,49 @@ x-flows:
               version: 2.0.0
               action: on_settle
               bap_id: beta.mystore.in
-              bap_uri: https://beta.mystore.in/ondc/1.0/
+              bap_uri: https://beta.abc.in/ondc/1.0/
               bpp_id: sa_nocs.nbbl.com
-              bpp_uri: https://ondcnbbl.npci.org.in/nocs_test
+              bpp_uri: https://ondcnbbl.abc.org.in/nocs_test
               transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
               message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
               timestamp: '2024-05-07T06:36:51.897Z'
               ttl: PT30S
             message:
-              collector_app_id: ''
-              receiver_app_id: ''
+              collector_app_id: collector.mystore.in
+              receiver_app_id: receiver.sellerapp.com
               settlement:
                 type: NP-NP
-                id: ''
+                id: settlement-id-123
                 orders:
-                  - id: ''
+                  - id: order-id-456
                     inter_participant:
                       currency: INR
-                      value: ''
+                      value: '1000.00'
                       status: SETTLED
                       reference_no: '3718683618631'
                       error_code: '01'
                       error_message: Account inactive
                     collector:
                       currency: INR
-                      value: ''
+                      value: '950.00'
                     provider:
-                      id: ''
-                      currency: ''
-                      value: ''
+                      id: provider-id-789
+                      currency: INR
+                      value: '900.00'
                       status: NOT-SETTLED
                       reference_no: '3718683618631'
                       error_code: '01'
                       error_message: Account inactive
                     self:
-                      currency: ''
-                      'value  ': ''
-                      status: ''
+                      currency: INR
+                      value: '50.00'
+                      status: NOT-SETTLED
                       reference_no: '3718683618631'
                       error_code: '01'
                       error_message: Account inactive
   - summary: RSF_MICS
     details:
-      - description: detailed flow of RSF NP to NP
+      - description: detailed misc flow
         mermaid: |-
           sequenceDiagram
               participant Collector
@@ -467,7 +467,7 @@ x-flows:
       - summary: SETTLE
         api: settle
         details:
-          - description: issue request creating a complaint
+          - description: settle request
             mermaid: |-
               sequenceDiagram participant Collector
                participant Settlement_Agency
@@ -488,35 +488,35 @@ x-flows:
               bap_id: buyerapp.com
               bap_uri: https://buyerapp.com/ondc/1.0/
               bpp_id: sa_nocs.nbbl.com
-              bpp_uri: https://ondcnbbl.npci.org.in/nocs_test
+              bpp_uri: https://abc.abci.org.in/nocs_test
               transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
               message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
               timestamp: '2024-05-07T06:36:51.897Z'
               ttl: PT30S
             message:
               collector_app_id: buyerapp.com
-              receiver_app_id: ''
+              receiver_app_id: sellerapp.com
               settlement:
                 type: Misc
-                id: ''
+                id: 941ef6d7-d74d-4411
                 orders:
                   - self:
-                      currency: ''
-                      value: ''
+                      currency: INR
+                      value: '1000'
                     provider:
-                      id: ''
-                      name: ''
-                      account_no: ''
-                      ifsc_code: ''
-                      currency: ''
-                      value: ''
+                      id: abdccsgg
+                      name: RAVI
+                      account_no: '0112345678'
+                      ifsc_code: ' SBIN0005943'
+                      currency: INR
+                      value: '1000'
       - summary: ON_SETTLE
         api: on_settle
         details:
           - description: on_settle
             mermaid: |-
               sequenceDiagram participant Collector
-               participant Settlement_Agency:\
+               participant Settlement_Agency
                Collector ->> Settlement_Agency: settle API 
                Settlement_Agency ->> Collector : on_setttle API
         reference: if any
@@ -531,74 +531,67 @@ x-flows:
                   code: '*'
               version: 2.0.0
               action: on_settle
-              bap_id: beta.mystore.in
-              bap_uri: https://beta.mystore.in/ondc/1.0/
+              bap_id: beta.abc.in
+              bap_uri: https://beta.abc.in/ondc/1.0/
               bpp_id: sa_nocs.nbbl.com
-              bpp_uri: https://ondcnbbl.npci.org.in/nocs_test
+              bpp_uri: https://ondcnbbl.abc.org.in/nocs_test
               transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
               message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
               timestamp: '2024-05-07T06:36:51.897Z'
               ttl: PT30S
             message:
-              collector_app_id: ''
-              receiver_app_id: ''
+              collector_app_id: beta.abc.in
+              receiver_app_id: sa_nocs.abc.com
               settlement:
                 type: MICS
-                id: ''
+                id: settlement-id-123
                 orders:
-                  - id: ''
+                  - id: order-id-456
                     inter_participant:
                       currency: INR
-                      value: ''
+                      value: '1000.00'
                       status: SETTLED
                       reference_no: '3718683618631'
                       error_code: '01'
                       error_message: Account inactive
                     collector:
                       currency: INR
-                      value: ''
+                      value: '950.00'
                     provider:
-                      id: ''
-                      currency: ''
-                      value: ''
+                      id: provider-id-789
+                      currency: INR
+                      value: '900.00'
                       status: NOT-SETTLED
                       reference_no: '3718683618631'
                       error_code: '01'
                       error_message: Account inactive
                     self:
-                      currency: ''
-                      'value  ': ''
-                      status: ''
+                      currency: INR
+                      value: '50.00'
+                      status: NOT-SETTLED
                       reference_no: '3718683618631'
                       error_code: '01'
                       error_message: Account inactive
-  - summary: RSF_NULL
+  - summary: RSF_NIL
     details:
       - description: detailed flow of RSF (NULL FLOW)
         mermaid: |-
           sequenceDiagram
            participant Collector
            participant Settlement_Agency
-           participant Receiver
            Collector ->> Settlement_Agency: settle API 
-
-           Receiver ->> Settlement_Agency: settle API
            Settlement_Agency ->> Collector : on_setttle API
-           Settlement_Agency ->> Receiver : on_setttle API
     references: if any
     steps:
       - summary: SETTLE
         api: settle
         details:
-          - description: issue request creating a complaint
+          - description: settle api
             mermaid: |-
               sequenceDiagram participant Collector
                participant Settlement_Agency
-               participant Receiver
                Collector ->> Settlement_Agency: settle API 
-               Receiver ->> Settlement_Agency: settle API
                Settlement_Agency ->> Collector : on_setttle API
-               Settlement_Agency ->> Receiver : on_setttle API
         reference: if any
         example:
           value:
@@ -614,7 +607,7 @@ x-flows:
               bap_id: buyerapp.com
               bap_uri: https://buyerapp.in/ondc/1.0/
               bpp_id: sa_nocs.nbbl.com
-              bpp_uri: https://ondcnbbl.npci.org.in/nocs_test
+              bpp_uri: https://abc.abc.org.in/nocs_test
               transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
               message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
               timestamp: '2024-05-07T06:36:51.897Z'
@@ -629,11 +622,8 @@ x-flows:
             mermaid: |-
               sequenceDiagram participant Collector
                participant Settlement_Agency
-               participant Receiver
                Collector ->> Settlement_Agency: settle API 
-               Receiver ->> Settlement_Agency: settle API
                Settlement_Agency ->> Collector : on_setttle API
-               Settlement_Agency ->> Receiver : on_setttle API
         reference: if any
         example:
           value:
@@ -647,43 +637,43 @@ x-flows:
               version: 2.0.0
               action: on_settle
               bap_id: beta.mystore.in
-              bap_uri: https://beta.mystore.in/ondc/1.0/
+              bap_uri: https://beta.abc.in/ondc/1.0/
               bpp_id: sa_nocs.nbbl.com
-              bpp_uri: https://ondcnbbl.npci.org.in/nocs_test
+              bpp_uri: https://abc.abc.org.in/nocs_test
               transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
               message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
               timestamp: '2024-05-07T06:36:51.897Z'
               ttl: PT30S
             message:
-              collector_app_id: ''
-              receiver_app_id: ''
+              collector_app_id: collector.mystore.in
+              receiver_app_id: receiver.sellerapp.com
               settlement:
-                type: 'Null'
-                id: ''
+                type: NIL
+                id: settlement-id-123
                 orders:
-                  - id: ''
+                  - id: order-id-456
                     inter_participant:
                       currency: INR
-                      value: ''
+                      value: '1000.00'
                       status: SETTLED
                       reference_no: '3718683618631'
                       error_code: '01'
                       error_message: Account inactive
                     collector:
                       currency: INR
-                      value: ''
+                      value: '950.00'
                     provider:
-                      id: ''
-                      currency: ''
-                      value: ''
+                      id: provider-id-789
+                      currency: INR
+                      value: '900.00'
                       status: NOT-SETTLED
                       reference_no: '3718683618631'
                       error_code: '01'
                       error_message: Account inactive
                     self:
-                      currency: ''
-                      'value  ': ''
-                      status: ''
+                      currency: INR
+                      value: '50.00'
+                      status: NOT-SETTLED
                       reference_no: '3718683618631'
                       error_code: '01'
                       error_message: Account inactive

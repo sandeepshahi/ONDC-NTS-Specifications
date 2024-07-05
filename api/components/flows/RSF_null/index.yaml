@@ -1,31 +1,24 @@
-summary: RSF_NULL
+summary: RSF_NIL
 details:
  - description: detailed flow of RSF (NULL FLOW)
    mermaid: >-
      sequenceDiagram
       participant Collector
       participant Settlement_Agency
-      participant Receiver
       Collector ->> Settlement_Agency: settle API 
-
-      Receiver ->> Settlement_Agency: settle API
       Settlement_Agency ->> Collector : on_setttle API
-      Settlement_Agency ->> Receiver : on_setttle API
 references: if any
 steps:
   - summary: SETTLE
     api: settle
     details:
-      - description: issue request creating a complaint
+      - description: settle api
         mermaid: >-
          sequenceDiagram
          participant Collector
           participant Settlement_Agency
-          participant Receiver
           Collector ->> Settlement_Agency: settle API 
-          Receiver ->> Settlement_Agency: settle API
           Settlement_Agency ->> Collector : on_setttle API
-          Settlement_Agency ->> Receiver : on_setttle API
     reference: if any
     example:
       value:
@@ -38,11 +31,8 @@ steps:
          sequenceDiagram
          participant Collector
           participant Settlement_Agency
-          participant Receiver
           Collector ->> Settlement_Agency: settle API 
-          Receiver ->> Settlement_Agency: settle API
           Settlement_Agency ->> Collector : on_setttle API
-          Settlement_Agency ->> Receiver : on_setttle API
     reference: if any
     example:
       value:

@@ -10,32 +10,32 @@ context:
   bap_id: buyerapp.com
   bap_uri: https://buyerapp.com/ondc/1.0/
   bpp_id: sa_nocs.nbbl.com
-  bpp_uri: https://ondcnbbl.npci.org.in/nocs_test
+  bpp_uri: https://abc.abc.org.in/nocs_test
   transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
   message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
   timestamp: "2024-05-07T06:36:51.897Z"
   ttl: PT30S
 message:
-  collector_app_id: ""
-  receiver_app_id: ""
+  collector_app_id: "buyerapp.com"
+  receiver_app_id: "sellerapp.com"
   settlement:
     type: NP-NP
-    id: ""
+    id: "settlement-id-123"
     orders:
-      - id: ""
+      - id: "order-id-456"
         inter_participant:
           currency: INR
-          value: ""
+          value: "1000.00"
         collector:
           currency: INR
-          value: ""
+          value: "950.00"
         provider:
-          id: ""
-          name: ""
-          account_no: ""
-          ifsc_code: ""
-          currency: ""
-          value: ""
+          id: "provider-id-789"
+          name: "Provider Name"
+          account_no: "1234567890"
+          ifsc_code: "IFSC0001"
+          currency: INR
+          value: "900.00"
         self:
-          currency: ""
-          value: ""
+          currency: INR
+          value: "50.00"

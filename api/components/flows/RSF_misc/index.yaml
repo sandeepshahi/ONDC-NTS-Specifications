@@ -1,6 +1,6 @@
 summary: RSF_MICS
 details:
- - description: detailed flow of RSF NP to NP
+ - description: detailed misc flow
    mermaid: >-
      sequenceDiagram
          participant Collector
@@ -12,7 +12,7 @@ steps:
   - summary: SETTLE
     api: settle
     details:
-      - description: issue request creating a complaint
+      - description: settle request
         mermaid: >-
          sequenceDiagram
          participant Collector
@@ -30,7 +30,7 @@ steps:
         mermaid: >-
          sequenceDiagram
          participant Collector
-          participant Settlement_Agency:\
+          participant Settlement_Agency
           Collector ->> Settlement_Agency: settle API 
           Settlement_Agency ->> Collector : on_setttle API
          
