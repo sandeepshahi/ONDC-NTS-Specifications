@@ -1,0 +1,40 @@
+summary: RSF_MICS
+details:
+ - description: detailed flow of RSF NP to NP
+   mermaid: >-
+     sequenceDiagram
+         participant Collector
+          participant Settlement_Agency
+          Collector ->> Settlement_Agency: settle API 
+          Settlement_Agency ->> Collector : on_setttle API
+references: if any
+steps:
+  - summary: SETTLE
+    api: settle
+    details:
+      - description: issue request creating a complaint
+        mermaid: >-
+         sequenceDiagram
+         participant Collector
+          participant Settlement_Agency
+          Collector ->> Settlement_Agency: settle API 
+          Settlement_Agency ->> Collector : on_setttle API
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/RSF/settle/settle_misc.yaml"
+  - summary: ON_SETTLE
+    api: on_settle
+    details:
+      - description: on_settle
+        mermaid: >-
+         sequenceDiagram
+         participant Collector
+          participant Settlement_Agency:\
+          Collector ->> Settlement_Agency: settle API 
+          Settlement_Agency ->> Collector : on_setttle API
+         
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/RSF/on_settle/on_settle_misc.yaml"

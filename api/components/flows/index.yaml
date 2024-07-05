@@ -3,5 +3,5 @@
 # - $ref: "./Insurance/index.yaml"
 
 - $ref: "./RSF/index.yaml"
-# - $ref: "./RSF_mics/index.yaml"
-# - $ref: "./RSF_null/index.yaml"
+- $ref: "./RSF_misc/index.yaml"
+- $ref: "./RSF_null/index.yaml"
