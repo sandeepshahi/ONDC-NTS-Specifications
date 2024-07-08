@@ -242,8 +242,10 @@ components:
         type: object
         properties:
           id:
+            description: Describes the order id 
             type: string
           inter_participant:
+            description: Provides details about the settlement amount, payable/ receivable and status between the Collector and the Receiver
             type: object
             properties:
               amount:
@@ -259,11 +261,13 @@ components:
                 $ref: "#/components/schemas/Error"
 
           collector:
+            description: Provides details about the amount to be retained by the collector
             type: object
             properties:
               amount:
                 $ref: "#/components/schemas/Amount"
           provider:
+            description: Provides details about the amount to be settled to the Provider of an NP.
             type: object
             properties:
               id:
@@ -288,6 +292,7 @@ components:
 
           self:
             type: object
+            description: Provides details about the amount for the NP to move to their operative account
             properties:
               amount:
                 $ref: "#/components/schemas/Amount"

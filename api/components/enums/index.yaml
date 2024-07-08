@@ -278,4 +278,18 @@
 # on_issue_status:
 #   message: *message
  
-  
+  settle:
+  message: &message
+    settlement:
+     type: 
+      - code: NP-NP
+        description:  .
+        reference: <PR/Issue/Discussion Links md format text
+      - code: MICS
+        description:  .
+        reference: <PR/Issue/Discussion Links md format text
+      - code: Nill
+        description:  .
+        reference: <PR/Issue/Discussion Links md format text      
+     order:
+      inter_participant:   

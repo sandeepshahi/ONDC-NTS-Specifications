@@ -19,20 +19,10 @@ message:
   collector_app_id: "collectorapp.com"
   receiver_app_id: "receiverapp.com"
   settlement:
-    type: MICS
+    type: MISC
     id: "settlement-id-123"
     orders:
       - id: "order-id-456"
-        inter_participant:
-          currency: INR
-          value: "1000.00"
-          status: SETTLED
-          reference_no: "3718683618631"
-          error_code: "01"
-          error_message: Account inactive
-        collector:
-          currency: INR
-          value: "950.00"
         provider:
           id: "provider-id-789"
           currency: INR

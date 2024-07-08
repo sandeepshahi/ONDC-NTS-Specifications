@@ -17,4 +17,4 @@ context:
   ttl: PT30S
 message:
   settlement:
-    type: "0"
+    type: NIL
