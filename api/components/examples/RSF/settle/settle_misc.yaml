@@ -19,16 +19,19 @@ message:
   collector_app_id: collectorap.com
   receiver_app_id: "receiverapp.com"
   settlement:
-    type: Misc
+    type: MISC
     id: "941ef6d7-d74d-4411"
     orders:
       - self:
-          currency: "INR"
-          value: "1000"
+          amount:
+            currency: INR
+            value: "200.00"
         provider:
-          id: "abdccsgg"
-          name: "RAVI"
-          account_no: "0112345678"
-          ifsc_code: " SBIN0005943"
-          currency: "INR"
-          value: "1000"
+          id: "provider-id-789"
+          name: 
+          bank_details:
+            account_no: "1234567890"
+            ifsc_code: "IFSC0001"
+          amount:
+            currency: INR
+            value: "200.00"

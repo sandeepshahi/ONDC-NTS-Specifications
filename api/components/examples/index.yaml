@@ -27,7 +27,7 @@ RSF:
   example_set:
    $ref: "./RSF/index.yaml"
 
-# RSF_mics:
+# RSF_MISC:
 #   summary: RSF implementation
 #   description: RSF implementation
 #   example_set:
