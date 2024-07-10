@@ -21,14 +21,57 @@ steps:
          participant Collector
           participant Settlement_Agency
           participant Receiver
+          rect rgb(191, 223, 255) 
           Collector ->> Settlement_Agency: settle API 
-          Receiver ->> Settlement_Agency: settle API
+          Settlement_Agency ->> Collector : Ack    
+          end
+          Receiver ->> Settlement_Agency: settle API     
           Settlement_Agency ->> Collector : on_setttle API
           Settlement_Agency ->> Receiver : on_setttle API
     reference: if any
     example:
       value:
         $ref: "../../examples/RSF/settle/settle_np_np.yaml"
+  - summary: SETTLE
+    api: settle
+    details:
+      - description: issue request creating a complaint
+        mermaid: >-
+         sequenceDiagram
+         participant Collector
+          participant Settlement_Agency
+          participant Receiver
+          Collector ->> Settlement_Agency: settle API 
+          rect rgb(191, 223, 255) 
+          Receiver ->> Settlement_Agency: settle API
+          Settlement_Agency ->> Receiver :Ack
+          end
+          Settlement_Agency ->> Collector : on_setttle API
+          Settlement_Agency ->> Receiver : on_setttle API
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/RSF/settle/settle_np_np.yaml"      
+  - summary: ON_SETTLE
+    api: on_settle
+    details:
+      - description: on_settle
+        mermaid: >-
+         sequenceDiagram
+         participant Collector
+          participant Settlement_Agency
+          participant Receiver
+          Collector ->> Settlement_Agency: settle API 
+          Receiver ->> Settlement_Agency: settle API
+          rect rgb(191, 223, 255) 
+          Settlement_Agency ->> Collector : on_setttle API
+          Collector ->> Settlement_Agency: Ack
+          end
+          Settlement_Agency ->> Receiver : on_setttle API
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/RSF/on_settle/on_settle_np_np.yaml"
   - summary: ON_SETTLE
     api: on_settle
     details:
@@ -41,8 +84,11 @@ steps:
           Collector ->> Settlement_Agency: settle API 
           Receiver ->> Settlement_Agency: settle API
           Settlement_Agency ->> Collector : on_setttle API
+          rect rgb(191, 223, 255) 
           Settlement_Agency ->> Receiver : on_setttle API
+          Receiver ->> Settlement_Agency: Ack
+          end
     reference: if any
     example:
       value:
-        $ref: "../../examples/RSF/on_settle/on_settle_np_np.yaml"
+        $ref: "../../examples/RSF/on_settle/on_settle_np_np.yaml"     

@@ -6,17 +6,17 @@ context:
     city:
       code: "*"
   version: 2.0.0
-  action: on_report
-  bap_id: beta.mystore.in
+  action: report
+  bap_id: collectorapp.com
   bap_uri: https://collector.com/ondc/1.0/
   bpp_id: sa_nocs.nbbl.com
-  bpp_uri: https://ondcnbbl.npci.org.in/nocs_test
+  bpp_uri: https://nbbl.org.in/nocs_test
   transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
   message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
   timestamp: "2024-05-07T06:36:51.897Z"
-  ttl: PT30S
+  ttl: P1D
 message:
-  collector_app_id: "collectorap.com"
+  collector_app_id: "collectorapp.com"
   receiver_app_id: "receiverapp.com"
   settlement:
     type: NP-NP

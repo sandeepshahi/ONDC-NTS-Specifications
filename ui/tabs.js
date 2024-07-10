@@ -3,11 +3,13 @@
 
 function onFirstLoad(build_spec){
       let data = build_spec
-      // initSchema(data["x-enum"])
+      
       loadAttributes(data["x-attributes"])
           loadFlows(data["x-flows"])
+          // initSchema(data["x-enum"])
     //   initTag(data["x-tags"])
       loadExample(data["x-examples"])
+      initSchema(data["x-enum"])
       //addExample("on-demand")
     //   loadFlows(data["x-flows"])
   
@@ -15,7 +17,7 @@ function onFirstLoad(build_spec){
     //   loadErrors(data["x-errorcodes"])
     //   loadTlc(data["x-tlc"])
     //   loadtestcase(data["x-testcase"])
-    // console.log(data["x-enum"]);
+    console.log(data["x-enum"]);
 }
 
 window.onload = function(){
