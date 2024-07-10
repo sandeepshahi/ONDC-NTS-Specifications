@@ -55,17 +55,17 @@ settle:
     #     $ref: "./categories.yaml" 
 #               reference: <PR/Issue/Discussion Links md format text        
 # on_settle:
-#   <<: *context
-#    $ref: "./context.yaml"
-#    message:
-#     settlement:
-#       type :
-#         - code: NP-NP
-#           description:
-#           reference: <PR/Issue/Discussion Links md format text> 
-#         - code: MISC
-#           description:
-#           reference: <PR/Issue/Discussion Links md format text> 
-#         - code: Nil
-#           description:
-#           reference: <PR/Issue/Discussion Links md format text>   
+  # <<: *context
+  # $ref: "./context.yaml"
+  # message:
+  #   settlement:
+  #     type :
+  #       - code: NP-NP
+  #         description:
+  #         reference: <PR/Issue/Discussion Links md format text> 
+  #       - code: MISC
+  #         description:
+  #         reference: <PR/Issue/Discussion Links md format text> 
+  #       - code: Nil
+  #         description:
+  #         reference: <PR/Issue/Discussion Links md format text>   
