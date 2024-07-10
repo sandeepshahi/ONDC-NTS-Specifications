@@ -1,3 +1,4 @@
 - $ref: "./RSF/index.yaml"
 - $ref: "./RSF_misc/index.yaml"
 - $ref: "./RSF_null/index.yaml"
+- $ref: "./RSF_Report/index.yaml"

@@ -1,0 +1,45 @@
+summary: RSF_REPORT
+details:
+ - description: detailed flow of REPORT 
+   mermaid: >-
+     sequenceDiagram
+      participant NP
+      participant Settlement_Agency
+      NP ->> Settlement_Agency: report API 
+      Settlement_Agency ->> NP : on_setttle API
+references: if any
+steps:
+  - summary: REPORT
+    api: report
+    details:
+      - description: report api
+        mermaid: >-
+         sequenceDiagram
+         participant NP
+         participant Settlement_Agency
+         rect rgb(191, 223, 255) 
+         NP ->> Settlement_Agency: report API 
+         Settlement_Agency ->> ACK
+         end
+         Settlement_Agency ->> NP : on_setttle API
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/RSF/report/report.yaml"
+  - summary: ON_REPORT
+    api: on_report
+    details:
+      - description: on_report
+        mermaid: >-
+         sequenceDiagram
+         participant NP
+         participant Settlement_Agency
+         NP ->> Settlement_Agency: report API 
+         rect rgb(191, 223, 255) 
+         Settlement_Agency ->> NP : on_ report API
+         NP ->> Settlement_Agency : Ack
+         end 
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/RSF/on_report/on_report.yaml"
