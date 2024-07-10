@@ -9,8 +9,8 @@ paths:
   /settle:
     post:
       tags:
-        - Collector
-        - Receiver
+        # - Collector
+        # - Receiver
         - Settlement Agency
       requestBody:
         content:
@@ -105,8 +105,8 @@ paths:
   /report:
     post:
         tags:
-        - Collector
-        - Receiver
+        # - Collector
+        # - Receiver
         - Settlement Agency
         requestBody:
           description: SA responds with /on_settle
@@ -120,14 +120,10 @@ paths:
                   message:
                     type: object
                     properties:
-                      collector_app_id:
+                       ref_transaction_id:
                         type: string
-                      receiver_app_id:
+                       ref_message_id:
                         type: string
-                      settlement:
-                        $ref: "#/components/schemas/Settlement"
-                    required:
-                    - settlement
                   error:
                     $ref: "#/components/schemas/Error"
                 required:

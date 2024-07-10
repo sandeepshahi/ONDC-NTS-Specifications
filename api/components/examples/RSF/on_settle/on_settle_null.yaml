@@ -24,27 +24,31 @@ message:
     orders:
       - id: "order-id-456"
         inter_participant:
-          currency: INR
-          value: "1000.00"
+          amount:
+            currency: INR
+            value: "1000.00"
           status: SETTLED
           reference_no: "3718683618631"
-          error_code: "01"
-          error_message: Account inactive
+      
         collector:
           currency: INR
           value: "950.00"
         provider:
           id: "provider-id-789"
-          currency: INR
-          value: "900.00"
+          amount:
+            currency: INR
+            value: "1000.00"
           status: NOT-SETTLED
           reference_no: "3718683618631"
-          error_code: "01"
-          error_message: Account inactive
+          error:
+            code: "01"
+            message: Account inactive
         self:
-          currency: INR
-          value: "50.00"
+          amount:
+            currency: INR
+            value: "200.00"
           status: NOT-SETTLED
           reference_no: "3718683618631"
-          error_code: "01"
-          error_message: Account inactive
+          error:
+            code: "01"
+            message: Account inactive

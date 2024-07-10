@@ -9,8 +9,6 @@ paths:
   /settle:
     post:
       tags:
-        - Collector
-        - Receiver
         - Settlement Agency
       requestBody:
         content:
@@ -103,8 +101,6 @@ paths:
   /report:
     post:
       tags:
-        - Collector
-        - Receiver
         - Settlement Agency
       requestBody:
         description: SA responds with /on_settle
@@ -118,14 +114,10 @@ paths:
                 message:
                   type: object
                   properties:
-                    collector_app_id:
+                    ref_transaction_id:
                       type: string
-                    receiver_app_id:
+                    ref_message_id:
                       type: string
-                    settlement:
-                      $ref: '#/components/schemas/Settlement'
-                  required:
-                    - settlement
                 error:
                   $ref: '#/components/schemas/Error'
               required:
@@ -431,13 +423,6 @@ components:
 x-enum:
   settle:
     context:
-      action:
-        - code: settle
-          description: null
-          reference: <PR/Issue/Discussion Links md format text>
-        - code: on_settle
-          description: null
-          reference: <PR/Issue/Discussion Links md format text>
       location:
         country:
           code:
@@ -853,30 +838,33 @@ x-flows:
                 orders:
                   - id: order-id-456
                     inter_participant:
-                      currency: INR
-                      value: '1000.00'
+                      amount:
+                        currency: INR
+                        value: '1000.00'
                       status: SETTLED
                       reference_no: '3718683618631'
-                      error_code: '01'
-                      error_message: Account inactive
                     collector:
                       currency: INR
                       value: '950.00'
                     provider:
                       id: provider-id-789
-                      currency: INR
-                      value: '900.00'
+                      amount:
+                        currency: INR
+                        value: '1000.00'
                       status: NOT-SETTLED
                       reference_no: '3718683618631'
-                      error_code: '01'
-                      error_message: Account inactive
+                      error:
+                        code: '01'
+                        message: Account inactive
                     self:
-                      currency: INR
-                      value: '50.00'
+                      amount:
+                        currency: INR
+                        value: '200.00'
                       status: NOT-SETTLED
                       reference_no: '3718683618631'
-                      error_code: '01'
-                      error_message: Account inactive
+                      error:
+                        code: '01'
+                        message: Account inactive
 x-examples:
   RSF:
     summary: RSF implementation
