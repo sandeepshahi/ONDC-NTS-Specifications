@@ -1,6 +1,6 @@
 summary: RSF_MISC
 details:
- - description: detailed flow of RSF (NIL FLOW)
+ - description: detailed flow of RSF MISC
    mermaid: >-
      sequenceDiagram
       participant NP
