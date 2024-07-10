@@ -762,23 +762,21 @@ x-flows:
       - description: detailed flow of RSF (NIL FLOW)
         mermaid: |-
           sequenceDiagram
-           participant NP (Collector/Receiver)
+           participant NP(Collector/Receiver)
            participant Settlement_Agency
-           NP ->> Settlement_Agency: settle API 
-           Settlement_Agency ->> NP : on_setttle API
+           NP(Collector/Receiver) ->> Settlement_Agency: settle API 
+           Settlement_Agency ->> NP(Collector/Receiver) : on_setttle API
     references: if any
     steps:
       - summary: SETTLE
         api: settle
         details:
           - description: settle api
-            mermaid: |-
-              sequenceDiagram participant NP
-               participant Settlement_Agency
-
-              NP ->> Settlement_Agency: settle API 
-
-               Settlement_Agency ->> NP : on_setttle API
+            mermaid: >-
+              sequenceDiagram participant NP(Collector/Receiver) participant
+              Settlement_Agency rect rgb(191, 223, 255)  NP(Collector/Receiver)
+              ->> Settlement_Agency: settle API  end Settlement_Agency ->>
+              NP(Collector/Receiver) : on_setttle API
         reference: if any
         example:
           value:
@@ -807,10 +805,12 @@ x-flows:
         details:
           - description: on_settle
             mermaid: |-
-              sequenceDiagram participant NP
+              sequenceDiagram participant NP(Collector/Receiver)
                participant Settlement_Agency
-              NP ->> Settlement_Agency: settle API 
-               Settlement_Agency ->> NP : on_setttle API
+              NP(Collector/Receiver) ->> Settlement_Agency: settle API
+               rect rgb(191, 223, 255)  
+               Settlement_Agency ->> NP(Collector/Receiver) : on_setttle API
+               end
         reference: if any
         example:
           value:
@@ -883,10 +883,10 @@ x-flows:
         details:
           - description: report api
             mermaid: >-
-              sequenceDiagram participant NP participant Settlement_Agency rect
-              rgb(191, 223, 255)  NP ->> Settlement_Agency: report API 
-              Settlement_Agency ->> ACK end Settlement_Agency ->> NP :
-              on_setttle API
+              sequenceDiagram participant NP(Collector/Receiver) participant
+              Settlement_Agency rect rgb(191, 223, 255)  NP ->>
+              Settlement_Agency: report API  Settlement_Agency ->> ACK end
+              Settlement_Agency ->> NP : on_setttle API
         reference: if any
         example:
           value:

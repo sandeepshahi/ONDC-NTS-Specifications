@@ -3,10 +3,10 @@ details:
  - description: detailed flow of RSF (NIL FLOW)
    mermaid: >-
      sequenceDiagram
-      participant NP (Collector/Receiver)
+      participant NP(Collector/Receiver)
       participant Settlement_Agency
-      NP ->> Settlement_Agency: settle API 
-      Settlement_Agency ->> NP : on_setttle API
+      NP(Collector/Receiver) ->> Settlement_Agency: settle API 
+      Settlement_Agency ->> NP(Collector/Receiver) : on_setttle API
      
 references: if any
 steps:
@@ -16,12 +16,12 @@ steps:
       - description: settle api
         mermaid: >-
          sequenceDiagram
-         participant NP
-          participant Settlement_Agency
-
-         NP ->> Settlement_Agency: settle API 
-         
-          Settlement_Agency ->> NP : on_setttle API
+         participant NP(Collector/Receiver)
+         participant Settlement_Agency
+         rect rgb(191, 223, 255) 
+         NP(Collector/Receiver) ->> Settlement_Agency: settle API 
+         end
+         Settlement_Agency ->> NP(Collector/Receiver) : on_setttle API
     reference: if any
     example:
       value:
@@ -32,10 +32,12 @@ steps:
       - description: on_settle
         mermaid: >-
          sequenceDiagram
-         participant NP
+         participant NP(Collector/Receiver)
           participant Settlement_Agency
-         NP ->> Settlement_Agency: settle API 
-          Settlement_Agency ->> NP : on_setttle API
+         NP(Collector/Receiver) ->> Settlement_Agency: settle API
+          rect rgb(191, 223, 255)  
+          Settlement_Agency ->> NP(Collector/Receiver) : on_setttle API
+          end
     reference: if any
     example:
       value:

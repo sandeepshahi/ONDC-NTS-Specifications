@@ -15,7 +15,7 @@ steps:
       - description: report api
         mermaid: >-
          sequenceDiagram
-         participant NP
+         participant NP(Collector/Receiver)
          participant Settlement_Agency
          rect rgb(191, 223, 255) 
          NP ->> Settlement_Agency: report API 
