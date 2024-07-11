@@ -1,8 +1,8 @@
-attributes:
-  $ref: ./attributes/index.yaml
-enum:
-  $ref: ./enum/default/index.yaml
 examples:
-  $ref: ./examples/index.yaml
+  $ref: "./examples/index.yaml"
+enum:
+  $ref: "./enums/index.yaml"
 flows:
-  $ref: ./flows/index.yaml
+  $ref: "./flows/index.yaml"
+attributes:
+  $ref: "./attributes/index.yaml"

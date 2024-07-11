@@ -421,52 +421,54 @@ components:
         order:
           $ref: '#/components/schemas/Orders'
 x-enum:
-  settle:
-    context: &ref_0
-      location:
-        country:
-          code:
-            - code: IND
-              description: Represents the country
+  default:
+    enum_set:
+      settle:
+        context: &ref_0
+          location:
+            country:
+              code:
+                - code: IND
+                  description: Represents the country
+                  reference: <PR/Issue/Discussion Links md format text>
+            city:
+              code:
+                - code: std:080
+                  description: Bangalore
+                  reference: <PR/Issue/Discussion Links md format text>
+          domain:
+            - code: ONDC:NTS10
+              description: RSF
               reference: <PR/Issue/Discussion Links md format text>
-        city:
-          code:
-            - code: std:080
-              description: Bangalore
-              reference: <PR/Issue/Discussion Links md format text>
-      domain:
-        - code: ONDC:NTS10
-          description: RSF
-          reference: <PR/Issue/Discussion Links md format text>
-    message:
-      settlement:
-        type: &ref_1
-          - code: NP-NP
-            description: null
-            reference: <PR/Issue/Discussion Links md format text>
-          - code: MISC
-            description: null
-            reference: <PR/Issue/Discussion Links md format text>
-          - code: Nil
-            description: null
-            reference: <PR/Issue/Discussion Links md format text>
-  on_settle: &ref_3
-    context: *ref_0
-    message:
-      settlement:
-        type: *ref_1
-        orders:
-          inter_participant: &ref_2
-            status:
-              - code: SETTLE
-                description: TBD
-                reference: <PR/Issue/Discussion Links md format text
-              - code: ON_SETTLE
-                description: TBD
-                reference: <PR/Issue/Discussion Links md format text
-          provider: *ref_2
-          self: *ref_2
-  on_report: *ref_3
+        message:
+          settlement:
+            type: &ref_1
+              - code: NP-NP
+                description: null
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: MISC
+                description: null
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: Nil
+                description: null
+                reference: <PR/Issue/Discussion Links md format text>
+      on_settle: &ref_3
+        context: *ref_0
+        message:
+          settlement:
+            type: *ref_1
+            orders:
+              inter_participant: &ref_2
+                status:
+                  - code: SETTLE
+                    description: TBD
+                    reference: <PR/Issue/Discussion Links md format text
+                  - code: ON_SETTLE
+                    description: TBD
+                    reference: <PR/Issue/Discussion Links md format text
+              provider: *ref_2
+              self: *ref_2
+      on_report: *ref_3
 x-flows:
   - summary: RSF_NP-NP
     details:
@@ -498,8 +500,8 @@ x-flows:
                Settlement_Agency ->> Collector : on_setttle API
                Settlement_Agency ->> Receiver : on_setttle API
         reference: if any
-        example: &ref_4
-          value: &ref_6
+        example:
+          value: &ref_4
             context:
               domain: ONDC:NTS10
               location:
@@ -513,18 +515,18 @@ x-flows:
               bap_uri: https://collectorapp.com/ondc/1.0/
               bpp_id: sa_nocs.nbbl.com
               bpp_uri: https://sa_nocs.nbbl.com/nocs_test
-              transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
-              message_id: 941ef6d7-d74d-4411-ac06-469c0f9ac
-              timestamp: '2024-05-07T06:36:51.897Z'
+              transaction_id: dc34a366-aebb-4144-9314-808dda82c7e6
+              message_id: 941ed9a4-d74d-4411-ac06-469c0f9ac
+              timestamp: '2024-05-09T11:36:51.897Z'
               ttl: P1D
             message:
               collector_app_id: collectorapp.com
               receiver_app_id: receiverapp.com
               settlement:
                 type: NP-NP
-                id: settlement-id-123
+                id: settlement-id-abc
                 orders:
-                  - id: order-id-456
+                  - id: ordr-123456
                     inter_participant:
                       amount:
                         currency: INR
@@ -534,8 +536,8 @@ x-flows:
                         currency: INR
                         value: '50.00'
                     provider:
-                      id: provider-id-789
-                      name: Provider Name
+                      id: prvdr-id-789
+                      name: Kirana Pvt Ltd
                       bank_details:
                         account_no: '1234567890'
                         ifsc_code: IFSC0001
@@ -562,7 +564,8 @@ x-flows:
                Settlement_Agency ->> Collector : on_setttle API
                Settlement_Agency ->> Receiver : on_setttle API
         reference: if any
-        example: *ref_4
+        example:
+          value: *ref_4
       - summary: ON_SETTLE
         api: on_settle
         details:
@@ -579,8 +582,8 @@ x-flows:
                end
                Settlement_Agency ->> Receiver : on_setttle API
         reference: if any
-        example: &ref_5
-          value: &ref_9
+        example:
+          value: &ref_5
             context:
               domain: ONDC:NTS10
               location:
@@ -594,30 +597,30 @@ x-flows:
               bap_uri: https://collectorapp.in/ondc/1.0/
               bpp_id: sa_nocs.nbbl.com
               bpp_uri: https://sa_nocs.nbbl.com/nocs_test
-              transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
-              message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
-              timestamp: '2024-05-07T07:36:51.897Z'
+              transaction_id: dc34a366-aebb-4144-9314-808dda82c7e6
+              message_id: 941ed9a4-d74d-4411-ac06-469c0f9ac
+              timestamp: '2024-05-09T13:36:51.000Z'
               ttl: P1D
             message:
               collector_app_id: collectorapp.com
               receiver_app_id: receiverapp.com
               settlement:
                 type: NP-NP
-                id: settlement-id-123
+                id: settlement-id-abc
                 orders:
-                  - id: order-id-456
+                  - id: ordr-123456
                     inter_participant:
                       amount:
                         currency: INR
                         value: '1000.00'
                       status: SETTLED
-                      reference_no: '3718683618631'
+                      reference_no: '3245683618631'
                     collector:
                       amount:
                         currency: INR
                         value: '50.00'
                     provider:
-                      id: provider-id-789
+                      id: prvdr-id-789
                       amount:
                         currency: INR
                         value: '800.00'
@@ -625,13 +628,13 @@ x-flows:
                       error:
                         code: '01'
                         message: Account inactive
-                      reference_no: '3718683618634'
+                      reference_no: '1238683618634'
                     self:
                       amount:
                         currency: INR
                         value: '200.00'
                       status: NOT-SETTLED
-                      reference_no: '3718683618634'
+                      reference_no: '1238683618634'
                       error:
                         code: '01'
                         message: Account inactive
@@ -651,7 +654,8 @@ x-flows:
                Receiver ->> Settlement_Agency: Ack
                end
         reference: if any
-        example: *ref_5
+        example:
+          value: *ref_5
   - summary: RSF_MISC
     details:
       - description: detailed flow of RSF MISC
@@ -678,7 +682,7 @@ x-flows:
                Settlement_Agency ->> NP : on_setttle API
         reference: if any
         example:
-          value: &ref_8
+          value: &ref_7
             context:
               domain: ONDC:NTS10
               location:
@@ -692,16 +696,16 @@ x-flows:
               bap_uri: https://collectorapp.com/ondc/1.0/
               bpp_id: sa_nocs.nbbl.com
               bpp_uri: https://sa_nocs.nbbl.com/nocs_test
-              transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
-              message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
-              timestamp: '2024-05-07T06:36:51.897Z'
+              transaction_id: ad73a366-aebb-4144-9314-808dda82c8e6
+              message_id: 354ef6d7-d74d-4411-ac06-a05469c0f9ac
+              timestamp: '2024-05-07T09:32:23.600Z'
               ttl: P1D
             message:
               collector_app_id: collectorapp.com
               receiver_app_id: receiverapp.com
               settlement:
                 type: MISC
-                id: 941ef6d7-d74d-4411
+                id: settlement-id-123
                 orders:
                   - self:
                       amount:
@@ -727,7 +731,7 @@ x-flows:
                Settlement_Agency ->> NP : on_setttle API
         reference: if any
         example:
-          value: &ref_11
+          value: &ref_9
             context:
               domain: ONDC:NTS10
               location:
@@ -741,9 +745,9 @@ x-flows:
               bap_uri: https://collectorapp.com/ondc/1.0/
               bpp_id: sa_nocs.nbbl.com
               bpp_uri: https://sa_nocs.nbbl.com/nocs_test
-              transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
-              message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
-              timestamp: '2024-05-07T06:36:51.897Z'
+              transaction_id: ad73a366-aebb-4144-9314-808dda82c8e6
+              message_id: 354ef6d7-d74d-4411-ac06-a05469c0f9ac
+              timestamp: '2024-05-07T09:32:23.623Z'
               ttl: PT30S
             message:
               collector_app_id: collectorapp.com
@@ -752,12 +756,11 @@ x-flows:
                 type: MISC
                 id: settlement-id-123
                 orders:
-                  - id: order-id-456
-                    provider:
+                  - provider:
                       id: provider-id-789
                       amount:
                         currency: INR
-                        value: '1000.00'
+                        value: '200.00'
                       status: NOT-SETTLED
                       reference_no: '3718683618631'
                       error:
@@ -767,11 +770,8 @@ x-flows:
                       amount:
                         currency: INR
                         value: '200.00'
-                      status: NOT-SETTLED
+                      status: SETTLED
                       reference_no: '3718683618631'
-                      error:
-                        code: '01'
-                        message: Account inactive
   - summary: RSF_NIL
     details:
       - description: detailed flow of RSF (NIL FLOW)
@@ -794,7 +794,7 @@ x-flows:
                 Settlement_Agency ->> NP(Collector/Receiver) : on_setttle API
         reference: if any
         example:
-          value: &ref_7
+          value: &ref_6
             context:
               domain: ONDC:NTS10
               location:
@@ -808,9 +808,9 @@ x-flows:
               bap_uri: https://collector.in/ondc/1.0/
               bpp_id: sa_nocs.nbbl.com
               bpp_uri: https://sa.nbbl.nbbl.com/nocs_test
-              transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
-              message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
-              timestamp: '2024-05-07T06:36:51.897Z'
+              transaction_id: de73a489-aebb-4144-9314-808dda82c7e6
+              message_id: 238ef6d7-d74d-4411-ac06-a05469c0f9ac
+              timestamp: '2024-05-07T08:40:50.900Z'
               ttl: P1D
             message:
               settlement:
@@ -826,7 +826,7 @@ x-flows:
                Settlement_Agency ->> NP : on_setttle API
         reference: if any
         example:
-          value: &ref_10
+          value: &ref_8
             context:
               domain: ONDC:NTS10
               location:
@@ -840,46 +840,13 @@ x-flows:
               bap_uri: https://collectorapp.com/ondc/1.0/
               bpp_id: sa_nocs.nbbl.com
               bpp_uri: https://sa_nocs.nbbl.com/nocs_test
-              transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
-              message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
-              timestamp: '2024-05-07T06:36:51.897Z'
-              ttl: PT30S
+              transaction_id: de73a489-aebb-4144-9314-808dda82c7e6
+              message_id: 238ef6d7-d74d-4411-ac06-a05469c0f9ac
+              timestamp: '2024-05-07T08:40:51.000Z'
+              ttl: P1D
             message:
-              collector_app_id: collector.mystore.in
-              receiver_app_id: receiver.sellerapp.com
               settlement:
                 type: NIL
-                id: settlement-id-123
-                orders:
-                  - id: order-id-456
-                    inter_participant:
-                      amount:
-                        currency: INR
-                        value: '1000.00'
-                      status: SETTLED
-                      reference_no: '3718683618631'
-                    collector:
-                      currency: INR
-                      value: '950.00'
-                    provider:
-                      id: provider-id-789
-                      amount:
-                        currency: INR
-                        value: '1000.00'
-                      status: NOT-SETTLED
-                      reference_no: '3718683618631'
-                      error:
-                        code: '01'
-                        message: Account inactive
-                    self:
-                      amount:
-                        currency: INR
-                        value: '200.00'
-                      status: NOT-SETTLED
-                      reference_no: '3718683618631'
-                      error:
-                        code: '01'
-                        message: Account inactive
   - summary: RSF_REPORT
     details:
       - description: detailed flow of REPORT
@@ -905,7 +872,7 @@ x-flows:
                NP ->> Settlement_Agency : Ack
         reference: if any
         example:
-          value: &ref_12
+          value: &ref_10
             context:
               domain: ONDC:NTS10
               location:
@@ -919,13 +886,13 @@ x-flows:
               bap_uri: https://collector.com/ondc/1.0/
               bpp_id: sa_nocs.nbbl.com
               bpp_uri: https://nbbl.org.in/nocs_test
-              transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
-              message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
-              timestamp: '2024-05-07T06:36:51.897Z'
+              transaction_id: cd73a366-aebb-4144-9314-808dda82c7e6
+              message_id: 841ef6d7-d74d-4411-ac06-a05469c0f9ac
+              timestamp: '2024-05-09T06:36:51.897Z'
               ttl: P1D
             message:
-              ref_transaction_id: ''
-              ref_message_id: ''
+              ref_transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
+              ref_message_id: 941ef6d7-d74d-4411-ac06-469c0f9ac
       - summary: ON_REPORT
         api: on_report
         details:
@@ -940,7 +907,7 @@ x-flows:
                NP ->> Settlement_Agency : Ack
         reference: if any
         example:
-          value: &ref_13
+          value: &ref_11
             context:
               domain: ONDC:NTS10
               location:
@@ -954,13 +921,13 @@ x-flows:
               bap_uri: https://collectorapp.com/ondc/1.0/
               bpp_id: sa_nocs.nbbl.com
               bpp_uri: https://sa_nocs.nbbl.com/nocs_test
-              transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
-              message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
+              transaction_id: cd73a366-aebb-4144-9314-808dda82c7e6
+              message_id: 841ef6d7-d74d-4411-ac06-a05469c0f9ac
               timestamp: '2024-05-07T06:36:51.897Z'
               ttl: P1D
             message:
               collector_app_id: collectorapp.com
-              receiver_app_id: receiverapp.co
+              receiver_app_id: receiverapp.com
               settlement:
                 type: NP-NP
                 id: settlement-id-123
@@ -974,10 +941,10 @@ x-flows:
                     reference_no: '3718683618631'
                     error:
                       code: '01'
-                      message: Account inactive
+                      message: Account Inactive
                     collector:
                       currency: INR
-                      value: INR
+                      value: '50.00'
                     provider:
                       id: provider-id-789
                       amount:
@@ -986,7 +953,7 @@ x-flows:
                       status: NOT-SETTLED
                       error:
                         code: '01'
-                        message: Account inactive
+                        message: Account Inactive
                       reference_no: '3718683618634'
                     self:
                       amount:
@@ -1004,28 +971,28 @@ x-examples:
     example_set:
       settle:
         examples:
-          - summary: settle_np-np
+          - summary: settle np-np
+            value: *ref_4
+          - summary: settle nil
             value: *ref_6
-          - summary: settle_nil
+          - summary: settle misc
             value: *ref_7
-          - summary: settle_misc
-            value: *ref_8
       on_settle:
         examples:
-          - summary: on_settle_np-np
+          - summary: on_settle np-np
+            value: *ref_5
+          - summary: on_settle nil
+            value: *ref_8
+          - summary: on_settle misc
             value: *ref_9
-          - summary: on_settle_nil
-            value: *ref_10
-          - summary: on_settle_misc
-            value: *ref_11
       report:
         examples:
           - summary: report
-            value: *ref_12
+            value: *ref_10
       on_report:
         examples:
           - summary: settle
-            value: *ref_13
+            value: *ref_11
 x-attributes:
   RSF:
     attribute_set:
