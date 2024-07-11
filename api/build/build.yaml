@@ -422,7 +422,7 @@ components:
           $ref: '#/components/schemas/Orders'
 x-enum:
   settle:
-    context:
+    context: &ref_0
       location:
         country:
           code:
@@ -440,7 +440,7 @@ x-enum:
           reference: <PR/Issue/Discussion Links md format text>
     message:
       settlement:
-        type:
+        type: &ref_1
           - code: NP-NP
             description: null
             reference: <PR/Issue/Discussion Links md format text>
@@ -450,6 +450,23 @@ x-enum:
           - code: Nil
             description: null
             reference: <PR/Issue/Discussion Links md format text>
+  on_settle: &ref_3
+    context: *ref_0
+    message:
+      settlement:
+        type: *ref_1
+        orders:
+          inter_participant: &ref_2
+            status:
+              - code: SETTLE
+                description: TBD
+                reference: <PR/Issue/Discussion Links md format text
+              - code: ON_SETTLE
+                description: TBD
+                reference: <PR/Issue/Discussion Links md format text
+          provider: *ref_2
+          self: *ref_2
+  on_report: *ref_3
 x-flows:
   - summary: RSF_NP-NP
     details:
@@ -481,8 +498,8 @@ x-flows:
                Settlement_Agency ->> Collector : on_setttle API
                Settlement_Agency ->> Receiver : on_setttle API
         reference: if any
-        example:
-          value: &ref_0
+        example: &ref_4
+          value: &ref_6
             context:
               domain: ONDC:NTS10
               location:
@@ -545,8 +562,7 @@ x-flows:
                Settlement_Agency ->> Collector : on_setttle API
                Settlement_Agency ->> Receiver : on_setttle API
         reference: if any
-        example:
-          value: *ref_0
+        example: *ref_4
       - summary: ON_SETTLE
         api: on_settle
         details:
@@ -563,8 +579,8 @@ x-flows:
                end
                Settlement_Agency ->> Receiver : on_setttle API
         reference: if any
-        example:
-          value: &ref_1
+        example: &ref_5
+          value: &ref_9
             context:
               domain: ONDC:NTS10
               location:
@@ -635,8 +651,7 @@ x-flows:
                Receiver ->> Settlement_Agency: Ack
                end
         reference: if any
-        example:
-          value: *ref_1
+        example: *ref_5
   - summary: RSF_MISC
     details:
       - description: detailed flow of RSF MISC
@@ -663,7 +678,7 @@ x-flows:
                Settlement_Agency ->> NP : on_setttle API
         reference: if any
         example:
-          value: &ref_3
+          value: &ref_8
             context:
               domain: ONDC:NTS10
               location:
@@ -712,7 +727,7 @@ x-flows:
                Settlement_Agency ->> NP : on_setttle API
         reference: if any
         example:
-          value: &ref_5
+          value: &ref_11
             context:
               domain: ONDC:NTS10
               location:
@@ -779,7 +794,7 @@ x-flows:
                 Settlement_Agency ->> NP(Collector/Receiver) : on_setttle API
         reference: if any
         example:
-          value: &ref_2
+          value: &ref_7
             context:
               domain: ONDC:NTS10
               location:
@@ -811,7 +826,7 @@ x-flows:
                Settlement_Agency ->> NP : on_setttle API
         reference: if any
         example:
-          value: &ref_4
+          value: &ref_10
             context:
               domain: ONDC:NTS10
               location:
@@ -890,7 +905,7 @@ x-flows:
                NP ->> Settlement_Agency : Ack
         reference: if any
         example:
-          value: &ref_6
+          value: &ref_12
             context:
               domain: ONDC:NTS10
               location:
@@ -925,7 +940,7 @@ x-flows:
                NP ->> Settlement_Agency : Ack
         reference: if any
         example:
-          value: &ref_7
+          value: &ref_13
             context:
               domain: ONDC:NTS10
               location:
@@ -989,28 +1004,28 @@ x-examples:
     example_set:
       settle:
         examples:
-          - summary: settle np-np
-            value: *ref_0
-          - summary: settle nil
-            value: *ref_2
-          - summary: settle misc
-            value: *ref_3
+          - summary: settle_np-np
+            value: *ref_6
+          - summary: settle_nil
+            value: *ref_7
+          - summary: settle_misc
+            value: *ref_8
       on_settle:
         examples:
-          - summary: on_settle np-np
-            value: *ref_1
-          - summary: on_settle nil
-            value: *ref_4
-          - summary: on_settle misc
-            value: *ref_5
+          - summary: on_settle_np-np
+            value: *ref_9
+          - summary: on_settle_nil
+            value: *ref_10
+          - summary: on_settle_misc
+            value: *ref_11
       report:
         examples:
           - summary: report
-            value: *ref_6
+            value: *ref_12
       on_report:
         examples:
           - summary: settle
-            value: *ref_7
+            value: *ref_13
 x-attributes:
   RSF:
     attribute_set:

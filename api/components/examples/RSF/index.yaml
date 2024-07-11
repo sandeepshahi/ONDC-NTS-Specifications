@@ -1,43 +1,32 @@
 settle:
   examples:
-    - summary: settle np-np
-      # description: TBD
+    - summary: settle_np-np
       value:
-        $ref: "./settle/settle_np_np.yaml"
-    - summary: settle nil
-      # description: TBD
+        $ref: ./settle/settle_np-np.yaml
+    - summary: settle_nil
       value:
-        $ref: "./settle/settle_null.yaml"
-    - summary: settle misc
-      # description: TBD
+        $ref: ./settle/settle_nil.yaml
+    - summary: settle_misc
       value:
-        $ref: "./settle/settle_misc.yaml"
+        $ref: ./settle/settle_misc.yaml
 on_settle:
-   examples:
-    - summary: on_settle np-np
-      # description: TBD
+  examples:
+    - summary: on_settle_np-np
       value:
-        $ref: "./on_settle/on_settle_np_np.yaml"
-    - summary: on_settle nil
-      # description: TBD
+        $ref: ./on_settle/on_settle_np-np.yaml
+    - summary: on_settle_nil
       value:
-        $ref: "./on_settle/on_settle_null.yaml"
-    - summary: on_settle misc
-      # description: TBD
+        $ref: ./on_settle/on_settle_nil.yaml
+    - summary: on_settle_misc
       value:
-        $ref: "./on_settle/on_settle_misc.yaml"
+        $ref: ./on_settle/on_settle_misc.yaml
 report:
- examples:
+  examples:
     - summary: report
-      # description: TBD
       value:
-        $ref: "./report/report.yaml"
-        
-on_report:       
+        $ref: ./report/report.yaml
+on_report:
   examples:
     - summary: settle
-      # description: TBD
       value:
-        $ref: "./on_report/on_report.yaml"        
-
-        
+        $ref: ./on_report/settle.yaml

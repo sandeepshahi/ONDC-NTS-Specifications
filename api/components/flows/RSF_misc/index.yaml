@@ -1,43 +1,41 @@
 summary: RSF_MISC
 details:
- - description: detailed flow of RSF MISC
-   mermaid: >-
-     sequenceDiagram
-      participant NP
-      participant Settlement_Agency
-      NP ->> Settlement_Agency: settle API 
-      Settlement_Agency ->> NP : on_setttle API
-      participant Receiver
-      participant Settlement_Agency
-      Receiver ->> Settlement_Agency: settle API 
-      Settlement_Agency ->> Receiver : on_setttle API
+  - description: detailed flow of RSF MISC
+    mermaid: |-
+      sequenceDiagram
+       participant NP
+       participant Settlement_Agency
+       NP ->> Settlement_Agency: settle API 
+       Settlement_Agency ->> NP : on_setttle API
+       participant Receiver
+       participant Settlement_Agency
+       Receiver ->> Settlement_Agency: settle API 
+       Settlement_Agency ->> Receiver : on_setttle API
 references: if any
 steps:
   - summary: SETTLE
     api: settle
     details:
       - description: settle api
-        mermaid: >-
-         sequenceDiagram
-         participant NP
-          participant Settlement_Agency
-         NP ->> Settlement_Agency: settle API 
-          Settlement_Agency ->> NP : on_setttle API
+        mermaid: |-
+          sequenceDiagram participant NP
+           participant Settlement_Agency
+          NP ->> Settlement_Agency: settle API 
+           Settlement_Agency ->> NP : on_setttle API
     reference: if any
     example:
       value:
-        $ref: "../../examples/RSF/settle/settle_misc.yaml"
+        $ref: ../../examples/RSF/settle/settle_misc.yaml
   - summary: ON_SETTLE
     api: on_settle
     details:
       - description: on_settle
-        mermaid: >-
-         sequenceDiagram
-         participant NP
-          participant Settlement_Agency
-         NP ->> Settlement_Agency: settle API 
-          Settlement_Agency ->> NP : on_setttle API
+        mermaid: |-
+          sequenceDiagram participant NP
+           participant Settlement_Agency
+          NP ->> Settlement_Agency: settle API 
+           Settlement_Agency ->> NP : on_setttle API
     reference: if any
     example:
       value:
-        $ref: "../../examples/RSF/on_settle/on_settle_misc.yaml"
+        $ref: ../../examples/RSF/on_settle/on_settle_misc.yaml
