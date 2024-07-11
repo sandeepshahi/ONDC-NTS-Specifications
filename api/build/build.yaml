@@ -663,7 +663,7 @@ x-flows:
                Settlement_Agency ->> NP : on_setttle API
         reference: if any
         example:
-          value:
+          value: &ref_3
             context:
               domain: ONDC:NTS10
               location:
@@ -712,7 +712,7 @@ x-flows:
                Settlement_Agency ->> NP : on_setttle API
         reference: if any
         example:
-          value:
+          value: &ref_5
             context:
               domain: ONDC:NTS10
               location:
@@ -772,14 +772,14 @@ x-flows:
         api: settle
         details:
           - description: settle api
-            mermaid: >-
-              sequenceDiagram participant NP(Collector/Receiver) participant
-              Settlement_Agency rect rgb(191, 223, 255)  NP(Collector/Receiver)
-              ->> Settlement_Agency: settle API  end Settlement_Agency ->>
-              NP(Collector/Receiver) : on_setttle API
+            mermaid: |-
+              sequenceDiagram participant NP(Collector/Receiver)
+                participant Settlement_Agency
+                NP(Collector/Receiver) ->> Settlement_Agency: settle API      
+                Settlement_Agency ->> NP(Collector/Receiver) : on_setttle API
         reference: if any
         example:
-          value:
+          value: &ref_2
             context:
               domain: ONDC:NTS10
               location:
@@ -805,15 +805,13 @@ x-flows:
         details:
           - description: on_settle
             mermaid: |-
-              sequenceDiagram participant NP(Collector/Receiver)
+              sequenceDiagram participant NP
                participant Settlement_Agency
-              NP(Collector/Receiver) ->> Settlement_Agency: settle API
-               rect rgb(191, 223, 255)  
-               Settlement_Agency ->> NP(Collector/Receiver) : on_setttle API
-               end
+               NP ->> Settlement_Agency: settle API 
+               Settlement_Agency ->> NP : on_setttle API
         reference: if any
         example:
-          value:
+          value: &ref_4
             context:
               domain: ONDC:NTS10
               location:
@@ -882,14 +880,17 @@ x-flows:
         api: report
         details:
           - description: report api
-            mermaid: >-
-              sequenceDiagram participant NP(Collector/Receiver) participant
-              Settlement_Agency rect rgb(191, 223, 255)  NP ->>
-              Settlement_Agency: report API  Settlement_Agency ->> ACK end
-              Settlement_Agency ->> NP : on_setttle API
+            mermaid: |-
+              sequenceDiagram
+               participant NP
+               participant Settlement_Agency      
+               NP ->> Settlement_Agency: report API 
+               Settlement_Agency ->> NP : ACK
+               Settlement_Agency ->> NP : on_setttle API
+               NP ->> Settlement_Agency : Ack
         reference: if any
         example:
-          value:
+          value: &ref_6
             context:
               domain: ONDC:NTS10
               location:
@@ -914,14 +915,17 @@ x-flows:
         api: on_report
         details:
           - description: on_report
-            mermaid: >-
-              sequenceDiagram participant NP participant Settlement_Agency NP
-              ->> Settlement_Agency: report API  rect rgb(191, 223, 255) 
-              Settlement_Agency ->> NP : on_ report API NP ->> Settlement_Agency
-              : Ack end 
+            mermaid: |-
+              sequenceDiagram
+               participant NP
+               participant Settlement_Agency
+               NP ->> Settlement_Agency: report API  
+               Settlement_Agency ->> NP : Ack
+               Settlement_Agency ->> NP : on_ report API
+               NP ->> Settlement_Agency : Ack
         reference: if any
         example:
-          value:
+          value: &ref_7
             context:
               domain: ONDC:NTS10
               location:
@@ -985,12 +989,28 @@ x-examples:
     example_set:
       settle:
         examples:
-          - summary: settle
+          - summary: settle np-np
             value: *ref_0
+          - summary: settle nil
+            value: *ref_2
+          - summary: settle misc
+            value: *ref_3
       on_settle:
         examples:
-          - summary: on_settle
+          - summary: on_settle np-np
             value: *ref_1
+          - summary: on_settle nil
+            value: *ref_4
+          - summary: on_settle misc
+            value: *ref_5
+      report:
+        examples:
+          - summary: report
+            value: *ref_6
+      on_report:
+        examples:
+          - summary: settle
+            value: *ref_7
 x-attributes:
   RSF:
     attribute_set:
