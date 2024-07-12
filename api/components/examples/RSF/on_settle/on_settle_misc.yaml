@@ -20,10 +20,10 @@ message:
   receiver_app_id: receiverapp.com
   settlement:
     type: MISC
-    id: "settlement-id-123"
+    id: settlement-id-123
     orders:
       - provider:
-          id: "provider-id-789"
+          id: provider-id-789
           amount:
             currency: INR
             value: "200.00"
