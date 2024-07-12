@@ -1,869 +1,1192 @@
-on_report:
+settle_misc:
   context:
     domain:
-      required: false
+      required: true
       type: string
       owner: any
       usage: ONDC:NTS10
     location:
       country:
         code:
-          required: false
+          required: true
           type: string
           owner: any
           usage: IND
       city:
         code:
-          required: false
+          required: true
           type: string
           owner: any
           usage: '*'
     version:
-      required: false
+      required: true
       type: string
       owner: any
       usage: 2.0.0
     action:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: on_report
+      usage: settle
     bap_id:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: beta.mystore.in
+      usage: collectorapp.com
     bap_uri:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: https://beta.mystore.in/ondc/1.0/
+      usage: https://collectorapp.com/ondc/1.0/
     bpp_id:
-      required: false
+      required: true
       type: string
       owner: any
       usage: sa_nocs.nbbl.com
     bpp_uri:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: https://ondcnbbl.npci.org.in/nocs_test
+      usage: https://sa_nocs.nbbl.com/nocs_test
     transaction_id:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: bd73a366-aebb-4144-9314-808dda82c7e6
+      usage: ad73a366-aebb-4144-9314-808dda82c8e6
     message_id:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
+      usage: 354ef6d7-d74d-4411-ac06-a05469c0f9ac
     timestamp:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: '2024-05-07T06:36:51.897Z'
+      usage: '2024-05-07T09:32:23.600Z'
     ttl:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: PT30S
+      usage: P1D
   message:
     collector_app_id:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: false
+      usage: collectorapp.com
     receiver_app_id:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: false
+      usage: receiverapp.com
     settlement:
       type:
-        required: false
+        required: true
         type: string
         owner: any
-        usage: NP-NP
+        usage: MISC
       id:
-        required: false
+        required: true
         type: string
         owner: any
-        usage: false
+        usage: settlement-id-123
       orders:
-        id:
-          required: false
-          type: string
-          owner: any
-          usage: false
-        inter_participant:
-          currency:
-            required: false
-            type: string
-            owner: any
-            usage: INR
-          value:
-            required: false
-            type: string
-            owner: any
-            usage: false
-          status:
-            required: false
-            type: string
-            owner: any
-            usage: SETTLED
-          reference_no:
-            required: false
-            type: string
-            owner: any
-            usage: '3718683618631'
-          error_code:
-            required: false
-            type: string
-            owner: any
-            usage: '01'
-          error_message:
-            required: false
-            type: string
-            owner: any
-            usage: Account inactive
-        collector:
-          currency:
-            required: false
-            type: string
-            owner: any
-            usage: INR
-          value:
-            required: false
-            type: string
-            owner: any
-            usage: false
+        self:
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '200.00'
         provider:
           id:
-            required: false
+            required: true
             type: string
             owner: any
-            usage: false
-          currency:
-            required: false
+            usage: provider-id-789
+          name:
+            required: true
             type: string
             owner: any
-            usage: false
-          value:
-            required: false
-            type: string
-            owner: any
-            usage: false
-          status:
-            required: false
-            type: string
-            owner: any
-            usage: NOT-SETTLED
-          reference_no:
-            required: false
-            type: string
-            owner: any
-            usage: '3718683618631'
-          error_code:
-            required: false
-            type: string
-            owner: any
-            usage: '01'
-          error_message:
-            required: false
-            type: string
-            owner: any
-            usage: Account inactive
-        self:
-          currency:
-            required: false
-            type: string
-            owner: any
-            usage: false
-          value:
-            required: false
-            type: string
-            owner: any
-            usage: false
-          status:
-            required: false
-            type: string
-            owner: any
-            usage: false
-          reference_no:
-            required: false
-            type: string
-            owner: any
-            usage: '3718683618631'
-          error_code:
-            required: false
-            type: string
-            owner: any
-            usage: '01'
-          error_message:
-            required: false
-            type: string
-            owner: any
-            usage: Account inactive
-on_settle:
+            usage: Kirana Pvt Ltd.
+          bank_details:
+            account_no:
+              required: true
+              type: string
+              owner: any
+              usage: 1234567890
+            ifsc_code:
+              required: true
+              type: string
+              owner: any
+              usage: IFSC0001
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '200.00'
+settle_np-np:
   context:
     domain:
-      required: false
+      required: true
       type: string
       owner: any
       usage: ONDC:NTS10
     location:
       country:
         code:
-          required: false
+          required: true
           type: string
           owner: any
           usage: IND
       city:
         code:
-          required: false
+          required: true
           type: string
           owner: any
           usage: '*'
     version:
-      required: false
+      required: true
       type: string
       owner: any
       usage: 2.0.0
     action:
-      required: false
+      required: true
+      type: string
+      owner: any
+      usage: settle
+    bap_id:
+      required: true
+      type: string
+      owner: any
+      usage: collectorapp.com
+    bap_uri:
+      required: true
+      type: string
+      owner: any
+      usage: https://collectorapp.com/ondc/1.0/
+    bpp_id:
+      required: true
+      type: string
+      owner: any
+      usage: sa_nocs.nbbl.com
+    bpp_uri:
+      required: true
+      type: string
+      owner: any
+      usage: https://sa_nocs.nbbl.com/nocs_test
+    transaction_id:
+      required: true
+      type: string
+      owner: any
+      usage: ad73a366-aebb-4144-9314-808dda82c8e6
+    message_id:
+      required: true
+      type: string
+      owner: any
+      usage: 354ef6d7-d74d-4411-ac06-a05469c0f9ac
+    timestamp:
+      required: true
+      type: string
+      owner: any
+      usage: '2024-05-07T09:32:23.600Z'
+    ttl:
+      required: true
+      type: string
+      owner: any
+      usage: P1D
+  message:
+    collector_app_id:
+      required: true
+      type: string
+      owner: any
+      usage: collectorapp.com
+    receiver_app_id:
+      required: true
+      type: string
+      owner: any
+      usage: receiverapp.com
+    settlement:
+      type:
+        required: true
+        type: string
+        owner: any
+        usage: NP-NP
+      id:
+        required: true
+        type: string
+        owner: any
+        usage: settlement-id-abc
+      orders:
+        self:
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '200.00'
+        provider:
+          id:
+            required: true
+            type: string
+            owner: any
+            usage: prvdr-id-789
+          name:
+            required: true
+            type: string
+            owner: any
+            usage: Kirana Pvt Ltd
+          bank_details:
+            account_no:
+              required: true
+              type: string
+              owner: any
+              usage: '1234567890'
+            ifsc_code:
+              required: true
+              type: string
+              owner: any
+              usage: IFSC0001
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '800.00'
+        id:
+          required: true
+          type: string
+          owner: any
+          usage: ordr-123456
+        inter_participant:
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '1000.00'
+        collector:
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '50.00'
+settle_nil:
+  context:
+    domain:
+      required: true
+      type: string
+      owner: any
+      usage: ONDC:NTS10
+    location:
+      country:
+        code:
+          required: true
+          type: string
+          owner: any
+          usage: IND
+      city:
+        code:
+          required: true
+          type: string
+          owner: any
+          usage: '*'
+    version:
+      required: true
+      type: string
+      owner: any
+      usage: 2.0.0
+    action:
+      required: true
+      type: string
+      owner: any
+      usage: settle
+    bap_id:
+      required: true
+      type: string
+      owner: any
+      usage: collectorapp.com
+    bap_uri:
+      required: true
+      type: string
+      owner: any
+      usage: https://collectorapp.com/ondc/1.0/
+    bpp_id:
+      required: true
+      type: string
+      owner: any
+      usage: sa_nocs.nbbl.com
+    bpp_uri:
+      required: true
+      type: string
+      owner: any
+      usage: https://sa_nocs.nbbl.com/nocs_test
+    transaction_id:
+      required: true
+      type: string
+      owner: any
+      usage: ad73a366-aebb-4144-9314-808dda82c8e6
+    message_id:
+      required: true
+      type: string
+      owner: any
+      usage: 354ef6d7-d74d-4411-ac06-a05469c0f9ac
+    timestamp:
+      required: true
+      type: string
+      owner: any
+      usage: '2024-05-07T09:32:23.600Z'
+    ttl:
+      required: true
+      type: string
+      owner: any
+      usage: P1D
+  message:
+    collector_app_id:
+      required: true
+      type: string
+      owner: any
+      usage: collectorapp.com
+    receiver_app_id:
+      required: true
+      type: string
+      owner: any
+      usage: receiverapp.com
+    settlement:
+      type:
+        required: true
+        type: string
+        owner: any
+        usage: NIL
+      id:
+        required: true
+        type: string
+        owner: any
+        usage: settlement-id-abc
+      orders:
+        self:
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '200.00'
+        provider:
+          id:
+            required: true
+            type: string
+            owner: any
+            usage: prvdr-id-789
+          name:
+            required: true
+            type: string
+            owner: any
+            usage: Kirana Pvt Ltd
+          bank_details:
+            account_no:
+              required: true
+              type: string
+              owner: any
+              usage: '1234567890'
+            ifsc_code:
+              required: true
+              type: string
+              owner: any
+              usage: IFSC0001
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '800.00'
+        id:
+          required: true
+          type: string
+          owner: any
+          usage: ordr-123456
+        inter_participant:
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '1000.00'
+        collector:
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '50.00'
+on_settle:
+  context:
+    domain:
+      required: true
+      type: string
+      owner: any
+      usage: ONDC:NTS10
+    location:
+      country:
+        code:
+          required: true
+          type: string
+          owner: any
+          usage: IND
+      city:
+        code:
+          required: true
+          type: string
+          owner: any
+          usage: '*'
+    version:
+      required: true
+      type: string
+      owner: any
+      usage: 2.0.0
+    action:
+      required: true
       type: string
       owner: any
       usage: on_settle
     bap_id:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: beta.mystore.in
+      usage: collectorapp.com
     bap_uri:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: https://beta.mystore.in/ondc/1.0/
+      usage: https://collectorapp.com/ondc/1.0/
     bpp_id:
-      required: false
+      required: true
       type: string
       owner: any
       usage: sa_nocs.nbbl.com
     bpp_uri:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: https://ondcnbbl.npci.org.in/nocs_test
+      usage: https://sa_nocs.nbbl.com/nocs_test
     transaction_id:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: bd73a366-aebb-4144-9314-808dda82c7e6
+      usage: ad73a366-aebb-4144-9314-808dda82c8e6
     message_id:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
+      usage: 354ef6d7-d74d-4411-ac06-a05469c0f9ac
     timestamp:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: '2024-05-07T06:36:51.897Z'
+      usage: '2024-05-07T09:32:23.600Z'
     ttl:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: PT30S
+      usage: P1D
   message:
     collector_app_id:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: false
+      usage: collectorapp.com
     receiver_app_id:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: false
+      usage: receiverapp.com
     settlement:
       type:
-        required: false
+        required: true
         type: string
         owner: any
         usage: NP-NP
       id:
-        required: false
+        required: true
         type: string
         owner: any
-        usage: false
+        usage: settlement-id-abc
       orders:
-        id:
-          required: false
-          type: string
-          owner: any
-          usage: false
-        inter_participant:
-          currency:
-            required: false
-            type: string
-            owner: any
-            usage: INR
-          value:
-            required: false
-            type: string
-            owner: any
-            usage: false
+        self:
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '200.00'
           status:
-            required: false
-            type: string
-            owner: any
-            usage: SETTLED
-          reference_no:
-            required: false
-            type: string
-            owner: any
-            usage: '3718683618631'
-          error_code:
-            required: false
-            type: string
-            owner: any
-            usage: '01'
-          error_message:
-            required: false
-            type: string
-            owner: any
-            usage: Account inactive
-        collector:
-          currency:
-            required: false
-            type: string
-            owner: any
-            usage: INR
-          value:
-            required: false
-            type: string
-            owner: any
-            usage: false
-        provider:
-          id:
-            required: false
-            type: string
-            owner: any
-            usage: false
-          currency:
-            required: false
-            type: string
-            owner: any
-            usage: false
-          value:
-            required: false
-            type: string
-            owner: any
-            usage: false
-          status:
-            required: false
+            required: true
             type: string
             owner: any
             usage: NOT-SETTLED
           reference_no:
-            required: false
+            required: true
             type: string
             owner: any
-            usage: '3718683618631'
-          error_code:
-            required: false
+            usage: '1238683618634'
+          error:
+            code:
+              required: true
+              type: string
+              owner: any
+              usage: '01'
+            message:
+              required: true
+              type: string
+              owner: any
+              usage: Account inactive
+        provider:
+          id:
+            required: true
             type: string
             owner: any
-            usage: '01'
-          error_message:
-            required: false
+            usage: prvdr-id-789
+          name:
+            required: true
             type: string
             owner: any
-            usage: Account inactive
-        self:
-          currency:
-            required: false
-            type: string
-            owner: any
-            usage: false
-          value:
-            required: false
-            type: string
-            owner: any
-            usage: false
+            usage: Kirana Pvt Ltd
+          bank_details:
+            account_no:
+              required: true
+              type: string
+              owner: any
+              usage: '1234567890'
+            ifsc_code:
+              required: true
+              type: string
+              owner: any
+              usage: IFSC0001
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '800.00'
           status:
-            required: false
+            required: true
             type: string
             owner: any
-            usage: false
+            usage: NOT-SETTLED
           reference_no:
-            required: false
+            required: true
             type: string
             owner: any
             usage: '3718683618631'
-          error_code:
-            required: false
+          error:
+            code:
+              required: true
+              type: string
+              owner: any
+              usage: '01'
+            message:
+              required: true
+              type: string
+              owner: any
+              usage: Account inactive
+        id:
+          required: true
+          type: string
+          owner: any
+          usage: ordr-123456
+        inter_participant:
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '1000.00'
+          status:
+            required: true
             type: string
             owner: any
-            usage: '01'
-          error_message:
-            required: false
+            usage: SETTLED
+          reference_no:
+            required: true
             type: string
             owner: any
-            usage: Account inactive
+            usage: '3718683618631'
+          error:
+            code:
+              required: true
+              type: string
+              owner: any
+              usage: '01'
+            message:
+              required: true
+              type: string
+              owner: any
+              usage: Account inactive
+        collector:
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '50.00'
 report:
   context:
     domain:
-      required: false
+      required: true
       type: string
       owner: any
       usage: ONDC:NTS10
     location:
       country:
         code:
-          required: false
+          required: true
           type: string
           owner: any
           usage: IND
       city:
         code:
-          required: false
+          required: true
           type: string
           owner: any
           usage: '*'
     version:
-      required: false
+      required: true
       type: string
       owner: any
       usage: 2.0.0
     action:
-      required: false
+      required: true
       type: string
       owner: any
       usage: report
     bap_id:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: buyerapp.com
+      usage: collectorapp.com
     bap_uri:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: https://buyerapp.com/ondc/1.0/
+      usage: https://collectorapp.com/ondc/1.0/
     bpp_id:
-      required: false
+      required: true
       type: string
       owner: any
       usage: sa_nocs.nbbl.com
     bpp_uri:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: https://ondcnbbl.npci.org.in/nocs_test
+      usage: https://sa_nocs.nbbl.com/nocs_test
     transaction_id:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: bd73a366-aebb-4144-9314-808dda82c7e6
+      usage: d73a366-aebb-4144-9314-808dda82c7e6
     message_id:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
+      usage: 841ef6d7-d74d-4411-ac06-a05469c0f9ac
     timestamp:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: '2024-05-07T06:36:51.897Z'
+      usage: '2024-05-09T06:36:51.897Z'
     ttl:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: PT30S
-  message:
-    ref_transaction_id:
-      required: false
-      type: string
-      owner: any
-      usage: false
-    ref_message_id:
-      required: false
-      type: string
-      owner: any
-      usage: false
-settle_misc:
-  context:
-    domain:
-      required: false
-      type: string
-      owner: any
-      usage: ONDC:NTS10
-    location:
-      country:
-        code:
-          required: false
-          type: string
-          owner: any
-          usage: IND
-      city:
-        code:
-          required: false
-          type: string
-          owner: any
-          usage: '*'
-    version:
-      required: false
-      type: string
-      owner: any
-      usage: 2.0.0
-    action:
-      required: false
-      type: string
-      owner: any
-      usage: settle
-    bap_id:
-      required: false
-      type: string
-      owner: any
-      usage: buyerapp.com
-    bap_uri:
-      required: false
-      type: string
-      owner: any
-      usage: https://buyerapp.com/ondc/1.0/
-    bpp_id:
-      required: false
-      type: string
-      owner: any
-      usage: sa_nocs.nbbl.com
-    bpp_uri:
-      required: false
-      type: string
-      owner: any
-      usage: https://ondcnbbl.npci.org.in/nocs_test
-    transaction_id:
-      required: false
-      type: string
-      owner: any
-      usage: bd73a366-aebb-4144-9314-808dda82c7e6
-    message_id:
-      required: false
-      type: string
-      owner: any
-      usage: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
-    timestamp:
-      required: false
-      type: string
-      owner: any
-      usage: '2024-05-07T06:36:51.897Z'
-    ttl:
-      required: false
-      type: string
-      owner: any
-      usage: PT30S
+      usage: P1D
   message:
     collector_app_id:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: buyerapp.com
+      usage: collectorapp.com
     receiver_app_id:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: false
+      usage: receiverapp.com
     settlement:
       type:
-        required: false
-        type: string
-        owner: any
-        usage: Misc
-      id:
-        required: false
-        type: string
-        owner: any
-        usage: false
-      orders:
-        self:
-          currency:
-            required: false
-            type: string
-            owner: any
-            usage: false
-          value:
-            required: false
-            type: string
-            owner: any
-            usage: false
-        provider:
-          id:
-            required: false
-            type: string
-            owner: any
-            usage: false
-          name:
-            required: false
-            type: string
-            owner: any
-            usage: false
-          account_no:
-            required: false
-            type: string
-            owner: any
-            usage: false
-          ifsc_code:
-            required: false
-            type: string
-            owner: any
-            usage: false
-          currency:
-            required: false
-            type: string
-            owner: any
-            usage: false
-          value:
-            required: false
-            type: string
-            owner: any
-            usage: false
-settle_np-np:
-  context:
-    domain:
-      required: false
-      type: string
-      owner: any
-      usage: ONDC:NTS10
-    location:
-      country:
-        code:
-          required: false
-          type: string
-          owner: any
-          usage: IND
-      city:
-        code:
-          required: false
-          type: string
-          owner: any
-          usage: '*'
-    version:
-      required: false
-      type: string
-      owner: any
-      usage: 2.0.0
-    action:
-      required: false
-      type: string
-      owner: any
-      usage: settle
-    bap_id:
-      required: false
-      type: string
-      owner: any
-      usage: buyerapp.com
-    bap_uri:
-      required: false
-      type: string
-      owner: any
-      usage: https://buyerapp.com/ondc/1.0/
-    bpp_id:
-      required: false
-      type: string
-      owner: any
-      usage: sa_nocs.nbbl.com
-    bpp_uri:
-      required: false
-      type: string
-      owner: any
-      usage: https://ondcnbbl.npci.org.in/nocs_test
-    transaction_id:
-      required: false
-      type: string
-      owner: any
-      usage: bd73a366-aebb-4144-9314-808dda82c7e6
-    message_id:
-      required: false
-      type: string
-      owner: any
-      usage: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
-    timestamp:
-      required: false
-      type: string
-      owner: any
-      usage: '2024-05-07T06:36:51.897Z'
-    ttl:
-      required: false
-      type: string
-      owner: any
-      usage: PT30S
-  message:
-    collector_app_id:
-      required: false
-      type: string
-      owner: any
-      usage: false
-    receiver_app_id:
-      required: false
-      type: string
-      owner: any
-      usage: false
-    settlement:
-      type:
-        required: false
+        required: true
         type: string
         owner: any
         usage: NP-NP
       id:
-        required: false
+        required: true
         type: string
         owner: any
-        usage: false
+        usage: settlement-id-abc
       orders:
-        id:
-          required: false
-          type: string
-          owner: any
-          usage: false
-        inter_participant:
-          currency:
-            required: false
+        self:
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '200.00'
+          status:
+            required: true
             type: string
             owner: any
-            usage: INR
-          value:
-            required: false
+            usage: NOT-SETTLED
+          reference_no:
+            required: true
             type: string
             owner: any
-            usage: false
-        collector:
-          currency:
-            required: false
-            type: string
-            owner: any
-            usage: INR
-          value:
-            required: false
-            type: string
-            owner: any
-            usage: false
+            usage: '1238683618634'
+          error:
+            code:
+              required: true
+              type: string
+              owner: any
+              usage: '01'
+            message:
+              required: true
+              type: string
+              owner: any
+              usage: Account inactive
         provider:
           id:
-            required: false
+            required: true
             type: string
             owner: any
-            usage: false
+            usage: prvdr-id-789
           name:
-            required: false
+            required: true
             type: string
             owner: any
-            usage: false
-          account_no:
-            required: false
+            usage: Kirana Pvt Ltd
+          bank_details:
+            account_no:
+              required: true
+              type: string
+              owner: any
+              usage: '1234567890'
+            ifsc_code:
+              required: true
+              type: string
+              owner: any
+              usage: IFSC0001
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '800.00'
+          status:
+            required: true
             type: string
             owner: any
-            usage: false
-          ifsc_code:
-            required: false
+            usage: NOT-SETTLED
+          reference_no:
+            required: true
             type: string
             owner: any
-            usage: false
-          currency:
-            required: false
+            usage: '3718683618631'
+          error:
+            code:
+              required: true
+              type: string
+              owner: any
+              usage: '01'
+            message:
+              required: true
+              type: string
+              owner: any
+              usage: Account inactive
+        id:
+          required: true
+          type: string
+          owner: any
+          usage: ordr-123456
+        inter_participant:
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '1000.00'
+          status:
+            required: true
             type: string
             owner: any
-            usage: false
-          value:
-            required: false
+            usage: SETTLED
+          reference_no:
+            required: true
             type: string
             owner: any
-            usage: false
-        self:
-          currency:
-            required: false
-            type: string
-            owner: any
-            usage: false
-          value:
-            required: false
-            type: string
-            owner: any
-            usage: false
-settle_null_file:
+            usage: '3718683618631'
+          error:
+            code:
+              required: true
+              type: string
+              owner: any
+              usage: '01'
+            message:
+              required: true
+              type: string
+              owner: any
+              usage: Account inactive
+        collector:
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '50.00'
+    ref_transaction_id:
+      required: true
+      type: string
+      owner: any
+      usage: bd73a366-aebb-4144-9314-808dda82c7e6
+    ref_message_id:
+      required: true
+      type: string
+      owner: any
+      usage: 941ef6d7-d74d-4411-ac06-469c0f9ac
+on_report:
   context:
     domain:
-      required: false
+      required: true
       type: string
       owner: any
       usage: ONDC:NTS10
     location:
       country:
         code:
-          required: false
+          required: true
           type: string
           owner: any
           usage: IND
       city:
         code:
-          required: false
+          required: true
           type: string
           owner: any
           usage: '*'
     version:
-      required: false
+      required: true
       type: string
       owner: any
       usage: 2.0.0
     action:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: settle
+      usage: on_report
     bap_id:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: buyerapp.com
+      usage: collectorapp.com
     bap_uri:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: https://buyerapp.in/ondc/1.0/
+      usage: https://collectorapp.com/ondc/1.0/
     bpp_id:
-      required: false
+      required: true
       type: string
       owner: any
       usage: sa_nocs.nbbl.com
     bpp_uri:
-      required: false
+      required: true
       type: string
       owner: any
-      usage: https://ondcnbbl.npci.org.in/nocs_test
+      usage: https://sa_nocs.nbbl.com/nocs_test
     transaction_id:
-      required: false
+      required: true
+      type: string
+      owner: any
+      usage: cd73a366-aebb-4144-9314-808dda82c7e6
+    message_id:
+      required: true
+      type: string
+      owner: any
+      usage: 841ef6d7-d74d-4411-ac06-a05469c0f9ac
+    timestamp:
+      required: true
+      type: string
+      owner: any
+      usage: '2024-05-07T06:36:51.900Z'
+    ttl:
+      required: true
+      type: string
+      owner: any
+      usage: P1D
+  message:
+    collector_app_id:
+      required: true
+      type: string
+      owner: any
+      usage: collectorapp.com
+    receiver_app_id:
+      required: true
+      type: string
+      owner: any
+      usage: receiverapp.com
+    settlement:
+      type:
+        required: true
+        type: string
+        owner: any
+        usage: NP-NP
+      id:
+        required: true
+        type: string
+        owner: any
+        usage: settlement-id-123
+      orders:
+        self:
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '200.00'
+          status:
+            required: true
+            type: string
+            owner: any
+            usage: NOT-SETTLED
+          reference_no:
+            required: true
+            type: string
+            owner: any
+            usage: '3718683618631'
+          error:
+            code:
+              required: true
+              type: string
+              owner: any
+              usage: '01'
+            message:
+              required: true
+              type: string
+              owner: any
+              usage: Account inactive
+        provider:
+          id:
+            required: true
+            type: string
+            owner: any
+            usage: provider-id-789
+          name:
+            required: true
+            type: string
+            owner: any
+            usage: Kirana Pvt Ltd
+          bank_details:
+            account_no:
+              required: true
+              type: string
+              owner: any
+              usage: '1234567890'
+            ifsc_code:
+              required: true
+              type: string
+              owner: any
+              usage: IFSC0001
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '800.00'
+          status:
+            required: true
+            type: string
+            owner: any
+            usage: NOT-SETTLED
+          reference_no:
+            required: true
+            type: string
+            owner: any
+            usage: '3718683618631'
+          error:
+            code:
+              required: true
+              type: string
+              owner: any
+              usage: '01'
+            message:
+              required: true
+              type: string
+              owner: any
+              usage: Account inactive
+        id:
+          required: true
+          type: string
+          owner: any
+          usage: order-id-456
+        inter_participant:
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '1000.00'
+          status:
+            required: true
+            type: string
+            owner: any
+            usage: SETTLED
+          reference_no:
+            required: true
+            type: string
+            owner: any
+            usage: '3718683618631'
+          error:
+            code:
+              required: true
+              type: string
+              owner: any
+              usage: '01'
+            message:
+              required: true
+              type: string
+              owner: any
+              usage: Account inactive
+          currency:
+            required: true
+            type: string
+            owner: any
+            usage: INR
+          value:
+            required: true
+            type: string
+            owner: any
+            usage: '1000.00'
+        collector:
+          amount:
+            currency:
+              required: true
+              type: string
+              owner: any
+              usage: INR
+            value:
+              required: true
+              type: string
+              owner: any
+              usage: '50.00'
+    ref_transaction_id:
+      required: true
       type: string
       owner: any
       usage: bd73a366-aebb-4144-9314-808dda82c7e6
-    message_id:
-      required: false
+    ref_message_id:
+      required: true
       type: string
       owner: any
-      usage: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
-    timestamp:
-      required: false
-      type: string
-      owner: any
-      usage: '2024-05-07T06:36:51.897Z'
-    ttl:
-      required: false
-      type: string
-      owner: any
-      usage: PT30S
-  message:
-    settlement:
-      type:
-        required: false
-        type: string
-        owner: any
-        usage: '0'
+      usage: 941ef6d7-d74d-4411-ac06-469c0f9ac

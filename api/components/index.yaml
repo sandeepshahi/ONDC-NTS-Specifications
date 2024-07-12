@@ -1,7 +1,7 @@
 examples:
   $ref: "./examples/index.yaml"
 enum:
-  $ref: "./enums/index.yaml"
+  $ref: "./enums/default/index.yaml"
 flows:
   $ref: "./flows/index.yaml"
 attributes:
