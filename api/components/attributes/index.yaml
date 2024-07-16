@@ -1,13 +1,3 @@
-# RETAIL:
-#   attribute_set:
-#     $ref: "./RETAIL/index.yaml"
-# CREDIT:
-#   attribute_set:
-#     $ref: "./CREDIT/index.yaml" 
-# INSURANCE:
-#   attribute_set:
-#     $ref: "./INSURANCE/index.yaml"    
-RSF:    
+RSF:
   attribute_set:
-    $ref: "./RSF/index.yaml"    
-
+    $ref: ./RSF/index.yaml

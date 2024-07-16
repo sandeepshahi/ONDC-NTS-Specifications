@@ -6,52 +6,41 @@ context:
     city:
       code: '*'
   version: 2.0.0
-  action: on_report
+  action: settle
   bap_id: collectorapp.com
   bap_uri: https://collectorapp.com/ondc/1.0/
   bpp_id: sa_nocs.nbbl.com
   bpp_uri: https://sa_nocs.nbbl.com/nocs_test
-  transaction_id: cd73a366-aebb-4144-9314-808dda82c7e6
-  message_id: 841ef6d7-d74d-4411-ac06-a05469c0f9ac
-  timestamp: '2024-05-07T06:36:51.900Z'
+  transaction_id: dc34a366-aebb-4144-9314-808dda82c7e6
+  message_id: 941ed9a4-d74d-4411-ac06-469c0f9ac
+  timestamp: '2024-05-09T11:36:51.897Z'
   ttl: P1D
 message:
   collector_app_id: collectorapp.com
   receiver_app_id: receiverapp.com
   settlement:
     type: NP-NP
-    id: settlement-id-123
+    id: settlement-id-abc
     orders:
-      - id: order-id-456
+      - id: ordr-123456
         inter_participant:
           amount:
             currency: INR
             value: '1000.00'
-          status: SETTLED
-          reference_no: '3718683618631'
-          error:
-            code: '01'
-            message: Account Inactive
         collector:
           amount:
             currency: INR
             value: '50.00'
         provider:
-          id: provider-id-789
+          id: prvdr-id-789
+          name: Kirana Pvt Ltd
+          bank_details:
+            account_no: '1234567890'
+            ifsc_code: IFSC0001
           amount:
             currency: INR
             value: '800.00'
-          status: NOT-SETTLED
-          error:
-            code: '01'
-            message: Account Inactive
-          reference_no: '3718683618634'
         self:
           amount:
             currency: INR
             value: '200.00'
-          status: NOT-SETTLED
-          reference_no: '3718683618634'
-          error:
-            code: '01'
-            message: Account inactive

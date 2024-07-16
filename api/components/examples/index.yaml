@@ -1,40 +1,11 @@
-# Retail : 
-#  summary: IGM implementation
-#  description: IGM examples
-#  example_set:
-#    $ref: "./Retail/index.yaml"
-
-# Credit:
-#  summary: IGM implementation for fis 
-#  description: IGM examples for fis
-#  example_set:
-#    $ref: "./Credit/index.yaml"
-
-# Insurance:
-#   summary: IGM implementation for fis 
-#   description: IGM examples for fis
-#   example_set:
-#    $ref: "./Insurance/index.yaml"
-
-# Marine_igm:
-#   summary: IGM implementation for fis 
-#   description: IGM examples for fis
-#   example_set:
-#    $ref: "./Marine_igm/index.yaml"
 RSF:
-  summary: RSF implementation
-  description: RSF implementation
+  summary: RSF 2.0
+  description: >-
+    Reconciliation and Settlement Framework provides a comprehensive framework
+    to ensure accurate and timely settlements among participants in the network.
+    RSF 2.0 brings an enhanced workflow where the NPs share order-level the
+    settlement instructions to the Settlement Agency (SA) which matches the same
+    with the respective counterparty NP and then moves funds if the amounts have
+    matched successfully.
   example_set:
-   $ref: "./RSF/index.yaml"
-
-# RSF_MISC:
-#   summary: RSF implementation
-#   description: RSF implementation
-#   example_set:
-#    $ref: "./RSF_misc/index.yaml"   
-
-
-
-
-
- 
+    $ref: ./RSF/index.yaml

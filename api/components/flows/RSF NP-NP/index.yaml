@@ -1,0 +1,97 @@
+summary: RSF_NP-NP
+details:
+  - description: "Detailed flows covering inter participant settlements. NPs
+      (Collector and Receiver) share settlement instructions to the Settlement
+      Agency and the settlement agency responds with whether the settlement was
+      successful or not. "
+    mermaid: |-
+      sequenceDiagram
+       participant Collector
+        participant Settlement_Agency
+       participant Receiver
+       Collector ->> Settlement_Agency: settle API 
+       Settlement_Agency -->> Collector: ack
+       Receiver ->> Settlement_Agency: settle API
+       Settlement_Agency -->> Receiver: ack
+       Settlement_Agency ->> Collector : on_settle API
+       Collector -->> Settlement_Agency: ack
+       Settlement_Agency ->> Receiver : on_settle API
+       Receiver -->> Settlement_Agency : ack
+references: if any
+steps:
+  - summary: SETTLEMENT INSTRUCTIONS
+    reference: if any
+    api: settle
+    example:
+      value:
+        $ref: ../../examples/RSF/settle/settle np-np.yaml
+    details:
+      - description: settlement instructions from NP to Settlement Agency
+        mermaid: |-
+          sequenceDiagram participant Collector
+           participant Settlement_Agency
+           participant Receiver
+           rect rgb(191, 223, 255) 
+           Collector ->> Settlement_Agency: settle API 
+           Settlement_Agency ->> Collector : Ack    
+           end
+           Receiver ->> Settlement_Agency: settle API     
+           Settlement_Agency ->> Collector : on_setttle API
+           Settlement_Agency ->> Receiver : on_setttle API
+  - summary: SETTLEMENT INSTRUCTIONS
+    reference: if any
+    api: settle
+    example:
+      value:
+        $ref: ../../examples/RSF/settle/settle_np_np.yaml
+    details:
+      - description: settlement instructions from NP to Settlement Agency
+        mermaid: |-
+          sequenceDiagram participant Collector
+           participant Settlement_Agency
+           participant Receiver
+           Collector ->> Settlement_Agency: settle API 
+           rect rgb(191, 223, 255) 
+           Receiver ->> Settlement_Agency: settle API
+           Settlement_Agency ->> Receiver :Ack
+           end
+           Settlement_Agency ->> Collector : on_setttle API
+           Settlement_Agency ->> Receiver : on_setttle API
+  - summary: SETTLEMENT RESPONSE
+    reference: if any
+    api: on_settle
+    example:
+      value:
+        $ref: ../../examples/RSF/on_settle/on_settle np-np.yaml
+    details:
+      - description: Response from settlement agency
+        mermaid: |-
+          sequenceDiagram participant Collector
+           participant Settlement_Agency
+           participant Receiver
+           Collector ->> Settlement_Agency: settle API 
+           Receiver ->> Settlement_Agency: settle API
+           rect rgb(191, 223, 255) 
+           Settlement_Agency ->> Collector : on_setttle API
+           Collector ->> Settlement_Agency: Ack
+           end
+           Settlement_Agency ->> Receiver : on_setttle API
+  - summary: SETTLEMENT RESPONSE
+    reference: if any
+    api: on_settle
+    example:
+      value:
+        $ref: ../../examples/RSF/on_settle/on_settle_np_np.yaml
+    details:
+      - description: Response from settlement agency
+        mermaid: |-
+          sequenceDiagram participant Collector
+           participant Settlement_Agency
+           participant Receiver
+           Collector ->> Settlement_Agency: settle API 
+           Receiver ->> Settlement_Agency: settle API
+           Settlement_Agency ->> Collector : on_setttle API
+           rect rgb(191, 223, 255) 
+           Settlement_Agency ->> Receiver : on_setttle API
+           Receiver ->> Settlement_Agency: Ack
+           end
