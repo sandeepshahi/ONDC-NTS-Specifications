@@ -31,7 +31,7 @@ writeFilenamesToYaml(markdownFiles);
 compareFiles();
 getSwaggerYaml("example_set", outputPath);
 const { buildAttribiutes } = require('./build-attributes.js')
-// const { buildErrorCodes } = require('./build-error-code.js')
+const { buildErrorCodes } = require('./build-error-code.js')
 // const { buildTlc } = require('./build-tlc.js')
 
 const SKIP_VALIDATION = {
@@ -43,7 +43,7 @@ const SKIP_VALIDATION = {
 
 const BUILD = {
   attributes: "attributes",
-  // error: "errorCode",
+  error: "errorCode",
   // tlc: "tlc"
 };
 
