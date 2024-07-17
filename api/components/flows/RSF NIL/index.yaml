@@ -20,7 +20,7 @@ steps:
           participant NP(Collector/Receiver)
             participant Settlement_Agency
             NP(Collector/Receiver) ->> Settlement_Agency: settle API      
-            Settlement_Agency ->> NP(Collector/Receiver) : on_setttle API
+            Settlement_Agency ->> NP(Collector/Receiver) : on_settle API
     reference: if any
     example:
       value:

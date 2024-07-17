@@ -482,11 +482,20 @@ x-enum:
 x-flows:
   - summary: RSF_NP-NP
     details:
-      - description: >-
+      - description: >
           Detailed flows covering inter participant settlements. NPs (Collector
           and Receiver) share settlement instructions to the Settlement Agency
           and the settlement agency responds with whether the settlement was
-          successful or not. 
+          successful or not.
+
+
+          In the example below, the collector is a retail seller app and the
+          receiver is the retail buyer app. The retail seller app shares
+          instructions for receivable for an order from the retail buyer app, to
+          be sent to their own operating account (self) and their provider's
+          account (provider). The retail buyer app shares instructions for
+          payable for the respective order along with funds to be moved to their
+          own operating amount (self).
         mermaid: |-
           sequenceDiagram
            participant Collector
@@ -754,7 +763,13 @@ x-flows:
                end
   - summary: RSF_MISC
     details:
-      - description: detailed flow of RSF MISC
+      - description: >-
+          Detailed flows covering miscellaneous or self settlements.  NPs share
+          settlement instructions to the Settlement Agency  and the settlement
+          agency responds with whether the settlement  was successful or not. In
+          the example below, a retail seller app is sharing settlement
+          instructions to move funds from their non operating account to their
+          operating account and their respective provider's account.
         mermaid: |-
           sequenceDiagram
            participant NP
@@ -870,7 +885,10 @@ x-flows:
                       reference_no: '3718683618631'
   - summary: RSF_NIL
     details:
-      - description: detailed flow of RSF (NIL FLOW)
+      - description: >-
+          Detailed flows covering the NPs declaring that no settlements (where
+          they would act as a collector) are to be done for that settlement
+          cycle.
         mermaid: |-
           sequenceDiagram
            participant NP(Collector/Receiver)
@@ -887,7 +905,7 @@ x-flows:
               sequenceDiagram participant NP(Collector/Receiver)
                 participant Settlement_Agency
                 NP(Collector/Receiver) ->> Settlement_Agency: settle API      
-                Settlement_Agency ->> NP(Collector/Receiver) : on_setttle API
+                Settlement_Agency ->> NP(Collector/Receiver) : on_settle API
         reference: if any
         example:
           value: &ref_14
@@ -945,13 +963,17 @@ x-flows:
                 type: NIL
   - summary: RSF_REPORT
     details:
-      - description: detailed flow of REPORT
+      - description: >-
+          Detailed flows covering NPs seeking status of a settlement
+          instructions previously shared with reference to a transaction id and/
+          or message id. The settlement agency responds with the status of the
+          respective settlement instructions referred.
         mermaid: |-
           sequenceDiagram
            participant NP
            participant Settlement_Agency
            NP ->> Settlement_Agency: report API 
-           Settlement_Agency ->> NP : on_setttle API
+           Settlement_Agency ->> NP : on_report API
     references: if any
     steps:
       - summary: REPORT
@@ -964,7 +986,7 @@ x-flows:
                participant Settlement_Agency      
                NP ->> Settlement_Agency: report API 
                Settlement_Agency ->> NP : ACK
-               Settlement_Agency ->> NP : on_setttle API
+               Settlement_Agency ->> NP : on_report API
                NP ->> Settlement_Agency : Ack
         reference: if any
         example:
@@ -2428,3 +2450,97 @@ x-attributes:
             type: string
             owner: any
             usage: 941ef6d7-d74d-4411-ac06-469c0f9ac
+x-errorcodes:
+  code:
+    - Event: Invalid Signature
+      Description: NACK
+      From: Any
+      code: 70000
+    - Event: Invalid Header
+      Description: NACK
+      From: Any
+      code: 70001
+    - Event: Invalid Schema
+      Description: NACK
+      From: Any
+      code: 70002
+    - Event: Invalid SA
+      Description: OnSettle
+      From: Any
+      code: 70003
+    - Event: Order ID Not Found
+      Description: NACK (Schema)
+      From: Any
+      code: 70004
+    - Event: Order ID mismatch
+      Description: OnSettle
+      From: Any
+      code: 70005
+    - Event: Duplicate Request
+      Description: OnSettle
+      From: Any
+      code: 70006
+    - Event: Amount mismatch - Payable/Receivable
+      Description: OnSettle
+      From: Any
+      code: 70007
+    - Event: Amount Mismatch - Withheld
+      Description: OnSettle
+      From: Any
+      code: 70008
+    - Event: Outflow Greater Than Receivable
+      Description: OnSettle
+      From: Any
+      code: 70009
+    - Event: Invalid Seller Account Details
+      Description: NACK (Schema)
+      From: Any
+      code: 70010
+    - Event: Bad or Invalid Request error - Mandatory Attributes were missing
+      Description: NACK (Schema)
+      From: Any
+      code: 70011
+    - Event: Invalid Collector App ID
+      Description: OnSettle
+      From: Any
+      code: 70012
+    - Event: Invalid Receiver App ID
+      Description: OnSettle
+      From: Any
+      code: 70013
+    - Event: No Claim from Counterparty (Only for Collector/Buyer App)
+      Description: OnSettle
+      From: Any
+      code: 70014
+    - Event: No Corresponding Payable initiated from Collector
+      Description: OnSettle
+      From: Any
+      code: 70015
+    - Event: Failed due to Insufficient Funds in Collector Account
+      Description: OnSettle (Balance Check Failure)
+      From: Any
+      code: 70016
+    - Event: Collector NDC Breach
+      Description: OnSettle
+      From: Any
+      code: 70017
+    - Event: Bank NDC Breach
+      Description: OnSettle
+      From: Any
+      code: 70018
+    - Event: Collector NOCA inoperable
+      Description: OnSettle (Balance Check Status Failure)
+      From: Any
+      code: 70019
+    - Event: Receiver NOCA inoperable
+      Description: OnSettle (Balance Check Status Failure)
+      From: Any
+      code: 70020
+    - Event: No bank response for balance
+      Description: OnSettle (Balance Check Failure)
+      From: Any
+      code: 70021
+    - Event: KeyDb Heart Beat Failure - (Internal Server Error - 503)
+      Description: NACK
+      From: Any
+      code: 70022

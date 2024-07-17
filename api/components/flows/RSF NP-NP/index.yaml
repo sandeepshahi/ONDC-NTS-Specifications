@@ -1,7 +1,8 @@
 summary: RSF_NP-NP
 details:
-  - description: >-
+  - description: |
       Detailed flows covering inter participant settlements. NPs (Collector and Receiver) share settlement instructions to the Settlement Agency and the settlement agency responds with whether the settlement was successful or not.
+
       In the example below, the collector is a retail seller app and the receiver is the retail buyer app. The retail seller app shares instructions for receivable for an order from the retail buyer app, to be sent to their own operating account (self) and their provider's account (provider). The retail buyer app shares instructions for payable for the respective order along with funds to be moved to their own operating amount (self).
     mermaid: |-
       sequenceDiagram
