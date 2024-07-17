@@ -1,6 +1,7 @@
 summary: RSF_NIL
 details:
-  - description: detailed flow of RSF (NIL FLOW)
+  - description: >-
+      Detailed flows covering the NPs declaring that no settlements (where they would act as a collector) are to be done for that settlement cycle.
     mermaid: >-
       sequenceDiagram
        participant NP(Collector/Receiver)

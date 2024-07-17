@@ -1,6 +1,10 @@
 summary: RSF_MISC
 details:
- - description: detailed flow of RSF MISC
+ - description: >-
+            Detailed flows covering miscellaneous or self settlements. 
+            NPs share settlement instructions to the Settlement Agency 
+            and the settlement agency responds with whether the settlement 
+            was successful or not. In the example below, a retail seller app is sharing settlement instructions to move funds from their non operating account to their operating account and their respective provider's account.
    mermaid: >-
      sequenceDiagram
       participant NP

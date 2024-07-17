@@ -1,12 +1,13 @@
 summary: RSF_REPORT
 details:
- - description: detailed flow of REPORT 
+ - description: >-
+    Detailed flows covering NPs seeking status of a settlement instructions previously shared with reference to a transaction id and/ or message id. The settlement agency responds with the status of the respective settlement instructions referred.
    mermaid: >-
      sequenceDiagram
       participant NP
       participant Settlement_Agency
       NP ->> Settlement_Agency: report API 
-      Settlement_Agency ->> NP : on_setttle API
+      Settlement_Agency ->> NP : on_report API
 references: if any
 steps:
   - summary: REPORT
@@ -19,7 +20,7 @@ steps:
           participant Settlement_Agency      
           NP ->> Settlement_Agency: report API 
           Settlement_Agency ->> NP : ACK
-          Settlement_Agency ->> NP : on_setttle API
+          Settlement_Agency ->> NP : on_report API
           NP ->> Settlement_Agency : Ack
     reference: if any
     example:
