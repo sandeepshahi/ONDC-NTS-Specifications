@@ -1,0 +1,93 @@
+code:
+  - Event: Invalid Signature
+    Description: NACK
+    From: Any
+    code: 70000
+  - Event: Invalid Header
+    Description: NACK
+    From: Any
+    code: 70001
+  - Event:  Invalid Schema
+    Description: NACK
+    From: Any
+    code: 70002
+  - Event:  Invalid SA
+    Description: OnSettle
+    From: Any
+    code: 70003
+  - Event:  Order ID Not Found
+    Description: NACK (Schema)
+    From: Any
+    code: 70004
+  - Event:  Order ID mismatch
+    Description: OnSettle
+    From: Any
+    code: 70005
+  - Event:  Duplicate Request
+    Description: OnSettle
+    From: Any
+    code: 70006
+  - Event:  Amount mismatch - Payable/Receivable
+    Description: OnSettle
+    From: Any
+    code: 70007
+  - Event:  Amount Mismatch - Withheld
+    Description: OnSettle
+    From: Any
+    code: 70008
+  - Event:  Outflow Greater Than Receivable
+    Description: OnSettle
+    From: Any
+    code: 70009
+  - Event:  Invalid Seller Account Details
+    Description: NACK (Schema)
+    From: Any
+    code: 70010
+  - Event:  Bad or Invalid Request error - Mandatory Attributes were missing
+    Description: NACK (Schema)
+    From: Any
+    code: 70011
+  - Event:  Invalid Collector App ID
+    Description: OnSettle
+    From: Any
+    code: 70012
+  - Event:  Invalid Receiver App ID
+    Description: OnSettle
+    From: Any
+    code: 70013
+  - Event:  No Claim from Counterparty (Only for Collector/Buyer App)
+    Description: OnSettle
+    From: Any
+    code: 70014
+  - Event:  No Corresponding Payable initiated from Collector
+    Description: OnSettle
+    From: Any
+    code: 70015
+  - Event:  Failed due to Insufficient Funds in Collector Account
+    Description: OnSettle (Balance Check Failure)
+    From: Any
+    code: 70016
+  - Event:  Collector NDC Breach
+    Description: OnSettle
+    From: Any
+    code: 70017
+  - Event:  Bank NDC Breach
+    Description: OnSettle
+    From: Any
+    code: 70018
+  - Event:  Collector NOCA inoperable
+    Description: OnSettle (Balance Check Status Failure) 
+    From: Any
+    code: 70019
+  - Event:  Receiver NOCA inoperable
+    Description: OnSettle (Balance Check Status Failure)
+    From: Any
+    code: 70020
+  - Event:  No bank response for balance
+    Description: OnSettle (Balance Check Failure)
+    From: Any
+    code: 70021
+  - Event:  KeyDb Heart Beat Failure - (Internal Server Error - 503)
+    Description: NACK
+    From: Any
+    code: 70022

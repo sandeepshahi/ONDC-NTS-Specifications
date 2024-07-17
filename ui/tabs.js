@@ -14,7 +14,7 @@ function onFirstLoad(build_spec){
     //   loadFlows(data["x-flows"])
   
       // console.log(data["x-attributes"]);
-    //   loadErrors(data["x-errorcodes"])
+      loadErrors(data["x-errorcodes"])
     //   loadTlc(data["x-tlc"])
     //   loadtestcase(data["x-testcase"])
     console.log(data["x-enum"]);
