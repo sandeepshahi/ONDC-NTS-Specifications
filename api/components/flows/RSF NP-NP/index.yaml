@@ -36,8 +36,8 @@ steps:
            Settlement_Agency ->> Collector : Ack    
            end
            Receiver ->> Settlement_Agency: settle API     
-           Settlement_Agency ->> Collector : on_setttle API
-           Settlement_Agency ->> Receiver : on_setttle API
+           Settlement_Agency ->> Collector : on_settle API
+           Settlement_Agency ->> Receiver : on_settle API
   - summary: SETTLEMENT INSTRUCTIONS
     reference: if any
     api: settle
@@ -55,8 +55,8 @@ steps:
            Receiver ->> Settlement_Agency: settle API
            Settlement_Agency ->> Receiver :Ack
            end
-           Settlement_Agency ->> Collector : on_setttle API
-           Settlement_Agency ->> Receiver : on_setttle API
+           Settlement_Agency ->> Collector : on_settle API
+           Settlement_Agency ->> Receiver : on_settle API
   - summary: SETTLEMENT RESPONSE
     reference: if any
     api: on_settle
@@ -72,10 +72,10 @@ steps:
            Collector ->> Settlement_Agency: settle API 
            Receiver ->> Settlement_Agency: settle API
            rect rgb(191, 223, 255) 
-           Settlement_Agency ->> Collector : on_setttle API
+           Settlement_Agency ->> Collector : on_settle API
            Collector ->> Settlement_Agency: Ack
            end
-           Settlement_Agency ->> Receiver : on_setttle API
+           Settlement_Agency ->> Receiver : on_settle API
   - summary: SETTLEMENT RESPONSE
     reference: if any
     api: on_settle
@@ -90,8 +90,8 @@ steps:
            participant Receiver
            Collector ->> Settlement_Agency: settle API 
            Receiver ->> Settlement_Agency: settle API
-           Settlement_Agency ->> Collector : on_setttle API
+           Settlement_Agency ->> Collector : on_settle API
            rect rgb(191, 223, 255) 
-           Settlement_Agency ->> Receiver : on_setttle API
+           Settlement_Agency ->> Receiver : on_settle API
            Receiver ->> Settlement_Agency: Ack
            end
