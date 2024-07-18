@@ -573,8 +573,8 @@ x-flows:
                Settlement_Agency ->> Collector : Ack    
                end
                Receiver ->> Settlement_Agency: settle API     
-               Settlement_Agency ->> Collector : on_setttle API
-               Settlement_Agency ->> Receiver : on_setttle API
+               Settlement_Agency ->> Collector : on_settle API
+               Settlement_Agency ->> Receiver : on_settle API
       - summary: SETTLEMENT INSTRUCTIONS
         reference: if any
         api: settle
@@ -628,8 +628,8 @@ x-flows:
                Receiver ->> Settlement_Agency: settle API
                Settlement_Agency ->> Receiver :Ack
                end
-               Settlement_Agency ->> Collector : on_setttle API
-               Settlement_Agency ->> Receiver : on_setttle API
+               Settlement_Agency ->> Collector : on_settle API
+               Settlement_Agency ->> Receiver : on_settle API
       - summary: SETTLEMENT RESPONSE
         reference: if any
         api: on_settle
@@ -698,10 +698,10 @@ x-flows:
                Collector ->> Settlement_Agency: settle API 
                Receiver ->> Settlement_Agency: settle API
                rect rgb(191, 223, 255) 
-               Settlement_Agency ->> Collector : on_setttle API
+               Settlement_Agency ->> Collector : on_settle API
                Collector ->> Settlement_Agency: Ack
                end
-               Settlement_Agency ->> Receiver : on_setttle API
+               Settlement_Agency ->> Receiver : on_settle API
       - summary: SETTLEMENT RESPONSE
         reference: if any
         api: on_settle
@@ -756,9 +756,9 @@ x-flows:
                participant Receiver
                Collector ->> Settlement_Agency: settle API 
                Receiver ->> Settlement_Agency: settle API
-               Settlement_Agency ->> Collector : on_setttle API
+               Settlement_Agency ->> Collector : on_settle API
                rect rgb(191, 223, 255) 
-               Settlement_Agency ->> Receiver : on_setttle API
+               Settlement_Agency ->> Receiver : on_settle API
                Receiver ->> Settlement_Agency: Ack
                end
   - summary: RSF_MISC
@@ -775,11 +775,11 @@ x-flows:
            participant NP
            participant Settlement_Agency
            NP ->> Settlement_Agency: settle API 
-           Settlement_Agency ->> NP : on_setttle API
+           Settlement_Agency ->> NP : on_settle API
            participant Receiver
            participant Settlement_Agency
            Receiver ->> Settlement_Agency: settle API 
-           Settlement_Agency ->> Receiver : on_setttle API
+           Settlement_Agency ->> Receiver : on_settle API
     references: if any
     steps:
       - summary: SETTLE
@@ -790,7 +790,7 @@ x-flows:
               sequenceDiagram participant NP
                participant Settlement_Agency
               NP ->> Settlement_Agency: settle API 
-               Settlement_Agency ->> NP : on_setttle API
+               Settlement_Agency ->> NP : on_settle API
         reference: if any
         example:
           value: &ref_13
@@ -839,7 +839,7 @@ x-flows:
               sequenceDiagram participant NP
                participant Settlement_Agency
               NP ->> Settlement_Agency: settle API 
-               Settlement_Agency ->> NP : on_setttle API
+               Settlement_Agency ->> NP : on_settle API
         reference: if any
         example:
           value: &ref_8
@@ -894,7 +894,7 @@ x-flows:
            participant NP(Collector/Receiver)
            participant Settlement_Agency
            NP(Collector/Receiver) ->> Settlement_Agency: settle API 
-           Settlement_Agency ->> NP(Collector/Receiver) : on_setttle API
+           Settlement_Agency ->> NP(Collector/Receiver) : on_settle API
     references: if any
     steps:
       - summary: SETTLE
@@ -937,7 +937,7 @@ x-flows:
               sequenceDiagram participant NP
                participant Settlement_Agency
                NP ->> Settlement_Agency: settle API 
-               Settlement_Agency ->> NP : on_setttle API
+               Settlement_Agency ->> NP : on_settle API
         reference: if any
         example:
           value: &ref_9
