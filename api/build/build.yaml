@@ -346,6 +346,8 @@ components:
               and status between the Collector and the Receiver
             type: object
             properties:
+              settled_amount:
+                $ref: '#/components/schemas/Amount'
               amount:
                 $ref: '#/components/schemas/Amount'
               status:
@@ -382,6 +384,8 @@ components:
                 enum:
                   - SETTLED
                   - NOT-SETTLED
+              settled_amount:
+                $ref: '#/components/schemas/Amount'
               amount:
                 $ref: '#/components/schemas/Amount'
               reference_no:
@@ -394,6 +398,8 @@ components:
               Provides details about the amount for the NP to move to their
               operative account
             properties:
+              settled_amount:
+                $ref: '#/components/schemas/Amount'
               amount:
                 $ref: '#/components/schemas/Amount'
               status:
@@ -661,9 +667,12 @@ x-flows:
                 orders:
                   - id: ordr-123456
                     inter_participant:
-                      amount:
+                      settled_amount:
                         currency: INR
                         value: '1000.00'
+                      amount:
+                        currency: INR
+                        value: '1000.12'
                       status: SETTLED
                       reference_no: '3245683618631'
                     collector:
@@ -672,6 +681,9 @@ x-flows:
                         value: '50.00'
                     provider:
                       id: prvdr-id-789
+                      settled_amount:
+                        currency: INR
+                        value: '800.00'
                       amount:
                         currency: INR
                         value: '800.00'
@@ -681,6 +693,9 @@ x-flows:
                         message: Account inactive
                       reference_no: '1238683618634'
                     self:
+                      settled_amount:
+                        currency: INR
+                        value: '200.00'
                       amount:
                         currency: INR
                         value: '200.00'
@@ -733,9 +748,12 @@ x-flows:
                 orders:
                   - id: ordr-123456
                     inter_participant:
-                      amount:
+                      settled_amount:
                         currency: INR
                         value: '1000.00'
+                      amount:
+                        currency: INR
+                        value: '1000.12'
                       status: SETTLED
                       reference_no: '3245683618631'
                     collector:
@@ -743,6 +761,9 @@ x-flows:
                         currency: INR
                         value: '50.00'
                     self:
+                      settled_amount:
+                        currency: INR
+                        value: '800.00'
                       amount:
                         currency: INR
                         value: '50.00'
@@ -869,15 +890,21 @@ x-flows:
                 orders:
                   - provider:
                       id: provider-id-789
-                      amount:
+                      settled_amount:
                         currency: INR
                         value: '200.00'
+                      amount:
+                        currency: INR
+                        value: '200.12'
                       status: NOT-SETTLED
                       reference_no: '3718683618631'
                       error:
                         code: '01'
                         message: Account inactive
                     self:
+                      settled_amount:
+                        currency: INR
+                        value: '200.00'
                       amount:
                         currency: INR
                         value: '200.00'
@@ -1052,9 +1079,12 @@ x-flows:
                 orders:
                   - id: order-id-456
                     inter_participant:
-                      amount:
+                      settled_amount:
                         currency: INR
                         value: '1000.00'
+                      amount:
+                        currency: INR
+                        value: '1000.27'
                       status: SETTLED
                       reference_no: '3718683618631'
                       error:
@@ -1066,6 +1096,9 @@ x-flows:
                         value: '50.00'
                     provider:
                       id: provider-id-789
+                      settled_amount:
+                        currency: INR
+                        value: '800.00'
                       amount:
                         currency: INR
                         value: '800.00'
@@ -1075,6 +1108,9 @@ x-flows:
                         message: Account Inactive
                       reference_no: '3718683618634'
                     self:
+                      settled_amount:
+                        currency: INR
+                        value: '200.00'
                       amount:
                         currency: INR
                         value: '200.00'
@@ -1129,15 +1165,21 @@ x-examples:
                   orders:
                     - provider:
                         id: provider-id-789
-                        amount:
+                        settled_amount:
                           currency: INR
                           value: '200.00'
+                        amount:
+                          currency: INR
+                          value: '200.12'
                         status: NOT-SETTLED
                         reference_no: '3718683618631'
                         error:
                           code: '01'
                           message: Account inactive
                       self:
+                        settled_amount:
+                          currency: INR
+                          value: '200.00'
                         amount:
                           currency: INR
                           value: '200.00'

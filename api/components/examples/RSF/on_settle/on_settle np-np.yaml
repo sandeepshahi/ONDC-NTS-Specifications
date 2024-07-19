@@ -24,9 +24,12 @@ message:
     orders:
       - id: ordr-123456
         inter_participant:
-          amount:
+          settled_amount:
             currency: INR
             value: '1000.00'
+          amount:
+            currency: INR
+            value: '1000.12'
           status: SETTLED
           reference_no: '3245683618631'
         collector:
@@ -35,6 +38,9 @@ message:
             value: '50.00'
         provider:
           id: prvdr-id-789
+          settled_amount:
+            currency: INR
+            value: '800.00'
           amount:
             currency: INR
             value: '800.00'
@@ -44,6 +50,9 @@ message:
             message: Account inactive
           reference_no: '1238683618634'
         self:
+          settled_amount:
+            currency: INR
+            value: '200.00'
           amount:
             currency: INR
             value: '200.00'

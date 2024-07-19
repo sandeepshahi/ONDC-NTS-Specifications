@@ -345,6 +345,8 @@ components:
             description: Provides details about the settlement amount, payable/ receivable and status between the Collector and the Receiver
             type: object
             properties:
+              settled_amount:
+                $ref: "#/components/schemas/Amount"
               amount:
                 $ref: "#/components/schemas/Amount"
               status:
@@ -380,6 +382,8 @@ components:
                 enum:
                   - SETTLED
                   - NOT-SETTLED
+              settled_amount:
+                $ref: "#/components/schemas/Amount"               
               amount:
                 $ref: "#/components/schemas/Amount"
               reference_no:
@@ -391,6 +395,8 @@ components:
             type: object
             description: Provides details about the amount for the NP to move to their operative account
             properties:
+              settled_amount:
+                $ref: "#/components/schemas/Amount" 
               amount:
                 $ref: "#/components/schemas/Amount"
               status:

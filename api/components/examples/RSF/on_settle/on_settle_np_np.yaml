@@ -24,9 +24,12 @@ message:
     orders:
       - id: ordr-123456
         inter_participant:
-          amount:
+          settled_amount:
             currency: INR
             value: '1000.00'
+          amount:
+            currency: INR
+            value: '1000.12'
           status: SETTLED
           reference_no: '3245683618631'
         collector:
@@ -34,6 +37,9 @@ message:
             currency: INR
             value: '50.00'
         self:
+          settled_amount:
+            currency: INR
+            value: '800.00'
           amount:
             currency: INR
             value: '50.00'

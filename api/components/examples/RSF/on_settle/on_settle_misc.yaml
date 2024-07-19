@@ -24,15 +24,21 @@ message:
     orders:
       - provider:
           id: provider-id-789
-          amount:
+          settled_amount:
             currency: INR
             value: '200.00'
+          amount:
+            currency: INR
+            value: '200.12'
           status: NOT-SETTLED
           reference_no: '3718683618631'
           error:
             code: '01'
             message: Account inactive
         self:
+          settled_amount:
+            currency: INR
+            value: '200.00'
           amount:
             currency: INR
             value: '200.00'
