@@ -24,9 +24,12 @@ message:
     orders:
       - id: order-id-456
         inter_participant:
-          amount:
+          settled_amount:
             currency: INR
             value: '1000.00'
+          amount:
+            currency: INR
+            value: '1000.27'
           status: SETTLED
           reference_no: '3718683618631'
           error:

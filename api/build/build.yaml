@@ -346,6 +346,8 @@ components:
               and status between the Collector and the Receiver
             type: object
             properties:
+              settled_amount:
+                $ref: '#/components/schemas/Amount'
               amount:
                 $ref: '#/components/schemas/Amount'
               status:
@@ -661,9 +663,12 @@ x-flows:
                 orders:
                   - id: ordr-123456
                     inter_participant:
-                      amount:
+                      settled_amount:
                         currency: INR
                         value: '1000.00'
+                      amount:
+                        currency: INR
+                        value: '1000.12'
                       status: SETTLED
                       reference_no: '3245683618631'
                     collector:
@@ -733,9 +738,12 @@ x-flows:
                 orders:
                   - id: ordr-123456
                     inter_participant:
-                      amount:
+                      settled_amount:
                         currency: INR
                         value: '1000.00'
+                      amount:
+                        currency: INR
+                        value: '1000.12'
                       status: SETTLED
                       reference_no: '3245683618631'
                     collector:
@@ -871,7 +879,7 @@ x-flows:
                       id: provider-id-789
                       amount:
                         currency: INR
-                        value: '200.00'
+                        value: '200.12'
                       status: NOT-SETTLED
                       reference_no: '3718683618631'
                       error:
@@ -1052,9 +1060,12 @@ x-flows:
                 orders:
                   - id: order-id-456
                     inter_participant:
-                      amount:
+                      settled_amount:
                         currency: INR
                         value: '1000.00'
+                      amount:
+                        currency: INR
+                        value: '1000.27'
                       status: SETTLED
                       reference_no: '3718683618631'
                       error:
@@ -1131,7 +1142,7 @@ x-examples:
                         id: provider-id-789
                         amount:
                           currency: INR
-                          value: '200.00'
+                          value: '200.12'
                         status: NOT-SETTLED
                         reference_no: '3718683618631'
                         error:

@@ -26,7 +26,7 @@ message:
           id: provider-id-789
           amount:
             currency: INR
-            value: '200.00'
+            value: '200.12'
           status: NOT-SETTLED
           reference_no: '3718683618631'
           error:

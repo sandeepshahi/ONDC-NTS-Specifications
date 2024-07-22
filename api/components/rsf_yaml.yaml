@@ -345,6 +345,8 @@ components:
             description: Provides details about the settlement amount, payable/ receivable and status between the Collector and the Receiver
             type: object
             properties:
+              settled_amount:
+                $ref: "#/components/schemas/Amount"
               amount:
                 $ref: "#/components/schemas/Amount"
               status:
@@ -379,7 +381,7 @@ components:
                 type: string
                 enum:
                   - SETTLED
-                  - NOT-SETTLED
+                  - NOT-SETTLED              
               amount:
                 $ref: "#/components/schemas/Amount"
               reference_no:
