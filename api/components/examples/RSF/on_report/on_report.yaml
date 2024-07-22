@@ -41,9 +41,6 @@ message:
             value: '50.00'
         provider:
           id: provider-id-789
-          settled_amount:
-            currency: INR
-            value: '800.00'
           amount:
             currency: INR
             value: '800.00'
@@ -53,9 +50,6 @@ message:
             message: Account Inactive
           reference_no: '3718683618634'
         self:
-          settled_amount:
-            currency: INR
-            value: '200.00'
           amount:
             currency: INR
             value: '200.00'

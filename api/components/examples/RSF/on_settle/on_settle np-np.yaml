@@ -38,9 +38,6 @@ message:
             value: '50.00'
         provider:
           id: prvdr-id-789
-          settled_amount:
-            currency: INR
-            value: '800.00'
           amount:
             currency: INR
             value: '800.00'
@@ -50,9 +47,6 @@ message:
             message: Account inactive
           reference_no: '1238683618634'
         self:
-          settled_amount:
-            currency: INR
-            value: '200.00'
           amount:
             currency: INR
             value: '200.00'

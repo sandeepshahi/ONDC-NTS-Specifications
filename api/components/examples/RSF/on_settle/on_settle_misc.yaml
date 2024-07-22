@@ -24,9 +24,6 @@ message:
     orders:
       - provider:
           id: provider-id-789
-          settled_amount:
-            currency: INR
-            value: '200.00'
           amount:
             currency: INR
             value: '200.12'
@@ -36,9 +33,6 @@ message:
             code: '01'
             message: Account inactive
         self:
-          settled_amount:
-            currency: INR
-            value: '200.00'
           amount:
             currency: INR
             value: '200.00'

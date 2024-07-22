@@ -37,9 +37,6 @@ message:
             currency: INR
             value: '50.00'
         self:
-          settled_amount:
-            currency: INR
-            value: '800.00'
           amount:
             currency: INR
             value: '50.00'
