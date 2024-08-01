@@ -112,7 +112,7 @@ code:
     From: Any
     code: 70027
   - Event:  OnSettle
-    Description: “0” file shared by Collector
+    Description: NIL file shared by Collector
     From: Any
     code: 70028
   - Event:  OnSettle
