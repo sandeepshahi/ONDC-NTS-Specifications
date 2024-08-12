@@ -1,0 +1,52 @@
+issue:
+  examples:
+    - summary: issue
+      description: TBD
+      value:
+        $ref: "./issue/issue1.yaml"
+    - summary: issue
+      description: TBD
+      value:
+        $ref: "./issue/issue4.yaml"
+    - summary: issue
+      description: TBD
+      value:
+        $ref: "./issue/issue7.yaml" 
+    - summary: issue
+      description: TBD
+      value:
+        $ref: "./issue/issue10.yaml"  
+    - summary: issue
+      description: TBD
+      value:
+        $ref: "./issue/issue12.yaml"         
+on_issue:
+   examples:
+    - summary: on_issue
+      description: TBD
+      value:
+        $ref: "./on_issue/on_issue2.yaml"
+    - summary: on_issue
+      description: TBD
+      value:
+        $ref: "./on_issue/on_issue3.yaml"
+    - summary: on_issue
+      description: TBD
+      value:
+        $ref: "./on_issue/on_issue5.yaml" 
+    - summary: on_issue
+      description: TBD
+      value:
+        $ref: "./on_issue/on_issue6.yaml"
+    - summary: on_issue
+      description: TBD
+      value:
+        $ref: "./on_issue/on_issue8.yaml"
+    - summary: on_issue
+      description: TBD
+      value:
+        $ref: "./on_issue/on_issue9.yaml" 
+    - summary: on_issue
+      description: TBD
+      value:
+        $ref: "./on_issue/on_issue11.yaml"                

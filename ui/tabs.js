@@ -3,9 +3,9 @@
 
 function onFirstLoad(build_spec){
       let data = build_spec
-      initSchema(data["x-enum"])
-      loadAttributes(data["x-attributes"])
-          loadFlows(data["x-flows"])
+      // initSchema(data["x-enum"])
+      // loadAttributes(data["x-attributes"])
+          // loadFlows(data["x-flows"])
     //   initTag(data["x-tags"])
       loadExample(data["x-examples"])
       //addExample("on-demand")

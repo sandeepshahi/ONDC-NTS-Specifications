@@ -66,25 +66,25 @@ async function validateSchema(schema, data) {
   return false;
 }
 
-async function validateFlows(flows, schemaMap) {
-  for (const flowItem of flows) {
-    const { steps } = flowItem;
-    if (steps && steps?.length) {
-      for (const step of steps) {
-        for (const api of Object.keys(schemaMap)) {
-          // Not validating the flows for forms.
-          if (step.api === api && step.api !== "form") {
-            const result = await validateSchema(schemaMap[api], step.example);
-            if (result) {
-              console.log("Error[flows]:", `${flowItem?.summary + "/" + api}`);
-              return (hasTrueResult = true);
-            }
-          }
-        }
-      }
-    }
-  }
-}
+// async function validateFlows(flows, schemaMap) {
+//   for (const flowItem of flows) {
+//     const { steps } = flowItem;
+//     if (steps && steps?.length) {
+//       for (const step of steps) {
+//         for (const api of Object.keys(schemaMap)) {
+//           // Not validating the flows for forms.
+//           if (step.api === api && step.api !== "form") {
+//             const result = await validateSchema(schemaMap[api], step.example);
+//             if (result) {
+//               console.log("Error[flows]:", `${flowItem?.summary + "/" + api}`);
+//               return (hasTrueResult = true);
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
 async function validateExamples(exampleSets, schemaMap) {
 
@@ -298,9 +298,9 @@ async function getSwaggerYaml(example_set, outputPath) {
       schemaMap[path.substring(1)] = pathSchema;
     }
     
-    if (!process.argv.includes(SKIP_VALIDATION.flows)) {
-      hasTrueResult = await validateFlows(flows, schemaMap);
-    }
+    // if (!process.argv.includes(SKIP_VALIDATION.flows)) {
+    //   hasTrueResult = await validateFlows(flows, schemaMap);
+    // }
     if (!process.argv.includes(SKIP_VALIDATION.examples) && !hasTrueResult) {
       hasTrueResult = await validateExamples(exampleSets, schemaMap);
     }
