@@ -2564,7 +2564,7 @@ x-errorcodes:
       From: Any
       code: 70024
     - Event: OnSettle
-      Description: Duplicate transaction ID
+      Description: Duplicate Settlement ID
       From: Any
       code: 70025
     - Event: OnSettle
