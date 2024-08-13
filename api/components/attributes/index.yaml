@@ -1,9 +1,13 @@
-RETAIL:
-  attribute_set:
-    $ref: "./RETAIL/index.yaml"
-CREDIT:
-  attribute_set:
-    $ref: "./CREDIT/index.yaml" 
-INSURANCE:
-  attribute_set:
-    $ref: "./INSURANCE/index.yaml"     
+# # RETAIL:
+# #   attribute_set:
+# #     $ref: "./RETAIL/index.yaml"
+# # CREDIT:
+# #   attribute_set:
+# #     $ref: "./CREDIT/index.yaml" 
+# # INSURANCE:
+# #   attribute_set:
+# #     $ref: "./INSURANCE/index.yaml"     
+Flow1:
+   attribute_set:
+    $ref: "./Flow1/index.yaml" 
+

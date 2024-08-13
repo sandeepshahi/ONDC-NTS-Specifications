@@ -4,136 +4,196 @@ issue:
       id:
         required: mandatory
         type: String
-        owner: mandatory
+        owner: BPP
+        usage: false
+        description: false
       status:
         required: mandatory
         type: String
-        owner: BAP
+        owner: BPP
+        usage: false
+        description: false
       level:
         required: mandatory
         type: String
-        owner: BAP
+        owner: BPP
+        usage: false
+        description: false
       created_at:
         required: mandatory
         type: String
-        owner: BAP
+        owner: BPP
+        usage: false
+        description: false
       updated_at:
         required: mandatory
         type: String
-        owner: BAP
+        owner: BPP
+        usage: false
+        description: false
       expected_response_time:
         duration:
           required: mandatory
           type: String
-          owner: BAP
+          owner: BPP
+          usage: false
+          description: false
       expected_resolution_time:
         duration:
           required: mandatory
           type: String
-          owner: BAP
+          owner: BPP
+          usage: false
+          description: false
       ref:
         ref_id:
           required: mandatory
           type: String
-          owner: BAP
+          owner: BPP
+          usage: false
+          description: false
         ref_type:
           required: mandatory
           type: String
-          owner: BAP
+          owner: BPP
+          usage: false
+          description: false
       actor_info:
         id:
           required: mandatory
           type: String
-          owner: BAP
+          owner: BPP
+          usage: false
+          description: false
         type:
           required: mandatory
           type: String
-          owner: BAP
+          owner: BPP
+          usage: false
+          description: false
         info:
           org:
             name:
               required: mandatory
               type: String
-              owner: BAP
+              owner: BPP
+              usage: false
+              description: false
           person:
             name:
               required: mandatory
               type: String
-              owner: BAP
+              owner: BPP
+              usage: false
+              description: false
           contact:
             phone:
               required: mandatory
               type: String
-              owner: BAP
+              owner: BPP
+              usage: false
+              description: false
             email:
               required: mandatory
               type: String
-              owner: BAP
+              owner: BPP
+              usage: false
+              description: false
       source_id:
         required: mandatory
         type: String
-        owner: BAP
+        owner: BPP
+        usage: false
+        description: false
       complainant_id:
         required: mandatory
         type: String
-        owner: BAP
+        owner: BPP
+        usage: false
+        description: false
       description:
         code:
           required: mandatory
           type: String
-          owner: BAP
+          owner: BPP
+          usage: false
+          description: false
         short_desc:
           required: mandatory
           type: String
-          owner: BAP
+          owner: BPP
+          usage: false
+          description: false
         long_desc:
           required: mandatory
           type: String
-          owner: BAP
+          owner: BPP
+          usage: false
+          description: false
         additional_desc:
           url:
             required: mandatory
             type: String
-            owner: BAP
+            owner: BPP
+            usage: false
+            description: false
           content_type:
             required: mandatory
             type: String
-            owner: BAP
+            owner: BPP
+            usage: false
+            description: false
         images:
           required: mandatory
           type: String
-          owner: BAP
+          owner: BPP
+          usage: false
+          description: false
       last_action_id:
         required: mandatory
         type: String
-        owner: BAP
+        owner: BPP
+        usage: false
+        description: false
       actions:
         id:
           required: mandatory
           type: String
-          owner: BAP
+          owner: BPP
+          usage: false
+          description: false
         description:
           code:
             required: mandatory
             type: String
-            owner: BAP
+            owner: BPP
+            usage: false
+            description: false
           short_desc:
             required: mandatory
             type: String
-            owner: BAP
+            owner: BPP
+            usage: false
+            description: false
         'updated_at:':
           required: mandatory
           type: String
-          owner: BAP
+          owner: BPP
+          usage: false
+          description: false
         action_by:
           required: mandatory
           type: String
-          owner: BAP
+          owner: BPP
+          usage: false
+          description: false
         actor_details:
           name:
             required: mandatory
             type: String
-            owner: BAP
+            owner: BPP
+            usage: false
+            description: false
 on_issue:
   message:
     issue:

@@ -4,8 +4,8 @@ const fs = require("fs");
 
 async function buildAttribiutes() {
   let attributes = {};
-  const workSheetsFromBuffer = xlsx.parse(`../../Attributesheet_FIS.xlsx`);
-  // const workSheetsFromBuffer = xlsx.parse(`../../Attributesheet_FIS.xlsx`);
+  const workSheetsFromBuffer = xlsx.parse(`../../Attribute_IGM2.xlsx`);
+
   for (let i = 0; i < workSheetsFromBuffer.length; i++) {
     const array = workSheetsFromBuffer[i];
     const filterArray = array.data.filter((subArr) => subArr.length > 0);
@@ -18,8 +18,9 @@ async function buildAttribiutes() {
   if (Object.keys(attributes)?.length) {
     const attributesYaml = yaml.dump(attributes);
     // fs.writeFileSync(`./attributes/RETAIL/index.yaml`, attributesYaml);
-    fs.writeFileSync(`./attributes/CREDIT/index.yaml`, attributesYaml);
+    // fs.writeFileSync(`./attributes/CREDIT/index.yaml`, attributesYaml);
     // fs.writeFileSync(`./attributes/INSURANCE/index.yaml`, attributesYaml);
+    fs.writeFileSync(`./attributes/Flow1/index.yaml`, attributesYaml);
 
   }
 }

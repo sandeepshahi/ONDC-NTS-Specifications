@@ -1,4 +1,4 @@
-summary: FLOW1
+summary: Flow1 -  Buyer raises a complaint for item category
 details:
  - description: detailed flow 
    mermaid: >-
@@ -22,20 +22,64 @@ details:
 
 references: if any
 steps:
-  - summary: issue
+  - summary: Buyer raises a complaint for item category; buyer app creates the issue call
     api: issue
     details:
       - description: issue
         mermaid: >-
-         sequenceDiagram
+          sequenceDiagram
             title  Buyer raising a complaint for an item
             participant Buyer App
             participant Seller App
 
             Buyer App->>Seller App: Raise Complaint (issue)
-            Seller App->>Buyer App: Processing Action (on_issue)
-            Seller App->>Buyer App: Request More Information (on_issue)
-           Buyer App->>Seller App: Provide Info (issue)
+            Seller App->>Buyer App: ACK
+           
+        reference: if any
+    example:
+      value:
+        $ref: "../../examples/Flow1/issue/issue1.yaml"
+  - summary:  Seller app responds with processing action
+    api: on_issue
+    details:
+      - description: on_issue
+        mermaid: >-
+         sequenceDiagram
+          title  Buyer raising a complaint for an item
+          participant Buyer App
+          participant Seller App
+
+          Buyer App->>Seller App: Raise Complaint (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Request More Information (on_issue)
+          Buyer App->>Seller App: Provide Info (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+          Buyer App->>Seller App: Provide Info (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Provide Resolution Options (on_issue)
+          Buyer App->>Seller App: Accept Resolution (issue)
+          Seller App->>Buyer App: Send Resolution Object (on_issue)
+          Buyer App->>Seller App: Close Complaint (issue)
+        
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/Flow1/on_issue/on_issue2.yaml"  
+  - summary: Seller app needs more information to analyse (two info_request actions for two requirements)
+    api: on_issue
+    details:
+      - description: on_issue
+        mermaid: >-
+         sequenceDiagram
+          title  Buyer raising a complaint for an item
+          participant Buyer App
+          participant Seller App
+
+          Buyer App->>Seller App: Raise Complaint (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Request More Information (on_issue)
+          Buyer App->>Seller App: Provide Info (issue)
           Seller App->>Buyer App: Processing Action (on_issue)
           Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
           Buyer App->>Seller App: Provide Info (issue)
@@ -47,110 +91,246 @@ steps:
     reference: if any
     example:
       value:
-        $ref: "../../examples/Retail/issue/issue.yaml"
-  - summary: on_issue
-    api: on_issue
-    details:
-      - description: on_issue
-        mermaid: >-
-         sequenceDiagram
-           title  A buyer raises an issue on the buyer app 
-           participant Buyer 
-           participant Buyer App
-           participant Seller App
-           Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
-           Buyer App  ->>+ Seller App: ISSUE 
-           rect rgb(0,195,255)
-           Seller App ->>+ Buyer App : ON_ISSUE
-           Seller App ->>-Buyer App: Seller App started processing the issue
-           end
-           Buyer App  ->>+ Seller App: ISSUE STATUS
-           Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
-           Seller App ->>+ Buyer App : On_ISSUE _STATUS
-           Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
-            Seller App ->>+ Buyer App:  ISSUE Resolution provided 
-           Buyer App ->>+ Buyer:  ISSUE CLOSED
-        
-    reference: if any
-    example:
-      value:
-        $ref: "../../examples/Retail/on_issue/on_issue.yaml"  
-  - summary: issue_status
-    api: issue_status
-    details:
-      - description: issue_status
-        mermaid: >-
-         sequenceDiagram
-           title  A buyer raises an issue on the buyer app 
-           participant Buyer 
-           participant Buyer App
-           participant Seller App
-           Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
-           Buyer App  ->>+ Seller App: ISSUE 
-           Seller App ->>+ Buyer App : ON_ISSUE
-           Seller App ->>-Buyer App: Seller App started processing the issue
-           rect rgb(0,195,255)
-           Buyer App  ->>+ Seller App: ISSUE STATUS
-           Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
-           end
-           Seller App ->>+ Buyer App : On_ISSUE _STATUS
-           Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
-           Seller App ->>+ Buyer App:  ISSUE Resolution provided 
-           Buyer App ->>+ Buyer:  ISSUE CLOSED
-    reference: if any
-    example:
-      value:
-        $ref: "../../examples/Retail/issue_status/issue_status.yaml" 
-  - summary: on_issue_status
-    api: on_issue_status
-    details:
-      - description: on_issue_status
-        mermaid: >-
-         sequenceDiagram
-           title  A buyer raises an issue on the buyer app 
-           participant Buyer 
-           participant Buyer App
-           participant Seller App
-           Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
-           Buyer App  ->>+ Seller App: ISSUE 
-           Seller App ->>+ Buyer App : ON_ISSUE
-           Seller App ->>-Buyer App: Seller App started processing the issue
-           Buyer App  ->>+ Seller App: ISSUE STATUS
-           Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
-           rect rgb(0,195,255)
-           Seller App ->>+ Buyer App : On_ISSUE _STATUS
-           Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
-           end
-           Seller App ->>+ Buyer App:  ISSUE Resolution provided 
-           Buyer App ->>+ Buyer:  ISSUE CLOSED
-    reference: if any
-    example:
-      value:
-        $ref: "../../examples/Retail/on_issue_status/on_issue_status.yaml"    
-  - summary: issue close
+        $ref: "../../examples/Flow1/on_issue/on_issue3.yaml" 
+  - summary: Buyer app provides relevant information (responds to one of the requests)
     api: issue
     details:
-      - description: issue closed
+      - description: issue
         mermaid: >-
-         sequenceDiagram
-           title  A buyer raises an issue on the buyer app 
-           participant Buyer 
-           participant Buyer App
-           participant Seller App
-           rect rgb(0,195,255)
-           Buyer ->>+ Buyer App: Raise an issue on issue ticket portal on buyer app
-           Buyer App  ->>+ Seller App: ISSUE 
-           end
-            Seller App ->>+ Buyer App : ON_ISSUE (Seller App started processing the issue)
-          #  Seller App ->>-Buyer App: Seller App started processing the issue
-           Buyer App  ->>+ Seller App: ISSUE STATUS
-           Buyer App ->>+ Seller App: Buyer app requesting status update on the complaint
-           Seller App ->>+ Buyer App : On_ISSUE _STATUS
-           Seller App ->>+ Buyer App :Seller app providing status update on the complaint  
-            Seller App ->>+ Buyer App:  ISSUE Resolution provided 
-           Buyer App ->>+ Buyer:  ISSUE CLOSED
+          sequenceDiagram
+          title  Buyer raising a complaint for an item
+          participant Buyer App
+          participant Seller App
+
+          Buyer App->>Seller App: Raise Complaint (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Request More Information (on_issue)
+          Buyer App->>Seller App: Provide Info (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+          Buyer App->>Seller App: Provide Info (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Provide Resolution Options (on_issue)
+          Buyer App->>Seller App: Accept Resolution (issue)
+          Seller App->>Buyer App: Send Resolution Object (on_issue)
+          Buyer App->>Seller App: Close Complaint (issue)
     reference: if any
     example:
       value:
-        $ref: "../../examples/Retail/issue/issue_closed.yaml"              
+        $ref: "../../examples/Flow1/issue/issue4.yaml"    
+  - summary: Seller app responds with processing action
+    api: on_issue
+    details:
+      - description: Seller app responds with processing action
+        mermaid: >-
+           sequenceDiagram
+            title  Buyer raising a complaint for an item
+            participant Buyer App
+            participant Seller App
+
+            Buyer App->>Seller App: Raise Complaint (issue)
+            Seller App->>Buyer App: Processing Action (on_issue)
+            Seller App->>Buyer App: Request More Information (on_issue)
+            Buyer App->>Seller App: Provide Info (issue)
+            Seller App->>Buyer App: Processing Action (on_issue)
+            Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+            Buyer App->>Seller App: Provide Info (issue)
+            Seller App->>Buyer App: Processing Action (on_issue)
+            Seller App->>Buyer App: Provide Resolution Options (on_issue)
+            Buyer App->>Seller App: Accept Resolution (issue)
+            Seller App->>Buyer App: Send Resolution Object (on_issue)
+            Buyer App->>Seller App: Close Complaint (issue)
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/Flow1/on_issue/on_issue5.yaml"              
+  - summary: Seller app responds with need more info tagging the previous missing info
+    api: on_issue
+    details:
+      - description: Seller app responds with need more info tagging the previous missing info
+        mermaid: >-
+         sequenceDiagram
+          title  Buyer raising a complaint for an item
+          participant Buyer App
+          participant Seller App
+
+          Buyer App->>Seller App: Raise Complaint (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Request More Information (on_issue)
+          Buyer App->>Seller App: Provide Info (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+          Buyer App->>Seller App: Provide Info (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Provide Resolution Options (on_issue)
+          Buyer App->>Seller App: Accept Resolution (issue)
+          Seller App->>Buyer App: Send Resolution Object (on_issue)
+          Buyer App->>Seller App: Close Complaint (issue)
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/Flow1/on_issue/on_issue6.yaml"              
+  - summary: Buyer app provides relevant information (responds to the request
+    api: issue
+    details:
+      - description: Buyer app provides relevant information (responds to the request
+        mermaid: >-
+          sequenceDiagram
+          title  Buyer raising a complaint for an item
+          participant Buyer App
+          participant Seller App
+
+          Buyer App->>Seller App: Raise Complaint (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Request More Information (on_issue)
+          Buyer App->>Seller App: Provide Info (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+          Buyer App->>Seller App: Provide Info (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Provide Resolution Options (on_issue)
+          Buyer App->>Seller App: Accept Resolution (issue)
+          Seller App->>Buyer App: Send Resolution Object (on_issue)
+          Buyer App->>Seller App: Close Complaint (issue)
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/Flow1/issue/issue7.yaml"  
+  - summary: Seller app responds with need more info tagging the previous missing info
+    api: on_issue
+    details:
+      - description: Seller app responds with need more info tagging the previous missing info
+        mermaid: >-
+          sequenceDiagram
+            title  Buyer raising a complaint for an item
+            participant Buyer App
+            participant Seller App
+
+            Buyer App->>Seller App: Raise Complaint (issue)
+            Seller App->>Buyer App: Processing Action (on_issue)
+            Seller App->>Buyer App: Request More Information (on_issue)
+            Buyer App->>Seller App: Provide Info (issue)
+            Seller App->>Buyer App: Processing Action (on_issue)
+            Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+            Buyer App->>Seller App: Provide Info (issue)
+            Seller App->>Buyer App: Processing Action (on_issue)
+            Seller App->>Buyer App: Provide Resolution Options (on_issue)
+            Buyer App->>Seller App: Accept Resolution (issue)
+            Seller App->>Buyer App: Send Resolution Object (on_issue)
+            Buyer App->>Seller App: Close Complaint (issue)
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/Flow1/on_issue/on_issue8.yaml"              
+  - summary: Seller app responds with need more info tagging the previous missing info
+    api: on_issue
+    details:
+      - description: Seller app responds with need more info tagging the previous missing info
+        mermaid: >-
+         sequenceDiagram
+          title  Buyer raising a complaint for an item
+          participant Buyer App
+          participant Seller App
+
+          Buyer App->>Seller App: Raise Complaint (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Request More Information (on_issue)
+          Buyer App->>Seller App: Provide Info (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+          Buyer App->>Seller App: Provide Info (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Provide Resolution Options (on_issue)
+          Buyer App->>Seller App: Accept Resolution (issue)
+          Seller App->>Buyer App: Send Resolution Object (on_issue)
+          Buyer App->>Seller App: Close Complaint (issue)
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/Flow1/on_issue/on_issue9.yaml" 
+  - summary: Seller app responds with need more info tagging the previous missing info
+    api: issue
+    details:
+      - description: Seller app responds with need more info tagging the previous missing info
+        mermaid: >-
+           sequenceDiagram
+              title  Buyer raising a complaint for an item
+              participant Buyer App
+              participant Seller App
+
+              Buyer App->>Seller App: Raise Complaint (issue)
+              Seller App->>Buyer App: Processing Action (on_issue)
+              Seller App->>Buyer App: Request More Information (on_issue)
+              Buyer App->>Seller App: Provide Info (issue)
+              Seller App->>Buyer App: Processing Action (on_issue)
+              Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+              Buyer App->>Seller App: Provide Info (issue)
+              Seller App->>Buyer App: Processing Action (on_issue)
+              Seller App->>Buyer App: Provide Resolution Options (on_issue)
+              Buyer App->>Seller App: Accept Resolution (issue)
+              Seller App->>Buyer App: Send Resolution Object (on_issue)
+              Buyer App->>Seller App: Close Complaint (issue)
+           
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/Flow1/issue/issue10.yaml"  
+  - summary: Seller app responds with need more info tagging the previous missing info
+    api: on_issue
+    details:
+      - description: Seller app responds with need more info tagging the previous missing info
+        mermaid: >-
+         sequenceDiagram
+          title  Buyer raising a complaint for an item
+          participant Buyer App
+          participant Seller App
+
+          Buyer App->>Seller App: Raise Complaint (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Request More Information (on_issue)
+          Buyer App->>Seller App: Provide Info (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+          Buyer App->>Seller App: Provide Info (issue)
+          Seller App->>Buyer App: Processing Action (on_issue)
+          Seller App->>Buyer App: Provide Resolution Options (on_issue)
+          Buyer App->>Seller App: Accept Resolution (issue)
+          Seller App->>Buyer App: Send Resolution Object (on_issue)
+          Buyer App->>Seller App: Close Complaint (issue)
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/Flow1/on_issue/on_issue11.yaml"              
+  - summary: Seller app responds with need more info tagging the previous missing info
+    api: issue
+    details:
+      - description: Seller app responds with need more info tagging the previous missing info
+        mermaid: >-
+          sequenceDiagram
+            title  Buyer raising a complaint for an item
+            participant Buyer App
+            participant Seller App
+
+            Buyer App->>Seller App: Raise Complaint (issue)
+            Seller App->>Buyer App: Processing Action (on_issue)
+            Seller App->>Buyer App: Request More Information (on_issue)
+            Buyer App->>Seller App: Provide Info (issue)
+            Seller App->>Buyer App: Processing Action (on_issue)
+            Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+            Buyer App->>Seller App: Provide Info (issue)
+            Seller App->>Buyer App: Processing Action (on_issue)
+            Seller App->>Buyer App: Provide Resolution Options (on_issue)
+            Buyer App->>Seller App: Accept Resolution (issue)
+            Seller App->>Buyer App: Send Resolution Object (on_issue)
+            Buyer App->>Seller App: Close Complaint (issue)
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/Flow1/issue/issue12.yaml"              
+                   
+                    
+                  
+                 
+                    
+                  
   

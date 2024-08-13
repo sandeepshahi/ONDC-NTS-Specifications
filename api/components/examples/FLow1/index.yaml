@@ -4,49 +4,49 @@ issue:
       description: TBD
       value:
         $ref: "./issue/issue1.yaml"
-    - summary: issue
-      description: TBD
-      value:
-        $ref: "./issue/issue4.yaml"
-    - summary: issue
-      description: TBD
-      value:
-        $ref: "./issue/issue7.yaml" 
-    - summary: issue
-      description: TBD
-      value:
-        $ref: "./issue/issue10.yaml"  
-    - summary: issue
-      description: TBD
-      value:
-        $ref: "./issue/issue12.yaml"         
+    # - summary: Buyer app provides relevant information (responds to one of the requests)
+    #   description: TBD
+    #   value:
+    #     $ref: "./issue/issue4.yaml"
+    # - summary: Buyer app provides relevant information (responds to the request)
+    #   description: TBD
+    #   value:
+    #     $ref: "./issue/issue7.yaml" 
+    # - summary: Buyer responds with an accepted resolution (issue)
+    #   description: TBD
+    #   value:
+    #     $ref: "./issue/issue10.yaml"  
+    # - summary: Buyer closes the complaint
+    #   description: TBD
+    #   value:
+    #     $ref: "./issue/issue12.yaml"         
 on_issue:
    examples:
     - summary: on_issue
-      description: TBD
+      description: TBDmkjkj
       value:
         $ref: "./on_issue/on_issue2.yaml"
-    - summary: on_issue
-      description: TBD
-      value:
-        $ref: "./on_issue/on_issue3.yaml"
-    - summary: on_issue
-      description: TBD
-      value:
-        $ref: "./on_issue/on_issue5.yaml" 
-    - summary: on_issue
-      description: TBD
-      value:
-        $ref: "./on_issue/on_issue6.yaml"
-    - summary: on_issue
-      description: TBD
-      value:
-        $ref: "./on_issue/on_issue8.yaml"
-    - summary: on_issue
-      description: TBD
-      value:
-        $ref: "./on_issue/on_issue9.yaml" 
-    - summary: on_issue
-      description: TBD
-      value:
-        $ref: "./on_issue/on_issue11.yaml"                
+    # - summary: Seller app needs more information to analyse (two info_request actions for two requirements)
+    #   description: TBD
+    #   value:
+    #     $ref: "./on_issue/on_issue3.yaml"
+    # - summary: Seller app responds with processing action (on_issue)
+    #   description: TBD
+    #   value:
+    #     $ref: "./on_issue/on_issue5.yaml" 
+    # - summary:  Seller app responds with need more info tagging the previous missing info
+    #   description: TBD
+    #   value:
+    #     $ref: "./on_issue/on_issue6.yaml"
+    # - summary: Seller app responds with processing action (on_issue)
+    #   description: TBD
+    #   value:
+    #     $ref: "./on_issue/on_issue8.yaml"
+    # - summary:  Seller app provides potential resolution options 
+    #   description: TBD
+    #   value:
+    #     $ref: "./on_issue/on_issue9.yaml" 
+    # - summary: Seller app responds with the resolution object
+    #   description: TBD
+    #   value:
+    #     $ref: "./on_issue/on_issue11.yaml"                
