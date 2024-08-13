@@ -2911,8 +2911,8 @@ x-flows:
                       name: Sam Manuel
 x-examples:
   Flow1:
-    summary: IGM implementation for flow1
-    description: IGM examples for flow1
+    summary: IGM implementation
+    description: IGM examples
     example_set:
       issue:
         examples:
