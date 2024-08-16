@@ -117,13 +117,6 @@ components:
           enum:
             - ACK
             - NACK
-    Organization:
-      type: object
-      properties:
-        contact:
-          $ref: '#/components/schemas/Contact'
-        person:
-          $ref: '#/components/schemas/Person'
     Issue:
       description: >
         *  Describes the Issue/complaint raised for a particular order,
@@ -197,43 +190,44 @@ components:
         complainant_id:
           description: Describe about the complainant_id
           type: string
-        respondent_id:
+        respondent_ids:
           description: Describes about the respondent_id
           type: array
-        resolver_id:
+          items:
+            type: string
+        resolver_ids:
           description: Describes about the respondent_id
           type: array
+          items:
+            type: string
         last_action_id:
           description: Describes the last action id
           type: string
         actions:
           description: state the description of the action
           type: array
-          $ref: '#/components/schemas/Action'
-        description:
-          description: describes about description
-          type: object
-          properties:
-            code:
-              description: describes about code of the description
-              type: string
-            short_desc:
-              description: describes about the short description
-              type: string
-            long_desc:
-              description: describes about the long description
-              type: string
-            image:
-              description: describes the image
-              type: array
-        actor_info:
+          items:
+            $ref: '#/components/schemas/Action'
+        descriptor:
+          $ref: '#/components/schemas/Descriptor'
+        actors:
           description: state the description of the actor that are involve
           type: array
-          $ref: '#/components/schemas/Actor_info'
+          items:
+            $ref: '#/components/schemas/Actor_info'
+        resolutions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resolution'
         refs:
           description: state the reference of the oreference
           type: array
-          $ref: '#/components/schemas/Refs'
+          items:
+            $ref: '#/components/schemas/Refs'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagGroup'
     Action:
       type: object
       properties:
@@ -246,23 +240,28 @@ components:
         ref_type:
           description: Describes the refence type
           type: string
-        description:
-          type: string
-          enum:
-            - OPEN
-            - PROCESSING
-            - CLOSED
-            - CASCADED
-            - INFO_REQUESTED
-            - INFO_PROCESSING
-            - INFO_PROVIDED
-            - INFO_NOT_AVAILABLE
-            - RESOLUTION_PROPOSED
-            - RESOLUTION_FORWARDED
-            - RESOLUTION_PROCESSING
-            - RESOLUTION_ACCEPTED
-            - RESOLUTION_REJECTED
-            - RESOLVED
+        descriptor:
+          allOf:
+            - $ref: '#/components/schemas/Descriptor'
+            - type: object
+              properties:
+                code:
+                  type: string
+                  enum:
+                    - OPEN
+                    - PROCESSING
+                    - CLOSED
+                    - CASCADED
+                    - INFO_REQUESTED
+                    - INFO_PROCESSING
+                    - INFO_PROVIDED
+                    - INFO_NOT_AVAILABLE
+                    - RESOLUTION_PROPOSED
+                    - RESOLUTION_FORWARDED
+                    - RESOLUTION_PROCESSING
+                    - RESOLUTION_ACCEPTED
+                    - RESOLUTION_REJECTED
+                    - RESOLVED
         updated_at:
           description: >-
             timestamp for the capturing the time an issue status was last
@@ -272,12 +271,8 @@ components:
         action_by:
           description: Describes the action_by
           type: string
-        action_details:
-          type: object
-          properties:
-            name:
-              description: tells about the name
-              type: string
+        tags:
+          $ref: '#/components/schemas/TagGroup'
     Actor_info:
       type: object
       properties:
@@ -291,18 +286,23 @@ components:
           description: Describes the information about actor
           type: object
           properties:
-            org:
-              description: Describes the information about actor
-              type: object
-              properties:
-                name:
-                  type: string
-            contact:
-              description: Describes the information about person
-              $ref: '#/components/schemas/Contact'
             person:
-              description: Describes the information about person
               $ref: '#/components/schemas/Person'
+            contact:
+              $ref: '#/components/schemas/Contact'
+            org:
+              type: string
+    Additional_desc:
+      type: object
+      properties:
+        url:
+          type: string
+        content_type:
+          type: string
+          enum:
+            - text/plain
+            - text/html
+            - application/json
     Contact:
       type: object
       properties:
@@ -310,23 +310,113 @@ components:
           type: string
         email:
           type: string
-    Person:
-      description: Describes a person.
+    Credential:
+      description: Describes a credential of an entity - Person or Organization
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          default: VerifiableCredential
+        url:
+          description: URL of the credential
+          type: string
+          format: uri
+    Descriptor:
+      description: Physical description of something.
       type: object
       properties:
         name:
           type: string
-          description: >-
-            Describes the name of a person in format:
-            ./{given_name}/{honorific_prefix}/{first_name}/{middle_name}/{last_name}/{honorific_suffix}
-        Image:
-          description: >-
-            Image of an object. <br/><br/> A url based image will look like
-            <br/><br/>```uri:http://path/to/image``` <br/><br/> An image can
-            also be sent as a data string. For example : <br/><br/>
-            ```data:js87y34ilhriuho84r3i4```
+        code:
           type: string
+        short_desc:
+          type: string
+        long_desc:
+          type: string
+        additional_desc:
+          $ref: '#/components/schemas/Additional_desc'
+        media:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaFile'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+    Duration:
+      description: Describes duration as per ISO8601 format
+      type: string
+    Image:
+      description: Describes an image
+      type: object
+      properties:
+        url:
+          description: URL to the image. This can be a data url or an remote url
+          type: string
+          format: uri
+        size_type:
+          description: >-
+            The size of the image. The network policy can define the default
+            dimensions of each type
+          type: string
+          enum:
+            - xs
+            - sm
+            - md
+            - lg
+            - xl
+            - custom
+        width:
+          description: Width of the image in pixels
+          type: string
+        height:
+          description: Height of the image in pixels
+          type: string
+    MediaFile:
+      description: This object contains a url to a media file.
+      type: object
+      properties:
+        mimetype:
+          description: >-
+            indicates the nature and format of the document, file, or assortment
+            of bytes. MIME types are defined and standardized in IETF's RFC 6838
+          type: string
+        url:
+          description: The URL of the file
+          type: string
+          format: uri
+        signature:
+          description: The digital signature of the file signed by the sender
+          type: string
+        dsa:
+          description: The signing algorithm used by the sender
+          type: string
+        time:
+          $ref: '#/components/schemas/Time'
+    Person:
+      description: Describes a person as any individual
+      type: object
+      properties:
+        id:
+          type: string
+          description: Describes the identity of the person
+        url:
+          description: Profile url of the person
+          type: string
+          format: uri
+        name:
+          description: the name of the person
+          type: string
+        image:
+          $ref: '#/components/schemas/Image'
+        age:
+          description: Age of the person
+          allOf:
+            - $ref: '#/components/schemas/Duration'
         dob:
+          description: Date of birth of the person
           type: string
           format: date
         gender:
@@ -335,9 +425,60 @@ components:
             Gender of something, typically a Person, but possibly also fictional
             characters, animals, etc. While Male and Female may be used, text
             strings are also acceptable for people who do not identify as a
-            binary gender
-        cred:
-          type: string
+            binary gender.Allowed values for this field can be published in the
+            network policy
+        creds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Credential'
+        languages:
+          type: array
+          items:
+            description: Describes a language known to the person.
+            type: object
+            properties:
+              code:
+                type: string
+              name:
+                type: string
+        skills:
+          type: array
+          items:
+            description: Describes a skill of the person.
+            type: object
+            properties:
+              code:
+                type: string
+              name:
+                type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagGroup'
+    Schedule:
+      description: >-
+        Describes schedule as a repeating time period used to describe a
+        regularly recurring event. At a minimum a schedule will specify
+        frequency which describes the interval between occurrences of the event.
+        Additional information can be provided to specify the schedule more
+        precisely. This includes identifying the timestamps(s) of when the event
+        will take place. Schedules may also have holidays to exclude a specific
+        day from the schedule.<br>This has properties like frequency, holidays,
+        times
+      type: object
+      properties:
+        frequency:
+          $ref: '#/components/schemas/Duration'
+        holidays:
+          type: array
+          items:
+            type: string
+            format: date-time
+        times:
+          type: array
+          items:
+            type: string
+            format: date-time
     Time:
       description: >-
         Describes time in its various forms. It can be a single point in time;
@@ -349,6 +490,8 @@ components:
         timestamp:
           type: string
           format: date-time
+        duration:
+          $ref: '#/components/schemas/Duration'
         range:
           type: object
           properties:
@@ -361,6 +504,8 @@ components:
         days:
           type: string
           description: comma separated values representing days of the week
+        schedule:
+          $ref: '#/components/schemas/Schedule'
     Context:
       description: Describes a beckn message context
       type: object
@@ -459,6 +604,103 @@ components:
             - DOMAIN-ERROR
             - POLICY-ERROR
             - JSON-SCHEMA-ERROR
+    TagGroup:
+      description: >-
+        A collection of tag objects with group level attributes. For detailed
+        documentation on the Tags and Tag Groups schema go to
+        https://github.com/beckn/protocol-specifications/discussions/316
+      type: object
+      properties:
+        display:
+          description: >-
+            Indicates the display properties of the tag group. If display is set
+            to false, then the group will not be displayed. If it is set to
+            true, it should be displayed. However, group-level display
+            properties can be overriden by individual tag-level display
+            property. As this schema is purely for catalog display purposes, it
+            is not recommended to send this value during search.
+          type: boolean
+          default: true
+        descriptor:
+          description: >-
+            Description of the TagGroup, can be used to store detailed
+            information.
+          allOf:
+            - $ref: '#/components/schemas/Descriptor'
+        list:
+          description: >-
+            An array of Tag objects listed under this group. This property can
+            be set by BAPs during search to narrow the `search` and achieve more
+            relevant results. When received during `on_search`, BAPs must render
+            this list under the heading described by the `name` property of this
+            schema.
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+    Tag:
+      description: >-
+        Describes a tag. This is used to contain extended metadata. This object
+        can be added as a property to any schema to describe extended
+        attributes. For BAPs, tags can be sent during search to optimize and
+        filter search results. BPPs can use tags to index their catalog to allow
+        better search functionality. Tags are sent by the BPP as part of the
+        catalog response in the `on_search` callback. Tags are also meant for
+        display purposes. Upon receiving a tag, BAPs are meant to render them as
+        name-value pairs. This is particularly useful when rendering tabular
+        information about a product or service.
+      type: object
+      properties:
+        descriptor:
+          description: Description of the Tag, can be used to store detailed information.
+          allOf:
+            - $ref: '#/components/schemas/Descriptor'
+        value:
+          description: >-
+            The value of the tag. This set by the BPP and rendered as-is by the
+            BAP.
+          type: string
+        display:
+          description: >-
+            This value indicates if the tag is intended for display purposes. If
+            set to `true`, then this tag must be displayed. If it is set to
+            `false`, it should not be displayed. This value can override the
+            group display value.
+          type: boolean
+    Resolution:
+      type: object
+      properties:
+        id:
+          description: Describes id of the action
+          type: string
+        ref_id:
+          description: Describes the reference id
+          type: string
+        ref_type:
+          description: Describes the refence type
+          type: string
+        descriptor:
+          allOf:
+            - $ref: '#/components/schemas/Descriptor'
+            - type: object
+              properties:
+                code:
+                  type: string
+                  enum:
+                    - REFUND
+                    - REPLACEMENT
+                    - CBIL_CORRECTION
+                    - ENACH_CANCEL
+        updated_at:
+          description: >-
+            timestamp for the capturing the time an issue status was last
+            updated
+          type: string
+          format: date-time
+        proposed_by:
+          description: Describes the action_by
+          type: string
+        tags:
+          $ref: '#/components/schemas/TagGroup'
     Refs:
       type: object
       properties:
@@ -480,6 +722,11 @@ components:
             - PAYMENT
             - CONSUMER
             - AGENT
+        tags:
+          description: tells abot ref details
+          type: array
+          items:
+            $ref: '#/components/schemas/TagGroup'
 servers:
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/ONDC/ONDC-Protocol-IGM/1.0.0
@@ -518,7 +765,6 @@ x-flows:
                 title  Buyer raising a complaint for an item
                 participant Buyer App
                 participant Seller App
-
                 Buyer App->>Seller App: Raise Complaint (issue)
                 Seller App->>Buyer App: ACK
                
@@ -610,7 +856,7 @@ x-flows:
                     description:
                       code: OPEN
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -620,22 +866,11 @@ x-flows:
           - description: on_issue
             mermaid: |-
               sequenceDiagram
-               title  Buyer raising a complaint for an item
-               participant Buyer App
-               participant Seller App
-
-               Buyer App->>Seller App: Raise Complaint (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Provide Resolution Options (on_issue)
-               Buyer App->>Seller App: Accept Resolution (issue)
-               Seller App->>Buyer App: Send Resolution Object (on_issue)
-               Buyer App->>Seller App: Close Complaint (issue)
+                 title  Buyer raising a complaint for an item
+                 participant Buyer App
+                 participant Seller App
+                 Seller App->>Buyer App: Processing Action (on_issue)
+                 Buyer App->>Seller App: Ack
         reference: if any
         example:
           value: &ref_1
@@ -743,7 +978,7 @@ x-flows:
                     description:
                       code: OPEN
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -753,7 +988,7 @@ x-flows:
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:10.469Z
+                    updated_at: '2023-01-15T10:00:10.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -767,20 +1002,9 @@ x-flows:
               sequenceDiagram
                title  Buyer raising a complaint for an item
                participant Buyer App
-               participant Seller App
-
-               Buyer App->>Seller App: Raise Complaint (issue)
+               participant Seller App  
                Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Provide Resolution Options (on_issue)
-               Buyer App->>Seller App: Accept Resolution (issue)
-               Seller App->>Buyer App: Send Resolution Object (on_issue)
-               Buyer App->>Seller App: Close Complaint (issue)
+               Buyer App ->> Seller App : ACK
         reference: if any
         example:
           value:
@@ -934,17 +1158,8 @@ x-flows:
               sequenceDiagram title  Buyer raising a complaint for an item
               participant Buyer App participant Seller App
 
-              Buyer App->>Seller App: Raise Complaint (issue) Seller App->>Buyer
-              App: Processing Action (on_issue) Seller App->>Buyer App: Request
-              More Information (on_issue) Buyer App->>Seller App: Provide Info
-              (issue) Seller App->>Buyer App: Processing Action (on_issue)
-              Seller App->>Buyer App: Request More Information (Tag Missing
-              Info) (on_issue) Buyer App->>Seller App: Provide Info (issue)
-              Seller App->>Buyer App: Processing Action (on_issue) Seller
-              App->>Buyer App: Provide Resolution Options (on_issue) Buyer
-              App->>Seller App: Accept Resolution (issue) Seller App->>Buyer
-              App: Send Resolution Object (on_issue) Buyer App->>Seller App:
-              Close Complaint (issue)
+
+              Buyer App->>Seller App: Provide Info (issue)
         reference: if any
         example:
           value:
@@ -1052,7 +1267,7 @@ x-flows:
                     description:
                       code: OPEN
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1062,7 +1277,7 @@ x-flows:
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1073,7 +1288,7 @@ x-flows:
                       code: INFO_REQUESTED
                       Name: INFO01
                       short_desc: Please provide product image
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1084,7 +1299,7 @@ x-flows:
                       code: INFO_REQUESTED
                       'name ': INFO002
                       short_desc: Please provide invoice
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1094,7 +1309,7 @@ x-flows:
                     description:
                       code: INFO_PROVIDED
                       short_desc: Info provided from buyer app
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1416,7 +1631,7 @@ x-flows:
                     description:
                       code: OPEN
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1426,7 +1641,7 @@ x-flows:
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1437,7 +1652,7 @@ x-flows:
                       code: INFO_REQUESTED
                       'name ': INFO001
                       short_desc: Please provide product image
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1448,7 +1663,7 @@ x-flows:
                       code: INFO_REQUESTED
                       'name ': INFO002
                       short_desc: Please provide invoice
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1458,7 +1673,7 @@ x-flows:
                     description:
                       code: INFO_PROVIDED
                       short_desc: Buyer app providing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1468,7 +1683,7 @@ x-flows:
                     description:
                       code: Processing
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1478,7 +1693,7 @@ x-flows:
                     description:
                       code: INFO_REQUESTED
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1608,7 +1823,7 @@ x-flows:
                     description:
                       code: OPEN
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1618,7 +1833,7 @@ x-flows:
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1629,7 +1844,7 @@ x-flows:
                       code: INFO_REQUESTED
                       'name ': INFO001
                       short_desc: Please provide product image
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1640,7 +1855,7 @@ x-flows:
                       code: INFO_REQUESTED
                       'name ': INFO002
                       short_desc: Please provide invoice
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1650,7 +1865,7 @@ x-flows:
                     description:
                       code: INFO_PROVIDED
                       short_desc: Buyer app providing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1660,7 +1875,7 @@ x-flows:
                     description:
                       code: Processing
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1670,7 +1885,7 @@ x-flows:
                     description:
                       code: INFO_REQUESTED
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1680,7 +1895,7 @@ x-flows:
                     description:
                       code: INFO_PROVIDED
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1817,7 +2032,7 @@ x-flows:
                     description:
                       code: OPEN
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1827,7 +2042,7 @@ x-flows:
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1838,7 +2053,7 @@ x-flows:
                       code: INFO_REQUESTED
                       'name ': INFO001
                       short_desc: Please provide product image
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1849,7 +2064,7 @@ x-flows:
                       code: INFO_REQUESTED
                       'name ': INFO002
                       short_desc: Please provide invoice
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1859,7 +2074,7 @@ x-flows:
                     description:
                       code: INFO_PROVIDED
                       short_desc: Buyer app providing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1869,7 +2084,7 @@ x-flows:
                     description:
                       code: Processing
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1879,7 +2094,7 @@ x-flows:
                     description:
                       code: INFO_REQUESTED
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1889,7 +2104,7 @@ x-flows:
                     description:
                       code: INFO_PROVIDED
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1899,7 +2114,7 @@ x-flows:
                     description:
                       code: Processing
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2036,7 +2251,7 @@ x-flows:
                     description:
                       code: OPEN
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2046,7 +2261,7 @@ x-flows:
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2057,7 +2272,7 @@ x-flows:
                       code: INFO_REQUESTED
                       'name ': INFO001
                       short_desc: Please provide product image
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2068,7 +2283,7 @@ x-flows:
                       code: INFO_REQUESTED
                       'name ': INFO002
                       short_desc: Please provide invoice
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2078,7 +2293,7 @@ x-flows:
                     description:
                       code: INFO_PROVIDED
                       short_desc: Buyer app providing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2088,7 +2303,7 @@ x-flows:
                     description:
                       code: Processing
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2098,7 +2313,7 @@ x-flows:
                     description:
                       code: INFO_REQUESTED
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2108,7 +2323,7 @@ x-flows:
                     description:
                       code: INFO_PROVIDED
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2118,7 +2333,7 @@ x-flows:
                     description:
                       code: Processing
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2128,7 +2343,7 @@ x-flows:
                     description:
                       code: RESOLUTION_PROPOSED
                       short_desc: Seller app proposed the resolution
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2265,7 +2480,7 @@ x-flows:
                     description:
                       code: OPEN
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2275,7 +2490,7 @@ x-flows:
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2286,7 +2501,7 @@ x-flows:
                       code: INFO_REQUESTED
                       'name ': INFO001
                       short_desc: Please provide product image
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2297,7 +2512,7 @@ x-flows:
                       code: INFO_REQUESTED
                       'name ': INFO002
                       short_desc: Please provide invoice
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2307,7 +2522,7 @@ x-flows:
                     description:
                       code: INFO_PROVIDED
                       short_desc: Buyer app providing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2317,7 +2532,7 @@ x-flows:
                     description:
                       code: Processing
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2327,7 +2542,7 @@ x-flows:
                     description:
                       code: INFO_REQUESTED
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2337,7 +2552,7 @@ x-flows:
                     description:
                       code: INFO_PROVIDED
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2347,7 +2562,7 @@ x-flows:
                     description:
                       code: Processing
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2358,7 +2573,7 @@ x-flows:
                       code: RESOLUTION_PROPOSED
                       'name ': refund
                       short_desc: Seller app proposed the resolution
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2369,7 +2584,7 @@ x-flows:
                       code: RESOLUTION_PROVIDED
                       'name ': replacement
                       short_desc: Seller app proposed the resolution
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2506,7 +2721,7 @@ x-flows:
                     description:
                       code: OPEN
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2516,7 +2731,7 @@ x-flows:
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2527,7 +2742,7 @@ x-flows:
                       code: INFO_REQUESTED
                       'name ': INFO001
                       short_desc: Please provide product image
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2538,7 +2753,7 @@ x-flows:
                       code: INFO_REQUESTED
                       'name ': INFO002
                       short_desc: Please provide invoice
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2548,7 +2763,7 @@ x-flows:
                     description:
                       code: INFO_PROVIDED
                       short_desc: Buyer app providing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2558,7 +2773,7 @@ x-flows:
                     description:
                       code: Processing
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2568,7 +2783,7 @@ x-flows:
                     description:
                       code: INFO_REQUESTED
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2578,7 +2793,7 @@ x-flows:
                     description:
                       code: INFO_PROVIDED
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2588,7 +2803,7 @@ x-flows:
                     description:
                       code: Processing
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2599,7 +2814,7 @@ x-flows:
                       code: RESOLUTION_PROPOSED
                       'name ': refund
                       short_desc: Seller app proposed the resolution
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2610,7 +2825,7 @@ x-flows:
                       code: RESOLUTION_PROVIDED
                       'name ': replacement
                       short_desc: Seller app proposed the resolution
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2621,7 +2836,7 @@ x-flows:
                       code: RESOLVED
                       'name ': replacement
                       short_desc: Seller app proposed the resolution
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2632,7 +2847,7 @@ x-flows:
                       code: RESOLVED
                       'name ': replacement
                       short_desc: Seller app proposed the resolution
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2769,7 +2984,7 @@ x-flows:
                     description:
                       code: OPEN
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2779,7 +2994,7 @@ x-flows:
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2790,7 +3005,7 @@ x-flows:
                       code: INFO_REQUESTED
                       'name ': INFO001
                       short_desc: Please provide product image
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2801,7 +3016,7 @@ x-flows:
                       code: INFO_REQUESTED
                       'name ': INFO002
                       short_desc: Please provide invoice
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2811,7 +3026,7 @@ x-flows:
                     description:
                       code: INFO_PROVIDED
                       short_desc: Buyer app providing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2821,7 +3036,7 @@ x-flows:
                     description:
                       code: Processing
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2831,7 +3046,7 @@ x-flows:
                     description:
                       code: INFO_REQUESTED
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: 2023-01-15T10:00:00.469Z"
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2841,7 +3056,7 @@ x-flows:
                     description:
                       code: INFO_PROVIDED
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: 2023-01-15T10:00:00.469Z"
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2851,7 +3066,7 @@ x-flows:
                     description:
                       code: Processing
                       short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2862,7 +3077,7 @@ x-flows:
                       code: RESOLUTION_PROPOSED
                       'name ': refund
                       short_desc: Seller app proposed the resolution
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2873,7 +3088,7 @@ x-flows:
                       code: RESOLUTION_PROVIDED
                       'name ': replacement
                       short_desc: Seller app proposed the resolution
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2884,7 +3099,7 @@ x-flows:
                       code: RESOLVED
                       'name ': replacement
                       short_desc: Seller app proposed the resolution
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2895,7 +3110,7 @@ x-flows:
                       code: RESOLVED
                       'name ': replacement
                       short_desc: Seller app proposed the resolution
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2905,7 +3120,7 @@ x-flows:
                     description:
                       code: Closed
                       short_desc: Buyer app close the issue
-                    updated_at: 2023-01-15T10:00:00.469Z
+                    updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -2933,195 +3148,197 @@ x-attributes:
             id:
               required: mandatory
               type: String
-              owner: BPP
-              usage: false
-              description: false
+              owner: BAP
+              usage: ISSUE-1
+              description: The unique identifier for the issue or complaint.
             status:
               required: mandatory
               type: String
-              owner: BPP
-              usage: false
+              owner: BAP
+              usage: OPEN
               description: false
             level:
               required: mandatory
               type: String
-              owner: BPP
-              usage: false
+              owner: BAP
+              usage: ISSUE
               description: false
             created_at:
               required: mandatory
               type: String
-              owner: BPP
-              usage: false
+              owner: BAP
+              usage: '"2023-01-15T10:00:00.469Z"'
               description: false
             updated_at:
               required: mandatory
               type: String
-              owner: BPP
-              usage: false
+              owner: BAP
+              usage: '"2023-01-15T10:00:00.469Z"'
               description: false
             expected_response_time:
               duration:
                 required: mandatory
                 type: String
-                owner: BPP
-                usage: false
+                owner: BAP
+                usage: PT2H
                 description: false
             expected_resolution_time:
               duration:
                 required: mandatory
                 type: String
-                owner: BPP
-                usage: false
+                owner: BAP
+                usage: P1D
                 description: false
             ref:
               ref_id:
                 required: mandatory
                 type: String
-                owner: BPP
-                usage: false
+                owner: BAP
+                usage: O1
                 description: false
               ref_type:
                 required: mandatory
                 type: String
-                owner: BPP
-                usage: false
+                owner: BAP
+                usage: ORDER
                 description: false
             actor_info:
               id:
                 required: mandatory
                 type: String
-                owner: BPP
-                usage: false
+                owner: BAP
+                usage: P1
                 description: false
               type:
                 required: mandatory
                 type: String
-                owner: BPP
-                usage: false
+                owner: BAP
+                usage: PROVIDER
                 description: false
               info:
                 org:
                   name:
                     required: mandatory
                     type: String
-                    owner: BPP
-                    usage: false
+                    owner: BAP
+                    usage: buyerapp.com::ONDC:RET10
                     description: false
                 person:
                   name:
                     required: mandatory
                     type: String
-                    owner: BPP
-                    usage: false
+                    owner: BAP
+                    usage: Sam Manuel
                     description: false
                 contact:
                   phone:
                     required: mandatory
                     type: String
-                    owner: BPP
-                    usage: false
+                    owner: BAP
+                    usage: '"9879879870"'
                     description: false
                   email:
                     required: mandatory
                     type: String
-                    owner: BPP
-                    usage: false
+                    owner: BAP
+                    usage: sam@yahoo.com
                     description: false
             source_id:
               required: mandatory
               type: String
-              owner: BPP
-              usage: false
+              owner: BAP
+              usage: CUST1
               description: false
             complainant_id:
               required: mandatory
               type: String
-              owner: BPP
-              usage: false
+              owner: BAP
+              usage: NP1
               description: false
             description:
               code:
                 required: mandatory
                 type: String
-                owner: BPP
-                usage: false
+                owner: BAP
+                usage: ITM004
                 description: false
               short_desc:
                 required: mandatory
                 type: String
-                owner: BPP
-                usage: false
+                owner: BAP
+                usage: Issue with product quality
                 description: false
               long_desc:
                 required: mandatory
                 type: String
-                owner: BPP
-                usage: false
+                owner: BAP
+                usage: >-
+                  Product quality is not correct. facing issues while using the
+                  product
                 description: false
               additional_desc:
                 url:
                   required: mandatory
                   type: String
-                  owner: BPP
-                  usage: false
+                  owner: BAP
+                  usage: https://buyerapp.com/additonal-details/desc.txt
                   description: false
                 content_type:
                   required: mandatory
                   type: String
-                  owner: BPP
-                  usage: false
+                  owner: BAP
+                  usage: text/plain
                   description: false
               images:
                 required: mandatory
                 type: String
-                owner: BPP
-                usage: false
+                owner: BAP
+                usage: http://buyerapp.com/addtional-details/img1.png
                 description: false
             last_action_id:
               required: mandatory
               type: String
-              owner: BPP
-              usage: false
+              owner: BAP
+              usage: A1
               description: false
             actions:
               id:
                 required: mandatory
                 type: String
-                owner: BPP
-                usage: false
+                owner: BAP
+                usage: OPEN
                 description: false
               description:
                 code:
                   required: mandatory
                   type: String
-                  owner: BPP
-                  usage: false
+                  owner: BAP
+                  usage: Complaint created
                   description: false
                 short_desc:
                   required: mandatory
                   type: String
-                  owner: BPP
-                  usage: false
+                  owner: BAP
+                  usage: Complaint created
                   description: false
               'updated_at:':
                 required: mandatory
                 type: String
-                owner: BPP
-                usage: false
+                owner: BAP
+                usage: '2023-01-15T10:00:00.469Z'
                 description: false
               action_by:
                 required: mandatory
                 type: String
-                owner: BPP
-                usage: false
+                owner: BAP
+                usage: NP1
                 description: false
               actor_details:
                 name:
                   required: mandatory
                   type: String
-                  owner: BPP
-                  usage: false
+                  owner: BAP
+                  usage: Sam Manuel
                   description: false
       on_issue:
         message:
@@ -3130,192 +3347,200 @@ x-attributes:
               required: mandatory
               type: String
               owner: BPP
-              usage: false
-              description: false
+              usage: ISSUE-1
+              description: >-
+                Network issue identifier is an unique number assigned to any
+                complaint by the interfacing application at the source.
             status:
               required: mandatory
               type: String
               owner: BPP
-              usage: false
-              description: false
+              usage: OPEN
+              description: describe issue status
             level:
               required: mandatory
               type: String
               owner: BPP
-              usage: false
+              usage: ISSUE
               description: false
             created_at:
               required: mandatory
               type: String
               owner: BPP
-              usage: false
-              description: false
+              usage: '"2023-01-15T10:00:00.469Z"'
+              description: timestamp for the creation of the issue
             updated_at:
               required: mandatory
               type: String
               owner: BPP
-              usage: false
-              description: false
+              usage: '"2023-01-15T10:00:00.469Z"'
+              description: timestamp for the capturing the time an issue was last updated
             expected_response_time:
               duration:
                 required: mandatory
                 type: String
                 owner: BPP
-                usage: false
-                description: false
+                usage: PT2H
+                description: >-
+                  Describes time in its various forms. It can be a single point
+                  in time; duration; or a structured timetable of operations
             expected_resolution_time:
               duration:
                 required: mandatory
                 type: String
                 owner: BPP
-                usage: false
-                description: false
+                usage: P1D
+                description: >-
+                  Describes time in its various forms. It can be a single point
+                  in time; duration; or a structured timetable of operations
             ref:
               ref_id:
                 required: mandatory
                 type: String
                 owner: BPP
-                usage: false
-                description: false
+                usage: O1
+                description: Reference to another object
               ref_type:
                 required: mandatory
                 type: String
                 owner: BPP
-                usage: false
-                description: false
+                usage: ORDER
+                description: Type of referenced object
             actor_info:
               id:
                 required: mandatory
                 type: String
                 owner: BPP
-                usage: false
-                description: false
+                usage: P1
+                description: ID of the actor
               type:
                 required: mandatory
                 type: String
                 owner: BPP
-                usage: false
-                description: false
+                usage: PROVIDER
+                description: 'Type of the actor '
               info:
                 org:
                   name:
                     required: mandatory
                     type: String
                     owner: BPP
-                    usage: false
-                    description: false
+                    usage: buyerapp.com::ONDC:RET10
+                    description: Organization name of the actor
                 person:
                   name:
                     required: mandatory
                     type: String
                     owner: BPP
-                    usage: false
-                    description: false
+                    usage: Sam Manuel
+                    description: Name of a repersentative of the  actor
                 contact:
                   phone:
                     required: mandatory
                     type: String
                     owner: BPP
-                    usage: false
-                    description: false
+                    usage: '"9879879870"'
+                    description: Phone no of the actor
                   email:
                     required: mandatory
                     type: String
                     owner: BPP
-                    usage: false
-                    description: false
+                    usage: sam@yahoo.com
+                    description: Email ID of the actor
             source_id:
               required: mandatory
               type: String
               owner: BPP
-              usage: false
-              description: false
+              usage: CUST1
+              description: ID of the actor where the complaint was raised
             complainant_id:
               required: mandatory
               type: String
               owner: BPP
-              usage: false
-              description: false
+              usage: NP1
+              description: ID of the Netework participant
             description:
               code:
                 required: mandatory
                 type: String
                 owner: BPP
-                usage: false
-                description: false
+                usage: ITM004
+                description: Category of the complaint
               short_desc:
                 required: mandatory
                 type: String
                 owner: BPP
-                usage: false
-                description: false
+                usage: Issue with product quality
+                description: Short description about the complainant
               long_desc:
                 required: mandatory
                 type: String
                 owner: BPP
-                usage: false
-                description: false
+                usage: >-
+                  Product quality is not correct. facing issues while using the
+                  product
+                description: Long description about the complainant
               additional_desc:
                 url:
                   required: mandatory
                   type: String
                   owner: BPP
-                  usage: false
-                  description: false
+                  usage: https://buyerapp.com/additonal-details/desc.txt
+                  description: Additional desc about complainant
                 content_type:
                   required: mandatory
                   type: String
                   owner: BPP
-                  usage: false
+                  usage: text/plain
                   description: false
               images:
                 required: mandatory
                 type: String
                 owner: BPP
-                usage: false
-                description: false
+                usage: http://buyerapp.com/addtional-details/img1.png
+                description: Image link
             last_action_id:
               required: mandatory
               type: String
               owner: BPP
-              usage: false
-              description: false
+              usage: A1
+              description: Description about the last action ID
             actions:
               id:
                 required: mandatory
                 type: String
                 owner: BPP
-                usage: false
-                description: false
+                usage: OPEN
+                description: Describes about the action ID
               description:
                 code:
                   required: mandatory
                   type: String
                   owner: BPP
-                  usage: false
-                  description: false
+                  usage: Complaint created
+                  description: 'Describes the action code '
                 short_desc:
                   required: mandatory
                   type: String
                   owner: BPP
-                  usage: false
-                  description: false
+                  usage: Complaint created
+                  description: Describes the short description
               'updated_at:':
                 required: mandatory
                 type: String
                 owner: BPP
-                usage: false
-                description: false
+                usage: '2023-01-15T10:00:00.469Z'
+                description: Describes the update at timestamp of the action
               action_by:
                 required: mandatory
                 type: String
                 owner: BPP
-                usage: false
-                description: false
+                usage: NP1
+                description: Tells about who is performing the action
               actor_details:
                 name:
                   required: mandatory
                   type: String
                   owner: BPP
-                  usage: false
-                  description: false
+                  usage: Sam Manuel
+                  description: Name of the actor

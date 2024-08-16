@@ -35,19 +35,19 @@ message:
         ref_type: FULFILMENT
       - ref_id: I1
         ref_type: ITEM
-        ref_details:
+        tags:
           - descriptor:
               code: message.order.items
             list:
               - descriptor:
                   code: quantity.selected.count
                 value: "2"
-    actor_info:
+    actors:
       - id: CUST1
         type: CONSUMER
         info:
           org:
-            name: buyerapp.com::ONDC:RET10
+            name: "buyerapp.com::ONDC:RET10"
           person:
             name: Sam Manuel
           contact:
@@ -57,7 +57,7 @@ message:
         type: INTERFACING-NP
         info:
           org:
-            name: buyerapp.com::ONDC:RET10
+            name: "buyerapp.com::ONDC:RET10"
           contact:
             phone: "9450394039"
             email: buyerapp@interface.com
@@ -81,7 +81,7 @@ message:
         description:
           code: OPEN
           short_desc: Complaint created
-        updated_at: 2023-01-15T10:00:00.469Z
+        updated_at: "2023-01-15T10:00:00.469Z"
         action_by: NP1
         actor_details:
           name: Sam Manuel

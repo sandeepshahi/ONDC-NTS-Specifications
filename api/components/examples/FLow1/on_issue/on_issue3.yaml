@@ -12,8 +12,8 @@ context:
   bpp_id: sellerapp.com
   bpp_uri: https://sellerapp.com/ondc
   transaction_id: T1
-  message_id: M1
-  timestamp: "2023-01-15T10:00:00.469Z"
+  message_id: M2
+  timestamp: 2023-01-15T10:00:00.469Z
   ttl: PT30S
 message:
   upated_target:
@@ -23,8 +23,8 @@ message:
     id: ISSUE-1
     status: PROCESSING
     level: ISSUE
-    created_at: "2023-01-15T10:00:00.469Z"
-    updated_at: "2023-01-15T10:00:00.469Z"
+    created_at: 2023-01-15T10:00:00.469Z
+    updated_at: 2023-01-15T10:00:00.469Z
     expected_response_time:
       duration: PT2H
     expected_resolution_time:
@@ -38,14 +38,14 @@ message:
         ref_type: FULFILMENT
       - ref_id: I1
         ref_type: ITEM
-        ref_details:
+        tags:
           - descriptor:
               code: message.order.items
             list:
               - descriptor:
                   code: quantity.selected.count
                 value: "2"
-    actor_info:
+    actors:
       - id: CUST1
         type: CONSUMER
         info:
@@ -80,8 +80,6 @@ message:
     complainant_id: NP1
     respondent_ids:
       - NP2
-    resolver_ids:
-      - NP2
     description:
       code: ITM004
       short_desc: Issue with product quality
@@ -95,44 +93,36 @@ message:
     last_action_id: A4
     actions:
       - id: A1
-        ref_id: "-"
-        ref_type: ""
         description:
           code: OPEN
           short_desc: Complaint created
-        updated_at: "2023-01-15T10:00:00.469Z"
+        updated_at: 2023-01-15T10:00:00.469Z
         action_by: NP1
         actor_details:
           name: Sam Manuel
       - id: A2
-        ref_id: "-"
-        ref_type: ""
         description:
           code: PROCESSING
           short_desc: Complaint created
-        updated_at: "2023-01-15T10:00:00.469Z"
+        updated_at: 2023-01-15T10:00:00.469Z
         action_by: NP1
         actor_details:
           name: Sam Manuel
-      - id: A3
-        ref_id: "-"
-        ref_type: ""
+      - id: A3_1
         description:
           code: INFO_REQUESTED
-          "name ": INFO001
-          short_desc: Please provide product image
-        updated_at: "2023-01-15T10:00:00.469Z"
+          name: INFO001
+          short_desc: Please provide product images
+        updated_at: 2023-01-15T10:00:00.469Z
         action_by: NP1
         actor_details:
           name: Sam Manuel
-      - id: A4
-        ref_id: "-"
-        ref_type: ""
+      - id: A3_2
         description:
           code: INFO_REQUESTED
-          "name ": INFO002
+          name: INFO002
           short_desc: Please provide invoice
-        updated_at: "2023-01-15T10:00:00.469Z"
+        updated_at: 2023-01-15T10:00:00.469Z
         action_by: NP1
         actor_details:
           name: Sam Manuel

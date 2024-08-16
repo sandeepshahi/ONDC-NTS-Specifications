@@ -4,195 +4,197 @@ issue:
       id:
         required: mandatory
         type: String
-        owner: BPP
-        usage: false
-        description: false
+        owner: BAP
+        usage: ISSUE-1
+        description: The unique identifier for the issue or complaint.
       status:
         required: mandatory
         type: String
-        owner: BPP
-        usage: false
+        owner: BAP
+        usage: OPEN
         description: false
       level:
         required: mandatory
         type: String
-        owner: BPP
-        usage: false
+        owner: BAP
+        usage: ISSUE
         description: false
       created_at:
         required: mandatory
         type: String
-        owner: BPP
-        usage: false
+        owner: BAP
+        usage: '"2023-01-15T10:00:00.469Z"'
         description: false
       updated_at:
         required: mandatory
         type: String
-        owner: BPP
-        usage: false
+        owner: BAP
+        usage: '"2023-01-15T10:00:00.469Z"'
         description: false
       expected_response_time:
         duration:
           required: mandatory
           type: String
-          owner: BPP
-          usage: false
+          owner: BAP
+          usage: PT2H
           description: false
       expected_resolution_time:
         duration:
           required: mandatory
           type: String
-          owner: BPP
-          usage: false
+          owner: BAP
+          usage: P1D
           description: false
       ref:
         ref_id:
           required: mandatory
           type: String
-          owner: BPP
-          usage: false
+          owner: BAP
+          usage: O1
           description: false
         ref_type:
           required: mandatory
           type: String
-          owner: BPP
-          usage: false
+          owner: BAP
+          usage: ORDER
           description: false
       actor_info:
         id:
           required: mandatory
           type: String
-          owner: BPP
-          usage: false
+          owner: BAP
+          usage: P1
           description: false
         type:
           required: mandatory
           type: String
-          owner: BPP
-          usage: false
+          owner: BAP
+          usage: PROVIDER
           description: false
         info:
           org:
             name:
               required: mandatory
               type: String
-              owner: BPP
-              usage: false
+              owner: BAP
+              usage: buyerapp.com::ONDC:RET10
               description: false
           person:
             name:
               required: mandatory
               type: String
-              owner: BPP
-              usage: false
+              owner: BAP
+              usage: Sam Manuel
               description: false
           contact:
             phone:
               required: mandatory
               type: String
-              owner: BPP
-              usage: false
+              owner: BAP
+              usage: '"9879879870"'
               description: false
             email:
               required: mandatory
               type: String
-              owner: BPP
-              usage: false
+              owner: BAP
+              usage: sam@yahoo.com
               description: false
       source_id:
         required: mandatory
         type: String
-        owner: BPP
-        usage: false
+        owner: BAP
+        usage: CUST1
         description: false
       complainant_id:
         required: mandatory
         type: String
-        owner: BPP
-        usage: false
+        owner: BAP
+        usage: NP1
         description: false
       description:
         code:
           required: mandatory
           type: String
-          owner: BPP
-          usage: false
+          owner: BAP
+          usage: ITM004
           description: false
         short_desc:
           required: mandatory
           type: String
-          owner: BPP
-          usage: false
+          owner: BAP
+          usage: Issue with product quality
           description: false
         long_desc:
           required: mandatory
           type: String
-          owner: BPP
-          usage: false
+          owner: BAP
+          usage: >-
+            Product quality is not correct. facing issues while using the
+            product
           description: false
         additional_desc:
           url:
             required: mandatory
             type: String
-            owner: BPP
-            usage: false
+            owner: BAP
+            usage: https://buyerapp.com/additonal-details/desc.txt
             description: false
           content_type:
             required: mandatory
             type: String
-            owner: BPP
-            usage: false
+            owner: BAP
+            usage: text/plain
             description: false
         images:
           required: mandatory
           type: String
-          owner: BPP
-          usage: false
+          owner: BAP
+          usage: http://buyerapp.com/addtional-details/img1.png
           description: false
       last_action_id:
         required: mandatory
         type: String
-        owner: BPP
-        usage: false
+        owner: BAP
+        usage: A1
         description: false
       actions:
         id:
           required: mandatory
           type: String
-          owner: BPP
-          usage: false
+          owner: BAP
+          usage: OPEN
           description: false
         description:
           code:
             required: mandatory
             type: String
-            owner: BPP
-            usage: false
+            owner: BAP
+            usage: Complaint created
             description: false
           short_desc:
             required: mandatory
             type: String
-            owner: BPP
-            usage: false
+            owner: BAP
+            usage: Complaint created
             description: false
         'updated_at:':
           required: mandatory
           type: String
-          owner: BPP
-          usage: false
+          owner: BAP
+          usage: '2023-01-15T10:00:00.469Z'
           description: false
         action_by:
           required: mandatory
           type: String
-          owner: BPP
-          usage: false
+          owner: BAP
+          usage: NP1
           description: false
         actor_details:
           name:
             required: mandatory
             type: String
-            owner: BPP
-            usage: false
+            owner: BAP
+            usage: Sam Manuel
             description: false
 on_issue:
   message:
@@ -201,192 +203,200 @@ on_issue:
         required: mandatory
         type: String
         owner: BPP
-        usage: false
-        description: false
+        usage: ISSUE-1
+        description: >-
+          Network issue identifier is an unique number assigned to any complaint
+          by the interfacing application at the source.
       status:
         required: mandatory
         type: String
         owner: BPP
-        usage: false
-        description: false
+        usage: OPEN
+        description: describe issue status
       level:
         required: mandatory
         type: String
         owner: BPP
-        usage: false
+        usage: ISSUE
         description: false
       created_at:
         required: mandatory
         type: String
         owner: BPP
-        usage: false
-        description: false
+        usage: '"2023-01-15T10:00:00.469Z"'
+        description: timestamp for the creation of the issue
       updated_at:
         required: mandatory
         type: String
         owner: BPP
-        usage: false
-        description: false
+        usage: '"2023-01-15T10:00:00.469Z"'
+        description: timestamp for the capturing the time an issue was last updated
       expected_response_time:
         duration:
           required: mandatory
           type: String
           owner: BPP
-          usage: false
-          description: false
+          usage: PT2H
+          description: >-
+            Describes time in its various forms. It can be a single point in
+            time; duration; or a structured timetable of operations
       expected_resolution_time:
         duration:
           required: mandatory
           type: String
           owner: BPP
-          usage: false
-          description: false
+          usage: P1D
+          description: >-
+            Describes time in its various forms. It can be a single point in
+            time; duration; or a structured timetable of operations
       ref:
         ref_id:
           required: mandatory
           type: String
           owner: BPP
-          usage: false
-          description: false
+          usage: O1
+          description: Reference to another object
         ref_type:
           required: mandatory
           type: String
           owner: BPP
-          usage: false
-          description: false
+          usage: ORDER
+          description: Type of referenced object
       actor_info:
         id:
           required: mandatory
           type: String
           owner: BPP
-          usage: false
-          description: false
+          usage: P1
+          description: ID of the actor
         type:
           required: mandatory
           type: String
           owner: BPP
-          usage: false
-          description: false
+          usage: PROVIDER
+          description: 'Type of the actor '
         info:
           org:
             name:
               required: mandatory
               type: String
               owner: BPP
-              usage: false
-              description: false
+              usage: buyerapp.com::ONDC:RET10
+              description: Organization name of the actor
           person:
             name:
               required: mandatory
               type: String
               owner: BPP
-              usage: false
-              description: false
+              usage: Sam Manuel
+              description: Name of a repersentative of the  actor
           contact:
             phone:
               required: mandatory
               type: String
               owner: BPP
-              usage: false
-              description: false
+              usage: '"9879879870"'
+              description: Phone no of the actor
             email:
               required: mandatory
               type: String
               owner: BPP
-              usage: false
-              description: false
+              usage: sam@yahoo.com
+              description: Email ID of the actor
       source_id:
         required: mandatory
         type: String
         owner: BPP
-        usage: false
-        description: false
+        usage: CUST1
+        description: ID of the actor where the complaint was raised
       complainant_id:
         required: mandatory
         type: String
         owner: BPP
-        usage: false
-        description: false
+        usage: NP1
+        description: ID of the Netework participant
       description:
         code:
           required: mandatory
           type: String
           owner: BPP
-          usage: false
-          description: false
+          usage: ITM004
+          description: Category of the complaint
         short_desc:
           required: mandatory
           type: String
           owner: BPP
-          usage: false
-          description: false
+          usage: Issue with product quality
+          description: Short description about the complainant
         long_desc:
           required: mandatory
           type: String
           owner: BPP
-          usage: false
-          description: false
+          usage: >-
+            Product quality is not correct. facing issues while using the
+            product
+          description: Long description about the complainant
         additional_desc:
           url:
             required: mandatory
             type: String
             owner: BPP
-            usage: false
-            description: false
+            usage: https://buyerapp.com/additonal-details/desc.txt
+            description: Additional desc about complainant
           content_type:
             required: mandatory
             type: String
             owner: BPP
-            usage: false
+            usage: text/plain
             description: false
         images:
           required: mandatory
           type: String
           owner: BPP
-          usage: false
-          description: false
+          usage: http://buyerapp.com/addtional-details/img1.png
+          description: Image link
       last_action_id:
         required: mandatory
         type: String
         owner: BPP
-        usage: false
-        description: false
+        usage: A1
+        description: Description about the last action ID
       actions:
         id:
           required: mandatory
           type: String
           owner: BPP
-          usage: false
-          description: false
+          usage: OPEN
+          description: Describes about the action ID
         description:
           code:
             required: mandatory
             type: String
             owner: BPP
-            usage: false
-            description: false
+            usage: Complaint created
+            description: 'Describes the action code '
           short_desc:
             required: mandatory
             type: String
             owner: BPP
-            usage: false
-            description: false
+            usage: Complaint created
+            description: Describes the short description
         'updated_at:':
           required: mandatory
           type: String
           owner: BPP
-          usage: false
-          description: false
+          usage: '2023-01-15T10:00:00.469Z'
+          description: Describes the update at timestamp of the action
         action_by:
           required: mandatory
           type: String
           owner: BPP
-          usage: false
-          description: false
+          usage: NP1
+          description: Tells about who is performing the action
         actor_details:
           name:
             required: mandatory
             type: String
             owner: BPP
-            usage: false
-            description: false
+            usage: Sam Manuel
+            description: Name of the actor

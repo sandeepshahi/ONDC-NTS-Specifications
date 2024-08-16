@@ -12,8 +12,8 @@ context:
   bpp_id: sellerapp.com
   bpp_uri: https://sellerapp.com/ondc
   transaction_id: T1
-  message_id: M1
-  timestamp: "2023-01-15T10:00:00.469Z"
+  message_id: M4
+  timestamp: 2023-01-15T10:00:00.469Z
   ttl: PT30S
 message:
   upated_target:
@@ -23,8 +23,8 @@ message:
     id: ISSUE-1
     status: PROCESSING
     level: ISSUE
-    created_at: "2023-01-15T10:00:00.469Z"
-    updated_at: "2023-01-15T10:00:00.469Z"
+    created_at: 2023-01-15T10:00:00.469Z
+    updated_at: 2023-01-15T10:00:00.469Z
     expected_response_time:
       duration: PT2H
     expected_resolution_time:
@@ -38,14 +38,14 @@ message:
         ref_type: FULFILMENT
       - ref_id: I1
         ref_type: ITEM
-        ref_details:
+        tags:
           - descriptor:
               code: message.order.items
             list:
               - descriptor:
                   code: quantity.selected.count
                 value: "2"
-    actor_info:
+    actors:
       - id: CUST1
         type: CONSUMER
         info:
@@ -80,8 +80,6 @@ message:
     complainant_id: NP1
     respondent_ids:
       - NP2
-    resolver_ids:
-      - NP2
     description:
       code: ITM004
       short_desc: Issue with product quality
@@ -92,11 +90,9 @@ message:
       images:
         - http://buyerapp.com/addtional-details/img1.png
         - http://buyerapp.com/addtional-details/img2.png
-    last_action_id: A7
+    last_action_id: A6
     actions:
       - id: A1
-        ref_id: "-"
-        ref_type: ""
         description:
           code: OPEN
           short_desc: Complaint created
@@ -105,64 +101,58 @@ message:
         actor_details:
           name: Sam Manuel
       - id: A2
-        ref_id: "-"
-        ref_type: ""
         description:
           code: PROCESSING
           short_desc: Complaint created
         updated_at: 2023-01-15T10:00:00.469Z
-        action_by: NP1
+        action_by: NP2
         actor_details:
           name: Sam Manuel
-      - id: A3
-        ref_id: "-"
-        ref_type: ""
+      - id: A3_1
         description:
           code: INFO_REQUESTED
-          "name ": INFO001
+          name: INFO001
           short_desc: Please provide product image
         updated_at: 2023-01-15T10:00:00.469Z
         action_by: NP1
         actor_details:
           name: Sam Manuel
-      - id: A4
-        ref_id: "-"
-        ref_type: ""
+      - id: A3_2
         description:
           code: INFO_REQUESTED
-          "name ": INFO002
+          name: INFO002
           short_desc: Please provide invoice
         updated_at: 2023-01-15T10:00:00.469Z
         action_by: NP1
         actor_details:
           name: Sam Manuel
-      - id: A5
-        ref_id: "-"
-        ref_type: ""
+      - id: A4
+        ref_id: A3_1
         description:
           code: INFO_PROVIDED
-          short_desc: Buyer app providing the info
+          short_desc: Responded with images
+          images:
+            - http://buyerapp.com/addtional-details/img3.png
+            - http://buyerapp.com/addtional-details/img4.png
         updated_at: 2023-01-15T10:00:00.469Z
         action_by: NP1
+        actor_details:
+          name: Sam Manuel
+      - id: A5
+        description:
+          code: PROCESSING
+          short_desc: Complaint created
+        updated_at: 2023-01-15T10:00:00.469Z
+        action_by: NP2
         actor_details:
           name: Sam Manuel
       - id: A6
-        ref_id: "-"
-        ref_type: ""
-        description:
-          code: Processing
-          short_desc: Seller app processing the info
-        updated_at: 2023-01-15T10:00:00.469Z
-        action_by: NP1
-        actor_details:
-          name: Sam Manuel
-      - id: A7
-        ref_id: A4
-        ref_type: ""
+        ref_id: A3_2
         description:
           code: INFO_REQUESTED
-          short_desc: Seller app processing the info
+          name: INFO002
+          short_desc: Please provide invoice
         updated_at: 2023-01-15T10:00:00.469Z
-        action_by: NP1
+        action_by: NP2
         actor_details:
           name: Sam Manuel

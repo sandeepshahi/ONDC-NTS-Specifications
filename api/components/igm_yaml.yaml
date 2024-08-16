@@ -112,31 +112,6 @@ components:
           enum:
             - ACK
             - NACK
-    # Complainant:
-      # description: |
-      #   - Describes an entity that raises a complaint with an interfacing app. 
-      #   - The complainant may be an end user (buyer or seller) or a network participant (buyer app/ seller app/ logistic services  provider app)
-      # type: object
-      # properties:
-      #   person:
-      #     $ref: "#/components/schemas/Person"
-      #   contact:
-      #     allOf:
-      #       - $ref: "#/components/schemas/Contact"
-      #       - type: object
-      #         required:
-      #         - phone
-      # required:
-      #   - contact
-    
-   
-    Organization:
-      type: object
-      properties:
-        contact: 
-         $ref: "#/components/schemas/Contact"
-        person:
-          $ref: "#/components/schemas/Person"
     Issue:
       description: |
         *  Describes the Issue/complaint raised for a particular order, transaction or fulfillment or item for which an issue is faced by the buyer.
@@ -194,50 +169,44 @@ components:
         complainant_id:
          description: Describe about the complainant_id
          type: string
-        respondent_id:
+        respondent_ids:
          description: Describes about the respondent_id
          type: array
-        resolver_id:
+         items:
+          type: string
+        resolver_ids:
          description: Describes about the respondent_id
-         type: array 
+         type: array
+         items:
+          type: string
         last_action_id:  
          description: Describes the last action id
          type: string
         actions:
-          description:
-           state the description of the action
+          description: state the description of the action
           type: array
-          $ref:  "#/components/schemas/Action"       
-        description:
-          description: 
-            describes about description
-          type: object
-          properties:
-            code:
-              description: describes about code of the description
-              type: string
-            short_desc:
-              description: describes about the short description
-              type : string
-            long_desc:
-              description: describes about the long description
-              type : string 
-            # additional_desc:
-            #   description: describes about the additional_desc
-            #   $ref: "#/components/schemas/Additional_desc"
-            image:  
-             description: describes the image 
-             type: array
-        actor_info:
-          description:
-           state the description of the actor that are involve
+          items:
+            $ref:  "#/components/schemas/Action"       
+        descriptor:
+          $ref: "#/components/schemas/Descriptor"
+        actors:
+          description: state the description of the actor that are involve
           type: array
-          $ref:  "#/components/schemas/Actor_info"
+          items: 
+            $ref:  "#/components/schemas/Actor_info"
+        resolutions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resolution'
         refs:
-           description:
-            state the reference of the oreference
+           description: state the reference of the oreference
            type: array
-           $ref:  "#/components/schemas/Refs"
+           items: 
+            $ref:  "#/components/schemas/Refs"
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagGroup'
     Action:
        type: object
        properties:
@@ -250,23 +219,28 @@ components:
         ref_type:   
           description: Describes the refence type
           type: string
-        description:
-          type: string
-          enum:
-            - OPEN
-            - PROCESSING
-            - CLOSED
-            - CASCADED
-            - INFO_REQUESTED
-            - INFO_PROCESSING
-            - INFO_PROVIDED
-            - INFO_NOT_AVAILABLE
-            - RESOLUTION_PROPOSED
-            - RESOLUTION_FORWARDED
-            - RESOLUTION_PROCESSING
-            - RESOLUTION_ACCEPTED
-            - RESOLUTION_REJECTED
-            - RESOLVED
+        descriptor:
+         allOf:
+          - $ref: "#/components/schemas/Descriptor"
+          - type: object
+            properties:
+              code:
+                type: string
+                enum:
+                  - OPEN
+                  - PROCESSING
+                  - CLOSED
+                  - CASCADED
+                  - INFO_REQUESTED
+                  - INFO_PROCESSING
+                  - INFO_PROVIDED
+                  - INFO_NOT_AVAILABLE
+                  - RESOLUTION_PROPOSED
+                  - RESOLUTION_FORWARDED
+                  - RESOLUTION_PROCESSING
+                  - RESOLUTION_ACCEPTED
+                  - RESOLUTION_REJECTED
+                  - RESOLVED
         updated_at:
           description: timestamp for the capturing the time an issue status was last updated
           type: string
@@ -274,12 +248,8 @@ components:
         action_by:
           description: Describes the action_by
           type: string
-        action_details:
-          type: object
-          properties:
-            name:
-              description: tells about the name 
-              type: string
+        tags:
+          $ref: '#/components/schemas/TagGroup'
     Actor_info:
       type: object
       properties:
@@ -293,18 +263,23 @@ components:
           description: Describes the information about actor
           type: object
           properties:
-            org:
-              description: Describes the information about actor
-              type: object
-              properties:
-                name:
-                  type: string
+            person:
+              $ref: '#/components/schemas/Person'
             contact:
-              description: Describes the information about person
-              $ref: "#/components/schemas/Contact"
-            person:  
-              description: Describes the information about person
-              $ref: "#/components/schemas/Person"
+              $ref: '#/components/schemas/Contact'
+            org:
+              type: 
+    Additional_desc:
+      type: object
+      properties:
+        url:
+          type: string
+        content_type:
+          type: string
+          enum:
+            - text/plain
+            - text/html
+            - application/json
     Contact:
       type: object
       properties:
@@ -312,25 +287,158 @@ components:
           type: string
         email:
           type: string          
-    Person:
-      description: Describes a person.
+    Credential:
+      description: Describes a credential of an entity - Person or Organization
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          default: VerifiableCredential
+        url:
+          description: URL of the credential
+          type: string
+          format: uri
+    Descriptor:
+      description: Physical description of something.
       type: object
       properties:
         name:
           type: string
-          description: 'Describes the name of a person in format: ./{given_name}/{honorific_prefix}/{first_name}/{middle_name}/{last_name}/{honorific_suffix}'
-          # pattern: '^\./[^/]+/[^/]*/[^/]*/[^/]*/[^/]*/[^/]*$'
-        Image:
-         description: 'Image of an object. <br/><br/> A url based image will look like <br/><br/>```uri:http://path/to/image``` <br/><br/> An image can also be sent as a data string. For example : <br/><br/> ```data:js87y34ilhriuho84r3i4```'
-         type: string
+        code:
+          type: string
+        short_desc:
+          type: string
+        long_desc:
+          type: string
+        additional_desc:
+          $ref: "#/components/schemas/Additional_desc"
+        media:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaFile'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+    Duration:
+      description: Describes duration as per ISO8601 format
+      type: string
+    Image:
+      description: Describes an image
+      type: object
+      properties:
+        url:
+          description: URL to the image. This can be a data url or an remote url
+          type: string
+          format: uri
+        size_type:
+          description: The size of the image. The network policy can define the default dimensions of each type
+          type: string
+          enum:
+            - xs
+            - sm
+            - md
+            - lg
+            - xl
+            - custom
+        width:
+          description: Width of the image in pixels
+          type: string
+        height:
+          description: Height of the image in pixels
+          type: string
+    MediaFile:
+      description: This object contains a url to a media file.
+      type: object
+      properties:
+        mimetype:
+          description: 'indicates the nature and format of the document, file, or assortment of bytes. MIME types are defined and standardized in IETF''s RFC 6838'
+          type: string
+        url:
+          description: The URL of the file
+          type: string
+          format: uri
+        signature:
+          description: The digital signature of the file signed by the sender
+          type: string
+        dsa:
+          description: The signing algorithm used by the sender
+          type: string
+        time:
+          $ref: '#/components/schemas/Time'
+    Person:
+      description: Describes a person as any individual
+      type: object
+      properties:
+        id:
+          type: string
+          description: Describes the identity of the person
+        url:
+          description: Profile url of the person
+          type: string
+          format: uri
+        name:
+          description: the name of the person
+          type: string
+        image:
+          $ref: '#/components/schemas/Image'
+        age:
+          description: Age of the person
+          allOf:
+            - $ref: '#/components/schemas/Duration'
         dob:
+          description: Date of birth of the person
           type: string
           format: date
         gender:
           type: string
-          description: 'Gender of something, typically a Person, but possibly also fictional characters, animals, etc. While Male and Female may be used, text strings are also acceptable for people who do not identify as a binary gender'
-        cred:
-          type: string
+          description: 'Gender of something, typically a Person, but possibly also fictional characters, animals, etc. While Male and Female may be used, text strings are also acceptable for people who do not identify as a binary gender.Allowed values for this field can be published in the network policy'
+        creds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Credential'
+        languages:
+          type: array
+          items:
+            description: Describes a language known to the person.
+            type: object
+            properties:
+              code:
+                type: string
+              name:
+                type: string
+        skills:
+          type: array
+          items:
+            description: Describes a skill of the person.
+            type: object
+            properties:
+              code:
+                type: string
+              name:
+                type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagGroup'
+    Schedule:
+      description: 'Describes schedule as a repeating time period used to describe a regularly recurring event. At a minimum a schedule will specify frequency which describes the interval between occurrences of the event. Additional information can be provided to specify the schedule more precisely. This includes identifying the timestamps(s) of when the event will take place. Schedules may also have holidays to exclude a specific day from the schedule.<br>This has properties like frequency, holidays, times'
+      type: object
+      properties:
+        frequency:
+          $ref: '#/components/schemas/Duration'
+        holidays:
+          type: array
+          items:
+            type: string
+            format: date-time
+        times:
+          type: array
+          items:
+            type: string
+            format: date-time
     Time:
       description: Describes time in its various forms. It can be a single point in time; duration; or a structured timetable of operations
       type: object
@@ -340,8 +448,8 @@ components:
         timestamp:
           type: string
           format: date-time
-        # duration:
-        #   $ref: '#/components/schemas/Duration'
+        duration:
+          $ref: '#/components/schemas/Duration'
         range:
           type: object
           properties:
@@ -354,8 +462,8 @@ components:
         days:
           type: string
           description: comma separated values representing days of the week
-        # schedule:
-        #   $ref: '#/components/schemas/Schedule'
+        schedule:
+          $ref: '#/components/schemas/Schedule'
     Context:
       description: Describes a beckn message context
       type: object
@@ -445,11 +553,71 @@ components:
             - DOMAIN-ERROR
             - POLICY-ERROR
             - JSON-SCHEMA-ERROR 
-
-    # REF_DETAILS:
-    #    description: tells abot ref details
-    #    type: 
-
+    TagGroup:
+      description: 'A collection of tag objects with group level attributes. For detailed documentation on the Tags and Tag Groups schema go to https://github.com/beckn/protocol-specifications/discussions/316'
+      type: object
+      properties:
+        display:
+          description: 'Indicates the display properties of the tag group. If display is set to false, then the group will not be displayed. If it is set to true, it should be displayed. However, group-level display properties can be overriden by individual tag-level display property. As this schema is purely for catalog display purposes, it is not recommended to send this value during search.'
+          type: boolean
+          default: true
+        descriptor:
+          description: 'Description of the TagGroup, can be used to store detailed information.'
+          allOf:
+            - $ref: '#/components/schemas/Descriptor'
+        list:
+          description: 'An array of Tag objects listed under this group. This property can be set by BAPs during search to narrow the `search` and achieve more relevant results. When received during `on_search`, BAPs must render this list under the heading described by the `name` property of this schema.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+    Tag:
+      description: 'Describes a tag. This is used to contain extended metadata. This object can be added as a property to any schema to describe extended attributes. For BAPs, tags can be sent during search to optimize and filter search results. BPPs can use tags to index their catalog to allow better search functionality. Tags are sent by the BPP as part of the catalog response in the `on_search` callback. Tags are also meant for display purposes. Upon receiving a tag, BAPs are meant to render them as name-value pairs. This is particularly useful when rendering tabular information about a product or service.'
+      type: object
+      properties:
+        descriptor:
+          description: 'Description of the Tag, can be used to store detailed information.'
+          allOf:
+            - $ref: '#/components/schemas/Descriptor'
+        value:
+          description: The value of the tag. This set by the BPP and rendered as-is by the BAP.
+          type: string
+        display:
+          description: 'This value indicates if the tag is intended for display purposes. If set to `true`, then this tag must be displayed. If it is set to `false`, it should not be displayed. This value can override the group display value.'
+          type: boolean
+    Resolution:
+      type: object
+      properties:
+        id:
+          description: Describes id of the action
+          type: string 
+        ref_id: 
+          description: Describes the reference id 
+          type: string
+        ref_type:   
+          description: Describes the refence type
+          type: string
+        descriptor:
+         allOf:
+          - $ref: "#/components/schemas/Descriptor"
+          - type: object
+            properties:
+              code:
+                type: string
+                enum:
+                  - REFUND
+                  - REPLACEMENT
+                  - CBIL_CORRECTION
+                  - ENACH_CANCEL
+        updated_at:
+          description: timestamp for the capturing the time an issue status was last updated
+          type: string
+          format: date-time
+        proposed_by:
+          description: Describes the action_by
+          type: string
+        tags:
+          $ref: '#/components/schemas/TagGroup'
+      
     Refs:
       type: object
       properties:
@@ -471,14 +639,14 @@ components:
             - PAYMENT
             - CONSUMER
             - AGENT
-        # ref_details:
-        #   description: tells abot ref details
-        #   type: array
-        #   $ref: "#/components/schemas/"
+        tags:
+          description: tells abot ref details
+          type: array
+          items:
+            $ref: '#/components/schemas/TagGroup'
           
     
 servers:
   # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/ONDC/ONDC-Protocol-IGM/1.0.0
-    
