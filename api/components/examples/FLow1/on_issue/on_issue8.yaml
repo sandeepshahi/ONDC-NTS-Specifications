@@ -13,7 +13,7 @@ context:
   bpp_uri: https://sellerapp.com/ondc
   transaction_id: T1
   message_id: M5
-  timestamp: 2023-01-15T10:00:00.469Z
+  timestamp: "2023-01-15T10:00:00.469Z"
   ttl: PT30S
 message:
   upated_target:
@@ -23,8 +23,8 @@ message:
     id: ISSUE-1
     status: PROCESSING
     level: ISSUE
-    created_at: 2023-01-15T10:00:00.469Z
-    updated_at: 2023-01-15T10:00:00.469Z
+    created_at: "2023-01-15T10:00:00.469Z"
+    updated_at: "2023-01-15T10:00:00.469Z"
     expected_response_time:
       duration: PT2H
     expected_resolution_time:
@@ -96,7 +96,7 @@ message:
         description:
           code: OPEN
           short_desc: Complaint created
-        updated_at: 2023-01-15T10:00:00.469Z
+        updated_at: "2023-01-15T10:00:00.469Z"
         action_by: NP1
         actor_details:
           name: Sam Manuel
@@ -104,7 +104,7 @@ message:
         description:
           code: PROCESSING
           short_desc: Complaint created
-        updated_at: 2023-01-15T10:00:00.469Z
+        updated_at: "2023-01-15T10:00:00.469Z"
         action_by: NP2
         actor_details:
           name: Sam Manuel
@@ -113,7 +113,7 @@ message:
           code: INFO_REQUESTED
           name: INFO001
           short_desc: Please provide product image
-        updated_at: 2023-01-15T10:00:00.469Z
+        updated_at: "2023-01-15T10:00:00.469Z"
         action_by: NP1
         actor_details:
           name: Sam Manuel
@@ -122,7 +122,7 @@ message:
           code: INFO_REQUESTED
           name: INFO002
           short_desc: Please provide invoice
-        updated_at: 2023-01-15T10:00:00.469Z
+        updated_at: "2023-01-15T10:00:00.469Z"
         action_by: NP1
         actor_details:
           name: Sam Manuel
@@ -134,7 +134,7 @@ message:
           images:
             - http://buyerapp.com/addtional-details/img3.png
             - http://buyerapp.com/addtional-details/img4.png
-        updated_at: 2023-01-15T10:00:00.469Z
+        updated_at: "2023-01-15T10:00:00.469Z"
         action_by: NP1
         actor_details:
           name: Sam Manuel
@@ -142,7 +142,7 @@ message:
         description:
           code: PROCESSING
           short_desc: Complaint created
-        updated_at: 2023-01-15T10:00:00.469Z
+        updated_at: "2023-01-15T10:00:00.469Z"
         action_by: NP1
         actor_details:
           name: Sam Manuel
@@ -152,7 +152,7 @@ message:
           code: INFO_REQUESTED
           name: INFO002
           short_desc: Please provide invoice
-        updated_at: 2023-01-15T10:00:00.469Z
+        updated_at: "2023-01-15T10:00:00.469Z"
         action_by: NP2
         actor_details:
           name: Sam Manuel
@@ -163,7 +163,7 @@ message:
           short_desc: Provided invoice
           media:
             - url: https://buyerapp.com/resources/invoiceord1.pdf
-        updated_at: 2023-01-15T10:00:00.469Z
+        updated_at: "2023-01-15T10:00:00.469Z"
         action_by: NP1
         actor_details:
           name: Sam Manuel
@@ -171,7 +171,7 @@ message:
         description:
           code: PROCESSING
           short_desc: Processing the complaint information
-        updated_at: 2023-01-15T10:00:00.469Z
+        updated_at: "2023-01-15T10:00:00.469Z"
         action_by: NP2
         actor_details:
           name: Sam Manuel

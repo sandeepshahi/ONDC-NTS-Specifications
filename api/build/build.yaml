@@ -291,7 +291,7 @@ components:
             contact:
               $ref: '#/components/schemas/Contact'
             org:
-              type: string
+              type: object
     Additional_desc:
       type: object
       properties:
@@ -808,14 +808,14 @@ x-flows:
                     ref_type: FULFILMENT
                   - ref_id: I1
                     ref_type: ITEM
-                    ref_details:
+                    tags:
                       - descriptor:
                           code: message.order.items
                         list:
                           - descriptor:
                               code: quantity.selected.count
                             value: '2'
-                actor_info:
+                actors:
                   - id: CUST1
                     type: CONSUMER
                     info:
@@ -914,7 +914,7 @@ x-flows:
                     ref_type: FULFILMENT
                   - ref_id: I1
                     ref_type: ITEM
-                    ref_details:
+                    tags:
                       - descriptor:
                           code: message.order.items
                         list:
@@ -956,8 +956,6 @@ x-flows:
                 complainant_id: NP1
                 respondent_ids:
                   - NP2
-                resolver_ids:
-                  - NP2
                 description:
                   code: ITM004
                   short_desc: Issue with product quality
@@ -973,8 +971,6 @@ x-flows:
                 last_action_id: A2
                 actions:
                   - id: A1
-                    ref_id: '-'
-                    ref_type: ''
                     description:
                       code: OPEN
                       short_desc: Complaint created
@@ -983,8 +979,6 @@ x-flows:
                     actor_details:
                       name: Sam Manuel
                   - id: A2
-                    ref_id: '-'
-                    ref_type: ''
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
@@ -1007,7 +1001,7 @@ x-flows:
                Buyer App ->> Seller App : ACK
         reference: if any
         example:
-          value:
+          value: &ref_2
             context:
               domain: ONDC:RET10
               location:
@@ -1022,7 +1016,7 @@ x-flows:
               bpp_id: sellerapp.com
               bpp_uri: https://sellerapp.com/ondc
               transaction_id: T1
-              message_id: M1
+              message_id: M2
               timestamp: '2023-01-15T10:00:00.469Z'
               ttl: PT30S
             message:
@@ -1048,14 +1042,14 @@ x-flows:
                     ref_type: FULFILMENT
                   - ref_id: I1
                     ref_type: ITEM
-                    ref_details:
+                    tags:
                       - descriptor:
                           code: message.order.items
                         list:
                           - descriptor:
                               code: quantity.selected.count
                             value: '2'
-                actor_info:
+                actors:
                   - id: CUST1
                     type: CONSUMER
                     info:
@@ -1090,8 +1084,6 @@ x-flows:
                 complainant_id: NP1
                 respondent_ids:
                   - NP2
-                resolver_ids:
-                  - NP2
                 description:
                   code: ITM004
                   short_desc: Issue with product quality
@@ -1107,8 +1099,6 @@ x-flows:
                 last_action_id: A4
                 actions:
                   - id: A1
-                    ref_id: '-'
-                    ref_type: ''
                     description:
                       code: OPEN
                       short_desc: Complaint created
@@ -1117,8 +1107,6 @@ x-flows:
                     actor_details:
                       name: Sam Manuel
                   - id: A2
-                    ref_id: '-'
-                    ref_type: ''
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
@@ -1126,23 +1114,19 @@ x-flows:
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
-                  - id: A3
-                    ref_id: '-'
-                    ref_type: ''
+                  - id: A3_1
                     description:
                       code: INFO_REQUESTED
-                      'name ': INFO001
-                      short_desc: Please provide product image
+                      name: INFO001
+                      short_desc: Please provide product images
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
-                  - id: A4
-                    ref_id: '-'
-                    ref_type: ''
+                  - id: A3_2
                     description:
                       code: INFO_REQUESTED
-                      'name ': INFO002
+                      name: INFO002
                       short_desc: Please provide invoice
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
@@ -1162,7 +1146,7 @@ x-flows:
               Buyer App->>Seller App: Provide Info (issue)
         reference: if any
         example:
-          value:
+          value: &ref_3
             context:
               domain: ONDC:RET10
               location:
@@ -1177,7 +1161,7 @@ x-flows:
               bpp_id: sellerapp.com
               bpp_uri: https://sellerapp.com/ondc
               transaction_id: T1
-              message_id: M1
+              message_id: M3
               timestamp: '2023-01-15T10:00:00.469Z'
               ttl: PT30S
             message:
@@ -1188,8 +1172,8 @@ x-flows:
                 id: ISSUE-1
                 status: PROCESSING
                 level: ISSUE
-                created_at: '2023-01-15T10:00:00.469Z'
-                updated_at: '2023-01-15T10:00:00.469Z'
+                created_at: ''
+                updated_at: ''
                 expected_response_time:
                   duration: PT2H
                 expected_resolution_time:
@@ -1203,14 +1187,14 @@ x-flows:
                     ref_type: FULFILMENT
                   - ref_id: I1
                     ref_type: ITEM
-                    ref_details:
+                    tags:
                       - descriptor:
                           code: message.order.items
                         list:
                           - descriptor:
                               code: quantity.selected.count
                             value: '2'
-                actor_info:
+                actors:
                   - id: CUST1
                     type: CONSUMER
                     info:
@@ -1262,54 +1246,48 @@ x-flows:
                 last_action_id: A5
                 actions:
                   - id: A1
-                    ref_id: '-'
-                    ref_type: ''
                     description:
                       code: OPEN
                       short_desc: Complaint created
-                    updated_at: '2023-01-15T10:00:00.469Z'
+                    updated_at: ''
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
                   - id: A2
-                    ref_id: '-'
-                    ref_type: ''
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    updated_at: ''
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
-                  - id: A3
-                    ref_id: '-'
-                    ref_type: ''
+                  - id: A3_1
                     description:
                       code: INFO_REQUESTED
-                      Name: INFO01
+                      name: INFO01
                       short_desc: Please provide product image
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    updated_at: ''
+                    action_by: NP2
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A3_2
+                    description:
+                      code: INFO_REQUESTED
+                      name: INFO002
+                      short_desc: Please provide invoice
+                    updated_at: ''
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
                   - id: A4
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: INFO_REQUESTED
-                      'name ': INFO002
-                      short_desc: Please provide invoice
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A5
-                    ref_id: '-'
-                    ref_type: ''
+                    ref_id: A3_1
                     description:
                       code: INFO_PROVIDED
                       short_desc: Info provided from buyer app
-                    updated_at: '2023-01-15T10:00:00.469Z'
+                      images:
+                        - http://buyerapp.com/addtional-details/img3.png
+                        - http://buyerapp.com/addtional-details/img4.png
+                    updated_at: ''
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
@@ -1337,7 +1315,7 @@ x-flows:
                Buyer App->>Seller App: Close Complaint (issue)
         reference: if any
         example:
-          value:
+          value: &ref_4
             context:
               domain: ONDC:RET10
               location:
@@ -1352,7 +1330,7 @@ x-flows:
               bpp_id: sellerapp.com
               bpp_uri: https://sellerapp.com/ondc
               transaction_id: T1
-              message_id: M1
+              message_id: M3
               timestamp: '2023-01-15T10:00:00.469Z'
               ttl: PT30S
             message:
@@ -1378,14 +1356,14 @@ x-flows:
                     ref_type: FULFILMENT
                   - ref_id: I1
                     ref_type: ITEM
-                    ref_details:
+                    tags:
                       - descriptor:
                           code: message.order.items
                         list:
                           - descriptor:
                               code: quantity.selected.count
                             value: '2'
-                actor_info:
+                actors:
                   - id: CUST1
                     type: CONSUMER
                     info:
@@ -1420,8 +1398,6 @@ x-flows:
                 complainant_id: NP1
                 respondent_ids:
                   - NP2
-                resolver_ids:
-                  - NP2
                 description:
                   code: ITM004
                   short_desc: Issue with product quality
@@ -1437,8 +1413,6 @@ x-flows:
                 last_action_id: A6
                 actions:
                   - id: A1
-                    ref_id: '-'
-                    ref_type: ''
                     description:
                       code: OPEN
                       short_desc: Complaint created
@@ -1447,55 +1421,47 @@ x-flows:
                     actor_details:
                       name: Sam Manuel
                   - id: A2
-                    ref_id: '-'
-                    ref_type: ''
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
-                  - id: A3
-                    ref_id: '-'
-                    ref_type: ''
+                  - id: A3_1
                     description:
                       code: INFO_REQUESTED
-                      'name ': INFO001
+                      name: INFO001
                       short_desc: Please provide product image
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A3_2
+                    description:
+                      code: INFO_REQUESTED
+                      name: INFO002
+                      short_desc: Please provide invoice
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
                   - id: A4
-                    ref_id: '-'
-                    ref_type: ''
+                    ref_id: A3_1
                     description:
-                      code: INFO_REQUESTED
-                      'name ': INFO002
-                      short_desc: Please provide invoice
+                      code: INFO_PROVIDED
+                      short_desc: Info provided from buyer app
+                      images: ''
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
                   - id: A5
-                    ref_id: '-'
-                    ref_type: ''
                     description:
-                      code: PROCESING
+                      code: PROCESSING
                       short_desc: Seller app processing the info
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A6
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: Processing
-                      short_desc: Seller app processing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
       - summary: >-
@@ -1526,7 +1492,7 @@ x-flows:
                Buyer App->>Seller App: Close Complaint (issue)
         reference: if any
         example:
-          value:
+          value: &ref_5
             context:
               domain: ONDC:RET10
               location:
@@ -1541,7 +1507,7 @@ x-flows:
               bpp_id: sellerapp.com
               bpp_uri: https://sellerapp.com/ondc
               transaction_id: T1
-              message_id: M1
+              message_id: M4
               timestamp: '2023-01-15T10:00:00.469Z'
               ttl: PT30S
             message:
@@ -1567,14 +1533,14 @@ x-flows:
                     ref_type: FULFILMENT
                   - ref_id: I1
                     ref_type: ITEM
-                    ref_details:
+                    tags:
                       - descriptor:
                           code: message.order.items
                         list:
                           - descriptor:
                               code: quantity.selected.count
                             value: '2'
-                actor_info:
+                actors:
                   - id: CUST1
                     type: CONSUMER
                     info:
@@ -1609,8 +1575,6 @@ x-flows:
                 complainant_id: NP1
                 respondent_ids:
                   - NP2
-                resolver_ids:
-                  - NP2
                 description:
                   code: ITM004
                   short_desc: Issue with product quality
@@ -1623,11 +1587,9 @@ x-flows:
                   images:
                     - http://buyerapp.com/addtional-details/img1.png
                     - http://buyerapp.com/addtional-details/img2.png
-                last_action_id: A7
+                last_action_id: A6
                 actions:
                   - id: A1
-                    ref_id: '-'
-                    ref_type: ''
                     description:
                       code: OPEN
                       short_desc: Complaint created
@@ -1636,65 +1598,59 @@ x-flows:
                     actor_details:
                       name: Sam Manuel
                   - id: A2
-                    ref_id: '-'
-                    ref_type: ''
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
-                  - id: A3
-                    ref_id: '-'
-                    ref_type: ''
+                  - id: A3_1
                     description:
                       code: INFO_REQUESTED
-                      'name ': INFO001
+                      name: INFO001
                       short_desc: Please provide product image
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
-                  - id: A4
-                    ref_id: '-'
-                    ref_type: ''
+                  - id: A3_2
                     description:
                       code: INFO_REQUESTED
-                      'name ': INFO002
+                      name: INFO002
                       short_desc: Please provide invoice
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
-                  - id: A5
-                    ref_id: '-'
-                    ref_type: ''
+                  - id: A4
+                    ref_id: A3_1
                     description:
                       code: INFO_PROVIDED
-                      short_desc: Buyer app providing the info
+                      short_desc: Responded with images
+                      images:
+                        - http://buyerapp.com/addtional-details/img3.png
+                        - http://buyerapp.com/addtional-details/img4.png
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A5
+                    description:
+                      code: PROCESSING
+                      short_desc: Complaint created
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
                   - id: A6
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: Processing
-                      short_desc: Seller app processing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A7
-                    ref_id: A4
-                    ref_type: ''
+                    ref_id: A3_2
                     description:
                       code: INFO_REQUESTED
-                      short_desc: Seller app processing the info
+                      name: INFO002
+                      short_desc: Please provide invoice
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
       - summary: Buyer app provides relevant information (responds to the request
@@ -1718,7 +1674,7 @@ x-flows:
               Close Complaint (issue)
         reference: if any
         example:
-          value:
+          value: &ref_6
             context:
               domain: ONDC:RET10
               location:
@@ -1733,7 +1689,7 @@ x-flows:
               bpp_id: sellerapp.com
               bpp_uri: https://sellerapp.com/ondc
               transaction_id: T1
-              message_id: M1
+              message_id: M5
               timestamp: '2023-01-15T10:00:00.469Z'
               ttl: PT30S
             message:
@@ -1759,14 +1715,14 @@ x-flows:
                     ref_type: FULFILMENT
                   - ref_id: I1
                     ref_type: ITEM
-                    ref_details:
+                    tags:
                       - descriptor:
                           code: message.order.items
                         list:
                           - descriptor:
                               code: quantity.selected.count
                             value: '2'
-                actor_info:
+                actors:
                   - id: CUST1
                     type: CONSUMER
                     info:
@@ -1801,8 +1757,6 @@ x-flows:
                 complainant_id: NP1
                 respondent_ids:
                   - NP2
-                resolver_ids:
-                  - NP2
                 description:
                   code: ITM004
                   short_desc: Issue with product quality
@@ -1815,11 +1769,9 @@ x-flows:
                   images:
                     - http://buyerapp.com/addtional-details/img1.png
                     - http://buyerapp.com/addtional-details/img2.png
-                last_action_id: A8
+                last_action_id: A7
                 actions:
                   - id: A1
-                    ref_id: '-'
-                    ref_type: ''
                     description:
                       code: OPEN
                       short_desc: Complaint created
@@ -1828,8 +1780,44 @@ x-flows:
                     actor_details:
                       name: Sam Manuel
                   - id: A2
-                    ref_id: '-'
-                    ref_type: ''
+                    description:
+                      code: PROCESSING
+                      short_desc: Complaint created
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP2
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A3_1
+                    description:
+                      code: INFO_REQUESTED
+                      name: INFO001
+                      short_desc: Please provide product image
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A3_2
+                    description:
+                      code: INFO_REQUESTED
+                      name: INFO002
+                      short_desc: Please provide invoice
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A4
+                    ref_id: A3_1
+                    description:
+                      code: INFO_PROVIDED
+                      short_desc: Responded with images
+                      images:
+                        - http://buyerapp.com/addtional-details/img3.png
+                        - http://buyerapp.com/addtional-details/img4.png
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A5
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
@@ -1837,64 +1825,23 @@ x-flows:
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
-                  - id: A3
-                    ref_id: '-'
-                    ref_type: ''
+                  - id: A6
+                    ref_id: A3_2
                     description:
                       code: INFO_REQUESTED
-                      'name ': INFO001
-                      short_desc: Please provide product image
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A4
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: INFO_REQUESTED
-                      'name ': INFO002
+                      name: INFO002
                       short_desc: Please provide invoice
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A5
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: INFO_PROVIDED
-                      short_desc: Buyer app providing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A6
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: Processing
-                      short_desc: Seller app processing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
                   - id: A7
-                    ref_id: A4
-                    ref_type: ''
-                    description:
-                      code: INFO_REQUESTED
-                      short_desc: Seller app processing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A8
-                    ref_id: A4
-                    ref_type: ''
+                    ref_id: A6
                     description:
                       code: INFO_PROVIDED
-                      short_desc: Seller app processing the info
+                      short_desc: Provided invoice
+                      media:
+                        - url: https://buyerapp.com/resources/invoiceord1.pdf
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
@@ -1927,7 +1874,7 @@ x-flows:
                 Buyer App->>Seller App: Close Complaint (issue)
         reference: if any
         example:
-          value:
+          value: &ref_7
             context:
               domain: ONDC:RET10
               location:
@@ -1942,7 +1889,7 @@ x-flows:
               bpp_id: sellerapp.com
               bpp_uri: https://sellerapp.com/ondc
               transaction_id: T1
-              message_id: M1
+              message_id: M5
               timestamp: '2023-01-15T10:00:00.469Z'
               ttl: PT30S
             message:
@@ -1968,14 +1915,14 @@ x-flows:
                     ref_type: FULFILMENT
                   - ref_id: I1
                     ref_type: ITEM
-                    ref_details:
+                    tags:
                       - descriptor:
                           code: message.order.items
                         list:
                           - descriptor:
                               code: quantity.selected.count
                             value: '2'
-                actor_info:
+                actors:
                   - id: CUST1
                     type: CONSUMER
                     info:
@@ -2010,8 +1957,6 @@ x-flows:
                 complainant_id: NP1
                 respondent_ids:
                   - NP2
-                resolver_ids:
-                  - NP2
                 description:
                   code: ITM004
                   short_desc: Issue with product quality
@@ -2024,11 +1969,9 @@ x-flows:
                   images:
                     - http://buyerapp.com/addtional-details/img1.png
                     - http://buyerapp.com/addtional-details/img2.png
-                last_action_id: A9
+                last_action_id: A8
                 actions:
                   - id: A1
-                    ref_id: '-'
-                    ref_type: ''
                     description:
                       code: OPEN
                       short_desc: Complaint created
@@ -2037,8 +1980,44 @@ x-flows:
                     actor_details:
                       name: Sam Manuel
                   - id: A2
-                    ref_id: '-'
-                    ref_type: ''
+                    description:
+                      code: PROCESSING
+                      short_desc: Complaint created
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP2
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A3_1
+                    description:
+                      code: INFO_REQUESTED
+                      name: INFO001
+                      short_desc: Please provide product image
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A3_2
+                    description:
+                      code: INFO_REQUESTED
+                      name: INFO002
+                      short_desc: Please provide invoice
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A4
+                    ref_id: A3_1
+                    description:
+                      code: INFO_PROVIDED
+                      short_desc: Responded with images
+                      images:
+                        - http://buyerapp.com/addtional-details/img3.png
+                        - http://buyerapp.com/addtional-details/img4.png
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A5
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
@@ -2046,76 +2025,33 @@ x-flows:
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
-                  - id: A3
-                    ref_id: '-'
-                    ref_type: ''
+                  - id: A6
+                    ref_id: A3_2
                     description:
                       code: INFO_REQUESTED
-                      'name ': INFO001
-                      short_desc: Please provide product image
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A4
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: INFO_REQUESTED
-                      'name ': INFO002
+                      name: INFO002
                       short_desc: Please provide invoice
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A5
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: INFO_PROVIDED
-                      short_desc: Buyer app providing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A6
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: Processing
-                      short_desc: Seller app processing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
                   - id: A7
-                    ref_id: A4
-                    ref_type: ''
+                    ref_id: A6
                     description:
-                      code: INFO_REQUESTED
-                      short_desc: Seller app processing the info
+                      code: INFO_PROVIDED
+                      short_desc: Provided invoice
+                      media:
+                        - url: https://buyerapp.com/resources/invoiceord1.pdf
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
                   - id: A8
-                    ref_id: A4
-                    ref_type: ''
                     description:
-                      code: INFO_PROVIDED
-                      short_desc: Seller app processing the info
+                      code: PROCESSING
+                      short_desc: Processing the complaint information
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A9
-                    ref_id: ''
-                    ref_type: ''
-                    description:
-                      code: Processing
-                      short_desc: Seller app processing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
       - summary: >-
@@ -2146,7 +2082,7 @@ x-flows:
                Buyer App->>Seller App: Close Complaint (issue)
         reference: if any
         example:
-          value:
+          value: &ref_8
             context:
               domain: ONDC:RET10
               location:
@@ -2161,7 +2097,7 @@ x-flows:
               bpp_id: sellerapp.com
               bpp_uri: https://sellerapp.com/ondc
               transaction_id: T1
-              message_id: M1
+              message_id: M6
               timestamp: '2023-01-15T10:00:00.469Z'
               ttl: PT30S
             message:
@@ -2187,14 +2123,14 @@ x-flows:
                     ref_type: FULFILMENT
                   - ref_id: I1
                     ref_type: ITEM
-                    ref_details:
+                    tags:
                       - descriptor:
                           code: message.order.items
                         list:
                           - descriptor:
                               code: quantity.selected.count
                             value: '2'
-                actor_info:
+                actors:
                   - id: CUST1
                     type: CONSUMER
                     info:
@@ -2229,8 +2165,6 @@ x-flows:
                 complainant_id: NP1
                 respondent_ids:
                   - NP2
-                resolver_ids:
-                  - NP2
                 description:
                   code: ITM004
                   short_desc: Issue with product quality
@@ -2246,8 +2180,6 @@ x-flows:
                 last_action_id: A9
                 actions:
                   - id: A1
-                    ref_id: ''
-                    ref_type: ''
                     description:
                       code: OPEN
                       short_desc: Complaint created
@@ -2256,8 +2188,44 @@ x-flows:
                     actor_details:
                       name: Sam Manuel
                   - id: A2
-                    ref_id: '-'
-                    ref_type: ''
+                    description:
+                      code: PROCESSING
+                      short_desc: Complaint created
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP2
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A3_1
+                    description:
+                      code: INFO_REQUESTED
+                      name: INFO001
+                      short_desc: Please provide product image
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A3_2
+                    description:
+                      code: INFO_REQUESTED
+                      name: INFO002
+                      short_desc: Please provide invoice
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A4
+                    ref_id: A3_1
+                    description:
+                      code: INFO_PROVIDED
+                      short_desc: Responded with images
+                      images:
+                        - http://buyerapp.com/addtional-details/img3.png
+                        - http://buyerapp.com/addtional-details/img4.png
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A5
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
@@ -2265,88 +2233,84 @@ x-flows:
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
-                  - id: A3
-                    ref_id: '-'
-                    ref_type: ''
+                  - id: A6
+                    ref_id: A3_2
                     description:
                       code: INFO_REQUESTED
-                      'name ': INFO001
-                      short_desc: Please provide product image
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A4
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: INFO_REQUESTED
-                      'name ': INFO002
+                      name: INFO002
                       short_desc: Please provide invoice
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A5
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: INFO_PROVIDED
-                      short_desc: Buyer app providing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A6
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: Processing
-                      short_desc: Seller app processing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
                   - id: A7
-                    ref_id: A4
-                    ref_type: ''
+                    ref_id: A6
                     description:
-                      code: INFO_REQUESTED
-                      short_desc: Seller app processing the info
+                      code: INFO_PROVIDED
+                      short_desc: Provided invoice
+                      media:
+                        - url: https://buyerapp.com/resources/invoiceord1.pdf
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
                   - id: A8
-                    ref_id: A4
-                    ref_type: ''
                     description:
-                      code: INFO_PROVIDED
-                      short_desc: Seller app processing the info
+                      code: PROCESSING
+                      short_desc: Processing the complaint information
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
                   - id: A9
-                    ref_id: ''
-                    ref_type: ''
-                    description:
-                      code: Processing
-                      short_desc: Seller app processing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A10
-                    ref_id: ''
-                    ref_type: ''
+                    ref_id: R_PARENT
+                    ref_type: RESOLUTIONS
                     description:
                       code: RESOLUTION_PROPOSED
-                      short_desc: Seller app proposed the resolution
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
+                resolutions:
+                  - id: R_PARENT
+                    descriptor:
+                      code: PARENT
+                      short_desc: PROVIDING RESOLUTION OPTIONS. PLEASE SELECT ONE
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+                  - id: R1
+                    ref_id: R_PARENT
+                    ref_type: PARENT
+                    descriptor:
+                      code: REFUND
+                      short_desc: Providing refund for the item
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+                    tags:
+                      - descriptor:
+                          code: RESOLUTION_DETAILS
+                        list:
+                          - descriptor:
+                              code: ITEM
+                            value: I1
+                          - descriptor:
+                              code: REFUND_AMOUNT
+                            value: '200'
+                  - id: R2
+                    ref_id: R_PARENT
+                    ref_type: PARENT
+                    descriptor:
+                      code: REPLACEMENT
+                      short_desc: Providing replacement of the item
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+                    tags:
+                      - descriptor:
+                          code: RESOLUTION_DETAILS
+                        list:
+                          - descriptor:
+                              code: ITEM
+                            value: I1
       - summary: >-
           Seller app responds with need more info tagging the previous missing
           info
@@ -2375,7 +2339,7 @@ x-flows:
                  Buyer App->>Seller App: Close Complaint (issue)
         reference: if any
         example:
-          value:
+          value: &ref_9
             context:
               domain: ONDC:RET10
               location:
@@ -2390,7 +2354,7 @@ x-flows:
               bpp_id: sellerapp.com
               bpp_uri: https://sellerapp.com/ondc
               transaction_id: T1
-              message_id: M1
+              message_id: M7
               timestamp: '2023-01-15T10:00:00.469Z'
               ttl: PT30S
             message:
@@ -2416,14 +2380,280 @@ x-flows:
                     ref_type: FULFILMENT
                   - ref_id: I1
                     ref_type: ITEM
-                    ref_details:
+                    tags:
                       - descriptor:
                           code: message.order.items
                         list:
                           - descriptor:
                               code: quantity.selected.count
                             value: '2'
-                actor_info:
+                actors:
+                  - id: CUST1
+                    type: CONSUMER
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      person:
+                        name: Sam Manuel
+                      contact:
+                        phone: '9879879870'
+                        email: sam@yahoo.com
+                  - id: NP1
+                    type: INTERFACING-NP
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: John Doe
+                  - id: NP2
+                    type: TRANSACTION-COUNTERPARTY-NP
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394140'
+                        email: respondentapp@respond.com
+                      person:
+                        name: Jane Doe
+                source_id: CUST1
+                complainant_id: NP1
+                respondent_ids:
+                  - NP2
+                description:
+                  code: ITM004
+                  short_desc: Issue with product quality
+                  long_desc: >-
+                    product quality is not correct. facing issues while using
+                    the product
+                  additional_desc:
+                    url: https://buyerapp.com/additonal-details/desc.txt
+                    content_type: text/plain
+                  images:
+                    - http://buyerapp.com/addtional-details/img1.png
+                    - http://buyerapp.com/addtional-details/img2.png
+                last_action_id: A10
+                actions:
+                  - id: A1
+                    description:
+                      code: OPEN
+                      short_desc: Complaint created
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A2
+                    description:
+                      code: PROCESSING
+                      short_desc: Complaint created
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP2
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A3_1
+                    description:
+                      code: INFO_REQUESTED
+                      name: INFO001
+                      short_desc: Please provide product image
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A3_2
+                    description:
+                      code: INFO_REQUESTED
+                      name: INFO002
+                      short_desc: Please provide invoice
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A4
+                    ref_id: A3_1
+                    description:
+                      code: INFO_PROVIDED
+                      short_desc: Responded with images
+                      images:
+                        - http://buyerapp.com/addtional-details/img3.png
+                        - http://buyerapp.com/addtional-details/img4.png
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A5
+                    description:
+                      code: PROCESSING
+                      short_desc: Complaint created
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A6
+                    ref_id: A3_2
+                    description:
+                      code: INFO_REQUESTED
+                      name: INFO002
+                      short_desc: Please provide invoice
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP2
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A7
+                    ref_id: A6
+                    description:
+                      code: INFO_PROVIDED
+                      short_desc: Provided invoice
+                      media:
+                        - url: https://buyerapp.com/resources/invoiceord1.pdf
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A8
+                    description:
+                      code: PROCESSING
+                      short_desc: Processing the complaint information
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP2
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A9
+                    ref_id: R_PARENT
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_PROPOSED
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP2
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A10
+                    ref_id: R2
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_ACCEPTED
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                resolutions:
+                  - id: R_PARENT
+                    descriptor:
+                      code: PARENT
+                      short_desc: PROVIDING RESOLUTION OPTIONS. PLEASE SELECT ONE
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+                  - id: R1
+                    ref_id: R_PARENT
+                    ref_type: PARENT
+                    descriptor:
+                      code: REFUND
+                      short_desc: Providing refund for the item
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+                    tags:
+                      - descriptor:
+                          code: RESOLUTION_DETAILS
+                        list:
+                          - descriptor:
+                              code: ITEM
+                            value: I1
+                          - descriptor:
+                              code: REFUND_AMOUNT
+                            value: '200'
+                  - id: R2
+                    ref_id: R_PARENT
+                    ref_type: PARENT
+                    descriptor:
+                      code: REPLACEMENT
+                      short_desc: Providing replacement of the item
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+                    tags:
+                      - descriptor:
+                          code: RESOLUTION_DETAILS
+                        list:
+                          - descriptor:
+                              code: ITEM
+                            value: I1
+      - summary: >-
+          Seller app responds with need more info tagging the previous missing
+          info
+        api: on_issue
+        details:
+          - description: >-
+              Seller app responds with need more info tagging the previous
+              missing info
+            mermaid: |-
+              sequenceDiagram
+               title  Buyer raising a complaint for an item
+               participant Buyer App
+               participant Seller App
+
+               Buyer App->>Seller App: Raise Complaint (issue)
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Seller App->>Buyer App: Request More Information (on_issue)
+               Buyer App->>Seller App: Provide Info (issue)
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+               Buyer App->>Seller App: Provide Info (issue)
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Seller App->>Buyer App: Provide Resolution Options (on_issue)
+               Buyer App->>Seller App: Accept Resolution (issue)
+               Seller App->>Buyer App: Send Resolution Object (on_issue)
+               Buyer App->>Seller App: Close Complaint (issue)
+        reference: if any
+        example:
+          value: &ref_10
+            context:
+              domain: ONDC:RET10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
+              action: on_issue
+              core_version: 2.0.0
+              bap_id: buyerapp.com
+              bap_uri: https://buyerapp.com/ondc
+              bpp_id: sellerapp.com
+              bpp_uri: https://sellerapp.com/ondc
+              transaction_id: T1
+              message_id: M7
+              timestamp: '2023-01-15T10:00:00.469Z'
+              ttl: PT30S
+            message:
+              upated_target:
+                - path: issue.actions
+                  action: APPENDED
+              issue:
+                id: ISSUE-1
+                status: RESOLVED
+                level: ISSUE
+                created_at: '2023-01-15T10:00:00.469Z'
+                updated_at: '2023-01-15T10:00:00.469Z'
+                expected_response_time:
+                  duration: PT2H
+                expected_resolution_time:
+                  duration: P1D
+                refs:
+                  - ref_id: O1
+                    ref_type: ORDER
+                  - ref_id: P1
+                    ref_type: PROVIDER
+                  - ref_id: F1
+                    ref_type: FULFILMENT
+                  - ref_id: I1
+                    ref_type: ITEM
+                    tags:
+                      - descriptor:
+                          code: message.order.items
+                        list:
+                          - descriptor:
+                              code: quantity.selected.count
+                            value: '2'
+                actors:
                   - id: CUST1
                     type: CONSUMER
                     info:
@@ -2475,8 +2705,6 @@ x-flows:
                 last_action_id: A11
                 actions:
                   - id: A1
-                    ref_id: '-'
-                    ref_type: ''
                     description:
                       code: OPEN
                       short_desc: Complaint created
@@ -2485,8 +2713,44 @@ x-flows:
                     actor_details:
                       name: Sam Manuel
                   - id: A2
-                    ref_id: '-'
-                    ref_type: ''
+                    description:
+                      code: PROCESSING
+                      short_desc: Complaint created
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP2
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A3_1
+                    description:
+                      code: INFO_REQUESTED
+                      name: INFO001
+                      short_desc: Please provide product image
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A3_2
+                    description:
+                      code: INFO_REQUESTED
+                      name: INFO002
+                      short_desc: Please provide invoice
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A4
+                    ref_id: A3_1
+                    description:
+                      code: INFO_PROVIDED
+                      short_desc: Responded with images
+                      images:
+                        - http://buyerapp.com/addtional-details/img3.png
+                        - http://buyerapp.com/addtional-details/img4.png
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A5
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
@@ -2494,129 +2758,133 @@ x-flows:
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
-                  - id: A3
-                    ref_id: '-'
-                    ref_type: ''
+                  - id: A6
+                    ref_id: A3_2
                     description:
                       code: INFO_REQUESTED
-                      'name ': INFO001
-                      short_desc: Please provide product image
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A4
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: INFO_REQUESTED
-                      'name ': INFO002
+                      name: INFO002
                       short_desc: Please provide invoice
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A5
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: INFO_PROVIDED
-                      short_desc: Buyer app providing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A6
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: Processing
-                      short_desc: Seller app processing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
                   - id: A7
-                    ref_id: A4
-                    ref_type: ''
+                    ref_id: A6
                     description:
-                      code: INFO_REQUESTED
-                      short_desc: Seller app processing the info
+                      code: INFO_PROVIDED
+                      short_desc: Provided invoice
+                      media:
+                        - url: https://buyerapp.com/resources/invoiceord1.pdf
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
                   - id: A8
-                    ref_id: A4
-                    ref_type: ''
                     description:
-                      code: INFO_PROVIDED
-                      short_desc: Seller app processing the info
+                      code: PROCESSING
+                      short_desc: Processing the complaint information
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
                   - id: A9
-                    ref_id: ''
-                    ref_type: ''
+                    ref_id: R_PARENT
+                    ref_type: RESOLUTIONS
                     description:
-                      code: Processing
-                      short_desc: Seller app processing the info
+                      code: RESOLUTION_PROPOSED
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
                   - id: A10
-                    ref_id: ''
-                    ref_type: ''
+                    ref_id: R2
+                    ref_type: RESOLUTIONS
                     description:
-                      code: RESOLUTION_PROPOSED
-                      'name ': refund
-                      short_desc: Seller app proposed the resolution
+                      code: RESOLUTION_ACCEPTED
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
                   - id: A11
-                    ref_id: ''
-                    ref_type: ''
+                    ref_id: R2
+                    ref_type: RESOLUTIONS
                     description:
-                      code: RESOLUTION_PROVIDED
-                      'name ': replacement
-                      short_desc: Seller app proposed the resolution
+                      code: RESOLVED
+                      name: REPLACEMENT
+                      short_desc: Providing replacement
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
+                resolutions:
+                  - id: R_PARENT
+                    descriptor:
+                      code: PARENT
+                      short_desc: PROVIDING RESOLUTION OPTIONS. PLEASE SELECT ONE
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+                  - id: R1
+                    ref_id: R_PARENT
+                    ref_type: PARENT
+                    descriptor:
+                      code: REFUND
+                      short_desc: Providing refund for the item
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+                    tags:
+                      - descriptor:
+                          code: RESOLUTION_DETAILS
+                        list:
+                          - descriptor:
+                              code: ITEM
+                            value: I1
+                          - descriptor:
+                              code: REFUND_AMOUNT
+                            value: '200'
+                  - id: R2
+                    ref_id: R_PARENT
+                    ref_type: PARENT
+                    descriptor:
+                      code: REPLACEMENT
+                      short_desc: Providing replacement of the item
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+                    tags:
+                      - descriptor:
+                          code: RESOLUTION_DETAILS
+                        list:
+                          - descriptor:
+                              code: ITEM
+                            value: I1
       - summary: >-
           Seller app responds with need more info tagging the previous missing
           info
-        api: on_issue
+        api: issue
         details:
           - description: >-
               Seller app responds with need more info tagging the previous
               missing info
             mermaid: |-
               sequenceDiagram
-               title  Buyer raising a complaint for an item
-               participant Buyer App
-               participant Seller App
+                title  Buyer raising a complaint for an item
+                participant Buyer App
+                participant Seller App
 
-               Buyer App->>Seller App: Raise Complaint (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Provide Resolution Options (on_issue)
-               Buyer App->>Seller App: Accept Resolution (issue)
-               Seller App->>Buyer App: Send Resolution Object (on_issue)
-               Buyer App->>Seller App: Close Complaint (issue)
+                Buyer App->>Seller App: Raise Complaint (issue)
+                Seller App->>Buyer App: Processing Action (on_issue)
+                Seller App->>Buyer App: Request More Information (on_issue)
+                Buyer App->>Seller App: Provide Info (issue)
+                Seller App->>Buyer App: Processing Action (on_issue)
+                Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+                Buyer App->>Seller App: Provide Info (issue)
+                Seller App->>Buyer App: Processing Action (on_issue)
+                Seller App->>Buyer App: Provide Resolution Options (on_issue)
+                Buyer App->>Seller App: Accept Resolution (issue)
+                Seller App->>Buyer App: Send Resolution Object (on_issue)
+                Buyer App->>Seller App: Close Complaint (issue)
         reference: if any
         example:
-          value:
+          value: &ref_11
             context:
               domain: ONDC:RET10
               location:
@@ -2624,23 +2892,23 @@ x-flows:
                   code: IND
                 city:
                   code: '*'
-              action: on_issue
+              action: issue
               core_version: 2.0.0
               bap_id: buyerapp.com
               bap_uri: https://buyerapp.com/ondc
               bpp_id: sellerapp.com
               bpp_uri: https://sellerapp.com/ondc
               transaction_id: T1
-              message_id: M1
+              message_id: M8
               timestamp: '2023-01-15T10:00:00.469Z'
               ttl: PT30S
             message:
               upated_target:
-                - path: issue.actions
+                - path: issue.actions[?(@.id==’A12’)]
                   action: APPENDED
               issue:
                 id: ISSUE-1
-                status: RESOLVED
+                status: CLOSED
                 level: ISSUE
                 created_at: '2023-01-15T10:00:00.469Z'
                 updated_at: '2023-01-15T10:00:00.469Z'
@@ -2657,14 +2925,14 @@ x-flows:
                     ref_type: FULFILMENT
                   - ref_id: I1
                     ref_type: ITEM
-                    ref_details:
+                    tags:
                       - descriptor:
                           code: message.order.items
                         list:
                           - descriptor:
                               code: quantity.selected.count
                             value: '2'
-                actor_info:
+                actors:
                   - id: CUST1
                     type: CONSUMER
                     info:
@@ -2716,8 +2984,6 @@ x-flows:
                 last_action_id: A12
                 actions:
                   - id: A1
-                    ref_id: '-'
-                    ref_type: ''
                     description:
                       code: OPEN
                       short_desc: Complaint created
@@ -2726,8 +2992,44 @@ x-flows:
                     actor_details:
                       name: Sam Manuel
                   - id: A2
-                    ref_id: '-'
-                    ref_type: ''
+                    description:
+                      code: PROCESSING
+                      short_desc: Complaint created
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP2
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A3_1
+                    description:
+                      code: INFO_REQUESTED
+                      name: INFO001
+                      short_desc: Please provide product image
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A3_2
+                    description:
+                      code: INFO_REQUESTED
+                      name: INFO002
+                      short_desc: Please provide invoice
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A4
+                    ref_id: A3_1
+                    description:
+                      code: INFO_PROVIDED
+                      short_desc: Responded with images
+                      images:
+                        - http://buyerapp.com/addtional-details/img3.png
+                        - http://buyerapp.com/addtional-details/img4.png
+                    updated_at: '2023-01-15T10:00:00.469Z'
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A5
                     description:
                       code: PROCESSING
                       short_desc: Complaint created
@@ -2735,122 +3037,2022 @@ x-flows:
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
-                  - id: A3
-                    ref_id: '-'
-                    ref_type: ''
+                  - id: A6
+                    ref_id: A3_2
                     description:
                       code: INFO_REQUESTED
-                      'name ': INFO001
-                      short_desc: Please provide product image
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A4
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: INFO_REQUESTED
-                      'name ': INFO002
+                      name: INFO002
                       short_desc: Please provide invoice
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A5
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: INFO_PROVIDED
-                      short_desc: Buyer app providing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A6
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: Processing
-                      short_desc: Seller app processing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
                   - id: A7
-                    ref_id: A4
-                    ref_type: ''
+                    ref_id: A6
                     description:
-                      code: INFO_REQUESTED
-                      short_desc: Seller app processing the info
+                      code: INFO_PROVIDED
+                      short_desc: Provided invoice
+                      media:
+                        - url: https://buyerapp.com/resources/invoiceord1.pdf
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
                   - id: A8
-                    ref_id: A4
-                    ref_type: ''
                     description:
-                      code: INFO_PROVIDED
-                      short_desc: Seller app processing the info
+                      code: PROCESSING
+                      short_desc: Processing the complaint information
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
                   - id: A9
-                    ref_id: ''
-                    ref_type: ''
+                    ref_id: R_PARENT
+                    ref_type: RESOLUTIONS
                     description:
-                      code: Processing
-                      short_desc: Seller app processing the info
+                      code: RESOLUTION_PROPOSED
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
                   - id: A10
-                    ref_id: ''
-                    ref_type: ''
+                    ref_id: R2
+                    ref_type: RESOLUTIONS
                     description:
-                      code: RESOLUTION_PROPOSED
-                      'name ': refund
-                      short_desc: Seller app proposed the resolution
+                      code: RESOLUTION_ACCEPTED
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
                   - id: A11
-                    ref_id: ''
-                    ref_type: ''
+                    ref_id: R2
+                    ref_type: RESOLUTIONS
                     description:
-                      code: RESOLUTION_PROVIDED
-                      'name ': replacement
-                      short_desc: Seller app proposed the resolution
+                      code: RESOLVED
+                      name: REPLACEMENT
+                      short_desc: Providing replacement
                     updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
+                    action_by: NP2
                     actor_details:
                       name: Sam Manuel
                   - id: A12
-                    ref_id: ''
-                    ref_type: ''
                     description:
-                      code: RESOLVED
-                      'name ': replacement
-                      short_desc: Seller app proposed the resolution
+                      code: CLOSED
+                      short_desc: Closing the complaint
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
-                  - id: A12
-                    ref_id: ''
-                    ref_type: ''
+                    tags:
+                      - descriptor:
+                          code: CLOSURE_DETAILS
+                        list:
+                          - descriptor:
+                              code: RATING
+                            value: THUMBS_UP
+                resolutions:
+                  - id: R_PARENT
+                    descriptor:
+                      code: PARENT
+                      short_desc: PROVIDING RESOLUTION OPTIONS. PLEASE SELECT ONE
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+                  - id: R1
+                    ref_id: R_PARENT
+                    ref_type: PARENT
+                    descriptor:
+                      code: REFUND
+                      short_desc: Providing refund for the item
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+                    tags:
+                      - descriptor:
+                          code: RESOLUTION_DETAILS
+                        list:
+                          - descriptor:
+                              code: ITEM
+                            value: I1
+                          - descriptor:
+                              code: REFUND_AMOUNT
+                            value: '200'
+                  - id: R2
+                    ref_id: R_PARENT
+                    ref_type: PARENT
+                    descriptor:
+                      code: REPLACEMENT
+                      short_desc: Providing replacement of the item
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+                    tags:
+                      - descriptor:
+                          code: RESOLUTION_DETAILS
+                        list:
+                          - descriptor:
+                              code: ITEM
+                            value: I1
+  - summary: Flow2 - Seller raising a complaint for policy issue
+    details:
+      - description: null
+        mermaid: ''
+    references: if any
+    steps:
+      - summary: Seller app raises a complaint for policy category
+        api: issue
+        details:
+          - description: issue
+            mermaid: ''
+            reference: if any
+        example:
+          value:
+            context:
+              domain: ONDC:RET10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
+              action: issue
+              core_version: 2.0.0
+              bap_id: buyerapp.com
+              bap_uri: https://buyerapp.com/ondc
+              bpp_id: sellerapp.com
+              bpp_uri: https://sellerapp.com/ondc
+              transaction_id: T1
+              message_id: M1
+              timestamp: 2023-01-15T10:00:00.469Z
+              ttl: PT30S
+            message:
+              issue:
+                id: ISSUE-2
+                status: OPEN
+                level: ISSUE
+                created_at: 2023-01-15T10:00:00.469Z
+                updated_at: 2023-01-15T10:00:00.469Z
+                expected_response_time:
+                  duration: PT2H
+                expected_resolution_time:
+                  duration: P1D
+                refs:
+                  - ref_id: T1
+                    ref_type: TRANSACTION
+                  - ref_id: P1
+                    ref_type: PROVIDER
+                actors:
+                  - id: SELLER1
+                    type: SELLER
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      person:
+                        name: Sam Manuel
+                      contact:
+                        phone: '9879879870'
+                        email: sam@yahoo.com
+                  - id: NP1
+                    type: INTERFACING-NP
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: John Doe
+                source_id: SELLER1
+                complainant_id: NP1
+                description:
+                  code: VIS001
+                  short_desc: Seller not visible on interface
+                  images:
+                    - http://buyerapp.com/addtional-details/img1.png
+                last_action_id: A1
+                actions:
+                  - id: A1
                     description:
-                      code: RESOLVED
-                      'name ': replacement
-                      short_desc: Seller app proposed the resolution
-                    updated_at: '2023-01-15T10:00:00.469Z'
+                      code: OPEN
+                      short_desc: Complaint created
+                    updated_at: 2023-01-15T10:00:00.469Z
                     action_by: NP1
                     actor_details:
                       name: Sam Manuel
+      - summary: Buyer app responds with processing action
+        api: on_issue
+        details:
+          - description: on_issue
+            mermaid: ''
+        reference: if any
+        example:
+          value:
+            context:
+              domain: ONDC:RET10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
+              action: on_issue
+              core_version: 2.0.0
+              bap_id: buyerapp.com
+              bap_uri: https://buyerapp.com/ondc
+              bpp_id: sellerapp.com
+              bpp_uri: https://sellerapp.com/ondc
+              transaction_id: T1
+              message_id: M1
+              timestamp: 2023-01-15T10:00:00.469Z
+              ttl: PT30S
+            message:
+              issue:
+                id: ISSUE-2
+                status: OPEN
+                level: ISSUE
+                created_at: 2023-01-15T10:00:00.469Z
+                updated_at: 2023-01-15T10:00:00.469Z
+                expected_response_time:
+                  duration: PT2H
+                expected_resolution_time:
+                  duration: P1D
+                refs:
+                  - ref_id: T1
+                    ref_type: TRANSACTION
+                  - ref_id: P1
+                    ref_type: PROVIDER
+                actors:
+                  - id: SELLER1
+                    type: SELLER
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      person:
+                        name: Sam Manuel
+                      contact:
+                        phone: '9879879870'
+                        email: sam@yahoo.com
+                  - id: NP1
+                    type: INTERFACING-NP
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: sellerapp@interface.com
+                      person:
+                        name: John Doe
+                  - id: NP2
+                    type: COUNTERPARTY-NP
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Jane Doe
+                source_id: SELLER1
+                complainant_id: NP1
+                respondent_ids:
+                  - NP2
+                description:
+                  code: VIS001
+                  short_desc: Seller not visible on interface
+                  images:
+                    - http://buyerapp.com/addtional-details/img1.png
+                last_action_id: A2
+                actions:
+                  - id: A1
+                    description:
+                      code: OPEN
+                      short_desc: Complaint created
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A2
+                    description:
+                      code: PROCESSING
+                      short_desc: Checking the issue raised
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                    actor_details:
+                      name: Sam Manuel
+      - summary: Buyer app responds with a proposed resolution
+        api: on_issue
+        details:
+          - description: on_issue
+            mermaid: |-
+              sequenceDiagram
+               title  Buyer raising a complaint for an item
+               participant Buyer App
+               participant Seller App  
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Buyer App ->> Seller App : ACK
+        reference: if any
+        example:
+          value:
+            context:
+              domain: ONDC:RET10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
+              action: on_issue
+              core_version: 2.0.0
+              bap_id: buyerapp.com
+              bap_uri: https://buyerapp.com/ondc
+              bpp_id: sellerapp.com
+              bpp_uri: https://sellerapp.com/ondc
+              transaction_id: T1
+              message_id: M2
+              timestamp: 2023-01-15T10:00:00.469Z
+              ttl: PT30S
+            message:
+              issue:
+                id: ISSUE-2
+                status: OPEN
+                level: ISSUE
+                created_at: 2023-01-15T10:00:00.469Z
+                updated_at: 2023-01-15T10:00:00.469Z
+                expected_response_time:
+                  duration: PT2H
+                expected_resolution_time:
+                  duration: P1D
+                refs:
+                  - ref_id: T1
+                    ref_type: TRANSACTION
+                  - ref_id: P1
+                    ref_type: PROVIDER
+                actors:
+                  - id: SELLER1
+                    type: SELLER
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      person:
+                        name: Sam Manuel
+                      contact:
+                        phone: '9879879870'
+                        email: sam@yahoo.com
+                  - id: NP1
+                    type: INTERFACING-NP
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: sellerapp@interface.com
+                      person:
+                        name: John Doe
+                  - id: NP2
+                    type: COUNTERPARTY-NP
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Jane Doe
+                  - id: NP2-GRO
+                    type: COUNTERPARTY-NP-GRO
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9999994039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Grievance Officer BNP
+                source_id: SELLER1
+                complainant_id: NP1
+                respondent_ids:
+                  - NP2
+                description:
+                  code: VIS001
+                  short_desc: Seller not visible on interface
+                  images:
+                    - http://buyerapp.com/addtional-details/img1.png
+                last_action_id: A3
+                actions:
+                  - id: A1
+                    description:
+                      code: OPEN
+                      short_desc: Complaint created
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A2
+                    description:
+                      code: PROCESSING
+                      short_desc: Checking the issue raised
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A3
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_PROPOSED
+                      short_desc: Resolution provided
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                resolutions:
+                  - id: R1
+                    descriptor:
+                      code: NOW-VISIBLE
+                      short_desc: >-
+                        Error in ingestion, seller would be visible through the
+                        next ingestion.
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+      - summary: Seller app accepts the resolution proposed
+        api: issue
+        details:
+          - description: issue
+            mermaid: ''
+        reference: if any
+        example:
+          value:
+            context:
+              domain: ONDC:RET10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
+              action: issue
+              core_version: 2.0.0
+              bap_id: buyerapp.com
+              bap_uri: https://buyerapp.com/ondc
+              bpp_id: sellerapp.com
+              bpp_uri: https://sellerapp.com/ondc
+              transaction_id: T1
+              message_id: M3
+              timestamp: 2023-01-15T10:00:00.469Z
+              ttl: PT30S
+            message:
+              issue:
+                id: ISSUE-2
+                status: OPEN
+                level: ISSUE
+                created_at: 2023-01-15T10:00:00.469Z
+                updated_at: 2023-01-15T10:00:00.469Z
+                expected_response_time:
+                  duration: PT2H
+                expected_resolution_time:
+                  duration: P1D
+                refs:
+                  - ref_id: T1
+                    ref_type: TRANSACTION
+                  - ref_id: P1
+                    ref_type: PROVIDER
+                actors:
+                  - id: SELLER1
+                    type: SELLER
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      person:
+                        name: Sam Manuel
+                      contact:
+                        phone: '9879879870'
+                        email: sam@yahoo.com
+                  - id: NP1
+                    type: INTERFACING-NP
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: sellerapp@interface.com
+                      person:
+                        name: John Doe
+                  - id: NP2
+                    type: COUNTERPARTY-NP
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Jane Doe
+                  - id: NP2-GRO
+                    type: COUNTERPARTY-NP-GRO
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9999994039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Grievance Officer BNP
+                source_id: SELLER1
+                complainant_id: NP1
+                respondent_ids:
+                  - NP2
+                description:
+                  code: VIS001
+                  short_desc: Seller not visible on interface
+                  images:
+                    - http://buyerapp.com/addtional-details/img1.png
+                last_action_id: A4
+                actions:
+                  - id: A1
+                    description:
+                      code: OPEN
+                      short_desc: Complaint created
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A2
+                    description:
+                      code: PROCESSING
+                      short_desc: Checking the issue raised
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A3
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_PROPOSED
+                      short_desc: Resolution provided
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A4
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_ACCEPTED
+                      short_desc: Will check once enabled
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                resolutions:
+                  - id: R1
+                    descriptor:
+                      code: NOW-VISIBLE
+                      short_desc: >-
+                        Error in ingestion, seller would be visible through the
+                        next ingestion.
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+      - summary: Buyer app provides the resolution
+        api: on_issue
+        details:
+          - description: Buyer app provides the resolution
+            mermaid: ''
+        reference: if any
+        example:
+          value:
+            context:
+              domain: ONDC:RET10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
+              action: on_issue
+              core_version: 2.0.0
+              bap_id: buyerapp.com
+              bap_uri: https://buyerapp.com/ondc
+              bpp_id: sellerapp.com
+              bpp_uri: https://sellerapp.com/ondc
+              transaction_id: T1
+              message_id: M3
+              timestamp: 2023-01-15T10:00:00.469Z
+              ttl: PT30S
+            message:
+              issue:
+                id: ISSUE-2
+                status: RESOLVED
+                level: ISSUE
+                created_at: 2023-01-15T10:00:00.469Z
+                updated_at: 2023-01-15T10:00:00.469Z
+                expected_response_time:
+                  duration: PT2H
+                expected_resolution_time:
+                  duration: P1D
+                refs:
+                  - ref_id: T1
+                    ref_type: TRANSACTION
+                  - ref_id: P1
+                    ref_type: PROVIDER
+                actors:
+                  - id: SELLER1
+                    type: SELLER
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      person:
+                        name: Sam Manuel
+                      contact:
+                        phone: '9879879870'
+                        email: sam@yahoo.com
+                  - id: NP1
+                    type: INTERFACING-NP
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: sellerapp@interface.com
+                      person:
+                        name: John Doe
+                  - id: NP2
+                    type: COUNTERPARTY-NP
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Jane Doe
+                  - id: NP2-GRO
+                    type: COUNTERPARTY-NP-GRO
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9999994039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Grievance Officer BNP
+                source_id: SELLER1
+                complainant_id: NP1
+                respondent_ids:
+                  - NP2
+                resolver_ids:
+                  - NP2
+                description:
+                  code: VIS001
+                  short_desc: Seller not visible on interface
+                  images:
+                    - http://buyerapp.com/addtional-details/img1.png
+                last_action_id: A5
+                actions:
+                  - id: A1
+                    description:
+                      code: OPEN
+                      short_desc: Complaint created
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A2
+                    description:
+                      code: PROCESSING
+                      short_desc: Checking the issue raised
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A3
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_PROPOSED
+                      short_desc: Resolution provided
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A4
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_ACCEPTED
+                      short_desc: Will check once enabled
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                  - id: A5
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLVED
+                      short_desc: Complaint resolved. Seller would be visible now
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                resolutions:
+                  - id: R1
+                    descriptor:
+                      code: NOW-VISIBLE
+                      short_desc: >-
+                        Error in ingestion, seller would be visible through the
+                        next ingestion.
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+      - summary: Seller app escalates the complaint
+        api: on_issue
+        details:
+          - description: Seller app escalates the complaint
+            mermaid: ''
+        reference: if any
+        example:
+          value:
+            context:
+              domain: ONDC:RET10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
+              action: issue
+              core_version: 2.0.0
+              bap_id: buyerapp.com
+              bap_uri: https://buyerapp.com/ondc
+              bpp_id: sellerapp.com
+              bpp_uri: https://sellerapp.com/ondc
+              transaction_id: T1
+              message_id: M4
+              timestamp: 2023-01-15T10:00:00.469Z
+              ttl: PT30S
+            message:
+              issue:
+                id: ISSUE-2
+                status: OPEN
+                level: GRIEVANCE
+                created_at: 2023-01-15T10:00:00.469Z
+                updated_at: 2023-01-15T10:00:00.469Z
+                expected_response_time:
+                  duration: PT2H
+                expected_resolution_time:
+                  duration: P1D
+                refs:
+                  - ref_id: T1
+                    ref_type: TRANSACTION
+                  - ref_id: P1
+                    ref_type: PROVIDER
+                actors:
+                  - id: SELLER1
+                    type: SELLER
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      person:
+                        name: Sam Manuel
+                      contact:
+                        phone: '9879879870'
+                        email: sam@yahoo.com
+                  - id: NP1
+                    type: INTERFACING-NP
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: sellerapp@interface.com
+                      person:
+                        name: John Doe
+                  - id: NP2
+                    type: COUNTERPARTY-NP
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Jane Doe
+                  - id: NP2-GRO
+                    type: COUNTERPARTY-NP-GRO
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9999994039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Grievance Officer BNP
+                source_id: SELLER1
+                complainant_id: NP1
+                respondent_ids:
+                  - NP2
+                resolver_ids:
+                  - NP2
+                description:
+                  code: VIS001
+                  short_desc: Seller not visible on interface
+                  images:
+                    - http://buyerapp.com/addtional-details/img1.png
+                last_action_id: A6
+                actions:
+                  - id: A1
+                    description:
+                      code: OPEN
+                      short_desc: Complaint created
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A2
+                    description:
+                      code: PROCESSING
+                      short_desc: Checking the issue raised
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A3
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_PROPOSED
+                      short_desc: Resolution provided
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A4
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_ACCEPTED
+                      short_desc: Will check once enabled
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                  - id: A5
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLVED
+                      short_desc: Complaint resolved. Seller would be visible now
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A6
+                    description:
+                      code: ESCALATED
+                      short_desc: >-
+                        Seller not visible on interface after the second
+                        ingestion
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                resolutions:
+                  - id: R1
+                    descriptor:
+                      code: NOW-VISIBLE
+                      short_desc: >-
+                        Error in ingestion, seller would be visible through the
+                        next ingestion.
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+      - summary: Buyer app responds with processing action
+        api: issue
+        details:
+          - description: Buyer app responds with processing action
+        reference: if any
+        example:
+          value:
+            context:
+              domain: ONDC:RET10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
+              action: on_issue
+              core_version: 2.0.0
+              bap_id: buyerapp.com
+              bap_uri: https://buyerapp.com/ondc
+              bpp_id: sellerapp.com
+              bpp_uri: https://sellerapp.com/ondc
+              transaction_id: T1
+              message_id: M4
+              timestamp: 2023-01-15T10:00:00.469Z
+              ttl: PT30S
+            message:
+              issue:
+                id: ISSUE-2
+                status: OPEN
+                level: GRIEVANCE
+                created_at: 2023-01-15T10:00:00.469Z
+                updated_at: 2023-01-15T10:00:00.469Z
+                expected_response_time:
+                  duration: PT2H
+                expected_resolution_time:
+                  duration: P1D
+                refs:
+                  - ref_id: T1
+                    ref_type: TRANSACTION
+                  - ref_id: P1
+                    ref_type: PROVIDER
+                actors:
+                  - id: SELLER1
+                    type: SELLER
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      person:
+                        name: Sam Manuel
+                      contact:
+                        phone: '9879879870'
+                        email: sam@yahoo.com
+                  - id: NP1
+                    type: INTERFACING-NP
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: sellerapp@interface.com
+                      person:
+                        name: John Doe
+                  - id: NP2
+                    type: COUNTERPARTY-NP
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Jane Doe
+                  - id: NP2-GRO
+                    type: COUNTERPARTY-NP-GRO
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9999994039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Grievance Officer BNP
+                source_id: SELLER1
+                complainant_id: NP1
+                respondent_ids:
+                  - NP2
+                resolver_ids:
+                  - NP2
+                description:
+                  code: VIS001
+                  short_desc: Seller not visible on interface
+                  images:
+                    - http://buyerapp.com/addtional-details/img1.png
+                last_action_id: A7
+                actions:
+                  - id: A1
+                    description:
+                      code: OPEN
+                      short_desc: Complaint created
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A2
+                    description:
+                      code: PROCESSING
+                      short_desc: Checking the issue raised
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A3
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_PROPOSED
+                      short_desc: Resolution provided
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A4
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_ACCEPTED
+                      short_desc: Will check once enabled
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                  - id: A5
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLVED
+                      short_desc: Complaint resolved. Seller would be visible now
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A6
+                    description:
+                      code: ESCALATED
+                      short_desc: >-
+                        Seller not visible on interface after the second
+                        ingestion
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                  - id: A7
+                    description:
+                      code: PROCESSING
+                      short_desc: Processing the complaint
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                resolutions:
+                  - id: R1
+                    descriptor:
+                      code: NOW-VISIBLE
+                      short_desc: >-
+                        Error in ingestion, seller would be visible through the
+                        next ingestion.
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+      - summary: Buyer app responds with a proposed resolution
+        api: on_issue
+        details:
+          - description: Buyer app responds with a proposed resolution
+            mermaid: ''
+        reference: if any
+        example:
+          value:
+            context:
+              domain: ONDC:RET10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
+              action: on_issue
+              core_version: 2.0.0
+              bap_id: buyerapp.com
+              bap_uri: https://buyerapp.com/ondc
+              bpp_id: sellerapp.com
+              bpp_uri: https://sellerapp.com/ondc
+              transaction_id: T1
+              message_id: M5
+              timestamp: 2023-01-15T10:00:00.469Z
+              ttl: PT30S
+            message:
+              issue:
+                id: ISSUE-2
+                status: OPEN
+                level: GRIEVANCE
+                created_at: 2023-01-15T10:00:00.469Z
+                updated_at: 2023-01-15T10:00:00.469Z
+                expected_response_time:
+                  duration: PT2H
+                expected_resolution_time:
+                  duration: P1D
+                refs:
+                  - ref_id: T1
+                    ref_type: TRANSACTION
+                  - ref_id: P1
+                    ref_type: PROVIDER
+                actors:
+                  - id: SELLER1
+                    type: SELLER
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      person:
+                        name: Sam Manuel
+                      contact:
+                        phone: '9879879870'
+                        email: sam@yahoo.com
+                  - id: NP1
+                    type: INTERFACING-NP
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: sellerapp@interface.com
+                      person:
+                        name: John Doe
+                  - id: NP2
+                    type: COUNTERPARTY-NP
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Jane Doe
+                  - id: NP2-GRO
+                    type: COUNTERPARTY-NP-GRO
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9999994039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Grievance Officer BNP
+                source_id: SELLER1
+                complainant_id: NP1
+                respondent_ids:
+                  - NP2
+                resolver_ids:
+                  - NP2
+                description:
+                  code: VIS001
+                  short_desc: Seller not visible on interface
+                  images:
+                    - http://buyerapp.com/addtional-details/img1.png
+                last_action_id: A8
+                actions:
+                  - id: A1
+                    description:
+                      code: OPEN
+                      short_desc: Complaint created
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A2
+                    description:
+                      code: PROCESSING
+                      short_desc: Checking the issue raised
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A3
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_PROPOSED
+                      short_desc: Resolution provided
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A4
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_ACCEPTED
+                      short_desc: Will check once enabled
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                  - id: A5
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLVED
+                      short_desc: Complaint resolved. Seller would be visible now
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A6
+                    description:
+                      code: ESCALATED
+                      short_desc: >-
+                        Seller not visible on interface after the second
+                        ingestion
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                  - id: A7
+                    description:
+                      code: PROCESSING
+                      short_desc: Processing the complaint
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A8
+                    ref_id: R2
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_PROPOSED
+                      short_desc: Resolution proposed
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                resolutions:
+                  - id: R1
+                    descriptor:
+                      code: NOW-VISIBLE
+                      short_desc: >-
+                        Error in ingestion, seller would be visible through the
+                        next ingestion.
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+                  - id: R2
+                    descriptor:
+                      code: NOW-VISIBLE
+                      short_desc: Error in interface, seller would now be visible.
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+      - summary: Seller app accepts the resolution
+        api: on_issue
+        details:
+          - description: Seller app accepts the resolution
+            mermaid: ''
+        reference: if any
+        example:
+          value:
+            context:
+              domain: ONDC:RET10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
+              action: issue
+              core_version: 2.0.0
+              bap_id: buyerapp.com
+              bap_uri: https://buyerapp.com/ondc
+              bpp_id: sellerapp.com
+              bpp_uri: https://sellerapp.com/ondc
+              transaction_id: T1
+              message_id: M6
+              timestamp: 2023-01-15T10:00:00.469Z
+              ttl: PT30S
+            message:
+              issue:
+                id: ISSUE-2
+                status: OPEN
+                level: GRIEVANCE
+                created_at: 2023-01-15T10:00:00.469Z
+                updated_at: 2023-01-15T10:00:00.469Z
+                expected_response_time:
+                  duration: PT2H
+                expected_resolution_time:
+                  duration: P1D
+                refs:
+                  - ref_id: T1
+                    ref_type: TRANSACTION
+                  - ref_id: P1
+                    ref_type: PROVIDER
+                actors:
+                  - id: SELLER1
+                    type: SELLER
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      person:
+                        name: Sam Manuel
+                      contact:
+                        phone: '9879879870'
+                        email: sam@yahoo.com
+                  - id: NP1
+                    type: INTERFACING-NP
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: sellerapp@interface.com
+                      person:
+                        name: John Doe
+                  - id: NP2
+                    type: COUNTERPARTY-NP
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Jane Doe
+                  - id: NP2-GRO
+                    type: COUNTERPARTY-NP-GRO
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9999994039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Grievance Officer BNP
+                source_id: SELLER1
+                complainant_id: NP1
+                respondent_ids:
+                  - NP2
+                resolver_ids:
+                  - NP2
+                description:
+                  code: VIS001
+                  short_desc: Seller not visible on interface
+                  images:
+                    - http://buyerapp.com/addtional-details/img1.png
+                last_action_id: A9
+                actions:
+                  - id: A1
+                    description:
+                      code: OPEN
+                      short_desc: Complaint created
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A2
+                    description:
+                      code: PROCESSING
+                      short_desc: Checking the issue raised
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A3
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_PROPOSED
+                      short_desc: Resolution provided
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A4
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_ACCEPTED
+                      short_desc: Will check once enabled
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                  - id: A5
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLVED
+                      short_desc: Complaint resolved. Seller would be visible now
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A6
+                    description:
+                      code: ESCALATED
+                      short_desc: >-
+                        Seller not visible on interface after the second
+                        ingestion
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                  - id: A7
+                    description:
+                      code: PROCESSING
+                      short_desc: Processing the complaint
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A8
+                    ref_id: R2
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_PROPOSED
+                      short_desc: Resolution proposed
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A9
+                    ref_id: R2
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_ACCEPTED
+                      short_desc: Will check once enabled
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                resolutions:
+                  - id: R1
+                    descriptor:
+                      code: NOW-VISIBLE
+                      short_desc: >-
+                        Error in ingestion, seller would be visible through the
+                        next ingestion.
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+                  - id: R2
+                    descriptor:
+                      code: NOW-VISIBLE
+                      short_desc: Error in interface, seller would now be visible.
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+      - summary: Buyer app provides the resolution
+        api: issue
+        details:
+          - description: Buyer app provides the resolution
+            mermaid: ''
+        reference: if any
+        example:
+          value:
+            context:
+              domain: ONDC:RET10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
+              action: on_issue
+              core_version: 2.0.0
+              bap_id: buyerapp.com
+              bap_uri: https://buyerapp.com/ondc
+              bpp_id: sellerapp.com
+              bpp_uri: https://sellerapp.com/ondc
+              transaction_id: T1
+              message_id: M6
+              timestamp: 2023-01-15T10:00:00.469Z
+              ttl: PT30S
+            message:
+              issue:
+                id: ISSUE-2
+                status: RESOLVED
+                level: GRIEVANCE
+                created_at: 2023-01-15T10:00:00.469Z
+                updated_at: 2023-01-15T10:00:00.469Z
+                expected_response_time:
+                  duration: PT2H
+                expected_resolution_time:
+                  duration: P1D
+                refs:
+                  - ref_id: T1
+                    ref_type: TRANSACTION
+                  - ref_id: P1
+                    ref_type: PROVIDER
+                actors:
+                  - id: SELLER1
+                    type: SELLER
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      person:
+                        name: Sam Manuel
+                      contact:
+                        phone: '9879879870'
+                        email: sam@yahoo.com
+                  - id: NP1
+                    type: INTERFACING-NP
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: sellerapp@interface.com
+                      person:
+                        name: John Doe
+                  - id: NP2
+                    type: COUNTERPARTY-NP
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Jane Doe
+                  - id: NP2-GRO
+                    type: COUNTERPARTY-NP-GRO
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9999994039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Grievance Officer BNP
+                source_id: SELLER1
+                complainant_id: NP1
+                respondent_ids:
+                  - NP2
+                resolver_ids:
+                  - NP2
+                description:
+                  code: VIS001
+                  short_desc: Seller not visible on interface
+                  images:
+                    - http://buyerapp.com/addtional-details/img1.png
+                last_action_id: A10
+                actions:
+                  - id: A1
+                    description:
+                      code: OPEN
+                      short_desc: Complaint created
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A2
+                    description:
+                      code: PROCESSING
+                      short_desc: Checking the issue raised
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A3
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_PROPOSED
+                      short_desc: Resolution provided
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A4
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_ACCEPTED
+                      short_desc: Will check once enabled
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                  - id: A5
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLVED
+                      short_desc: Complaint resolved. Seller would be visible now
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A6
+                    description:
+                      code: ESCALATED
+                      short_desc: >-
+                        Seller not visible on interface after the second
+                        ingestion
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                  - id: A7
+                    description:
+                      code: PROCESSING
+                      short_desc: Processing the complaint
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A8
+                    ref_id: R2
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_PROPOSED
+                      short_desc: Resolution proposed
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A9
+                    ref_id: R2
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_ACCEPTED
+                      short_desc: Will check once enabled
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                  - id: A10
+                    ref_id: R2
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLVED
+                      short_desc: Complaint resolved. Seller is visible now
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                resolutions:
+                  - id: R1
+                    descriptor:
+                      code: NOW-VISIBLE
+                      short_desc: >-
+                        Error in ingestion, seller would be visible through the
+                        next ingestion.
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+                  - id: R2
+                    descriptor:
+                      code: NOW-VISIBLE
+                      short_desc: Error in interface, seller would now be visible.
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+      - summary: Seller app closes the complaint
+        api: issue
+        details:
+          - description: null
+            mermaid: ''
+        reference: if any
+        example:
+          value:
+            context:
+              domain: ONDC:RET10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
+              action: issue
+              core_version: 2.0.0
+              bap_id: buyerapp.com
+              bap_uri: https://buyerapp.com/ondc
+              bpp_id: sellerapp.com
+              bpp_uri: https://sellerapp.com/ondc
+              transaction_id: T1
+              message_id: M7
+              timestamp: 2023-01-15T10:00:00.469Z
+              ttl: PT30S
+            message:
+              issue:
+                id: ISSUE-2
+                status: CLOSED
+                level: GRIEVANCE
+                created_at: 2023-01-15T10:00:00.469Z
+                updated_at: 2023-01-15T10:00:00.469Z
+                expected_response_time:
+                  duration: PT2H
+                expected_resolution_time:
+                  duration: P1D
+                refs:
+                  - ref_id: T1
+                    ref_type: TRANSACTION
+                  - ref_id: P1
+                    ref_type: PROVIDER
+                actors:
+                  - id: SELLER1
+                    type: SELLER
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      person:
+                        name: Sam Manuel
+                      contact:
+                        phone: '9879879870'
+                        email: sam@yahoo.com
+                  - id: NP1
+                    type: INTERFACING-NP
+                    info:
+                      org:
+                        name: sellerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: sellerapp@interface.com
+                      person:
+                        name: John Doe
+                  - id: NP2
+                    type: COUNTERPARTY-NP
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9450394039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Jane Doe
+                  - id: NP2-GRO
+                    type: COUNTERPARTY-NP-GRO
+                    info:
+                      org:
+                        name: buyerapp.com::ONDC:RET10
+                      contact:
+                        phone: '9999994039'
+                        email: buyerapp@interface.com
+                      person:
+                        name: Grievance Officer BNP
+                source_id: SELLER1
+                complainant_id: NP1
+                respondent_ids:
+                  - NP2
+                resolver_ids:
+                  - NP2
+                description:
+                  code: VIS001
+                  short_desc: Seller not visible on interface
+                  images:
+                    - http://buyerapp.com/addtional-details/img1.png
+                last_action_id: A11
+                actions:
+                  - id: A1
+                    description:
+                      code: OPEN
+                      short_desc: Complaint created
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                    actor_details:
+                      name: Sam Manuel
+                  - id: A2
+                    description:
+                      code: PROCESSING
+                      short_desc: Checking the issue raised
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A3
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_PROPOSED
+                      short_desc: Resolution provided
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A4
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_ACCEPTED
+                      short_desc: Will check once enabled
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                  - id: A5
+                    ref_id: R1
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLVED
+                      short_desc: Complaint resolved. Seller would be visible now
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A6
+                    description:
+                      code: ESCALATED
+                      short_desc: >-
+                        Seller not visible on interface after the second
+                        ingestion
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                  - id: A7
+                    description:
+                      code: PROCESSING
+                      short_desc: Processing the complaint
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A8
+                    ref_id: R2
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_PROPOSED
+                      short_desc: Resolution proposed
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A9
+                    ref_id: R2
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLUTION_ACCEPTED
+                      short_desc: Will check once enabled
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                  - id: A10
+                    ref_id: R2
+                    ref_type: RESOLUTIONS
+                    description:
+                      code: RESOLVED
+                      short_desc: Complaint resolved. Seller is visible now
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP2
+                  - id: A11
+                    description:
+                      code: CLOSED
+                      short_desc: Seller now visible, closing the complaint
+                    updated_at: 2023-01-15T10:00:00.469Z
+                    action_by: NP1
+                    tags:
+                      - descriptor:
+                          code: CLOSURE_DETAILS
+                        list:
+                          - descriptor:
+                              code: RATING
+                            value: THUMBS_UP
+                resolutions:
+                  - id: R1
+                    descriptor:
+                      code: NOW-VISIBLE
+                      short_desc: >-
+                        Error in ingestion, seller would be visible through the
+                        next ingestion.
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+                  - id: R2
+                    descriptor:
+                      code: NOW-VISIBLE
+                      short_desc: Error in interface, seller would now be visible.
+                    updated_at: 2024-08-14T09:57:58.841Z
+                    proposed_by: NP2
+  - summary: Flow3-  Buyer raises a complaint for item category
+    details:
+      - description: detailed flow
+        mermaid: |-
+          sequenceDiagram
+            title  Buyer raising a complaint for an item
+            participant Buyer App
+            participant Seller App
+
+            Buyer App->>Seller App: Raise Complaint (issue)
+            Seller App->>Buyer App: Processing Action (on_issue)
+            Seller App->>Buyer App: Request More Information (on_issue)
+            Buyer App->>Seller App: Provide Info (issue)
+            Seller App->>Buyer App: Processing Action (on_issue)
+            Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+            Buyer App->>Seller App: Provide Info (issue)
+            Seller App->>Buyer App: Processing Action (on_issue)
+            Seller App->>Buyer App: Provide Resolution Options (on_issue)
+            Buyer App->>Seller App: Accept Resolution (issue)
+            Seller App->>Buyer App: Send Resolution Object (on_issue)
+            Buyer App->>Seller App: Close Complaint (issue)
+    references: if any
+    steps:
+      - summary: >-
+          Buyer raises a complaint for item category; buyer app creates the
+          issue call
+        api: issue
+        details:
+          - description: issue
+            mermaid: |-
+              sequenceDiagram
+                title  Buyer raising a complaint for an item
+                participant Buyer App
+                participant Seller App
+                Buyer App->>Seller App: Raise Complaint (issue)
+                Seller App->>Buyer App: ACK
+               
+            reference: if any
+        example:
+          value: *ref_0
+      - summary: Seller app responds with processing action
+        api: on_issue
+        details:
+          - description: on_issue
+            mermaid: |-
+              sequenceDiagram
+                 title  Buyer raising a complaint for an item
+                 participant Buyer App
+                 participant Seller App
+                 Seller App->>Buyer App: Processing Action (on_issue)
+                 Buyer App->>Seller App: Ack
+        reference: if any
+        example:
+          value: *ref_1
+      - summary: >-
+          Seller app needs more information to analyse (two info_request actions
+          for two requirements)
+        api: on_issue
+        details:
+          - description: on_issue
+            mermaid: |-
+              sequenceDiagram
+               title  Buyer raising a complaint for an item
+               participant Buyer App
+               participant Seller App  
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Buyer App ->> Seller App : ACK
+        reference: if any
+        example:
+          value: *ref_2
+      - summary: >-
+          Buyer app provides relevant information (responds to one of the
+          requests)
+        api: issue
+        details:
+          - description: issue
+            mermaid: >-
+              sequenceDiagram title  Buyer raising a complaint for an item
+              participant Buyer App participant Seller App
+
+
+              Buyer App->>Seller App: Provide Info (issue)
+        reference: if any
+        example:
+          value: *ref_3
+      - summary: Seller app responds with processing action
+        api: on_issue
+        details:
+          - description: Seller app responds with processing action
+            mermaid: |-
+              sequenceDiagram
+               title  Buyer raising a complaint for an item
+               participant Buyer App
+               participant Seller App
+
+               Buyer App->>Seller App: Raise Complaint (issue)
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Seller App->>Buyer App: Request More Information (on_issue)
+               Buyer App->>Seller App: Provide Info (issue)
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+               Buyer App->>Seller App: Provide Info (issue)
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Seller App->>Buyer App: Provide Resolution Options (on_issue)
+               Buyer App->>Seller App: Accept Resolution (issue)
+               Seller App->>Buyer App: Send Resolution Object (on_issue)
+               Buyer App->>Seller App: Close Complaint (issue)
+        reference: if any
+        example:
+          value: *ref_4
+      - summary: >-
+          Seller app responds with need more info tagging the previous missing
+          info
+        api: on_issue
+        details:
+          - description: >-
+              Seller app responds with need more info tagging the previous
+              missing info
+            mermaid: |-
+              sequenceDiagram
+               title  Buyer raising a complaint for an item
+               participant Buyer App
+               participant Seller App
+
+               Buyer App->>Seller App: Raise Complaint (issue)
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Seller App->>Buyer App: Request More Information (on_issue)
+               Buyer App->>Seller App: Provide Info (issue)
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+               Buyer App->>Seller App: Provide Info (issue)
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Seller App->>Buyer App: Provide Resolution Options (on_issue)
+               Buyer App->>Seller App: Accept Resolution (issue)
+               Seller App->>Buyer App: Send Resolution Object (on_issue)
+               Buyer App->>Seller App: Close Complaint (issue)
+        reference: if any
+        example:
+          value: *ref_5
+      - summary: Buyer app provides relevant information (responds to the request
+        api: issue
+        details:
+          - description: Buyer app provides relevant information (responds to the request
+            mermaid: >-
+              sequenceDiagram title  Buyer raising a complaint for an item
+              participant Buyer App participant Seller App
+
+              Buyer App->>Seller App: Raise Complaint (issue) Seller App->>Buyer
+              App: Processing Action (on_issue) Seller App->>Buyer App: Request
+              More Information (on_issue) Buyer App->>Seller App: Provide Info
+              (issue) Seller App->>Buyer App: Processing Action (on_issue)
+              Seller App->>Buyer App: Request More Information (Tag Missing
+              Info) (on_issue) Buyer App->>Seller App: Provide Info (issue)
+              Seller App->>Buyer App: Processing Action (on_issue) Seller
+              App->>Buyer App: Provide Resolution Options (on_issue) Buyer
+              App->>Seller App: Accept Resolution (issue) Seller App->>Buyer
+              App: Send Resolution Object (on_issue) Buyer App->>Seller App:
+              Close Complaint (issue)
+        reference: if any
+        example:
+          value: *ref_6
+      - summary: >-
+          Seller app responds with need more info tagging the previous missing
+          info
+        api: on_issue
+        details:
+          - description: >-
+              Seller app responds with need more info tagging the previous
+              missing info
+            mermaid: |-
+              sequenceDiagram
+                title  Buyer raising a complaint for an item
+                participant Buyer App
+                participant Seller App
+
+                Buyer App->>Seller App: Raise Complaint (issue)
+                Seller App->>Buyer App: Processing Action (on_issue)
+                Seller App->>Buyer App: Request More Information (on_issue)
+                Buyer App->>Seller App: Provide Info (issue)
+                Seller App->>Buyer App: Processing Action (on_issue)
+                Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+                Buyer App->>Seller App: Provide Info (issue)
+                Seller App->>Buyer App: Processing Action (on_issue)
+                Seller App->>Buyer App: Provide Resolution Options (on_issue)
+                Buyer App->>Seller App: Accept Resolution (issue)
+                Seller App->>Buyer App: Send Resolution Object (on_issue)
+                Buyer App->>Seller App: Close Complaint (issue)
+        reference: if any
+        example:
+          value: *ref_7
+      - summary: >-
+          Seller app responds with need more info tagging the previous missing
+          info
+        api: on_issue
+        details:
+          - description: >-
+              Seller app responds with need more info tagging the previous
+              missing info
+            mermaid: |-
+              sequenceDiagram
+               title  Buyer raising a complaint for an item
+               participant Buyer App
+               participant Seller App
+
+               Buyer App->>Seller App: Raise Complaint (issue)
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Seller App->>Buyer App: Request More Information (on_issue)
+               Buyer App->>Seller App: Provide Info (issue)
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+               Buyer App->>Seller App: Provide Info (issue)
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Seller App->>Buyer App: Provide Resolution Options (on_issue)
+               Buyer App->>Seller App: Accept Resolution (issue)
+               Seller App->>Buyer App: Send Resolution Object (on_issue)
+               Buyer App->>Seller App: Close Complaint (issue)
+        reference: if any
+        example:
+          value: *ref_8
+      - summary: >-
+          Seller app responds with need more info tagging the previous missing
+          info
+        api: issue
+        details:
+          - description: >-
+              Seller app responds with need more info tagging the previous
+              missing info
+            mermaid: |-
+              sequenceDiagram
+                 title  Buyer raising a complaint for an item
+                 participant Buyer App
+                 participant Seller App
+
+                 Buyer App->>Seller App: Raise Complaint (issue)
+                 Seller App->>Buyer App: Processing Action (on_issue)
+                 Seller App->>Buyer App: Request More Information (on_issue)
+                 Buyer App->>Seller App: Provide Info (issue)
+                 Seller App->>Buyer App: Processing Action (on_issue)
+                 Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+                 Buyer App->>Seller App: Provide Info (issue)
+                 Seller App->>Buyer App: Processing Action (on_issue)
+                 Seller App->>Buyer App: Provide Resolution Options (on_issue)
+                 Buyer App->>Seller App: Accept Resolution (issue)
+                 Seller App->>Buyer App: Send Resolution Object (on_issue)
+                 Buyer App->>Seller App: Close Complaint (issue)
+        reference: if any
+        example:
+          value: *ref_9
+      - summary: >-
+          Seller app responds with need more info tagging the previous missing
+          info
+        api: on_issue
+        details:
+          - description: >-
+              Seller app responds with need more info tagging the previous
+              missing info
+            mermaid: |-
+              sequenceDiagram
+               title  Buyer raising a complaint for an item
+               participant Buyer App
+               participant Seller App
+
+               Buyer App->>Seller App: Raise Complaint (issue)
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Seller App->>Buyer App: Request More Information (on_issue)
+               Buyer App->>Seller App: Provide Info (issue)
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
+               Buyer App->>Seller App: Provide Info (issue)
+               Seller App->>Buyer App: Processing Action (on_issue)
+               Seller App->>Buyer App: Provide Resolution Options (on_issue)
+               Buyer App->>Seller App: Accept Resolution (issue)
+               Seller App->>Buyer App: Send Resolution Object (on_issue)
+               Buyer App->>Seller App: Close Complaint (issue)
+        reference: if any
+        example:
+          value: *ref_10
       - summary: >-
           Seller app responds with need more info tagging the previous missing
           info
@@ -2879,251 +5081,7 @@ x-flows:
                 Buyer App->>Seller App: Close Complaint (issue)
         reference: if any
         example:
-          value:
-            context:
-              domain: ONDC:RET10
-              location:
-                country:
-                  code: IND
-                city:
-                  code: '*'
-              action: issue
-              core_version: 2.0.0
-              bap_id: buyerapp.com
-              bap_uri: https://buyerapp.com/ondc
-              bpp_id: sellerapp.com
-              bpp_uri: https://sellerapp.com/ondc
-              transaction_id: T1
-              message_id: M1
-              timestamp: '2023-01-15T10:00:00.469Z'
-              ttl: PT30S
-            message:
-              upated_target:
-                - path: issue.actions
-                  action: APPENDED
-              issue:
-                id: ISSUE-1
-                status: CLOSED
-                level: ISSUE
-                created_at: '2023-01-15T10:00:00.469Z'
-                updated_at: '2023-01-15T10:00:00.469Z'
-                expected_response_time:
-                  duration: PT2H
-                expected_resolution_time:
-                  duration: P1D
-                refs:
-                  - ref_id: O1
-                    ref_type: ORDER
-                  - ref_id: P1
-                    ref_type: PROVIDER
-                  - ref_id: F1
-                    ref_type: FULFILMENT
-                  - ref_id: I1
-                    ref_type: ITEM
-                    ref_details:
-                      - descriptor:
-                          code: message.order.items
-                        list:
-                          - descriptor:
-                              code: quantity.selected.count
-                            value: '2'
-                actor_info:
-                  - id: CUST1
-                    type: CONSUMER
-                    info:
-                      org:
-                        name: buyerapp.com::ONDC:RET10
-                      person:
-                        name: Sam Manuel
-                      contact:
-                        phone: '9879879870'
-                        email: sam@yahoo.com
-                  - id: NP1
-                    type: INTERFACING-NP
-                    info:
-                      org:
-                        name: buyerapp.com::ONDC:RET10
-                      contact:
-                        phone: '9450394039'
-                        email: buyerapp@interface.com
-                      person:
-                        name: John Doe
-                  - id: NP2
-                    type: TRANSACTION-COUNTERPARTY-NP
-                    info:
-                      org:
-                        name: sellerapp.com::ONDC:RET10
-                      contact:
-                        phone: '9450394140'
-                        email: respondentapp@respond.com
-                      person:
-                        name: Jane Doe
-                source_id: CUST1
-                complainant_id: NP1
-                respondent_ids:
-                  - NP2
-                resolver_ids:
-                  - NP2
-                description:
-                  code: ITM004
-                  short_desc: Issue with product quality
-                  long_desc: >-
-                    product quality is not correct. facing issues while using
-                    the product
-                  additional_desc:
-                    url: https://buyerapp.com/additonal-details/desc.txt
-                    content_type: text/plain
-                  images:
-                    - http://buyerapp.com/addtional-details/img1.png
-                    - http://buyerapp.com/addtional-details/img2.png
-                last_action_id: A13
-                actions:
-                  - id: A1
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: OPEN
-                      short_desc: Complaint created
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A2
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: PROCESSING
-                      short_desc: Complaint created
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A3
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: INFO_REQUESTED
-                      'name ': INFO001
-                      short_desc: Please provide product image
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A4
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: INFO_REQUESTED
-                      'name ': INFO002
-                      short_desc: Please provide invoice
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A5
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: INFO_PROVIDED
-                      short_desc: Buyer app providing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A6
-                    ref_id: '-'
-                    ref_type: ''
-                    description:
-                      code: Processing
-                      short_desc: Seller app processing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A7
-                    ref_id: A4
-                    ref_type: ''
-                    description:
-                      code: INFO_REQUESTED
-                      short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z"
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A8
-                    ref_id: A4
-                    ref_type: ''
-                    description:
-                      code: INFO_PROVIDED
-                      short_desc: Seller app processing the info
-                    updated_at: 2023-01-15T10:00:00.469Z"
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A9
-                    ref_id: ''
-                    ref_type: ''
-                    description:
-                      code: Processing
-                      short_desc: Seller app processing the info
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A10
-                    ref_id: ''
-                    ref_type: ''
-                    description:
-                      code: RESOLUTION_PROPOSED
-                      'name ': refund
-                      short_desc: Seller app proposed the resolution
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A11
-                    ref_id: ''
-                    ref_type: ''
-                    description:
-                      code: RESOLUTION_PROVIDED
-                      'name ': replacement
-                      short_desc: Seller app proposed the resolution
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A12
-                    ref_id: ''
-                    ref_type: ''
-                    description:
-                      code: RESOLVED
-                      'name ': replacement
-                      short_desc: Seller app proposed the resolution
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A12
-                    ref_id: ''
-                    ref_type: ''
-                    description:
-                      code: RESOLVED
-                      'name ': replacement
-                      short_desc: Seller app proposed the resolution
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
-                  - id: A13
-                    ref_id: ''
-                    ref_type: ''
-                    description:
-                      code: Closed
-                      short_desc: Buyer app close the issue
-                    updated_at: '2023-01-15T10:00:00.469Z'
-                    action_by: NP1
-                    actor_details:
-                      name: Sam Manuel
+          value: *ref_11
 x-examples:
   Flow1:
     summary: IGM implementation

@@ -268,7 +268,7 @@ components:
             contact:
               $ref: '#/components/schemas/Contact'
             org:
-              type: 
+              type: object
     Additional_desc:
       type: object
       properties:
