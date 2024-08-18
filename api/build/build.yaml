@@ -733,7 +733,18 @@ servers:
 x-flows:
   - summary: Flow1 -  Buyer raises a complaint for item category
     details:
-      - description: detailed flow
+      - description: >-
+          This flow provides an illustrative example workflow of the IGM
+          framework where an end consumer (complainant source) is raising a
+          complaint related to a retail item bought with regards to its quality.
+          The seller/ seller app (respondent) analyses the details shared and
+          asks for additional information in the form of more images and the
+          invoice. The buyer only provides images and may not have provided the
+          invoice. The seller asks for the invoice again and the buyer then
+          provides the same. Once received the seller provides two resolution
+          options to the buyer and the buyer seller selects one of the
+          resolutions. The seller then resolves the complaint with the chosen
+          resolution and the buyer then closes the complaint.
         mermaid: |-
           sequenceDiagram
             title  Buyer raising a complaint for an item
@@ -770,7 +781,7 @@ x-flows:
                
             reference: if any
         example:
-          value: &ref_0
+          value: &ref_11
             context:
               domain: ONDC:RET10
               location:
@@ -873,7 +884,7 @@ x-flows:
                  Buyer App->>Seller App: Ack
         reference: if any
         example:
-          value: &ref_1
+          value: &ref_12
             context:
               domain: ONDC:RET10
               location:
@@ -1001,7 +1012,7 @@ x-flows:
                Buyer App ->> Seller App : ACK
         reference: if any
         example:
-          value: &ref_2
+          value:
             context:
               domain: ONDC:RET10
               location:
@@ -1146,7 +1157,7 @@ x-flows:
               Buyer App->>Seller App: Provide Info (issue)
         reference: if any
         example:
-          value: &ref_3
+          value:
             context:
               domain: ONDC:RET10
               location:
@@ -1315,7 +1326,7 @@ x-flows:
                Buyer App->>Seller App: Close Complaint (issue)
         reference: if any
         example:
-          value: &ref_4
+          value:
             context:
               domain: ONDC:RET10
               location:
@@ -1492,7 +1503,7 @@ x-flows:
                Buyer App->>Seller App: Close Complaint (issue)
         reference: if any
         example:
-          value: &ref_5
+          value:
             context:
               domain: ONDC:RET10
               location:
@@ -1674,7 +1685,7 @@ x-flows:
               Close Complaint (issue)
         reference: if any
         example:
-          value: &ref_6
+          value:
             context:
               domain: ONDC:RET10
               location:
@@ -1874,7 +1885,7 @@ x-flows:
                 Buyer App->>Seller App: Close Complaint (issue)
         reference: if any
         example:
-          value: &ref_7
+          value:
             context:
               domain: ONDC:RET10
               location:
@@ -2082,7 +2093,7 @@ x-flows:
                Buyer App->>Seller App: Close Complaint (issue)
         reference: if any
         example:
-          value: &ref_8
+          value:
             context:
               domain: ONDC:RET10
               location:
@@ -2339,7 +2350,7 @@ x-flows:
                  Buyer App->>Seller App: Close Complaint (issue)
         reference: if any
         example:
-          value: &ref_9
+          value:
             context:
               domain: ONDC:RET10
               location:
@@ -2605,7 +2616,7 @@ x-flows:
                Buyer App->>Seller App: Close Complaint (issue)
         reference: if any
         example:
-          value: &ref_10
+          value:
             context:
               domain: ONDC:RET10
               location:
@@ -2884,7 +2895,7 @@ x-flows:
                 Buyer App->>Seller App: Close Complaint (issue)
         reference: if any
         example:
-          value: &ref_11
+          value:
             context:
               domain: ONDC:RET10
               location:
@@ -3152,7 +3163,20 @@ x-flows:
                             value: I1
   - summary: Flow2 - Seller raising a complaint for policy issue
     details:
-      - description: null
+      - description: >-
+          This flow provides an illustrative example workflow for the IGM
+          framework where a seller / seller app (complainant) raises a complaint
+          that their store is not visible on the respective buyer app tagging
+          the transaction id of the /on_search request shared along with the
+          provider_id of the seller. The buyer analyses the complaints and
+          proposes a resolution saying the seller would now be visible. The
+          seller accepts the resolution and the buyer app resolves the same
+          claiming it is now visible on the interface. The seller escalates the
+          complaint as the seller is still not visible. The GRO of the buyer app
+          gets involved and attempts to analyse the complaint. They propose a
+          resolution acknowledging the mistake in their catalogue processing
+          workflow and resolve the complaint. The seller is now visible on the
+          buyer app interface and the seller closes the complaint.
         mermaid: ''
     references: if any
     steps:
@@ -3163,7 +3187,7 @@ x-flows:
             mermaid: ''
             reference: if any
         example:
-          value:
+          value: &ref_0
             context:
               domain: ONDC:RET10
               location:
@@ -3242,7 +3266,7 @@ x-flows:
             mermaid: ''
         reference: if any
         example:
-          value:
+          value: &ref_1
             context:
               domain: ONDC:RET10
               location:
@@ -3338,16 +3362,10 @@ x-flows:
         api: on_issue
         details:
           - description: on_issue
-            mermaid: |-
-              sequenceDiagram
-               title  Buyer raising a complaint for an item
-               participant Buyer App
-               participant Seller App  
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Buyer App ->> Seller App : ACK
+            mermaid: ''
         reference: if any
         example:
-          value:
+          value: &ref_2
             context:
               domain: ONDC:RET10
               location:
@@ -3471,7 +3489,7 @@ x-flows:
             mermaid: ''
         reference: if any
         example:
-          value:
+          value: &ref_3
             context:
               domain: ONDC:RET10
               location:
@@ -3603,7 +3621,7 @@ x-flows:
             mermaid: ''
         reference: if any
         example:
-          value:
+          value: &ref_4
             context:
               domain: ONDC:RET10
               location:
@@ -3745,7 +3763,7 @@ x-flows:
             mermaid: ''
         reference: if any
         example:
-          value:
+          value: &ref_5
             context:
               domain: ONDC:RET10
               location:
@@ -3894,7 +3912,7 @@ x-flows:
           - description: Buyer app responds with processing action
         reference: if any
         example:
-          value:
+          value: &ref_6
             context:
               domain: ONDC:RET10
               location:
@@ -4050,7 +4068,7 @@ x-flows:
             mermaid: ''
         reference: if any
         example:
-          value:
+          value: &ref_7
             context:
               domain: ONDC:RET10
               location:
@@ -4220,7 +4238,7 @@ x-flows:
             mermaid: ''
         reference: if any
         example:
-          value:
+          value: &ref_8
             context:
               domain: ONDC:RET10
               location:
@@ -4398,7 +4416,7 @@ x-flows:
             mermaid: ''
         reference: if any
         example:
-          value:
+          value: &ref_9
             context:
               domain: ONDC:RET10
               location:
@@ -4584,7 +4602,7 @@ x-flows:
             mermaid: ''
         reference: if any
         example:
-          value:
+          value: &ref_10
             context:
               domain: ONDC:RET10
               location:
@@ -4776,327 +4794,131 @@ x-flows:
                       short_desc: Error in interface, seller would now be visible.
                     updated_at: 2024-08-14T09:57:58.841Z
                     proposed_by: NP2
-  - summary: Flow3-  Buyer raises a complaint for item category
+  - summary: Flow2 - Seller raising a complaint for policy issue
     details:
-      - description: detailed flow
-        mermaid: |-
-          sequenceDiagram
-            title  Buyer raising a complaint for an item
-            participant Buyer App
-            participant Seller App
-
-            Buyer App->>Seller App: Raise Complaint (issue)
-            Seller App->>Buyer App: Processing Action (on_issue)
-            Seller App->>Buyer App: Request More Information (on_issue)
-            Buyer App->>Seller App: Provide Info (issue)
-            Seller App->>Buyer App: Processing Action (on_issue)
-            Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-            Buyer App->>Seller App: Provide Info (issue)
-            Seller App->>Buyer App: Processing Action (on_issue)
-            Seller App->>Buyer App: Provide Resolution Options (on_issue)
-            Buyer App->>Seller App: Accept Resolution (issue)
-            Seller App->>Buyer App: Send Resolution Object (on_issue)
-            Buyer App->>Seller App: Close Complaint (issue)
+      - description: >-
+          This flow provides an illustrative example workflow for the IGM
+          framework where a seller / seller app (complainant) raises a complaint
+          that their store is not visible on the respective buyer app tagging
+          the transaction id of the /on_search request shared along with the
+          provider_id of the seller. The buyer analyses the complaints and
+          proposes a resolution saying the seller would now be visible. The
+          seller accepts the resolution and the buyer app resolves the same
+          claiming it is now visible on the interface. The seller escalates the
+          complaint as the seller is still not visible. The GRO of the buyer app
+          gets involved and attempts to analyse the complaint. They propose a
+          resolution acknowledging the mistake in their catalogue processing
+          workflow and resolve the complaint. The seller is now visible on the
+          buyer app interface and the seller closes the complaint.
+        mermaid: ''
     references: if any
     steps:
-      - summary: >-
-          Buyer raises a complaint for item category; buyer app creates the
-          issue call
+      - summary: Seller app raises a complaint for policy category
         api: issue
         details:
           - description: issue
-            mermaid: |-
-              sequenceDiagram
-                title  Buyer raising a complaint for an item
-                participant Buyer App
-                participant Seller App
-                Buyer App->>Seller App: Raise Complaint (issue)
-                Seller App->>Buyer App: ACK
-               
+            mermaid: ''
             reference: if any
         example:
           value: *ref_0
-      - summary: Seller app responds with processing action
+      - summary: Buyer app responds with processing action
         api: on_issue
         details:
           - description: on_issue
-            mermaid: |-
-              sequenceDiagram
-                 title  Buyer raising a complaint for an item
-                 participant Buyer App
-                 participant Seller App
-                 Seller App->>Buyer App: Processing Action (on_issue)
-                 Buyer App->>Seller App: Ack
+            mermaid: ''
         reference: if any
         example:
           value: *ref_1
-      - summary: >-
-          Seller app needs more information to analyse (two info_request actions
-          for two requirements)
+      - summary: Buyer app responds with a proposed resolution
         api: on_issue
         details:
           - description: on_issue
-            mermaid: |-
-              sequenceDiagram
-               title  Buyer raising a complaint for an item
-               participant Buyer App
-               participant Seller App  
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Buyer App ->> Seller App : ACK
+            mermaid: ''
         reference: if any
         example:
           value: *ref_2
-      - summary: >-
-          Buyer app provides relevant information (responds to one of the
-          requests)
+      - summary: Seller app accepts the resolution proposed
         api: issue
         details:
           - description: issue
-            mermaid: >-
-              sequenceDiagram title  Buyer raising a complaint for an item
-              participant Buyer App participant Seller App
-
-
-              Buyer App->>Seller App: Provide Info (issue)
+            mermaid: ''
         reference: if any
         example:
           value: *ref_3
-      - summary: Seller app responds with processing action
+      - summary: Buyer app provides the resolution
         api: on_issue
         details:
-          - description: Seller app responds with processing action
-            mermaid: |-
-              sequenceDiagram
-               title  Buyer raising a complaint for an item
-               participant Buyer App
-               participant Seller App
-
-               Buyer App->>Seller App: Raise Complaint (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Provide Resolution Options (on_issue)
-               Buyer App->>Seller App: Accept Resolution (issue)
-               Seller App->>Buyer App: Send Resolution Object (on_issue)
-               Buyer App->>Seller App: Close Complaint (issue)
+          - description: Buyer app provides the resolution
+            mermaid: ''
         reference: if any
         example:
           value: *ref_4
-      - summary: >-
-          Seller app responds with need more info tagging the previous missing
-          info
+      - summary: Seller app escalates the complaint
         api: on_issue
         details:
-          - description: >-
-              Seller app responds with need more info tagging the previous
-              missing info
-            mermaid: |-
-              sequenceDiagram
-               title  Buyer raising a complaint for an item
-               participant Buyer App
-               participant Seller App
-
-               Buyer App->>Seller App: Raise Complaint (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Provide Resolution Options (on_issue)
-               Buyer App->>Seller App: Accept Resolution (issue)
-               Seller App->>Buyer App: Send Resolution Object (on_issue)
-               Buyer App->>Seller App: Close Complaint (issue)
+          - description: Seller app escalates the complaint
+            mermaid: ''
         reference: if any
         example:
           value: *ref_5
-      - summary: Buyer app provides relevant information (responds to the request
+      - summary: Buyer app responds with processing action
         api: issue
         details:
-          - description: Buyer app provides relevant information (responds to the request
-            mermaid: >-
-              sequenceDiagram title  Buyer raising a complaint for an item
-              participant Buyer App participant Seller App
-
-              Buyer App->>Seller App: Raise Complaint (issue) Seller App->>Buyer
-              App: Processing Action (on_issue) Seller App->>Buyer App: Request
-              More Information (on_issue) Buyer App->>Seller App: Provide Info
-              (issue) Seller App->>Buyer App: Processing Action (on_issue)
-              Seller App->>Buyer App: Request More Information (Tag Missing
-              Info) (on_issue) Buyer App->>Seller App: Provide Info (issue)
-              Seller App->>Buyer App: Processing Action (on_issue) Seller
-              App->>Buyer App: Provide Resolution Options (on_issue) Buyer
-              App->>Seller App: Accept Resolution (issue) Seller App->>Buyer
-              App: Send Resolution Object (on_issue) Buyer App->>Seller App:
-              Close Complaint (issue)
+          - description: Buyer app responds with processing action
         reference: if any
         example:
           value: *ref_6
-      - summary: >-
-          Seller app responds with need more info tagging the previous missing
-          info
+      - summary: Buyer app responds with a proposed resolution
         api: on_issue
         details:
-          - description: >-
-              Seller app responds with need more info tagging the previous
-              missing info
-            mermaid: |-
-              sequenceDiagram
-                title  Buyer raising a complaint for an item
-                participant Buyer App
-                participant Seller App
-
-                Buyer App->>Seller App: Raise Complaint (issue)
-                Seller App->>Buyer App: Processing Action (on_issue)
-                Seller App->>Buyer App: Request More Information (on_issue)
-                Buyer App->>Seller App: Provide Info (issue)
-                Seller App->>Buyer App: Processing Action (on_issue)
-                Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-                Buyer App->>Seller App: Provide Info (issue)
-                Seller App->>Buyer App: Processing Action (on_issue)
-                Seller App->>Buyer App: Provide Resolution Options (on_issue)
-                Buyer App->>Seller App: Accept Resolution (issue)
-                Seller App->>Buyer App: Send Resolution Object (on_issue)
-                Buyer App->>Seller App: Close Complaint (issue)
+          - description: Buyer app responds with a proposed resolution
+            mermaid: ''
         reference: if any
         example:
           value: *ref_7
-      - summary: >-
-          Seller app responds with need more info tagging the previous missing
-          info
+      - summary: Seller app accepts the resolution
         api: on_issue
         details:
-          - description: >-
-              Seller app responds with need more info tagging the previous
-              missing info
-            mermaid: |-
-              sequenceDiagram
-               title  Buyer raising a complaint for an item
-               participant Buyer App
-               participant Seller App
-
-               Buyer App->>Seller App: Raise Complaint (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Provide Resolution Options (on_issue)
-               Buyer App->>Seller App: Accept Resolution (issue)
-               Seller App->>Buyer App: Send Resolution Object (on_issue)
-               Buyer App->>Seller App: Close Complaint (issue)
+          - description: Seller app accepts the resolution
+            mermaid: ''
         reference: if any
         example:
           value: *ref_8
-      - summary: >-
-          Seller app responds with need more info tagging the previous missing
-          info
+      - summary: Buyer app provides the resolution
         api: issue
         details:
-          - description: >-
-              Seller app responds with need more info tagging the previous
-              missing info
-            mermaid: |-
-              sequenceDiagram
-                 title  Buyer raising a complaint for an item
-                 participant Buyer App
-                 participant Seller App
-
-                 Buyer App->>Seller App: Raise Complaint (issue)
-                 Seller App->>Buyer App: Processing Action (on_issue)
-                 Seller App->>Buyer App: Request More Information (on_issue)
-                 Buyer App->>Seller App: Provide Info (issue)
-                 Seller App->>Buyer App: Processing Action (on_issue)
-                 Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-                 Buyer App->>Seller App: Provide Info (issue)
-                 Seller App->>Buyer App: Processing Action (on_issue)
-                 Seller App->>Buyer App: Provide Resolution Options (on_issue)
-                 Buyer App->>Seller App: Accept Resolution (issue)
-                 Seller App->>Buyer App: Send Resolution Object (on_issue)
-                 Buyer App->>Seller App: Close Complaint (issue)
+          - description: Buyer app provides the resolution
+            mermaid: ''
         reference: if any
         example:
           value: *ref_9
-      - summary: >-
-          Seller app responds with need more info tagging the previous missing
-          info
-        api: on_issue
+      - summary: Seller app closes the complaint
+        api: issue
         details:
-          - description: >-
-              Seller app responds with need more info tagging the previous
-              missing info
-            mermaid: |-
-              sequenceDiagram
-               title  Buyer raising a complaint for an item
-               participant Buyer App
-               participant Seller App
-
-               Buyer App->>Seller App: Raise Complaint (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Provide Resolution Options (on_issue)
-               Buyer App->>Seller App: Accept Resolution (issue)
-               Seller App->>Buyer App: Send Resolution Object (on_issue)
-               Buyer App->>Seller App: Close Complaint (issue)
+          - description: null
+            mermaid: ''
         reference: if any
         example:
           value: *ref_10
-      - summary: >-
-          Seller app responds with need more info tagging the previous missing
-          info
-        api: issue
-        details:
-          - description: >-
-              Seller app responds with need more info tagging the previous
-              missing info
-            mermaid: |-
-              sequenceDiagram
-                title  Buyer raising a complaint for an item
-                participant Buyer App
-                participant Seller App
-
-                Buyer App->>Seller App: Raise Complaint (issue)
-                Seller App->>Buyer App: Processing Action (on_issue)
-                Seller App->>Buyer App: Request More Information (on_issue)
-                Buyer App->>Seller App: Provide Info (issue)
-                Seller App->>Buyer App: Processing Action (on_issue)
-                Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-                Buyer App->>Seller App: Provide Info (issue)
-                Seller App->>Buyer App: Processing Action (on_issue)
-                Seller App->>Buyer App: Provide Resolution Options (on_issue)
-                Buyer App->>Seller App: Accept Resolution (issue)
-                Seller App->>Buyer App: Send Resolution Object (on_issue)
-                Buyer App->>Seller App: Close Complaint (issue)
-        reference: if any
-        example:
-          value: *ref_11
 x-examples:
   Flow1:
     summary: IGM implementation
-    description: IGM examples
+    description: >-
+      Issue and Grievance Management (IGM) framework enables NPs to handle
+      complaints over the network. This developer guide provides the details of
+      the IGM v2.0 specifications and model implementations covering enhanced
+      use cases over and above the IGM MVP v1.0.0.
     example_set:
       issue:
         examples:
           - summary: issue
             description: TBD
-            value: *ref_0
+            value: *ref_11
       on_issue:
         examples:
           - summary: on_issue
             description: TBDmkjkj
-            value: *ref_1
+            value: *ref_12
 x-attributes:
   Flow1:
     attribute_set:
