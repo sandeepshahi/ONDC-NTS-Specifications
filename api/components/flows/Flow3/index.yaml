@@ -1,4 +1,4 @@
-summary: Flow3-  Buyer raises a complaint for fulfilment category
+summary: Flow3 - Buyer raises a complaint for fulfilment category
 details:
  - description: This flow provides an illustrative example workflow for the IGM framework where an end consumer (complainant) raises a complaint with regards to their fulfilment experience for their retail order. The seller app (on-network logistics buyer) analyses the complaint and feels the logistics seller app needs to be consulted for this complaint. The retail seller app creates a complaint to the logistics seller app with relevant information. Example illustrated below creates a new complaint (new issue_id) with an independent flow. The seller app may choose to cascade the same issue_id as well and build the actions array inclusive of all actions in which case all actions taken by the logistics seller app are communicated as-is to the retail buyer app as well as status updates. The logistics seller app analyses the complaint and requires more images of the packaging received. The seller app cascades the same request to the buyer app and then the buyer provides the images required which is cascaded back to the logistics provider. The logistics provider then processes it and proposes a resolution. The cascaded resolution is accepted by the buyer after which the logistics provider resolves the complaint and the buyer closes the complaint.
    mermaid: >-
@@ -154,7 +154,16 @@ steps:
     example:
       value:
         $ref: "../../examples/Flow3/issue/issue14.yaml"    
-                          
+  - summary: Seller app responds with need more info tagging the previous missing info
+    api: issue
+    details:
+      - description: Seller app responds with need more info tagging the previous missing info
+        mermaid: >-
+         
+        reference: if any
+    example:
+      value:
+        $ref: "../../examples/Flow3/on_issue/on_issue15.yaml"                         
                   
                  
                     
