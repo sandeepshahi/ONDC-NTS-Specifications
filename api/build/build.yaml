@@ -731,7 +731,7 @@ servers:
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/ONDC/ONDC-Protocol-IGM/1.0.0
 x-flows:
-  - summary: Flow1 -  Buyer raises a complaint for item category
+  - summary: Flow1 - Buyer raises a complaint for item category
     details:
       - description: >-
           This flow provides an illustrative example workflow of the IGM
