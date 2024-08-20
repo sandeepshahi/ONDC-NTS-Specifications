@@ -25,6 +25,10 @@ paths:
                   properties:
                     issue:
                       $ref: '#/components/schemas/Issue'
+                  required:
+                    - issue
+                error:
+                  $ref: '#/components/schemas/Error'
               required:
                 - context
                 - message
@@ -66,6 +70,51 @@ paths:
                   properties:
                     issue:
                       $ref: '#/components/schemas/Issue'
+                  required:
+                    - issue
+                error:
+                  $ref: '#/components/schemas/Error'
+              required:
+                - context
+                - message
+      responses:
+        '200':
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: '#/components/schemas/Ack'
+                    required:
+                      - ack
+                  error:
+                    $ref: '#/components/schemas/Error'
+                required:
+                  - message
+  /issue_status:
+    post:
+      tags:
+        - Complaint lifecycle management
+      description: Send the issue resolution details object
+      requestBody:
+        description: Seller confirms order
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: '#/components/schemas/Context'
+                message:
+                  type: object
+                  properties:
+                    issue_id:
+                      $ref: '#/components/schemas/issue_id'
                   required:
                     - issue
                 error:
@@ -200,6 +249,9 @@ components:
             correalted and relevant network-issue-id which helps all this
             inteacting systems to traverse back to the main issue.
           type: string
+        issue_id:
+          description: Reference to a complaint for which a status is raised.
+          type: string
         expected_response_time:
           $ref: '#/components/schemas/Time'
         expected_resolution_time:
@@ -273,6 +325,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TagGroup'
+    issue_id:
+      description: Reference to a complaint for which a status is raised.
+      type: string
     Action:
       type: object
       properties:
@@ -638,17 +693,30 @@ components:
         - bap_uri
         - timestamp
     Error:
-      description: Describes an error object
+      description: >-
+        Describes an error object that is returned by a BAP, BPP or BG as a
+        response or callback to an action by another network participant. This
+        object is sent when any request received by a network participant is
+        unacceptable. This object can be sent either during Ack or with the
+        callback.
       type: object
       properties:
-        type:
+        code:
           type: string
-          enum:
-            - CONTEXT-ERROR
-            - CORE-ERROR
-            - DOMAIN-ERROR
-            - POLICY-ERROR
-            - JSON-SCHEMA-ERROR
+          description: >-
+            Standard error code. For full list of error codes, refer to
+            docs/protocol-drafts/BECKN-005-ERROR-CODES-DRAFT-01.md of this repo"
+        paths:
+          type: string
+          description: >-
+            Path to json schema generating the error. Used only during json
+            schema validation errors
+        message:
+          type: string
+          description: >-
+            Human readable message describing the error. Used mainly for
+            logging. Not recommended to be shown to the user.
+    Fee: null
     TagGroup:
       description: >-
         A collection of tag objects with group level attributes. For detailed
@@ -1112,7 +1180,7 @@ x-flows:
             mermaid: ''
         reference: if any
         example:
-          value:
+          value: &ref_2
             context:
               domain: ONDC:RET10
               location:
@@ -7544,10 +7612,15 @@ x-examples:
           - summary: issue
             description: TBD
             value: *ref_1
-      on_issue_status:
+      on_issue:
         examples:
-          - summary: on_issue_status
-            description: TBDmkjkj
+          - summary: on_issue
+            description: on_issue
+            value: *ref_2
+      issue_status:
+        examples:
+          - summary: issue_status
+            description: issue_status
             value:
               context:
                 domain: ONDC:RET10
@@ -7556,7 +7629,32 @@ x-examples:
                     code: IND
                   city:
                     code: '*'
-                action: on_issue_status
+                action: issue_status
+                core_version: 2.0.0
+                bap_id: buyerapp.com
+                bap_uri: https://buyerapp.com/ondc
+                bpp_id: sellerapp.com
+                bpp_uri: https://sellerapp.com/ondc
+                transaction_id: T1
+                message_id: M1
+                timestamp: '2023-01-15T10:00:00.469Z'
+                ttl: PT30S
+              message:
+                issue:
+                  issue_id: I1
+      on_issue_status:
+        examples:
+          - summary: on_issue_status
+            description: on_issue_status
+            value:
+              context:
+                domain: ONDC:RET10
+                location:
+                  country:
+                    code: IND
+                  city:
+                    code: '*'
+                action: issue_status
                 core_version: 2.0.0
                 bap_id: buyerapp.com
                 bap_uri: https://buyerapp.com/ondc

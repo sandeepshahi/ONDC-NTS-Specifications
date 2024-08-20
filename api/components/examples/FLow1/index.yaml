@@ -20,23 +20,23 @@ issue:
     #   description: TBD
     #   value:
     #     $ref: "./issue/issue12.yaml"         
-# on_issue:
-#    examples:
-#     - summary: on_issue
-#       description: TBDmkjkj
-#       value:
-#         $ref: "./on_issue/on_issue2.yaml"
+on_issue:
+   examples:
+    - summary: on_issue
+      description: on_issue
+      value:
+        $ref: "./on_issue/on_issue2.yaml"
         
-# issue_status:
-#    examples:
-#     - summary: on_issue
-#       description: TBDmkjkj
-#       value:
-#         $ref: "./on_issue/on_issue2.yaml"
+issue_status:
+   examples:
+    - summary: issue_status
+      description: issue_status
+      value:
+        $ref: "./issue_status/issue_status.yaml"
 on_issue_status:
    examples:
     - summary: on_issue_status
-      description: TBDmkjkj
+      description: on_issue_status
       value:
         $ref: "./on_issue_status/on_issue_status.yaml"        
         
