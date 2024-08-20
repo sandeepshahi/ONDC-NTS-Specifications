@@ -3245,7 +3245,7 @@ x-flows:
                           - descriptor:
                               code: ITEM
                             value: I1
-  - summary: Flow2 - Seller raising a complaint for policy issue
+  - summary: Flow2 - Seller raisies a complaint for policy issue
     details:
       - description: >-
           This flow provides an illustrative example workflow for the IGM
@@ -4878,7 +4878,7 @@ x-flows:
                       short_desc: Error in interface, seller would now be visible.
                     updated_at: 2024-08-14T09:57:58.841Z
                     proposed_by: NP2
-  - summary: Flow3- Buyer raises a complaint for fulfilment category
+  - summary: Flow3 - Buyer raises a complaint for fulfilment category
     details:
       - description: >-
           This flow provides an illustrative example workflow for the IGM
@@ -6257,7 +6257,7 @@ x-flows:
       - summary: >-
           Seller app responds with need more info tagging the previous missing
           info
-        api: issue
+        api: on_issue
         details:
           - description: >-
               Seller app responds with need more info tagging the previous
@@ -6785,7 +6785,7 @@ x-flows:
       - summary: >-
           Seller app responds with need more info tagging the previous missing
           info
-        api: issue
+        api: on_issue
         details:
           - description: >-
               Seller app responds with need more info tagging the previous
@@ -6971,7 +6971,7 @@ x-flows:
       - summary: >-
           Seller app responds with need more info tagging the previous missing
           info
-        api: issue
+        api: on_issue
         details:
           - description: >-
               Seller app responds with need more info tagging the previous
