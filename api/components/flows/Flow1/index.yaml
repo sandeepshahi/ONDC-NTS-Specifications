@@ -27,12 +27,7 @@ steps:
     details:
       - description: issue
         mermaid: >-
-          sequenceDiagram
-            title  Buyer raising a complaint for an item
-            participant Buyer App
-            participant Seller App
-            Buyer App->>Seller App: Raise Complaint (issue)
-            Seller App->>Buyer App: ACK
+          
            
         reference: if any
     example:
@@ -43,12 +38,7 @@ steps:
     details:
       - description: on_issue
         mermaid: >-
-         sequenceDiagram
-            title  Buyer raising a complaint for an item
-            participant Buyer App
-            participant Seller App
-            Seller App->>Buyer App: Processing Action (on_issue)
-            Buyer App->>Seller App: Ack
+         
         
         
     reference: if any
@@ -60,12 +50,7 @@ steps:
     details:
       - description: on_issue
         mermaid: >-
-         sequenceDiagram
-          title  Buyer raising a complaint for an item
-          participant Buyer App
-          participant Seller App  
-          Seller App->>Buyer App: Processing Action (on_issue)
-          Buyer App ->> Seller App : ACK
+         
     reference: if any
     example:
       value:
