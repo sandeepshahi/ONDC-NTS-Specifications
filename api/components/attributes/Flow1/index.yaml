@@ -6,71 +6,77 @@ issue:
         type: String
         owner: BAP
         usage: ISSUE-1
-        description: The unique identifier for the issue or complaint.
+        description: >-
+          Network issue identifier is an unique number assigned to any complaint
+          by the interfacing application at the source.
       status:
         required: mandatory
         type: String
         owner: BAP
         usage: OPEN
-        description: false
+        description: >-
+          Describes the status of the complaint - OPEN, PROCESSING, RESOLVED,
+          CLOSED
       level:
         required: mandatory
         type: String
         owner: BAP
         usage: ISSUE
-        description: false
+        description: Describes the level of the complaint - ISSUE, GRIEVANCE, DISPUTE
       created_at:
         required: mandatory
         type: String
         owner: BAP
         usage: '"2023-01-15T10:00:00.469Z"'
-        description: false
+        description: Timestamp for the creation of the complaint
       updated_at:
         required: mandatory
         type: String
         owner: BAP
         usage: '"2023-01-15T10:00:00.469Z"'
-        description: false
+        description: Timestamp for the capturing the time a complaint was last updated
       expected_response_time:
         duration:
           required: mandatory
           type: String
           owner: BAP
           usage: PT2H
-          description: false
+          description: >-
+            Describes time for the respondent to provide a response (PROCESSING
+            action)
       expected_resolution_time:
         duration:
           required: mandatory
           type: String
           owner: BAP
           usage: P1D
-          description: false
+          description: Describes time for the respondent to provide a resolution
       ref:
         ref_id:
           required: mandatory
           type: String
           owner: BAP
           usage: O1
-          description: false
+          description: Reference to another object
         ref_type:
           required: mandatory
           type: String
           owner: BAP
           usage: ORDER
-          description: false
+          description: Type of referenced object
       actor_info:
         id:
           required: mandatory
           type: String
           owner: BAP
           usage: P1
-          description: false
+          description: ID of the actor
         type:
           required: mandatory
           type: String
           owner: BAP
           usage: PROVIDER
-          description: false
+          description: 'Type of the actor '
         info:
           org:
             name:
@@ -78,52 +84,52 @@ issue:
               type: String
               owner: BAP
               usage: buyerapp.com::ONDC:RET10
-              description: false
+              description: Organization name of the actor
           person:
             name:
               required: mandatory
               type: String
               owner: BAP
               usage: Sam Manuel
-              description: false
+              description: Name of a repersentative of the  actor
           contact:
             phone:
               required: mandatory
               type: String
               owner: BAP
               usage: '"9879879870"'
-              description: false
+              description: Phone no of the actor
             email:
               required: mandatory
               type: String
               owner: BAP
               usage: sam@yahoo.com
-              description: false
+              description: Email ID of the actor
       source_id:
         required: mandatory
         type: String
         owner: BAP
         usage: CUST1
-        description: false
+        description: ID of the actor raising the complaint
       complainant_id:
         required: mandatory
         type: String
         owner: BAP
         usage: NP1
-        description: false
+        description: ID of the Network participant where the complaint is raised
       description:
         code:
           required: mandatory
           type: String
           owner: BAP
           usage: ITM004
-          description: false
+          description: Category of the complaint
         short_desc:
           required: mandatory
           type: String
           owner: BAP
           usage: Issue with product quality
-          description: false
+          description: Short description about the complainant
         long_desc:
           required: mandatory
           type: String
@@ -131,71 +137,71 @@ issue:
           usage: >-
             Product quality is not correct. facing issues while using the
             product
-          description: false
+          description: Long description about the complainant
         additional_desc:
           url:
             required: mandatory
             type: String
             owner: BAP
             usage: https://buyerapp.com/additonal-details/desc.txt
-            description: false
+            description: Additional desc about complainant
           content_type:
             required: mandatory
             type: String
             owner: BAP
             usage: text/plain
-            description: false
+            description: Type of url provided in the additional_desc
         images:
           required: mandatory
           type: String
           owner: BAP
           usage: http://buyerapp.com/addtional-details/img1.png
-          description: false
+          description: Image(s) link
       last_action_id:
         required: mandatory
         type: String
         owner: BAP
         usage: A1
-        description: false
+        description: ID of the action performed on the complaint
       actions:
         id:
           required: mandatory
           type: String
           owner: BAP
           usage: OPEN
-          description: false
+          description: ID of the action being performed
         description:
           code:
             required: mandatory
             type: String
             owner: BAP
             usage: Complaint created
-            description: false
+            description: Describes the action code (OPEN, PROCESSING, RESOLVED, CLOSED…)
           short_desc:
             required: mandatory
             type: String
             owner: BAP
             usage: Complaint created
-            description: false
+            description: Short description of the action performed
         'updated_at:':
           required: mandatory
           type: String
           owner: BAP
           usage: '2023-01-15T10:00:00.469Z'
-          description: false
+          description: Describes the update at timestamp of the action
         action_by:
           required: mandatory
           type: String
           owner: BAP
           usage: NP1
-          description: false
+          description: 'Describes the actor (ID of the actor) performing the action '
         actor_details:
           name:
             required: mandatory
             type: String
             owner: BAP
             usage: Sam Manuel
-            description: false
+            description: Name of an agent of the actor
 on_issue:
   message:
     issue:
@@ -212,25 +218,27 @@ on_issue:
         type: String
         owner: BPP
         usage: OPEN
-        description: describe issue status
+        description: >-
+          Describes the status of the complaint - OPEN, PROCESSING, RESOLVED,
+          CLOSED
       level:
         required: mandatory
         type: String
         owner: BPP
         usage: ISSUE
-        description: false
+        description: Describes the level of the complaint - ISSUE, GRIEVANCE, DISPUTE
       created_at:
         required: mandatory
         type: String
         owner: BPP
         usage: '"2023-01-15T10:00:00.469Z"'
-        description: timestamp for the creation of the issue
+        description: Timestamp for the creation of the complaint
       updated_at:
         required: mandatory
         type: String
         owner: BPP
         usage: '"2023-01-15T10:00:00.469Z"'
-        description: timestamp for the capturing the time an issue was last updated
+        description: Timestamp for the capturing the time a complaint was last updated
       expected_response_time:
         duration:
           required: mandatory
@@ -238,17 +246,15 @@ on_issue:
           owner: BPP
           usage: PT2H
           description: >-
-            Describes time in its various forms. It can be a single point in
-            time; duration; or a structured timetable of operations
+            Describes time for the respondent to provide a response (PROCESSING
+            action)
       expected_resolution_time:
         duration:
           required: mandatory
           type: String
           owner: BPP
           usage: P1D
-          description: >-
-            Describes time in its various forms. It can be a single point in
-            time; duration; or a structured timetable of operations
+          description: Describes time for the respondent to provide a resolution
       ref:
         ref_id:
           required: mandatory
@@ -308,13 +314,13 @@ on_issue:
         type: String
         owner: BPP
         usage: CUST1
-        description: ID of the actor where the complaint was raised
+        description: ID of the actor raising the complaint
       complainant_id:
         required: mandatory
         type: String
         owner: BPP
         usage: NP1
-        description: ID of the Netework participant
+        description: ID of the Network participant where the complaint is raised
       description:
         code:
           required: mandatory
@@ -348,40 +354,40 @@ on_issue:
             type: String
             owner: BPP
             usage: text/plain
-            description: false
+            description: Type of url provided in the additional_desc
         images:
           required: mandatory
           type: String
           owner: BPP
           usage: http://buyerapp.com/addtional-details/img1.png
-          description: Image link
+          description: Image(s) link
       last_action_id:
         required: mandatory
         type: String
         owner: BPP
         usage: A1
-        description: Description about the last action ID
+        description: ID of the action performed on the complaint
       actions:
         id:
           required: mandatory
           type: String
           owner: BPP
-          usage: OPEN
-          description: Describes about the action ID
+          usage: A1
+          description: ID of the action being performed
         description:
           code:
             required: mandatory
             type: String
             owner: BPP
-            usage: Complaint created
-            description: 'Describes the action code '
+            usage: PROCESSING
+            description: Describes the action code (OPEN, PROCESSING, RESOLVED, CLOSED…)
           short_desc:
             required: mandatory
             type: String
             owner: BPP
             usage: Complaint created
-            description: Describes the short description
-        'updated_at:':
+            description: Short description of the action performed
+        updated_at:
           required: mandatory
           type: String
           owner: BPP
@@ -392,11 +398,11 @@ on_issue:
           type: String
           owner: BPP
           usage: NP1
-          description: Tells about who is performing the action
+          description: 'Describes the actor (ID of the actor) performing the action '
         actor_details:
           name:
             required: mandatory
             type: String
             owner: BPP
             usage: Sam Manuel
-            description: Name of the actor
+            description: Name of an agent of the actor
