@@ -3,27 +3,27 @@ issue:
     issue:
       status:
         - code: OPEN
-          description: The issue has been reported and is currently open for action.
+          description: The issue has been reported and is currently open for investigation or action.
           reference: <PR/Issue/Discussion Links md format text>  
         - code: CLOSED
-          description: The issue has been resolved or addressed, and no further action is required.
+          description: The issue has been successfully resolved and is now closed by the complainant.
           reference: <PR/Issue/Discussion Links md format text> 
         - code: PROCESSING
           description: The issue is currently being processed or handled by the relevant team.
           reference: <PR/Issue/Discussion Links md format text>
         - code: RESOLVED
-          description: The issue has been successfully resolved and is now closed.
+          description: The issue has been resolved or addressed by the respondent.
           reference: <PR/Issue/Discussion Links md format text>                     
 
       level:
         - code: ISSUE
-          description: A basic level of concern or problem that needs attention.
+          description: Level 1 - A basic level of concern or problem that needs attention.
           reference: <PR/Issue/Discussion Links md format text>
         - code: GREVIENCE
-          description: A formal complaint that requires a more detailed review and resolution.
+          description: Level 2 - A formal complaint that requires a more detailed review and resolution.
           reference: <PR/Issue/Discussion Links md format text>  
         - code: DISPUTE
-          description: A conflict or disagreement that involves multiple parties and needs resolution.
+          description: Level 3 - A conflict or disagreement that involves multiple parties and needs resolution.
           reference: <PR/Issue/Discussion Links md format text> 
 
       refs:  
@@ -41,19 +41,19 @@ issue:
           description: The transaction ID associated with the issue for tracking purposes.
           reference: <PR/Issue/Discussion Links md format text>
         - code: MESSAGE_ID
-          description: The ID of the message where the issue was discussed or reported.
+          description: The ID of the message for which the complaint is reported.
           reference: <PR/Issue/Discussion Links md format text>  
         - code: PROVIDER
           description: The service provider or vendor related to the issue.
           reference: <PR/Issue/Discussion Links md format text> 
         - code: COMPLAINT
-          description: A reference to a formal complaint filed regarding the issue.
+          description: A reference to a formal complaint filed regarding the issue. (issue.id)
           reference: <PR/Issue/Discussion Links md format text>  
         - code: ACTION
           description: The specific action taken or required regarding the issue.
           reference: <PR/Issue/Discussion Links md format text> 
         - code: PAYMENT
-          description: The payment associated with the issue, including discrepancies or failures.
+          description: The payment associated complaint, including discrepancies or failures.
           reference: <PR/Issue/Discussion Links md format text> 
         - code: CUSTOMER
           description: The customer involved in or affected by the issue.
@@ -65,13 +65,13 @@ issue:
       Actor_info:
        type :      
         - code: INERFACING_NP
-          description: A non-primary entity interfacing with the main system regarding the issue.
+          description: A primary entity interfacing with the complainant regarding the issue.
           reference: <PR/Issue/Discussion Links md format text> 
         - code: COUNTER_NP
-          description: A counterparty non-primary entity involved in the issue.
+          description: A counterparty entity involved in the issue.
           reference: <PR/Issue/Discussion Links md format text> 
         - code: CASCADED_NP
-          description: A cascaded non-primary entity impacted by or involved in the issue.
+          description: A cascaded entity involved in the issue.
           reference: <PR/Issue/Discussion Links md format text>
         - code: PROVIDER
           description: The service provider responsible for the service or product in question.
@@ -83,13 +83,13 @@ issue:
           description: The customer who raised the issue or is affected by it.
           reference: <PR/Issue/Discussion Links md format text> 
         - code: INERFACING_NP_GRO
-          description: A group of interfacing non-primary entities related to the issue.
+          description: Grievance Redressal Office of interfacing entities related to the issue.
           reference: <PR/Issue/Discussion Links md format text>  
         - code: COUNTERPARTY_NP_GRO
-          description: A group of counterparty non-primary entities involved in the issue.
+          description: Grievance Redressal Office of counterparty entities involved in the issue.
           reference: <PR/Issue/Discussion Links md format text>  
         - code: CASCADED_NP_GRO
-          description: A group of cascaded non-primary entities affected by the issue.
+          description: Grievance Redressal Office of cascaded entities involved by the issue.
           reference: <PR/Issue/Discussion Links md format text>
 
       Action:
@@ -105,7 +105,7 @@ issue:
               description: The issue is being processed, with steps being taken towards resolution.
               reference: <PR/Issue/Discussion Links md format text>
             - code: RESOLVED
-              description: The issue has been resolved and no further actions are needed.
+              description: The issue has been resolved by the respondent.
               reference: <PR/Issue/Discussion Links md format text>                     
             - code: INFO_REQUESTED
               description: Additional information has been requested to proceed with the issue.
@@ -117,21 +117,18 @@ issue:
               description: The requested information is not available at this time.
               reference: <PR/Issue/Discussion Links md format text>  
             - code: RESOLUTION_PROPOSED
-              description: A resolution has been proposed and is awaiting approval.
+              description: Resolution(s) has been proposed and is awaiting approval.
               reference: <PR/Issue/Discussion Links md format text> 
             - code: RESOLUTION_CASCADED
-              description: The proposed resolution has been cascaded to relevant parties.
+              description: Resolution(s) has been cascaded to relevant parties.
               reference: <PR/Issue/Discussion Links md format text>  
             - code: RESOLUTION_ACCEPTED
-              description: The proposed resolution has been accepted by all parties.
+              description: A resolution has been accepted by all parties.
               reference: <PR/Issue/Discussion Links md format text> 
             - code: RESOLUTION_REJECTED
-              description: The proposed resolution has been rejected and requires further review.
+              description: The proposed resolution(s) has been rejected and requires further review.
               reference: <PR/Issue/Discussion Links md format text> 
-            - code: RESOLVED
-              description: The issue has been resolved and no further actions are required.
-              reference: <PR/Issue/Discussion Links md format text>
-
+            
       resolutions:
         descriptor:
         - code: REFUND
@@ -153,5 +150,7 @@ issue:
           description: The issue was resolved as the item or information is now visible.
           reference: <PR/Issue/Discussion Links md format text> 
         - code: PARENT
-          description: The issue was related to a parent transaction or order.
+          description: Identifying the group of various resolutions proposed for a complaint.
           reference: <PR/Issue/Discussion Links md format text>
+on_issue:
+  message: *message
