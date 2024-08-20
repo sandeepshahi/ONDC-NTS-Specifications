@@ -812,7 +812,7 @@ x-enum:
             - code: AGENT
               description: The agent handling or associated with the issue.
               reference: <PR/Issue/Discussion Links md format text>
-        Actor_info:
+        actor_info:
           type:
             - code: INERFACING_NP
               description: >-
@@ -851,7 +851,7 @@ x-enum:
                 Grievance Redressal Office of cascaded entities involved by the
                 issue.
               reference: <PR/Issue/Discussion Links md format text>
-        Action:
+        action:
           description:
             type:
               - code: OPEN
