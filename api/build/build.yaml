@@ -1345,12 +1345,7 @@ x-flows:
         api: issue
         details:
           - description: issue
-            mermaid: >-
-              sequenceDiagram title  Buyer raising a complaint for an item
-              participant Buyer App participant Seller App
-
-
-              Buyer App->>Seller App: Provide Info (issue)
+            mermaid: ''
         reference: if any
         example:
           value:
@@ -1502,24 +1497,7 @@ x-flows:
         api: on_issue
         details:
           - description: Seller app responds with processing action
-            mermaid: |-
-              sequenceDiagram
-               title  Buyer raising a complaint for an item
-               participant Buyer App
-               participant Seller App
-
-               Buyer App->>Seller App: Raise Complaint (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Provide Resolution Options (on_issue)
-               Buyer App->>Seller App: Accept Resolution (issue)
-               Seller App->>Buyer App: Send Resolution Object (on_issue)
-               Buyer App->>Seller App: Close Complaint (issue)
+            mermaid: ''
         reference: if any
         example:
           value:
@@ -1679,24 +1657,7 @@ x-flows:
           - description: >-
               Seller app responds with need more info tagging the previous
               missing info
-            mermaid: |-
-              sequenceDiagram
-               title  Buyer raising a complaint for an item
-               participant Buyer App
-               participant Seller App
-
-               Buyer App->>Seller App: Raise Complaint (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Provide Resolution Options (on_issue)
-               Buyer App->>Seller App: Accept Resolution (issue)
-               Seller App->>Buyer App: Send Resolution Object (on_issue)
-               Buyer App->>Seller App: Close Complaint (issue)
+            mermaid: ''
         reference: if any
         example:
           value:
@@ -1864,21 +1825,7 @@ x-flows:
         api: issue
         details:
           - description: Buyer app provides relevant information (responds to the request
-            mermaid: >-
-              sequenceDiagram title  Buyer raising a complaint for an item
-              participant Buyer App participant Seller App
-
-              Buyer App->>Seller App: Raise Complaint (issue) Seller App->>Buyer
-              App: Processing Action (on_issue) Seller App->>Buyer App: Request
-              More Information (on_issue) Buyer App->>Seller App: Provide Info
-              (issue) Seller App->>Buyer App: Processing Action (on_issue)
-              Seller App->>Buyer App: Request More Information (Tag Missing
-              Info) (on_issue) Buyer App->>Seller App: Provide Info (issue)
-              Seller App->>Buyer App: Processing Action (on_issue) Seller
-              App->>Buyer App: Provide Resolution Options (on_issue) Buyer
-              App->>Seller App: Accept Resolution (issue) Seller App->>Buyer
-              App: Send Resolution Object (on_issue) Buyer App->>Seller App:
-              Close Complaint (issue)
+            mermaid: ''
         reference: if any
         example:
           value:
@@ -2061,24 +2008,7 @@ x-flows:
           - description: >-
               Seller app responds with need more info tagging the previous
               missing info
-            mermaid: |-
-              sequenceDiagram
-                title  Buyer raising a complaint for an item
-                participant Buyer App
-                participant Seller App
-
-                Buyer App->>Seller App: Raise Complaint (issue)
-                Seller App->>Buyer App: Processing Action (on_issue)
-                Seller App->>Buyer App: Request More Information (on_issue)
-                Buyer App->>Seller App: Provide Info (issue)
-                Seller App->>Buyer App: Processing Action (on_issue)
-                Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-                Buyer App->>Seller App: Provide Info (issue)
-                Seller App->>Buyer App: Processing Action (on_issue)
-                Seller App->>Buyer App: Provide Resolution Options (on_issue)
-                Buyer App->>Seller App: Accept Resolution (issue)
-                Seller App->>Buyer App: Send Resolution Object (on_issue)
-                Buyer App->>Seller App: Close Complaint (issue)
+            mermaid: ''
         reference: if any
         example:
           value:
@@ -2269,24 +2199,7 @@ x-flows:
           - description: >-
               Seller app responds with need more info tagging the previous
               missing info
-            mermaid: |-
-              sequenceDiagram
-               title  Buyer raising a complaint for an item
-               participant Buyer App
-               participant Seller App
-
-               Buyer App->>Seller App: Raise Complaint (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Provide Resolution Options (on_issue)
-               Buyer App->>Seller App: Accept Resolution (issue)
-               Seller App->>Buyer App: Send Resolution Object (on_issue)
-               Buyer App->>Seller App: Close Complaint (issue)
+            mermaid: ''
         reference: if any
         example:
           value:
@@ -2526,24 +2439,7 @@ x-flows:
           - description: >-
               Seller app responds with need more info tagging the previous
               missing info
-            mermaid: |-
-              sequenceDiagram
-                 title  Buyer raising a complaint for an item
-                 participant Buyer App
-                 participant Seller App
-
-                 Buyer App->>Seller App: Raise Complaint (issue)
-                 Seller App->>Buyer App: Processing Action (on_issue)
-                 Seller App->>Buyer App: Request More Information (on_issue)
-                 Buyer App->>Seller App: Provide Info (issue)
-                 Seller App->>Buyer App: Processing Action (on_issue)
-                 Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-                 Buyer App->>Seller App: Provide Info (issue)
-                 Seller App->>Buyer App: Processing Action (on_issue)
-                 Seller App->>Buyer App: Provide Resolution Options (on_issue)
-                 Buyer App->>Seller App: Accept Resolution (issue)
-                 Seller App->>Buyer App: Send Resolution Object (on_issue)
-                 Buyer App->>Seller App: Close Complaint (issue)
+            mermaid: ''
         reference: if any
         example:
           value:
@@ -2792,24 +2688,7 @@ x-flows:
           - description: >-
               Seller app responds with need more info tagging the previous
               missing info
-            mermaid: |-
-              sequenceDiagram
-               title  Buyer raising a complaint for an item
-               participant Buyer App
-               participant Seller App
-
-               Buyer App->>Seller App: Raise Complaint (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-               Buyer App->>Seller App: Provide Info (issue)
-               Seller App->>Buyer App: Processing Action (on_issue)
-               Seller App->>Buyer App: Provide Resolution Options (on_issue)
-               Buyer App->>Seller App: Accept Resolution (issue)
-               Seller App->>Buyer App: Send Resolution Object (on_issue)
-               Buyer App->>Seller App: Close Complaint (issue)
+            mermaid: ''
         reference: if any
         example:
           value:
@@ -3071,24 +2950,7 @@ x-flows:
           - description: >-
               Seller app responds with need more info tagging the previous
               missing info
-            mermaid: |-
-              sequenceDiagram
-                title  Buyer raising a complaint for an item
-                participant Buyer App
-                participant Seller App
-
-                Buyer App->>Seller App: Raise Complaint (issue)
-                Seller App->>Buyer App: Processing Action (on_issue)
-                Seller App->>Buyer App: Request More Information (on_issue)
-                Buyer App->>Seller App: Provide Info (issue)
-                Seller App->>Buyer App: Processing Action (on_issue)
-                Seller App->>Buyer App: Request More Information (Tag Missing Info) (on_issue)
-                Buyer App->>Seller App: Provide Info (issue)
-                Seller App->>Buyer App: Processing Action (on_issue)
-                Seller App->>Buyer App: Provide Resolution Options (on_issue)
-                Buyer App->>Seller App: Accept Resolution (issue)
-                Seller App->>Buyer App: Send Resolution Object (on_issue)
-                Buyer App->>Seller App: Close Complaint (issue)
+            mermaid: ''
         reference: if any
         example:
           value:
