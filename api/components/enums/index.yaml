@@ -3,309 +3,155 @@ issue:
     issue:
       status:
         - code: OPEN
-          description:  Issues related to the timely and accurate disbursement of the loan.
-          reference: <PR/Issue/Discussion Links md format text  
+          description: The issue has been reported and is currently open for action.
+          reference: <PR/Issue/Discussion Links md format text>  
         - code: CLOSED
-          description:  Issues concerning the loan order and overall loan servicing issues.
-          reference: <PR/Issue/Discussion Links md format text 
+          description: The issue has been resolved or addressed, and no further action is required.
+          reference: <PR/Issue/Discussion Links md format text> 
         - code: PROCESSING
-          description: Issues pertaining to payments, interest, and charges associated with the loan provided to the borrower.
-          reference: <PR/Issue/Discussion Links md format text
+          description: The issue is currently being processed or handled by the relevant team.
+          reference: <PR/Issue/Discussion Links md format text>
         - code: RESOLVED
-          description: Issues pertaining to payments, interest, and charges associated with the loan provided to the borrower.
-          reference: <PR/Issue/Discussion Links md format text                     
+          description: The issue has been successfully resolved and is now closed.
+          reference: <PR/Issue/Discussion Links md format text>                     
 
       level:
         - code: ISSUE
-          description: 
-          reference: 
+          description: A basic level of concern or problem that needs attention.
+          reference: <PR/Issue/Discussion Links md format text>
         - code: GREVIENCE
-          description: 
-          reference: <PR/Issue/Discussion Links md format text  
-        - code:  DISPUTE
-          description: 
-          reference: <PR/Issue/Discussion Links md format text 
+          description: A formal complaint that requires a more detailed review and resolution.
+          reference: <PR/Issue/Discussion Links md format text>  
+        - code: DISPUTE
+          description: A conflict or disagreement that involves multiple parties and needs resolution.
+          reference: <PR/Issue/Discussion Links md format text> 
+
       refs:  
         ref_type: 
         - code: ORDER
-          description: 
-          reference: <PR/Issue/Discussion] Links md format text  
+          description: The reference to an order related to the issue at hand.
+          reference: <PR/Issue/Discussion Links md format text>  
         - code: ITEM
-          description:
-          reference: <PR/Issue/Discussion Links md format text
+          description: The specific item within the order that is relevant to the issue.
+          reference: <PR/Issue/Discussion Links md format text>
         - code: FULFILMENT
-          description: 
-          reference: <PR/Issue/Discussion Links md format text   
+          description: The fulfillment process or stage related to the issue.
+          reference: <PR/Issue/Discussion Links md format text>   
         - code: TRANSACTION_ID
-          description: 
-          reference: <PR/Issue/Discussion Links md format text
-        - code:  MESSAGE_ID
-          description: 
-          reference: <PR/Issue/Discussion Links md format text  
-        - code:  PROVIDER
-          description: 
-          reference: <PR/Issue/Discussion Links md format text 
-        - code:  COMPLAINT
-          description: 
-          reference: <PR/Issue/Discussion Links md format text  
+          description: The transaction ID associated with the issue for tracking purposes.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: MESSAGE_ID
+          description: The ID of the message where the issue was discussed or reported.
+          reference: <PR/Issue/Discussion Links md format text>  
+        - code: PROVIDER
+          description: The service provider or vendor related to the issue.
+          reference: <PR/Issue/Discussion Links md format text> 
+        - code: COMPLAINT
+          description: A reference to a formal complaint filed regarding the issue.
+          reference: <PR/Issue/Discussion Links md format text>  
         - code: ACTION
-          description: 
-          reference: <PR/Issue/Discussion Links md format text 
-        - code:  PAYMENT
-          description: 
-          reference: <PR/Issue/Discussion Links md format text 
-        - code:  CUSTOMER
-          description: 
-          reference: <PR/Issue/Discussion Links md format text 
-        - code:  AGENT
-          description: 
-          reference: <PR/Issue/Discussion Links md format text 
+          description: The specific action taken or required regarding the issue.
+          reference: <PR/Issue/Discussion Links md format text> 
+        - code: PAYMENT
+          description: The payment associated with the issue, including discrepancies or failures.
+          reference: <PR/Issue/Discussion Links md format text> 
+        - code: CUSTOMER
+          description: The customer involved in or affected by the issue.
+          reference: <PR/Issue/Discussion Links md format text> 
+        - code: AGENT
+          description: The agent handling or associated with the issue.
+          reference: <PR/Issue/Discussion Links md format text> 
+
       Actor_info:
        type :      
         - code: INERFACING_NP
-          description: 
-          reference: <PR/Issue/Discussion Links md format text 
+          description: A non-primary entity interfacing with the main system regarding the issue.
+          reference: <PR/Issue/Discussion Links md format text> 
         - code: COUNTER_NP
-          description: 
-          reference: <PR/Issue/Discussion Links md format text 
-        - code:  CASCADED_NP
-          description:
-          reference: <PR/Issue/Discussion Links md format text
+          description: A counterparty non-primary entity involved in the issue.
+          reference: <PR/Issue/Discussion Links md format text> 
+        - code: CASCADED_NP
+          description: A cascaded non-primary entity impacted by or involved in the issue.
+          reference: <PR/Issue/Discussion Links md format text>
         - code: PROVIDER
-          description: 
-          reference: <PR/Issue/Discussion Links md format text
+          description: The service provider responsible for the service or product in question.
+          reference: <PR/Issue/Discussion Links md format text>
         - code: AGENT
-          description: 
-          reference: <PR/Issue/Discussion Links md format text  
-        - code:  CUSTOMER
-          description: 
-          reference: <PR/Issue/Discussion Links md format text 
+          description: The individual or team responsible for managing the issue.
+          reference: <PR/Issue/Discussion Links md format text>  
+        - code: CUSTOMER
+          description: The customer who raised the issue or is affected by it.
+          reference: <PR/Issue/Discussion Links md format text> 
         - code: INERFACING_NP_GRO
-          description: 
-          reference: <PR/Issue/Discussion Links md format text  
+          description: A group of interfacing non-primary entities related to the issue.
+          reference: <PR/Issue/Discussion Links md format text>  
         - code: COUNTERPARTY_NP_GRO
-          description: 
-          reference: <PR/Issue/Discussion Links md format text  
-        - code:  CASCADED_NP_GRO
-          description:
-          reference: <PR/Issue/Discussion Links md format text
+          description: A group of counterparty non-primary entities involved in the issue.
+          reference: <PR/Issue/Discussion Links md format text>  
+        - code: CASCADED_NP_GRO
+          description: A group of cascaded non-primary entities affected by the issue.
+          reference: <PR/Issue/Discussion Links md format text>
+
       Action:
         description:
           type:
             - code: OPEN
-              description:  Issues related to the timely and accurate disbursement of the loan.
-              reference: <PR/Issue/Discussion Links md format text  
+              description: The issue is currently open and requires action.
+              reference: <PR/Issue/Discussion Links md format text>  
             - code: CLOSED
-              description:  Issues concerning the loan order and overall loan servicing issues.
-              reference: <PR/Issue/Discussion Links md format text 
+              description: The issue has been closed, with all necessary actions completed.
+              reference: <PR/Issue/Discussion Links md format text> 
             - code: PROCESSING
-              description: Issues pertaining to payments, interest, and charges associated with the loan provided to the borrower.
-              reference: <PR/Issue/Discussion Links md format text
+              description: The issue is being processed, with steps being taken towards resolution.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: RESOLVED
-              description: Issues pertaining to payments, interest, and charges associated with the loan provided to the borrower.
-              reference: <PR/Issue/Discussion Links md format text                     
+              description: The issue has been resolved and no further actions are needed.
+              reference: <PR/Issue/Discussion Links md format text>                     
             - code: INFO_REQUESTED
-              description:  Issuance - Renewal premium clarification
-              reference: <PR/Issue/Discussion Links md format text   
+              description: Additional information has been requested to proceed with the issue.
+              reference: <PR/Issue/Discussion Links md format text>   
             - code: INFO_PROVIDED
-              description: Issuance - Auto Debit related clarification
-              reference: <PR/Issue/Discussion Links md format text
-            - code:  INFO_NOT_AVAILABLE
-              description:  Issuance - TDS Certificate issuance
-              reference: <PR/Issue/Discussion Links md format text  
+              description: The requested information has been provided for further action.
+              reference: <PR/Issue/Discussion Links md format text>
+            - code: INFO_NOT_AVAILABLE
+              description: The requested information is not available at this time.
+              reference: <PR/Issue/Discussion Links md format text>  
             - code: RESOLUTION_PROPOSED
-              description: 
-              reference: <PR/Issue/Discussion Links md format text 
+              description: A resolution has been proposed and is awaiting approval.
+              reference: <PR/Issue/Discussion Links md format text> 
             - code: RESOLUTION_CASCADED
-              description:  
-              reference: <PR/Issue/Discussion Links md format text  
+              description: The proposed resolution has been cascaded to relevant parties.
+              reference: <PR/Issue/Discussion Links md format text>  
             - code: RESOLUTION_ACCEPTED
-              description: 
-              reference: <PR/Issue/Discussion Links md format text 
-            - code:  RESOLUTION_REJECTED
-              description: 
-              reference: <PR/Issue/Discussion Links md format text 
+              description: The proposed resolution has been accepted by all parties.
+              reference: <PR/Issue/Discussion Links md format text> 
+            - code: RESOLUTION_REJECTED
+              description: The proposed resolution has been rejected and requires further review.
+              reference: <PR/Issue/Discussion Links md format text> 
             - code: RESOLVED
-              description: 
-              reference: <PR/Issue/Discussion Links md format text
+              description: The issue has been resolved and no further actions are required.
+              reference: <PR/Issue/Discussion Links md format text>
+
       resolutions:
         descriptor:
         - code: REFUND
-          description: 
-          reference: <PR/Issue/Discussion Links md format text
+          description: The issue was resolved by issuing a refund.
+          reference: <PR/Issue/Discussion Links md format text>
         - code: RETURN 
-          description: 
-          reference: <PR/Issue/Discussion Links md format text 
-        - code:  REPLACEMENT
-          description: 
-          reference: <PR/Issue/Discussion Links md format text 
+          description: The issue was resolved by accepting a return.
+          reference: <PR/Issue/Discussion Links md format text> 
+        - code: REPLACEMENT
+          description: The issue was resolved by providing a replacement.
+          reference: <PR/Issue/Discussion Links md format text> 
         - code: NO-ACTION 
-          description: 
-          reference: <PR/Issue/Discussion Links md format text
-        - code: CANCEL,
-          description: 
-          reference: <PR/Issue/Discussion Links md format text
+          description: No action was required or taken to resolve the issue.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: CANCEL
+          description: The issue was resolved by canceling the transaction or order.
+          reference: <PR/Issue/Discussion Links md format text>
         - code: NOW-VISIBLE
-          description:
-          reference: <PR/Issue/Discussion Links md format text 
+          description: The issue was resolved as the item or information is now visible.
+          reference: <PR/Issue/Discussion Links md format text> 
         - code: PARENT
-          description: 
-          reference: <PR/Issue/Discussion Links md format text 
-#         - code: ORD220
-#           description: Issuance -Policy Cancellation initiation and status - not able to cancel the policy
-#           reference: <PR/Issue/Discussion Links md format text
-#         - code: ORD221
-#           description: Issuance -Claim Status 
-#           reference: <PR/Issue/Discussion Links md format text 
-#         - code: ORD222
-#           description: Issuance -Portal Issues
-#           reference: <PR/Issue/Discussion Links md format text 
-#         - code: ORD223
-#           description: Issuance - Delay in Claim processing  
-#           reference: <PR/Issue/Discussion Links md format text 
-#         - code: ORD224
-#           description: Issuance -Claim Repudiation 
-#           reference: <PR/Issue/Discussion Links md format text
-#         - code: ORD225
-#           description: Issuance -TPA Change during renewals
-#           reference: <PR/Issue/Discussion Links md format text
-#         - code: ORD226
-#           description: Issuance - Nominee Updation
-#           reference: <PR/Issue/Discussion Links md format text  
-
-
-#         - code: FLM201
-#           description: Issuance - Policy Issuance Status policy document not received 
-#           reference: <PR/Issue/Discussion Links md format text
-#         - code: FLM202
-#           description: Not able to complete the KYC
-#           reference: <PR/Issue/Discussion Links md format text    
-#         - code: FLM203
-#           description: Not able to set up E-mandate
-#           reference: <PR/Issue/Discussion Links md format text  
-#         - code: FLM204
-#           description: OTP not received during the e-sign of agreement
-#           reference: <PR/Issue/Discussion Links md format text 
-#         - code: FLM205
-#           description: Not able to view the agreement
-#           reference: <PR/Issue/Discussion Links md format text    
-#         - code: FLM206 
-#           description: Need to update the e-mandate details
-#           reference: <PR/Issue/Discussion Links md format text 
-#         - code: FLM207
-#           description: Feedback on collection call
-#           reference: <PR/Issue/Discussion Links md format text    
-#         - code: FLM208
-#           description: Stop Marketing Communications
-#           reference: <PR/Issue/Discussion Links md format text 
-#         - code: FLM209
-#           description: Request for documents
-#           reference: <PR/Issue/Discussion Links md format text    
-#         - code: FLM210
-#           description: Need to update personal details
-#           reference: <PR/Issue/Discussion Links md format text\
-#         - code: FLM211
-#           description: revoke consent already granted to collect personal data
-#           reference: <PR/Issue/Discussion Links md format text
-#         - code: FLM212
-#           description: delete/forget existing data against my profile
-#           reference: <PR/Issue/Discussion Links md format text  
-
-
-
-
-
-
-
-#       order_details:
-#         state:
-#          - code: GRANTED
-#            description: Issuance - Nominee Updation
-#            reference: <PR/Issue/Discussion Links md format text
-#          - code: PROCESSING
-#            description: Issuance - Nominee Updation
-#            reference: <PR/Issue/Discussion Links md format text
-#          - code: CLAIM_INITIATED
-#            description: Describes if claim has been initiated
-#            reference: <PR/Issue/Discussion Links md format text   
-#          - code: CLAIM_PROCESSING
-#            description: Describes if claim is under process
-#            reference: <PR/Issue/Discussion Links md format text
-#          - code: CLAIM_PROCESSED
-#            description: Describes if claim has been processed
-#            reference: <PR/Issue/Discussion Links md format text
-#          - code: CLAIM_REJECTED
-#            description: Describes if claim has been rejected
-#            reference: <PR/Issue/Discussion Links md format text
-#          - code: ONLINE_RENEW
-#            description: Describes if renewal is online
-#            reference: <PR/Issue/Discussion Links md format text
-#          - code: RENEWAL_PROCESSED
-#            description: Describes if renewal has been processed
-#            reference: <PR/Issue/Discussion Links md format text
-#          - code: RENEWAL_INITIATED
-#            description: Describes if renewal has been initiated
-#            reference: <PR/Issue/Discussion Links md format text
-#          - code: INSPECTION_SUCCESSFUL
-#            description: Describes if inspection has been successful
-#            reference: <PR/Issue/Discussion Links md format text
-#          - code: INSPECTION_REJECTED
-#            description: Describes if renewal has been rejected
-#            reference: <PR/Issue/Discussion Links md format text   
-#       source:
-#         type:
-#          - code: CONSUMER
-#            description: Describes if renewal has been rejected
-#            reference: <PR/Issue/Discussion Links md format text
-#          - code: INTERFACING NP
-#            description: Describes if renewal has been rejected
-#            reference: <PR/Issue/Discussion Links md format text
-#          - code:  SELLER
-#            description: Describes if renewal has been rejected
-#            reference: <PR/Issue/Discussion Links md format text      
-#       status:
-#       - code: OPEN
-#         description: Describes the issue status
-#         reference: <PR/Issue/Discussion Links md format text 
-#       - code: CLOSED
-#         description: Describes the issue status
-#         reference: <PR/Issue/Discussion Links md format text  
-#       - code: RESOLVED
-#         description: Describes the issue status
-#         reference: <PR/Issue/Discussion Links md format text     
-#       issue_type:
-#       - code: ISSUE
-#         description: Describes the issue type 
-#         reference: <PR/Issue/Discussion Links md format text
-#       - code: GRIEVANCE
-#         description:  Describes the issue type 
-#         reference: <PR/Issue/Discussion Links md format text
-#       - code: DISPUTE
-#         description:  Describes the issue type 
-#         reference: <PR/Issue/Discussion Links md format text         
-#       issue_actions:
-#         complainant_actions:
-#           complainant_action:
-#           - code: OPEN  
-#             description:  Describes the complainant_action
-#             reference: <PR/Issue/Discussion Links md format text
-#           - code: ESCALATE
-#             description:  Describes the complainant_action
-#             reference: <PR/Issue/Discussion Links md format text   
-#           - code: CLOSE
-#             description:  Describes the complainant_action
-#             reference: <PR/Issue/Discussion Links md format text
-    
-# on_issue:
-#   message: *message
- 
-
-# issue_status:
-#   message: *message
- 
-
- 
-# on_issue_status:
-#   message: *message
- 
-  
+          description: The issue was related to a parent transaction or order.
+          reference: <PR/Issue/Discussion Links md format text>

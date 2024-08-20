@@ -736,169 +736,191 @@ x-enum:
       issue:
         status:
           - code: OPEN
-            description: >-
-              Issues related to the timely and accurate disbursement of the
-              loan.
-            reference: <PR/Issue/Discussion Links md format text
+            description: The issue has been reported and is currently open for action.
+            reference: <PR/Issue/Discussion Links md format text>
           - code: CLOSED
             description: >-
-              Issues concerning the loan order and overall loan servicing
-              issues.
-            reference: <PR/Issue/Discussion Links md format text
+              The issue has been resolved or addressed, and no further action is
+              required.
+            reference: <PR/Issue/Discussion Links md format text>
           - code: PROCESSING
             description: >-
-              Issues pertaining to payments, interest, and charges associated
-              with the loan provided to the borrower.
-            reference: <PR/Issue/Discussion Links md format text
+              The issue is currently being processed or handled by the relevant
+              team.
+            reference: <PR/Issue/Discussion Links md format text>
           - code: RESOLVED
-            description: >-
-              Issues pertaining to payments, interest, and charges associated
-              with the loan provided to the borrower.
-            reference: <PR/Issue/Discussion Links md format text
+            description: The issue has been successfully resolved and is now closed.
+            reference: <PR/Issue/Discussion Links md format text>
         level:
           - code: ISSUE
-            description: null
-            reference: null
+            description: A basic level of concern or problem that needs attention.
+            reference: <PR/Issue/Discussion Links md format text>
           - code: GREVIENCE
-            description: null
-            reference: <PR/Issue/Discussion Links md format text
+            description: >-
+              A formal complaint that requires a more detailed review and
+              resolution.
+            reference: <PR/Issue/Discussion Links md format text>
           - code: DISPUTE
-            description: null
-            reference: <PR/Issue/Discussion Links md format text
+            description: >-
+              A conflict or disagreement that involves multiple parties and
+              needs resolution.
+            reference: <PR/Issue/Discussion Links md format text>
         refs:
           ref_type:
             - code: ORDER
-              description: null
-              reference: <PR/Issue/Discussion] Links md format text
+              description: The reference to an order related to the issue at hand.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: ITEM
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: >-
+                The specific item within the order that is relevant to the
+                issue.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: FULFILMENT
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: The fulfillment process or stage related to the issue.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: TRANSACTION_ID
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: >-
+                The transaction ID associated with the issue for tracking
+                purposes.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: MESSAGE_ID
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: The ID of the message where the issue was discussed or reported.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: PROVIDER
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: The service provider or vendor related to the issue.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: COMPLAINT
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: A reference to a formal complaint filed regarding the issue.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: ACTION
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: The specific action taken or required regarding the issue.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: PAYMENT
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: >-
+                The payment associated with the issue, including discrepancies
+                or failures.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: CUSTOMER
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: The customer involved in or affected by the issue.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: AGENT
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: The agent handling or associated with the issue.
+              reference: <PR/Issue/Discussion Links md format text>
         Actor_info:
           type:
             - code: INERFACING_NP
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: >-
+                A non-primary entity interfacing with the main system regarding
+                the issue.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: COUNTER_NP
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: A counterparty non-primary entity involved in the issue.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: CASCADED_NP
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: >-
+                A cascaded non-primary entity impacted by or involved in the
+                issue.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: PROVIDER
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: >-
+                The service provider responsible for the service or product in
+                question.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: AGENT
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: The individual or team responsible for managing the issue.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: CUSTOMER
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: The customer who raised the issue or is affected by it.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: INERFACING_NP_GRO
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: >-
+                A group of interfacing non-primary entities related to the
+                issue.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: COUNTERPARTY_NP_GRO
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: >-
+                A group of counterparty non-primary entities involved in the
+                issue.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: CASCADED_NP_GRO
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: A group of cascaded non-primary entities affected by the issue.
+              reference: <PR/Issue/Discussion Links md format text>
         Action:
           description:
             type:
               - code: OPEN
-                description: >-
-                  Issues related to the timely and accurate disbursement of the
-                  loan.
-                reference: <PR/Issue/Discussion Links md format text
+                description: The issue is currently open and requires action.
+                reference: <PR/Issue/Discussion Links md format text>
               - code: CLOSED
                 description: >-
-                  Issues concerning the loan order and overall loan servicing
-                  issues.
-                reference: <PR/Issue/Discussion Links md format text
+                  The issue has been closed, with all necessary actions
+                  completed.
+                reference: <PR/Issue/Discussion Links md format text>
               - code: PROCESSING
                 description: >-
-                  Issues pertaining to payments, interest, and charges
-                  associated with the loan provided to the borrower.
-                reference: <PR/Issue/Discussion Links md format text
+                  The issue is being processed, with steps being taken towards
+                  resolution.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: RESOLVED
+                description: The issue has been resolved and no further actions are needed.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: INFO_REQUESTED
+                description: >-
+                  Additional information has been requested to proceed with the
+                  issue.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: INFO_PROVIDED
+                description: >-
+                  The requested information has been provided for further
+                  action.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: INFO_NOT_AVAILABLE
+                description: The requested information is not available at this time.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: RESOLUTION_PROPOSED
+                description: A resolution has been proposed and is awaiting approval.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: RESOLUTION_CASCADED
+                description: The proposed resolution has been cascaded to relevant parties.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: RESOLUTION_ACCEPTED
+                description: The proposed resolution has been accepted by all parties.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: RESOLUTION_REJECTED
+                description: >-
+                  The proposed resolution has been rejected and requires further
+                  review.
+                reference: <PR/Issue/Discussion Links md format text>
               - code: RESOLVED
                 description: >-
-                  Issues pertaining to payments, interest, and charges
-                  associated with the loan provided to the borrower.
-                reference: <PR/Issue/Discussion Links md format text
-              - code: INFO_REQUESTED
-                description: Issuance - Renewal premium clarification
-                reference: <PR/Issue/Discussion Links md format text
-              - code: INFO_PROVIDED
-                description: Issuance - Auto Debit related clarification
-                reference: <PR/Issue/Discussion Links md format text
-              - code: INFO_NOT_AVAILABLE
-                description: Issuance - TDS Certificate issuance
-                reference: <PR/Issue/Discussion Links md format text
-              - code: RESOLUTION_PROPOSED
-                description: null
-                reference: <PR/Issue/Discussion Links md format text
-              - code: RESOLUTION_CASCADED
-                description: null
-                reference: <PR/Issue/Discussion Links md format text
-              - code: RESOLUTION_ACCEPTED
-                description: null
-                reference: <PR/Issue/Discussion Links md format text
-              - code: RESOLUTION_REJECTED
-                description: null
-                reference: <PR/Issue/Discussion Links md format text
-              - code: RESOLVED
-                description: null
-                reference: <PR/Issue/Discussion Links md format text
+                  The issue has been resolved and no further actions are
+                  required.
+                reference: <PR/Issue/Discussion Links md format text>
         resolutions:
           descriptor:
             - code: REFUND
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: The issue was resolved by issuing a refund.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: RETURN
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: The issue was resolved by accepting a return.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: REPLACEMENT
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: The issue was resolved by providing a replacement.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: NO-ACTION
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
-            - code: CANCEL,
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: No action was required or taken to resolve the issue.
+              reference: <PR/Issue/Discussion Links md format text>
+            - code: CANCEL
+              description: The issue was resolved by canceling the transaction or order.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: NOW-VISIBLE
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: >-
+                The issue was resolved as the item or information is now
+                visible.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: PARENT
-              description: null
-              reference: <PR/Issue/Discussion Links md format text
+              description: The issue was related to a parent transaction or order.
+              reference: <PR/Issue/Discussion Links md format text>
 x-flows:
   - summary: Flow1 - Buyer raises a complaint for item category
     details:
