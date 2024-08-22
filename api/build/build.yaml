@@ -25,10 +25,6 @@ paths:
                   properties:
                     issue:
                       $ref: '#/components/schemas/Issue'
-                  required:
-                    - issue
-                error:
-                  $ref: '#/components/schemas/Error'
               required:
                 - context
                 - message
@@ -70,51 +66,6 @@ paths:
                   properties:
                     issue:
                       $ref: '#/components/schemas/Issue'
-                  required:
-                    - issue
-                error:
-                  $ref: '#/components/schemas/Error'
-              required:
-                - context
-                - message
-      responses:
-        '200':
-          description: Acknowledgement of message received
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: object
-                    properties:
-                      ack:
-                        $ref: '#/components/schemas/Ack'
-                    required:
-                      - ack
-                  error:
-                    $ref: '#/components/schemas/Error'
-                required:
-                  - message
-  /issue_status:
-    post:
-      tags:
-        - Complaint lifecycle management
-      description: Send the issue resolution details object
-      requestBody:
-        description: Seller confirms order
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                context:
-                  $ref: '#/components/schemas/Context'
-                message:
-                  type: object
-                  properties:
-                    issue_id:
-                      $ref: '#/components/schemas/issue_id'
                   required:
                     - issue
                 error:
@@ -325,9 +276,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TagGroup'
-    issue_id:
-      description: Reference to a complaint for which a status is raised.
-      type: string
     Action:
       type: object
       properties:
@@ -693,30 +641,17 @@ components:
         - bap_uri
         - timestamp
     Error:
-      description: >-
-        Describes an error object that is returned by a BAP, BPP or BG as a
-        response or callback to an action by another network participant. This
-        object is sent when any request received by a network participant is
-        unacceptable. This object can be sent either during Ack or with the
-        callback.
+      description: Describes an error object
       type: object
       properties:
-        code:
+        type:
           type: string
-          description: >-
-            Standard error code. For full list of error codes, refer to
-            docs/protocol-drafts/BECKN-005-ERROR-CODES-DRAFT-01.md of this repo"
-        paths:
-          type: string
-          description: >-
-            Path to json schema generating the error. Used only during json
-            schema validation errors
-        message:
-          type: string
-          description: >-
-            Human readable message describing the error. Used mainly for
-            logging. Not recommended to be shown to the user.
-    Fee: null
+          enum:
+            - CONTEXT-ERROR
+            - CORE-ERROR
+            - DOMAIN-ERROR
+            - POLICY-ERROR
+            - JSON-SCHEMA-ERROR
     TagGroup:
       description: >-
         A collection of tag objects with group level attributes. For detailed
@@ -5583,10 +5518,10 @@ x-flows:
                       short_desc: Please provide package images
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP3
-      - summary: Buyer app provides relevant information (responds to the request
+      - summary: Buyer app provides relevant information
         api: issue
         details:
-          - description: Buyer app provides relevant information (responds to the request
+          - description: Buyer app provides relevant information
             mermaid: ''
             reference: if any
         example:
@@ -5718,14 +5653,10 @@ x-flows:
                         - http://buyerapp.com/addtional-details/img2.png
                     updated_at: 2023-01-15T10:00:00.469Z
                     action_by: NP1
-      - summary: >-
-          Seller app responds with need more info tagging the previous missing
-          info
+      - summary: Seller app cascades with the relevant information
         api: on_issue
         details:
-          - description: >-
-              Seller app responds with need more info tagging the previous
-              missing info
+          - description: Seller app cascades with the relevant information
             mermaid: ''
             reference: if any
         example:
@@ -5859,14 +5790,10 @@ x-flows:
                         - http://buyerapp.com/addtional-details/img2.png
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP2
-      - summary: >-
-          Seller app responds with need more info tagging the previous missing
-          info
+      - summary: Lsp responds with processing action
         api: on_issue
         details:
-          - description: >-
-              Seller app responds with need more info tagging the previous
-              missing info
+          - description: Lsp responds with processing action
             mermaid: ''
             reference: if any
         example:
@@ -6006,14 +5933,10 @@ x-flows:
                       short_desc: Please wait. We are processing the request.
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP3
-      - summary: >-
-          Seller app responds with need more info tagging the previous missing
-          info
+      - summary: Seller app cascades above processing action
         api: issue
         details:
-          - description: >-
-              Seller app responds with need more info tagging the previous
-              missing info
+          - description: Seller app cascades above processing action
             mermaid: ''
             reference: if any
         example:
@@ -6151,14 +6074,10 @@ x-flows:
                       short_desc: Please wait. We are processing the request.
                     updated_at: '2023-01-15T10:00:00.469Z'
                     action_by: NP2
-      - summary: >-
-          Seller app responds with need more info tagging the previous missing
-          info
+      - summary: Lsp responds with a proposed resolution
         api: on_issue
         details:
-          - description: >-
-              Seller app responds with need more info tagging the previous
-              missing info
+          - description: Lsp responds with a proposed resolution
             mermaid: ''
             reference: if any
         example:
@@ -6322,14 +6241,10 @@ x-flows:
                           - descriptor:
                               code: REFUND_AMOUNT
                             value: '200'
-      - summary: >-
-          Seller app responds with need more info tagging the previous missing
-          info
+      - summary: Seller app analyses the same and proposes a resolution
         api: on_issue
         details:
-          - description: >-
-              Seller app responds with need more info tagging the previous
-              missing info
+          - description: Seller app analyses the same and proposes a resolution
             mermaid: ''
             reference: if any
         example:
@@ -6493,14 +6408,10 @@ x-flows:
                           - descriptor:
                               code: REFUND_AMOUNT
                             value: '200'
-      - summary: >-
-          Seller app responds with need more info tagging the previous missing
-          info
+      - summary: Buyer accepts the resolution provided by the seller app
         api: issue
         details:
-          - description: >-
-              Seller app responds with need more info tagging the previous
-              missing info
+          - description: Buyer accepts the resolution provided by the seller app
             mermaid: ''
             reference: if any
         example:
@@ -6672,14 +6583,10 @@ x-flows:
                           - descriptor:
                               code: REFUND_AMOUNT
                             value: '200'
-      - summary: >-
-          Seller app responds with need more info tagging the previous missing
-          info
+      - summary: Seller app accepts the resolution provided by the lsp
         api: issue
         details:
-          - description: >-
-              Seller app responds with need more info tagging the previous
-              missing info
+          - description: Seller app accepts the resolution provided by the lsp
             mermaid: ''
             reference: if any
         example:
@@ -6850,14 +6757,10 @@ x-flows:
                           - descriptor:
                               code: REFUND_AMOUNT
                             value: '200'
-      - summary: >-
-          Seller app responds with need more info tagging the previous missing
-          info
+      - summary: Lsp provides the resolution
         api: on_issue
         details:
-          - description: >-
-              Seller app responds with need more info tagging the previous
-              missing info
+          - description: Lsp provides the resolution
             mermaid: ''
             reference: if any
         example:
@@ -7036,14 +6939,10 @@ x-flows:
                           - descriptor:
                               code: REFUND_AMOUNT
                             value: '200'
-      - summary: >-
-          Seller app responds with need more info tagging the previous missing
-          info
+      - summary: Seller app provides the resolution
         api: on_issue
         details:
-          - description: >-
-              Seller app responds with need more info tagging the previous
-              missing info
+          - description: Seller app provides the resolution
             mermaid: ''
             reference: if any
         example:
@@ -7410,7 +7309,7 @@ x-flows:
                           - descriptor:
                               code: REFUND_AMOUNT
                             value: '200'
-      - summary: null
+      - summary: Seller app closes the complaint
         api: issue
         details:
           - description: null

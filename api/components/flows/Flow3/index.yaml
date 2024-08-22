@@ -58,91 +58,92 @@ steps:
     example:
       value:
         $ref: "../../examples/Flow3/on_issue/on_issue6.yaml"
-  - summary: Buyer app provides relevant information (responds to the request
+  - summary:  Buyer app provides relevant information
     api: issue
     details:
-      - description: Buyer app provides relevant information (responds to the request
+      - description: Buyer app provides relevant information
         mermaid: >-
         reference: if any
     example:
       value:
         $ref: "../../examples/Flow3/issue/issue7.yaml"
-  - summary: Seller app responds with need more info tagging the previous missing info
+  - summary: Seller app cascades with the relevant information
+
     api: on_issue
     details:
-      - description: Seller app responds with need more info tagging the previous missing info
+      - description: Seller app cascades with the relevant information
         mermaid: >-
         reference: if any
     example:
       value:
         $ref: "../../examples/Flow3/issue/issue8.yaml"
-  - summary: Seller app responds with need more info tagging the previous missing info
+  - summary: Lsp responds with processing action
     api: on_issue
     details:
-      - description: Seller app responds with need more info tagging the previous missing info
+      - description: Lsp responds with processing action
         mermaid: >-
         reference: if any
     example:
       value:
         $ref: "../../examples/Flow3/on_issue/on_issue9.yaml"
-  - summary: Seller app responds with need more info tagging the previous missing info
+  - summary:  Seller app cascades above processing action
     api: issue
     details:
-      - description: Seller app responds with need more info tagging the previous missing info
+      - description:  Seller app cascades above processing action
         mermaid: >-
         reference: if any
     example:
       value:
         $ref: "../../examples/Flow3/on_issue/on_issue10.yaml"
-  - summary: Seller app responds with need more info tagging the previous missing info
+  - summary: Lsp responds with a proposed resolution
     api: on_issue
     details:
-      - description: Seller app responds with need more info tagging the previous missing info
+      - description:  Lsp responds with a proposed resolution
         mermaid: >-
         reference: if any
     example:
       value:
         $ref: "../../examples/Flow3/on_issue/on_issue11.yaml"
-  - summary: Seller app responds with need more info tagging the previous missing info
+  - summary:  Seller app analyses the same and proposes a resolution
     api: on_issue
     details:
-      - description: Seller app responds with need more info tagging the previous missing info
+      - description:  Seller app analyses the same and proposes a resolution
         mermaid: >-
         reference: if any
     example:
       value:
         $ref: "../../examples/Flow3/on_issue/on_issue12.yaml"
-  - summary: Seller app responds with need more info tagging the previous missing info
+  - summary:  Buyer accepts the resolution provided by the seller app
     api: issue
     details:
-      - description: Seller app responds with need more info tagging the previous missing info
+      - description:  Buyer accepts the resolution provided by the seller app
         mermaid: >-
         reference: if any
     example:
       value:
         $ref: "../../examples/Flow3/issue/issue13.yaml"
-  - summary: Seller app responds with need more info tagging the previous missing info
+  - summary:  Seller app accepts the resolution provided by the lsp
     api: issue
     details:
-      - description: Seller app responds with need more info tagging the previous missing info
+      - description:  Seller app accepts the resolution provided by the lsp
         mermaid: >-
         reference: if any
     example:
       value:
         $ref: "../../examples/Flow3/issue/issue14.yaml"
-  - summary: Seller app responds with need more info tagging the previous missing info
+  - summary:  Lsp provides the resolution
     api: on_issue
     details:
-      - description: Seller app responds with need more info tagging the previous missing info
+      - description:  Lsp provides the resolution
         mermaid: >-
         reference: if any
     example:
       value:
         $ref: "../../examples/Flow3/on_issue/on_issue15.yaml"
-  - summary: Seller app responds with need more info tagging the previous missing info
+  - summary:  Seller app provides the resolution
     api: on_issue
     details:
-      - description: Seller app responds with need more info tagging the previous missing info
+      - description: Seller app provides the resolution
         mermaid: >-
         reference: if any
     example:
@@ -157,7 +158,7 @@ steps:
     example:
       value:
         $ref: "../../examples/Flow3/issue/issue17.yaml"
-  - summary:
+  - summary:  Seller app closes the complaint
     api: issue
     details:
       - description:

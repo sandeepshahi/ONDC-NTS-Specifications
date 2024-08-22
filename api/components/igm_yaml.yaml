@@ -25,11 +25,6 @@ paths:
                   properties:
                     issue:
                       $ref: "#/components/schemas/Issue"
-                  required:
-                      - issue  
-                error:
-                  $ref: "#/components/schemas/Error" 
-
               required:
                 - context
                 - message
@@ -97,51 +92,6 @@ paths:
                     $ref: "#/components/schemas/Error"
                 required:
                   - message
-  /issue_status:
-    post:
-      tags:
-        - Complaint lifecycle management
-      description: Send the issue resolution details object
-      requestBody:
-        description: Seller confirms order
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                context:
-                  $ref: "#/components/schemas/Context"
-                message:
-                  type: object
-                  properties:
-                    issue_id:
-                      $ref: "#/components/schemas/issue_id"
-                  required:
-                    - issue
-                error:
-                  $ref: "#/components/schemas/Error"
-              required:
-                - context
-                - message
-      responses:
-        "200":
-          description: Acknowledgement of message received
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: object
-                    properties:
-                      ack:
-                        $ref: "#/components/schemas/Ack"
-                    required:
-                      - ack
-                  error:
-                    $ref: "#/components/schemas/Error"
-                required:
-                  - message                
   /on_issue_status:
     post:
       tags:
@@ -305,9 +255,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TagGroup'
-    issue_id:
-        description:  Reference to a complaint for which a status is raised.
-        type:  string     
     Action:
        type: object
        properties:
@@ -643,30 +590,17 @@ components:
         - timestamp
         # - location
     Error:
-      # description: Describes an error object
-      # type: object
-      # properties:
-      #   type:
-      #     type: string
-      #     enum:
-      #       - CONTEXT-ERROR
-      #       - CORE-ERROR
-      #       - DOMAIN-ERROR
-      #       - POLICY-ERROR
-      #       - JSON-SCHEMA-ERROR 
-      description: 'Describes an error object that is returned by a BAP, BPP or BG as a response or callback to an action by another network participant. This object is sent when any request received by a network participant is unacceptable. This object can be sent either during Ack or with the callback.'
+      description: Describes an error object
       type: object
       properties:
-        code:
+        type:
           type: string
-          description: 'Standard error code. For full list of error codes, refer to docs/protocol-drafts/BECKN-005-ERROR-CODES-DRAFT-01.md of this repo"'
-        paths:
-          type: string
-          description: Path to json schema generating the error. Used only during json schema validation errors
-        message:
-          type: string
-          description: Human readable message describing the error. Used mainly for logging. Not recommended to be shown to the user.
-    Fee:
+          enum:
+            - CONTEXT-ERROR
+            - CORE-ERROR
+            - DOMAIN-ERROR
+            - POLICY-ERROR
+            - JSON-SCHEMA-ERROR 
     TagGroup:
       description: 'A collection of tag objects with group level attributes. For detailed documentation on the Tags and Tag Groups schema go to https://github.com/beckn/protocol-specifications/discussions/316'
       type: object

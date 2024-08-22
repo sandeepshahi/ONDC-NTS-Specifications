@@ -5,7 +5,7 @@ var examples
 
 function updateExample() {
     var example_set = document.getElementById('example-set');
-    // Get the selected value from dropdown1
+    // Get the selected v alue from dropdown1
     var selectedValue = example_set.value;
     addExample(selectedValue)
 }
