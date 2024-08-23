@@ -1097,13 +1097,32 @@ x-flows:
 x-examples:
   RSF:
     summary: RSF 2.0
-    description: >-
+    description: >
       Reconciliation and Settlement Framework provides a comprehensive framework
+
       to ensure accurate and timely settlements among participants in the
-      network. RSF 2.0 brings an enhanced workflow where the NPs share
-      order-level the settlement instructions to the Settlement Agency (SA)
-      which matches the same with the respective counterparty NP and then moves
-      funds if the amounts have matched successfully.
+      network.
+
+      RSF 2.0 brings an enhanced workflow where the NPs share order-level the
+
+      settlement instructions to the Settlement Agency (SA) which matches the
+      same
+
+      with the respective counterparty NP and then moves funds if the amounts
+      have
+
+      matched successfully. 
+
+
+      <ul>
+
+      <li><a href =
+      "https://docs.google.com/document/d/1IXZuqTCfEzBxdHJKzHVZ9kPm_lYk5DxjdaQ25--YH8M/edit#heading=h.7edkggo8m4oc">BRD</a></li>
+
+      <li><a href =
+      "https://docs.google.com/document/d/1Pj7e1MuObQeLczx_palbcliUPTkMRYA76esjrfAMT14/edit?usp=sharing">PRD</a></li>
+
+      <ul>
     example_set:
       on_report:
         examples:
