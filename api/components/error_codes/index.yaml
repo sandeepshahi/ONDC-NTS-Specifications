@@ -1,5 +1,5 @@
 code:
-  - Event: NACK
+  - Event: 
     Description: Invalid Signature
     From: Any
     code: 70000
@@ -131,4 +131,3 @@ code:
     Description: No valid file shared by counterparty
     From: Any
     code: 70032
-  
