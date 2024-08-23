@@ -1,5 +1,5 @@
 code:
-  - Event: 
+  - Event: NACK
     Description: Invalid Signature
     From: Any
     code: 70000
