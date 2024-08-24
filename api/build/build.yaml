@@ -326,7 +326,9 @@ components:
       properties:
         code:
           type: string
-          description: Standard error code. For full list of error codes, refer to TBD
+          description: >-
+            Standard error code. For full list of error codes, refer <a href =
+            https://ondc-official.github.io/ONDC-NTS-Specifications/#error>here</a>
         message:
           type: string
           description: >-
@@ -1114,15 +1116,12 @@ x-examples:
       matched successfully. 
 
 
-      <ul>
+      Explainer & BRD is documented <a href =
+      "https://docs.google.com/document/d/1IXZuqTCfEzBxdHJKzHVZ9kPm_lYk5DxjdaQ25--YH8M/edit#heading=h.7edkggo8m4oc">here</a>
 
-      <li><a href =
-      "https://docs.google.com/document/d/1IXZuqTCfEzBxdHJKzHVZ9kPm_lYk5DxjdaQ25--YH8M/edit#heading=h.7edkggo8m4oc">BRD</a></li>
 
-      <li><a href =
-      "https://docs.google.com/document/d/1Pj7e1MuObQeLczx_palbcliUPTkMRYA76esjrfAMT14/edit?usp=sharing">PRD</a></li>
-
-      <ul>
+      Functional flows and use cases are documented <a href =
+      "https://docs.google.com/document/d/1Pj7e1MuObQeLczx_palbcliUPTkMRYA76esjrfAMT14/edit?usp=sharing">here</a>
     example_set:
       on_report:
         examples:
@@ -1198,13 +1197,13 @@ x-examples:
           - summary: on_settle np-np
             value: *ref_7
           - summary: on_settle_misc
-            description: TBD
+            description: callback response for Misc / self settlement instruction
             value: *ref_8
           - summary: on_settle_nil
-            description: TBD
+            description: callback response for NIL settlement instruction
             value: *ref_9
           - summary: on_settle_np_np
-            description: TBD
+            description: callback response for NP-NP settlement instruction
             value: *ref_10
       report:
         examples:
@@ -1237,10 +1236,10 @@ x-examples:
           - summary: settle np-np
             value: *ref_12
           - summary: settle_misc
-            description: TBD
+            description: Miscellaneous / self settlement instruction
             value: *ref_13
           - summary: settle_nil
-            description: TBD
+            description: NIL settlement instruction from NP to settlement agency
             value: *ref_14
           - summary: settle_np_np
             description: settlement instructions from NP to Settlement Agency

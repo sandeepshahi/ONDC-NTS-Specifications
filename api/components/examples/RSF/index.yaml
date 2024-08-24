@@ -16,15 +16,15 @@ on_settle:
       value:
         $ref: ./on_settle/on_settle np-np.yaml
     - summary: on_settle_misc
-      description: TBD
+      description: callback response for Misc / self settlement instruction 
       value:
         $ref: ./on_settle/on_settle_misc.yaml
     - summary: on_settle_nil
-      description: TBD
+      description: callback response for NIL settlement instruction
       value:
         $ref: ./on_settle/on_settle_nil.yaml
     - summary: on_settle_np_np
-      description: TBD
+      description: callback response for NP-NP settlement instruction
       value:
         $ref: ./on_settle/on_settle_np_np.yaml
 report:
@@ -41,11 +41,11 @@ settle:
       value:
         $ref: ./settle/settle np-np.yaml
     - summary: settle_misc
-      description: TBD
+      description: Miscellaneous / self settlement instruction
       value:
         $ref: ./settle/settle_misc.yaml
     - summary: settle_nil
-      description: TBD
+      description: NIL settlement instruction from NP to settlement agency
       value:
         $ref: ./settle/settle_nil.yaml
     - summary: settle_np_np

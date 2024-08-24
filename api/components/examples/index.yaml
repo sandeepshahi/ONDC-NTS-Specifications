@@ -8,9 +8,8 @@ RSF:
     with the respective counterparty NP and then moves funds if the amounts have
     matched successfully. 
 
-    <ul>
-    <li><a href = "https://docs.google.com/document/d/1IXZuqTCfEzBxdHJKzHVZ9kPm_lYk5DxjdaQ25--YH8M/edit#heading=h.7edkggo8m4oc">BRD</a></li>
-    <li><a href = "https://docs.google.com/document/d/1Pj7e1MuObQeLczx_palbcliUPTkMRYA76esjrfAMT14/edit?usp=sharing">PRD</a></li>
-    <ul>
+    Explainer & BRD is documented <a href = "https://docs.google.com/document/d/1IXZuqTCfEzBxdHJKzHVZ9kPm_lYk5DxjdaQ25--YH8M/edit#heading=h.7edkggo8m4oc">here</a>
+
+    Functional flows and use cases are documented <a href = "https://docs.google.com/document/d/1Pj7e1MuObQeLczx_palbcliUPTkMRYA76esjrfAMT14/edit?usp=sharing">here</a>
   example_set:
     $ref: ./RSF/index.yaml
