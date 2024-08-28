@@ -1099,6 +1099,14 @@ x-examples:
 
       Functional flows and use cases are documented <a href =
       "https://docs.google.com/document/d/1Pj7e1MuObQeLczx_palbcliUPTkMRYA76esjrfAMT14/edit?usp=sharing">here</a>
+
+
+      For development of funds settlement flow for integration with settlement
+      agency, refer settle/on_settle and report/on_report API specs below
+
+
+      For development of reconciliation flow amongst network participants, refer
+      receiver_recon/on_receiver_recon API specs below
     example_set:
       on_report:
         examples:
