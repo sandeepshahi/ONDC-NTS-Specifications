@@ -1,4 +1,4 @@
-summary: RSF_NP-NP
+summary: RSF NP-NP
 details:
   - description: |
       Detailed flows covering inter participant settlements. NPs (Collector and Receiver) share settlement instructions to the Settlement Agency and the settlement agency responds with whether the settlement was successful or not.
@@ -43,7 +43,7 @@ steps:
     api: settle
     example:
       value:
-        $ref: ../../examples/RSF/settle/settle_np_np.yaml
+        $ref: ../../examples/RSF/settle/settle np-np.yaml
     details:
       - description: settlement instructions from NP to Settlement Agency
         mermaid: |-
@@ -81,7 +81,7 @@ steps:
     api: on_settle
     example:
       value:
-        $ref: ../../examples/RSF/on_settle/on_settle_np_np.yaml
+        $ref: ../../examples/RSF/on_settle/on_settle np-np.yaml
     details:
       - description: Response from settlement agency
         mermaid: |-
