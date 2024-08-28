@@ -26,12 +26,3 @@ message:
           amount:
             currency: INR
             value: '200.00'
-        provider:
-          id: provider-id-789
-          name: Kirana Pvt Ltd.
-          bank_details:
-            account_no: '1234567890'
-            ifsc_code: IFSC0001
-          amount:
-            currency: INR
-            value: '200.00'

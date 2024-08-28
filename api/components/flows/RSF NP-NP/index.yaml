@@ -24,7 +24,7 @@ steps:
     api: settle
     example:
       value:
-        $ref: ../../examples/RSF/settle/settle np-np.yaml
+        $ref: ../../examples/RSF/settle/settle np-np (with provider).yaml
     details:
       - description: settlement instructions from NP to Settlement Agency
         mermaid: |-
@@ -62,7 +62,7 @@ steps:
     api: on_settle
     example:
       value:
-        $ref: ../../examples/RSF/on_settle/on_settle np-np.yaml
+        $ref: ../../examples/RSF/on_settle/on_settle np-np (with provider).yaml
     details:
       - description: Response from settlement agency
         mermaid: |-

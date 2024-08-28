@@ -24,7 +24,7 @@ steps:
     reference: if any
     example:
       value:
-        $ref: "../../examples/RSF/settle/settle_nil.yaml"
+        $ref: "../../examples/RSF/settle/settle nil.yaml"
   - summary: ON_SETTLE
     api: on_settle
     details:
@@ -38,4 +38,4 @@ steps:
     reference: if any
     example:
       value:
-        $ref: "../../examples/RSF/on_settle/on_settle_nil.yaml"
+        $ref: "../../examples/RSF/on_settle/on_settle nil.yaml"
