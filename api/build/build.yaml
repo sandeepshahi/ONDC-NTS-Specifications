@@ -103,7 +103,6 @@ paths:
       tags:
         - Settlement Agency
       requestBody:
-        description: SA responds with /on_settle
         content:
           application/json:
             schema:
@@ -148,7 +147,7 @@ paths:
         - Collector
         - Receiver
       requestBody:
-        description: SA responds with /on_settle
+        description: SA responds with /on_report
         content:
           application/json:
             schema:
@@ -484,7 +483,7 @@ x-enum:
             reference: <PR/Issue/Discussion Links md format text
         orders: *ref_5
 x-flows:
-  - summary: RSF_NP-NP
+  - summary: RSF NP-NP
     details:
       - description: >
           Detailed flows covering inter participant settlements. NPs (Collector
@@ -583,7 +582,7 @@ x-flows:
         reference: if any
         api: settle
         example:
-          value: &ref_15
+          value: &ref_12
             context:
               domain: ONDC:NTS10
               location:
@@ -713,7 +712,7 @@ x-flows:
         reference: if any
         api: on_settle
         example:
-          value: &ref_10
+          value: &ref_7
             context:
               domain: ONDC:NTS10
               location:
@@ -771,7 +770,7 @@ x-flows:
                Settlement_Agency ->> Receiver : on_settle API
                Receiver ->> Settlement_Agency: Ack
                end
-  - summary: RSF_MISC
+  - summary: RSF MISC
     details:
       - description: >-
           Detailed flows covering miscellaneous or self settlements.  NPs share
@@ -870,7 +869,7 @@ x-flows:
                         value: '200.00'
                       status: SETTLED
                       reference_no: '3718683618631'
-  - summary: RSF_NIL
+  - summary: RSF NIL
     details:
       - description: >-
           Detailed flows covering the NPs declaring that no settlements (where
@@ -895,7 +894,7 @@ x-flows:
                 Settlement_Agency ->> NP(Collector/Receiver) : on_settle API
         reference: if any
         example:
-          value: &ref_12
+          value: &ref_15
             context:
               domain: ONDC:NTS10
               location:
@@ -927,7 +926,7 @@ x-flows:
                Settlement_Agency ->> NP : on_settle API
         reference: if any
         example:
-          value: &ref_7
+          value: &ref_10
             context:
               domain: ONDC:NTS10
               location:
@@ -948,7 +947,7 @@ x-flows:
             message:
               settlement:
                 type: NIL
-  - summary: RSF_REPORT
+  - summary: RSF REPORT
     details:
       - description: >-
           Detailed flows covering NPs seeking status of a settlement
@@ -1115,6 +1114,14 @@ x-examples:
             value: *ref_6
       on_settle:
         examples:
+          - summary: on_settle np_np
+            description: callback response for NP-NP settlement instruction
+            value: *ref_7
+          - summary: on_settle np-np (with provider)
+            value: *ref_8
+          - summary: on_settle misc
+            description: callback response for Misc / self settlement instruction
+            value: *ref_9
           - summary: on_settle misc (with provider)
             value:
               context:
@@ -1158,14 +1165,6 @@ x-examples:
                         status: SETTLED
                         reference_no: '3718683618631'
           - summary: on_settle nil
-            value: *ref_7
-          - summary: on_settle np-np (with provider)
-            value: *ref_8
-          - summary: on_settle_misc
-            description: callback response for Misc / self settlement instruction
-            value: *ref_9
-          - summary: on_settle_np_np
-            description: callback response for NP-NP settlement instruction
             value: *ref_10
       report:
         examples:
@@ -1173,16 +1172,14 @@ x-examples:
             value: *ref_11
       settle:
         examples:
-          - summary: settle nil
+          - summary: settle np_np
+            description: settlement instructions from NP to Settlement Agency
             value: *ref_12
           - summary: settle np-np (with provider)
             value: *ref_13
-          - summary: settle_misc
+          - summary: settle misc
             description: Miscellaneous / self settlement instruction
             value: *ref_14
-          - summary: settle_np_np
-            description: settlement instructions from NP to Settlement Agency
-            value: *ref_15
           - summary: settle misc (with provider)
             description: Miscellaneous / self settlement instruction
             value:
@@ -1223,6 +1220,8 @@ x-examples:
                         amount:
                           currency: INR
                           value: '200.00'
+          - summary: settle nil
+            value: *ref_15
 x-attributes:
   RSF:
     attribute_set:
