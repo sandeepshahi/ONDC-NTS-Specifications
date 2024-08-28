@@ -11,10 +11,7 @@ details:
       participant Settlement_Agency
       NP ->> Settlement_Agency: settle API 
       Settlement_Agency ->> NP : on_settle API
-      participant Receiver
-      participant Settlement_Agency
-      Receiver ->> Settlement_Agency: settle API 
-      Settlement_Agency ->> Receiver : on_settle API
+
 references: if any
 steps:
   - summary: SETTLE

@@ -6,23 +6,23 @@ on_report:
         $ref: ./on_report/on_report.yaml
 on_settle:
   examples:
-    - summary: on_settle misc
+    - summary: on_settle misc (with provider)
       value:
-        $ref: ./on_settle/on_settle misc.yaml
+        $ref: ./on_settle/on_settle misc (with provider).yaml
     - summary: on_settle nil
       value:
         $ref: ./on_settle/on_settle nil.yaml
-    - summary: on_settle np-np
+    - summary: on_settle np-np (with provider)
       value:
-        $ref: ./on_settle/on_settle np-np.yaml
+        $ref: ./on_settle/on_settle np-np (with provider).yaml
     - summary: on_settle_misc
       description: callback response for Misc / self settlement instruction 
       value:
         $ref: ./on_settle/on_settle_misc.yaml
-    - summary: on_settle_nil
-      description: callback response for NIL settlement instruction
-      value:
-        $ref: ./on_settle/on_settle_nil.yaml
+    # - summary: on_settle_nil
+    #   description: callback response for NIL settlement instruction
+    #   value:
+    #     $ref: ./on_settle/on_settle_nil.yaml
     - summary: on_settle_np_np
       description: callback response for NP-NP settlement instruction
       value:
@@ -37,22 +37,22 @@ settle:
     - summary: settle nil
       value:
         $ref: ./settle/settle nil.yaml
-    - summary: settle np-np
+    - summary: settle np-np (with provider)
       value:
-        $ref: ./settle/settle np-np.yaml
+        $ref: ./settle/settle np-np (with provider).yaml
     - summary: settle_misc
       description: Miscellaneous / self settlement instruction
       value:
         $ref: ./settle/settle_misc.yaml
-    - summary: settle_nil
-      description: NIL settlement instruction from NP to settlement agency
-      value:
-        $ref: ./settle/settle_nil.yaml
+    # - summary: settle_nil
+    #   description: NIL settlement instruction from NP to settlement agency
+    #   value:
+    #     $ref: ./settle/settle_nil.yaml
     - summary: settle_np_np
       description: settlement instructions from NP to Settlement Agency
       value:
         $ref: ./settle/settle_np_np.yaml
-    - summary: settle misc
+    - summary: settle misc (with provider)
       description: Miscellaneous / self settlement instruction
       value:
-        $ref: ./settle/settle misc.yaml
+        $ref: ./settle/settle misc (with provider).yaml
