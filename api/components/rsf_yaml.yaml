@@ -197,6 +197,182 @@ paths:
                     $ref: "#/components/schemas/Error"
                 required:
                   - message
+  /recon:
+    post:
+      tags:
+        - Collector
+        - Receiver
+        # - Settlement Agency
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    orders:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: Describes the order id
+                          amount:
+                            $ref: "#/components/schemas/Amount"
+                          settlements:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                payment_id:
+                                  type: string
+                                status:
+                                  type: string
+                                amount:
+                                  $ref: "#/components/schemas/Amount"
+                                commision:
+                                  $ref: "#/components/schemas/Amount"
+                                withholding_amount:
+                                  $ref: "#/components/schemas/Amount"
+                                tcs:
+                                  $ref: "#/components/schemas/Amount"
+                                tds:
+                                  $ref: "#/components/schemas/Amount"
+                                updated_at:
+                                  type: string
+                                  format: date-time
+                                settlement_ref_no:
+                                  type: string
+              required:
+                - context
+                - message
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "#/components/schemas/Error"
+                required:
+                  - message
+
+  /on_recon:
+    post:
+      tags:
+        - Collector
+        - Receiver
+        # - Settlement Agency
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    orders:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: Describes the order id
+                          amount:
+                            $ref: "#/components/schemas/Amount"
+                          settlements:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                payment_id:
+                                  type: string
+                                status:
+                                  type: string
+                                amount:
+                                  allOf:
+                                   - type: object
+                                     properties:
+                                      diff_amount:
+                                       type: string
+                                   - $ref: "#/components/schemas/Amount"
+                                commision:
+                                  allOf:
+                                   - type: object
+                                     properties:
+                                      diff_amount:
+                                       type: string
+                                   - $ref: "#/components/schemas/Amount"
+                                withholding_amount:
+                                  allOf:
+                                   - type: object
+                                     properties:
+                                      diff_amount:
+                                       type: string
+                                   - $ref: "#/components/schemas/Amount"
+                                tcs:
+                                  allOf:
+                                   - type: object
+                                     properties:
+                                      diff_amount:
+                                       type: string
+                                   - $ref: "#/components/schemas/Amount"
+                                tds:
+                                  allOf:
+                                   - type: object
+                                     properties:
+                                      diff_amount:
+                                       type: string
+                                   - $ref: "#/components/schemas/Amount"
+                                updated_at:
+                                  type: string
+                                  format: date-time
+                                settlement_ref_no:
+                                  type: string
+              required:
+                - context
+                - message
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "#/components/schemas/Error"
+                required:
+                  - message
 components:
   securitySchemes:
     SubscriberAuth:
