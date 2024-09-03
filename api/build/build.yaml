@@ -1105,7 +1105,7 @@ x-examples:
 
 
       For development of reconciliation flow amongst network participants, refer
-      receiver_recon/on_receiver_recon API specs below
+      recon/on_recon API specs below
     example_set:
       on_report:
         examples:
