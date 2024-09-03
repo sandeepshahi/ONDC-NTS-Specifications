@@ -5,30 +5,24 @@ settle:
         code:
           - code: IND
             description: Represents the country
-            reference: <PR/Issue/Discussion Links md format text>
       city:
         code:
           - code: "*"
             description: city
-            reference: <PR/Issue/Discussion Links md format text
     domain:
       - code: ONDC:NTS10
         description: RSF
-        reference: <PR/Issue/Discussion Links md format text>
   message:
     settlement:
       type: &a2
         - &a4
           code: NP-NP
           description: Interparticipant settlement
-          reference: <PR/Issue/Discussion Links md format text
         - &a5
           code: MISC
           description: Miscellaneous
-          reference: <PR/Issue/Discussion Links md format text
         - code: NIL
           description: NP Declaring no settlement required
-          reference: <PR/Issue/Discussion Links md format text
 on_settle:
   context: *a1
   message:
@@ -39,10 +33,8 @@ on_settle:
           status:
             - code: SETTLED
               description: settlement successful
-              reference: <PR/Issue/Discussion Links md format text
             - code: NOT_SETTLED
               description: settlement unsuccessful
-              reference: <PR/Issue/Discussion Links md format text
         provider: *a3
         self: *a3
 on_report:
@@ -54,5 +46,20 @@ on_report:
         - *a5
         - code: NIL
           description: NP declaring no settlement required
-          reference: <PR/Issue/Discussion Links md format text
       orders: *a6
+recon:
+  context: *a1
+  message: &a7
+    orders:
+      settlements:
+        status:
+          - code: SETTLED
+            description: Successfully settled
+          - code: PENDING
+            description: Settlement awaited due to reconciliation difference between NPs 
+          - code: TO_BE_INITIATED
+            description: Settlement to be initiated in a future settlement cycle
+
+on_recon:
+  context: *a1
+  message: *a7
