@@ -305,35 +305,35 @@ paths:
                                   allOf:
                                     - type: object
                                       properties:
-                                        diff_amount:
+                                        diff_value:
                                           type: string
                                     - $ref: '#/components/schemas/Amount'
                                 commision:
                                   allOf:
                                     - type: object
                                       properties:
-                                        diff_amount:
+                                        diff_value:
                                           type: string
                                     - $ref: '#/components/schemas/Amount'
                                 withholding_amount:
                                   allOf:
                                     - type: object
                                       properties:
-                                        diff_amount:
+                                        diff_value:
                                           type: string
                                     - $ref: '#/components/schemas/Amount'
                                 tcs:
                                   allOf:
                                     - type: object
                                       properties:
-                                        diff_amount:
+                                        diff_value:
                                           type: string
                                     - $ref: '#/components/schemas/Amount'
                                 tds:
                                   allOf:
                                     - type: object
                                       properties:
-                                        diff_amount:
+                                        diff_value:
                                           type: string
                                     - $ref: '#/components/schemas/Amount'
                                 updated_at:
@@ -1418,23 +1418,23 @@ x-flows:
                       amount:
                         currency: INR
                         value: '100.00'
-                        diff_amount: '10.00'
+                        diff_value: '10.00'
                       commission:
                         currency: INR
                         value: '10.00'
-                        diff_amount: '0.00'
+                        diff_value: '0.00'
                       withholding_amount:
                         currency: INR
                         value: '10.00'
-                        diff_amount: '0.00'
+                        diff_value: '0.00'
                       tcs:
                         currency: INR
                         value: '10.00'
-                        diff_amount: '5.00'
+                        diff_value: '5.00'
                       tds:
                         currency: INR
                         value: '10.00'
-                        diff_amount: '5.00'
+                        diff_value: '5.00'
                       updated_at: '2024-05-07T07:36:51.897Z'
                     - id: settlement-id-789
                       payment_id: pymnt-2
