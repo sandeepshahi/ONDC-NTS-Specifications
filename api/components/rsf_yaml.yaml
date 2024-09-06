@@ -300,6 +300,8 @@ paths:
                             description: Describes the order id
                           amount:
                             $ref: "#/components/schemas/Amount"
+                          recon_accord:
+                            type: boolean
                           settlements:
                             type: array
                             items:

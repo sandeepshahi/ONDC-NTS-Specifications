@@ -21,6 +21,7 @@ message:
     amount: 
       currency: "INR"
       value: "300.00"
+    recon_accord: true
     settlements: 
     - id: "settlement-id-456"
       payment_id: "pymnt-1"

@@ -1447,109 +1447,114 @@ on_recon:
         type: string
         owner: any
         usage: order-1234
+      recon_accord:
+        required: true
+        type: boolean
+        owner: any
+        usage: true
       settlements:
         amount:
           currency:
-            required: true
-            type: string
-            owner: any
-            usage: INR
-          diff_amount:
             required: false
             type: string
             owner: any
             usage: '10.00'
-          value:
+          diff_amount:
             required: true
             type: string
             owner: any
             usage: '300.00'
+          value:
+            required: true
+            type: string
+            owner: any
+            usage: INR
         commission:
           currency:
-            required: true
-            type: string
-            owner: any
-            usage: INR
-          diff_amount:
             required: false
             type: string
             owner: any
             usage: '10.00'
-          value:
+          diff_amount:
             required: true
             type: string
             owner: any
             usage: '300.00'
+          value:
+            required: true
+            type: string
+            owner: any
+            usage: settlement-id-456
         id:
           required: true
           type: string
           owner: any
-          usage: settlement-id-456
-        payment_id:
-          required: true
-          type: string
-          owner: any
           usage: pymnt-1
-        settlement_ref_no:
+        payment_id:
           required: false
           type: string
           owner: any
           usage: utr-1234
-        status:
+        settlement_ref_no:
           required: true
           type: string
           owner: any
           usage: PENDING
+        status:
+          required: true
+          type: string
+          owner: any
+          usage: INR
         tcs:
           currency:
-            required: true
-            type: string
-            owner: any
-            usage: INR
-          diff_amount:
             required: false
             type: string
             owner: any
             usage: '10.00'
-          value:
+          diff_amount:
             required: true
             type: string
             owner: any
             usage: '300.00'
+          value:
+            required: true
+            type: string
+            owner: any
+            usage: INR
         tds:
           currency:
-            required: true
-            type: string
-            owner: any
-            usage: INR
-          diff_amount:
             required: false
             type: string
             owner: any
             usage: '10.00'
-          value:
+          diff_amount:
             required: true
             type: string
             owner: any
             usage: '300.00'
+          value:
+            required: true
+            type: string
+            owner: any
+            usage: '2024-05-09T06:36:51.897Z'
         updated_at:
           required: true
           type: string
           owner: any
-          usage: '2024-05-09T06:36:51.897Z'
+          usage: INR
         withholding_amount:
           currency:
-            required: true
-            type: string
-            owner: any
-            usage: INR
-          diff_amount:
             required: false
             type: string
             owner: any
             usage: '10.00'
-          value:
+          diff_amount:
             required: true
             type: string
             owner: any
             usage: '300.00'
+          value:
+            required: false
+            type: false
+            owner: false
+            usage: false
