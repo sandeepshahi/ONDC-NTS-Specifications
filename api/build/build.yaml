@@ -998,8 +998,6 @@ x-flows:
               timestamp: '2024-05-07T09:32:23.600Z'
               ttl: P1D
             message:
-              collector_app_id: collectorapp.com
-              receiver_app_id: receiverapp.com
               settlement:
                 type: MISC
                 id: settlement-id-123
@@ -1038,8 +1036,6 @@ x-flows:
               timestamp: '2024-05-07T09:32:23.623Z'
               ttl: PT30S
             message:
-              collector_app_id: collectorapp.com
-              receiver_app_id: receiverapp.com
               settlement:
                 type: MISC
                 id: settlement-id-123
@@ -1702,16 +1698,6 @@ x-attributes:
             owner: any
             usage: P1D
         message:
-          collector_app_id:
-            required: true
-            type: string
-            owner: any
-            usage: collectorapp.com
-          receiver_app_id:
-            required: true
-            type: string
-            owner: any
-            usage: receiverapp.com
           settlement:
             type:
               required: true
@@ -2007,102 +1993,12 @@ x-attributes:
             owner: any
             usage: P1D
         message:
-          collector_app_id:
-            required: true
-            type: string
-            owner: any
-            usage: collectorapp.com
-          receiver_app_id:
-            required: true
-            type: string
-            owner: any
-            usage: receiverapp.com
           settlement:
             type:
               required: true
               type: string
               owner: any
               usage: NIL
-            id:
-              required: true
-              type: string
-              owner: any
-              usage: settlement-id-abc
-            orders:
-              self:
-                amount:
-                  currency:
-                    required: true
-                    type: string
-                    owner: any
-                    usage: INR
-                  value:
-                    required: true
-                    type: string
-                    owner: any
-                    usage: '200.00'
-              provider:
-                id:
-                  required: true
-                  type: string
-                  owner: any
-                  usage: prvdr-id-789
-                name:
-                  required: true
-                  type: string
-                  owner: any
-                  usage: Kirana Pvt Ltd
-                bank_details:
-                  account_no:
-                    required: true
-                    type: string
-                    owner: any
-                    usage: '1234567890'
-                  ifsc_code:
-                    required: true
-                    type: string
-                    owner: any
-                    usage: IFSC0001
-                amount:
-                  currency:
-                    required: true
-                    type: string
-                    owner: any
-                    usage: INR
-                  value:
-                    required: true
-                    type: string
-                    owner: any
-                    usage: '800.00'
-              id:
-                required: true
-                type: string
-                owner: any
-                usage: ordr-123456
-              inter_participant:
-                amount:
-                  currency:
-                    required: true
-                    type: string
-                    owner: any
-                    usage: INR
-                  value:
-                    required: true
-                    type: string
-                    owner: any
-                    usage: '1000.00'
-              collector:
-                amount:
-                  currency:
-                    required: true
-                    type: string
-                    owner: any
-                    usage: INR
-                  value:
-                    required: true
-                    type: string
-                    owner: any
-                    usage: '50.00'
       on_settle:
         context:
           domain:
@@ -3198,130 +3094,114 @@ x-errorcodes:
       From: Any
       code: 70000
     - Event: NACK
-      Description: Invalid Header
+      Description: Missing mandatory 'Authorization' header param
       From: Any
       code: 70001
     - Event: NACK
-      Description: Invalid Schema
+      Description: Invalid schema
       From: Any
       code: 70002
     - Event: OnSettle
-      Description: Invalid SA
+      Description: Invalid bap id
       From: Any
       code: 70003
-    - Event: NACK (Schema)
-      Description: Order ID Not Found
+    - Event: OnSettle
+      Description: Inactive bap id
       From: Any
       code: 70004
     - Event: OnSettle
-      Description: Order ID mismatch
+      Description: Invalid bpp id
       From: Any
       code: 70005
     - Event: OnSettle
-      Description: Duplicate Request
+      Description: Duplicate transaction id
       From: Any
       code: 70006
     - Event: OnSettle
-      Description: Amount mismatch - Payable/Receivable
+      Description: Duplicate message id
       From: Any
       code: 70007
     - Event: OnSettle
-      Description: Amount Mismatch - Withheld
+      Description: Duplicate settlement id
       From: Any
       code: 70008
     - Event: OnSettle
-      Description: Outflow Greater Than Receivable
+      Description: Bap id doesn't match collector app id or receiver app id
       From: Any
       code: 70009
-    - Event: NACK (Schema)
-      Description: Invalid Seller Account Details
+    - Event: OnSettle
+      Description: Collector account not available
       From: Any
       code: 70010
-    - Event: NACK (Schema)
-      Description: Bad or Invalid Request error - Mandatory Attributes were missing
+    - Event: OnSettle
+      Description: Invalid collector app id
       From: Any
       code: 70011
     - Event: OnSettle
-      Description: Invalid Collector App ID
+      Description: Inactive collector app id
       From: Any
       code: 70012
     - Event: OnSettle
-      Description: Invalid Receiver App ID
+      Description: Invalid receiver app id
       From: Any
       code: 70013
     - Event: OnSettle
-      Description: No Claim from Counterparty (Only for Collector/Buyer App)
+      Description: Inactive receiver app id
       From: Any
       code: 70014
     - Event: OnSettle
-      Description: No Corresponding Payable initiated from Collector
+      Description: Receiver app id same as Collector app id
       From: Any
       code: 70015
-    - Event: OnSettle (Balance Check Failure)
-      Description: Failed due to Insufficient Funds in Collector Account
+    - Event: OnSettle
+      Description: Duplicate order id
       From: Any
       code: 70016
     - Event: OnSettle
-      Description: Collector NDC Breach
+      Description: Collector account inoperable
       From: Any
       code: 70017
     - Event: OnSettle
-      Description: Bank NDC Breach
+      Description: Receiver account inoperable
       From: Any
       code: 70018
-    - Event: OnSettle (Balance Check Status Failure)
-      Description: Collector NOCA inoperable
+    - Event: OnSettle
+      Description: No response from bank for collector account
       From: Any
       code: 70019
-    - Event: OnSettle (Balance Check Status Failure)
-      Description: Receiver NOCA inoperable
+    - Event: OnSettle
+      Description: No response from bank for receiver account
       From: Any
       code: 70020
-    - Event: OnSettle (Balance Check Failure)
-      Description: No bank response for balance
+    - Event: OnSettle
+      Description: No file shared by counterparty
       From: Any
       code: 70021
-    - Event: NACK
-      Description: KeyDb Heart Beat Failure - (Internal Server Error - 503)
+    - Event: OnSettle
+      Description: Order id not shared by counterparty
       From: Any
       code: 70022
     - Event: OnSettle
-      Description: Receiver App ID same as Collector App ID
+      Description: Collector value mismatch
       From: Any
       code: 70023
     - Event: OnSettle
-      Description: BAP ID doesnt match Collector or Receiver
+      Description: Interparticipant value mismatch
       From: Any
       code: 70024
     - Event: OnSettle
-      Description: Duplicate Settlement ID
+      Description: Insufficient balance in collector account
       From: Any
       code: 70025
     - Event: OnSettle
-      Description: Duplicate transaction ID
+      Description: Collector NDC breach
       From: Any
       code: 70026
     - Event: OnSettle
-      Description: Duplicate message ID
+      Description: Collector bank NDC breach
       From: Any
       code: 70027
-    - Event: OnSettle
-      Description: NIL file shared by Collector
+    - Event: https error
+      Description: Internal server error
       From: Any
-      code: 70028
-    - Event: OnSettle
-      Description: Collector Value mismatch
-      From: Any
-      code: 70029
-    - Event: OnSettle
-      Description: Interparticipant Value mismatch
-      From: Any
-      code: 70030
-    - Event: OnSettle
-      Description: Order ID not shared by counterparty
-      From: Any
-      code: 70031
-    - Event: OnSettle
-      Description: No valid file shared by counterparty
-      From: Any
-      code: 70032
+      code: 503

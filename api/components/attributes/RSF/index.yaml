@@ -69,16 +69,6 @@ settle_misc:
       owner: any
       usage: P1D
   message:
-    collector_app_id:
-      required: true
-      type: string
-      owner: any
-      usage: collectorapp.com
-    receiver_app_id:
-      required: true
-      type: string
-      owner: any
-      usage: receiverapp.com
     settlement:
       type:
         required: true
@@ -374,102 +364,12 @@ settle_nil:
       owner: any
       usage: P1D
   message:
-    collector_app_id:
-      required: true
-      type: string
-      owner: any
-      usage: collectorapp.com
-    receiver_app_id:
-      required: true
-      type: string
-      owner: any
-      usage: receiverapp.com
     settlement:
       type:
         required: true
         type: string
         owner: any
         usage: NIL
-      id:
-        required: true
-        type: string
-        owner: any
-        usage: settlement-id-abc
-      orders:
-        self:
-          amount:
-            currency:
-              required: true
-              type: string
-              owner: any
-              usage: INR
-            value:
-              required: true
-              type: string
-              owner: any
-              usage: '200.00'
-        provider:
-          id:
-            required: true
-            type: string
-            owner: any
-            usage: prvdr-id-789
-          name:
-            required: true
-            type: string
-            owner: any
-            usage: Kirana Pvt Ltd
-          bank_details:
-            account_no:
-              required: true
-              type: string
-              owner: any
-              usage: '1234567890'
-            ifsc_code:
-              required: true
-              type: string
-              owner: any
-              usage: IFSC0001
-          amount:
-            currency:
-              required: true
-              type: string
-              owner: any
-              usage: INR
-            value:
-              required: true
-              type: string
-              owner: any
-              usage: '800.00'
-        id:
-          required: true
-          type: string
-          owner: any
-          usage: ordr-123456
-        inter_participant:
-          amount:
-            currency:
-              required: true
-              type: string
-              owner: any
-              usage: INR
-            value:
-              required: true
-              type: string
-              owner: any
-              usage: '1000.00'
-        collector:
-          amount:
-            currency:
-              required: true
-              type: string
-              owner: any
-              usage: INR
-            value:
-              required: true
-              type: string
-              owner: any
-              usage: '50.00'
 on_settle:
   context:
     domain:
