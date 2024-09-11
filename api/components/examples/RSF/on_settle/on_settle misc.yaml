@@ -16,8 +16,6 @@ context:
   timestamp: '2024-05-07T09:32:23.623Z'
   ttl: PT30S
 message:
-  collector_app_id: collectorapp.com
-  receiver_app_id: receiverapp.com
   settlement:
     type: MISC
     id: settlement-id-123
