@@ -709,8 +709,8 @@ x-flows:
                   code: '*'
               version: 2.0.0
               action: settle
-              bap_id: collectorapp.com
-              bap_uri: https://collectorapp.com/ondc/1.0/
+              bap_id: receiverapp.com
+              bap_uri: https://receiver-app.com/ondc/
               bpp_id: sa_nocs.nbbl.com
               bpp_uri: https://sa_nocs.nbbl.com/nocs_test
               transaction_id: dc34a366-aebb-4144-9314-808dda82c7e6
@@ -728,7 +728,7 @@ x-flows:
                     inter_participant:
                       amount:
                         currency: INR
-                        value: '1000.00'
+                        value: '1000.12'
                     collector:
                       amount:
                         currency: INR
@@ -752,11 +752,11 @@ x-flows:
               sequenceDiagram participant Collector
                participant Settlement_Agency
                participant Receiver
+               Collector ->> Settlement_Agency: settle API   
                rect rgb(191, 223, 255) 
-               Collector ->> Settlement_Agency: settle API 
-               Settlement_Agency ->> Collector : Ack    
-               end
-               Receiver ->> Settlement_Agency: settle API     
+               Receiver ->> Settlement_Agency: settle API
+               Settlement_Agency ->> Receiver: Ack
+               end    
                Settlement_Agency ->> Collector : on_settle API
                Settlement_Agency ->> Receiver : on_settle API
       - summary: SETTLEMENT INSTRUCTIONS
@@ -807,11 +807,11 @@ x-flows:
               sequenceDiagram participant Collector
                participant Settlement_Agency
                participant Receiver
+               rect rgb(191, 223, 255)
                Collector ->> Settlement_Agency: settle API 
-               rect rgb(191, 223, 255) 
+               Settlement_Agency ->> Collector: Ack
+               end 
                Receiver ->> Settlement_Agency: settle API
-               Settlement_Agency ->> Receiver :Ack
-               end
                Settlement_Agency ->> Collector : on_settle API
                Settlement_Agency ->> Receiver : on_settle API
       - summary: SETTLEMENT RESPONSE
@@ -828,8 +828,8 @@ x-flows:
                   code: '*'
               version: 2.0.0
               action: on_settle
-              bap_id: collectorapp.com
-              bap_uri: https://collectorapp.in/ondc/1.0/
+              bap_id: receiverapp.com
+              bap_uri: https://receiver-app.com/ondc/
               bpp_id: sa_nocs.nbbl.com
               bpp_uri: https://sa_nocs.nbbl.com/nocs_test
               transaction_id: dc34a366-aebb-4144-9314-808dda82c7e6
@@ -884,11 +884,11 @@ x-flows:
                participant Receiver
                Collector ->> Settlement_Agency: settle API 
                Receiver ->> Settlement_Agency: settle API
-               rect rgb(191, 223, 255) 
                Settlement_Agency ->> Collector : on_settle API
-               Collector ->> Settlement_Agency: Ack
-               end
+               rect rgb(191, 223, 255)
                Settlement_Agency ->> Receiver : on_settle API
+               Receiver ->> Settlement_Agency : Ack
+               end
       - summary: SETTLEMENT RESPONSE
         reference: if any
         api: on_settle
@@ -925,7 +925,7 @@ x-flows:
                         value: '1000.00'
                       amount:
                         currency: INR
-                        value: '1000.12'
+                        value: '1000.00'
                       status: SETTLED
                       reference_no: '3245683618631'
                     collector:
@@ -946,11 +946,12 @@ x-flows:
                participant Receiver
                Collector ->> Settlement_Agency: settle API 
                Receiver ->> Settlement_Agency: settle API
-               Settlement_Agency ->> Collector : on_settle API
                rect rgb(191, 223, 255) 
+               Settlement_Agency ->> Collector : on_settle API
+               Collector ->> Settlement_Agency : Ack
+               end
                Settlement_Agency ->> Receiver : on_settle API
                Receiver ->> Settlement_Agency: Ack
-               end
   - summary: RSF MISC
     details:
       - description: >-
