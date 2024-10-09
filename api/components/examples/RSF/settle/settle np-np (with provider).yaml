@@ -7,8 +7,8 @@ context:
       code: '*'
   version: 2.0.0
   action: settle
-  bap_id: collectorapp.com
-  bap_uri: https://collectorapp.com/ondc/1.0/
+  bap_id: receiverapp.com
+  bap_uri: https://receiver-app.com/ondc/
   bpp_id: sa_nocs.nbbl.com
   bpp_uri: https://sa_nocs.nbbl.com/nocs_test
   transaction_id: dc34a366-aebb-4144-9314-808dda82c7e6
@@ -26,7 +26,7 @@ message:
         inter_participant:
           amount:
             currency: INR
-            value: '1000.00'
+            value: '1000.12'
         collector:
           amount:
             currency: INR
