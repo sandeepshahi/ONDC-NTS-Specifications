@@ -1631,6 +1631,7 @@ x-attributes:
             type: string
             owner: any
             usage: ONDC:NTS10
+            description: Domain in which the settlement occurs
           location:
             country:
               code:
@@ -1638,62 +1639,82 @@ x-attributes:
                 type: string
                 owner: any
                 usage: IND
+                description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
             city:
               code:
                 required: true
                 type: string
                 owner: any
                 usage: '*'
+                description: 'Describes city '
           version:
             required: true
             type: string
             owner: any
             usage: 2.0.0
+            description: >-
+              Describes the version of transaction protocol being used by the
+              sender.
           action:
             required: true
             type: string
             owner: any
             usage: settle
+            description: >-
+              Describes the method being called by the sender and executed at
+              the receiver.
           bap_id:
             required: true
             type: string
             owner: any
             usage: collectorapp.com
+            description: Describes the subscriber id of the BNP
           bap_uri:
             required: true
             type: string
             owner: any
             usage: https://collectorapp.com/ondc/1.0/
+            description: Describes the subscriber uri of the BNP
           bpp_id:
             required: true
             type: string
             owner: any
             usage: sa_nocs.nbbl.com
+            description: Describes the subscriber id of the SNP
           bpp_uri:
             required: true
             type: string
             owner: any
             usage: https://sa_nocs.nbbl.com/nocs_test
+            description: Describes the subscriber uri of the SNP
           transaction_id:
             required: true
             type: string
             owner: any
             usage: ad73a366-aebb-4144-9314-808dda82c8e6
+            description: Describes  a unique value which persists across all API calls
           message_id:
             required: true
             type: string
             owner: any
             usage: 354ef6d7-d74d-4411-ac06-a05469c0f9ac
+            description: >-
+              Describes a unique value which persists during a request /
+              callback cycle.
           timestamp:
             required: true
             type: string
             owner: any
             usage: '2024-05-07T09:32:23.600Z'
+            description: Describes time of request generation in RFC3339 format
           ttl:
             required: true
             type: string
             owner: any
             usage: P1D
+            description: >-
+              Describes the duration in ISO8601 format after timestamp for which
+              this message holds valid
         message:
           settlement:
             type:
@@ -1701,11 +1722,13 @@ x-attributes:
               type: string
               owner: any
               usage: MISC
+              description: Type of Interparticipant settlement
             id:
               required: true
               type: string
               owner: any
               usage: settlement-id-123
+              description: Id of Interpartcipant settlement
             orders:
               self:
                 amount:
@@ -1714,44 +1737,60 @@ x-attributes:
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that is to be moved to the API
+                      caller's operating account
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '200.00'
+                    description: >-
+                      Self amount is the amount that is to be moved to the API
+                      caller's operating account
               provider:
                 id:
                   required: true
                   type: string
                   owner: any
                   usage: provider-id-789
+                  description: Id of the provider
                 name:
                   required: true
                   type: string
                   owner: any
                   usage: Kirana Pvt Ltd.
+                  description: Name of the provider
                 bank_details:
                   account_no:
                     required: true
                     type: string
                     owner: any
                     usage: 1234567890
+                    description: Account number of the provider
                   ifsc_code:
                     required: true
                     type: string
                     owner: any
                     usage: IFSC0001
+                    description: IFSC code of the provider
                 amount:
                   currency:
                     required: true
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that is to be transferred to the
+                      provider's provided account
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '200.00'
+                    description: >-
+                      Provider amount is the amount that is to be transferred to
+                      the provider's provided account
       settle_np-np:
         context:
           domain:
@@ -1759,6 +1798,7 @@ x-attributes:
             type: string
             owner: any
             usage: ONDC:NTS10
+            description: Domain in which the settlement occurs
           location:
             country:
               code:
@@ -1766,84 +1806,108 @@ x-attributes:
                 type: string
                 owner: any
                 usage: IND
+                description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
             city:
               code:
                 required: true
                 type: string
                 owner: any
                 usage: '*'
+                description: 'Describes city '
           version:
             required: true
             type: string
             owner: any
             usage: 2.0.0
+            description: >-
+              Describes the version of transaction protocol being used by the
+              sender.
           action:
             required: true
             type: string
             owner: any
             usage: settle
+            description: >-
+              Describes the method being called by the sender and executed at
+              the receiver.
           bap_id:
             required: true
             type: string
             owner: any
             usage: collectorapp.com
+            description: Describes the subscriber id of the BNP
           bap_uri:
             required: true
             type: string
             owner: any
             usage: https://collectorapp.com/ondc/1.0/
+            description: Describes the subscriber uri of the BNP
           bpp_id:
             required: true
             type: string
             owner: any
             usage: sa_nocs.nbbl.com
+            description: Describes the subscriber id of the SNP
           bpp_uri:
             required: true
             type: string
             owner: any
             usage: https://sa_nocs.nbbl.com/nocs_test
+            description: Describes the subscriber uri of the SNP
           transaction_id:
             required: true
             type: string
             owner: any
             usage: ad73a366-aebb-4144-9314-808dda82c8e6
+            description: Describes  a unique value which persists across all API calls
           message_id:
             required: true
             type: string
             owner: any
             usage: 354ef6d7-d74d-4411-ac06-a05469c0f9ac
+            description: >-
+              Describes a unique value which persists during a request /
+              callback cycle.
           timestamp:
             required: true
             type: string
             owner: any
             usage: '2024-05-07T09:32:23.600Z'
+            description: Describes time of request generation in RFC3339 format
           ttl:
             required: true
             type: string
             owner: any
             usage: P1D
+            description: >-
+              Describes the duration in ISO8601 format after timestamp for which
+              this message holds valid
         message:
           collector_app_id:
             required: true
             type: string
             owner: any
             usage: collectorapp.com
+            description: ID of the collector
           receiver_app_id:
             required: true
             type: string
             owner: any
             usage: receiverapp.com
+            description: ID of the reciever
           settlement:
             type:
               required: true
               type: string
               owner: any
               usage: NP-NP
+              description: Type of Interparticipant Settlement
             id:
               required: true
               type: string
               owner: any
               usage: settlement-id-abc
+              description: Id of Interpartcipant settlement
             orders:
               self:
                 amount:
@@ -1852,49 +1916,66 @@ x-attributes:
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that is to be moved to the API
+                      caller's operating account
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '200.00'
+                    description: >-
+                      Self amount is the amount that is to be moved to the API
+                      caller's operating account
               provider:
                 id:
                   required: true
                   type: string
                   owner: any
                   usage: prvdr-id-789
+                  description: Id of the provider
                 name:
                   required: true
                   type: string
                   owner: any
                   usage: Kirana Pvt Ltd
+                  description: Name of the provider
                 bank_details:
                   account_no:
                     required: true
                     type: string
                     owner: any
                     usage: '1234567890'
+                    description: Account number of the provider
                   ifsc_code:
                     required: true
                     type: string
                     owner: any
                     usage: IFSC0001
+                    description: IFSC code of the provider
                 amount:
                   currency:
                     required: true
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that is to be transferred to the
+                      provider's provided account
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '800.00'
+                    description: >-
+                      Provider amount is the amount that is to be transferred to
+                      the provider's provided account
               id:
                 required: true
                 type: string
                 owner: any
                 usage: ordr-123456
+                description: Id of the order
               inter_participant:
                 amount:
                   currency:
@@ -1902,11 +1983,17 @@ x-attributes:
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that is to be settled from
+                      collector to receiver
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '1000.00'
+                    description: >-
+                      Inter participant amount is what is to be settled from
+                      collector to receiver
               collector:
                 amount:
                   currency:
@@ -1914,11 +2001,15 @@ x-attributes:
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that the collector keeps for
+                      themselves
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '50.00'
+                    description: Collector amount is what collector keeps for themselves
       settle_nil:
         context:
           domain:
@@ -1926,6 +2017,7 @@ x-attributes:
             type: string
             owner: any
             usage: ONDC:NTS10
+            description: Domain in which the settlement occurs
           location:
             country:
               code:
@@ -1933,62 +2025,82 @@ x-attributes:
                 type: string
                 owner: any
                 usage: IND
+                description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
             city:
               code:
                 required: true
                 type: string
                 owner: any
                 usage: '*'
+                description: 'Describes city '
           version:
             required: true
             type: string
             owner: any
             usage: 2.0.0
+            description: >-
+              Describes the version of transaction protocol being used by the
+              sender.
           action:
             required: true
             type: string
             owner: any
             usage: settle
+            description: >-
+              Describes the method being called by the sender and executed at
+              the receiver.
           bap_id:
             required: true
             type: string
             owner: any
             usage: collectorapp.com
+            description: Describes the subscriber id of the BNP
           bap_uri:
             required: true
             type: string
             owner: any
             usage: https://collectorapp.com/ondc/1.0/
+            description: Describes the subscriber uri of the BNP
           bpp_id:
             required: true
             type: string
             owner: any
             usage: sa_nocs.nbbl.com
+            description: Describes the subscriber id of the SNP
           bpp_uri:
             required: true
             type: string
             owner: any
             usage: https://sa_nocs.nbbl.com/nocs_test
+            description: Describes the subscriber uri of the SNP
           transaction_id:
             required: true
             type: string
             owner: any
             usage: ad73a366-aebb-4144-9314-808dda82c8e6
+            description: Describes  a unique value which persists across all API calls
           message_id:
             required: true
             type: string
             owner: any
             usage: 354ef6d7-d74d-4411-ac06-a05469c0f9ac
+            description: >-
+              Describes a unique value which persists during a request /
+              callback cycle.
           timestamp:
             required: true
             type: string
             owner: any
             usage: '2024-05-07T09:32:23.600Z'
+            description: Describes time of request generation in RFC3339 format
           ttl:
             required: true
             type: string
             owner: any
             usage: P1D
+            description: >-
+              Describes the duration in ISO8601 format after timestamp for which
+              this message holds valid
         message:
           settlement:
             type:
@@ -1996,6 +2108,7 @@ x-attributes:
               type: string
               owner: any
               usage: NIL
+              description: Type of settlement
       on_settle:
         context:
           domain:
@@ -2003,6 +2116,7 @@ x-attributes:
             type: string
             owner: any
             usage: ONDC:NTS10
+            description: Domain in which the settlement occurs
           location:
             country:
               code:
@@ -2010,84 +2124,108 @@ x-attributes:
                 type: string
                 owner: any
                 usage: IND
+                description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
             city:
               code:
                 required: true
                 type: string
                 owner: any
                 usage: '*'
+                description: 'Describes city '
           version:
             required: true
             type: string
             owner: any
             usage: 2.0.0
+            description: >-
+              Describes the version of transaction protocol being used by the
+              sender.
           action:
             required: true
             type: string
             owner: any
             usage: on_settle
+            description: >-
+              Describes the method being called by the sender and executed at
+              the receiver.
           bap_id:
             required: true
             type: string
             owner: any
             usage: collectorapp.com
+            description: Describes the subscriber id of the BNP
           bap_uri:
             required: true
             type: string
             owner: any
             usage: https://collectorapp.com/ondc/1.0/
+            description: Describes the subscriber uri of the BNP
           bpp_id:
             required: true
             type: string
             owner: any
             usage: sa_nocs.nbbl.com
+            description: Describes the subscriber id of the SNP
           bpp_uri:
             required: true
             type: string
             owner: any
             usage: https://sa_nocs.nbbl.com/nocs_test
+            description: Describes the subscriber uri of the SNP
           transaction_id:
             required: true
             type: string
             owner: any
             usage: ad73a366-aebb-4144-9314-808dda82c8e6
+            description: Describes  a unique value which persists across all API calls
           message_id:
             required: true
             type: string
             owner: any
             usage: 354ef6d7-d74d-4411-ac06-a05469c0f9ac
+            description: >-
+              Describes a unique value which persists during a request /
+              callback cycle.
           timestamp:
             required: true
             type: string
             owner: any
             usage: '2024-05-07T09:32:23.600Z'
+            description: Describes time of request generation in RFC3339 format
           ttl:
             required: true
             type: string
             owner: any
             usage: P1D
+            description: >-
+              Describes the duration in ISO8601 format after timestamp for which
+              this message holds valid
         message:
           collector_app_id:
             required: true
             type: string
             owner: any
             usage: collectorapp.com
+            description: ID of the collector
           receiver_app_id:
             required: true
             type: string
             owner: any
             usage: receiverapp.com
+            description: ID of the reciever
           settlement:
             type:
               required: true
               type: string
               owner: any
               usage: NP-NP
+              description: Type of Interparticipant Settlement
             id:
               required: true
               type: string
               owner: any
               usage: settlement-id-abc
+              description: Id of Interpartcipant settlement
             orders:
               self:
                 amount:
@@ -2096,91 +2234,116 @@ x-attributes:
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that is to be moved to the API
+                      caller's operating account
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '200.00'
+                    description: >-
+                      Self amount is the amount that is to be moved to the API
+                      caller's operating account
                 status:
                   required: true
                   type: string
                   owner: any
                   usage: NOT-SETTLED
+                  description: Status of self fund settlement
                 reference_no:
                   required: true
                   type: string
                   owner: any
                   usage: '1238683618634'
+                  description: Reference number of self fund settlement
                 error:
                   code:
                     required: true
                     type: string
                     owner: any
                     usage: '01'
+                    description: Code of the error occurred at the time of settlement
                   message:
                     required: true
                     type: string
                     owner: any
                     usage: Account inactive
+                    description: Message of the error occurred at the time of settlement
               provider:
                 id:
                   required: true
                   type: string
                   owner: any
                   usage: prvdr-id-789
+                  description: Id of the provider
                 name:
                   required: true
                   type: string
                   owner: any
                   usage: Kirana Pvt Ltd
+                  description: Name of the provider
                 bank_details:
                   account_no:
                     required: true
                     type: string
                     owner: any
                     usage: '1234567890'
+                    description: Account number of the provider
                   ifsc_code:
                     required: true
                     type: string
                     owner: any
                     usage: IFSC0001
+                    description: IFSC code of the provider
                 amount:
                   currency:
                     required: true
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that is to be transferred to the
+                      provider's provided account
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '800.00'
+                    description: >-
+                      Provider amount is the amount that is to be transferred to
+                      the provider's provided account
                 status:
                   required: true
                   type: string
                   owner: any
                   usage: NOT-SETTLED
+                  description: Status of provider fund settlement
                 reference_no:
                   required: true
                   type: string
                   owner: any
                   usage: '3718683618631'
+                  description: Reference number of provider fund settlement
                 error:
                   code:
                     required: true
                     type: string
                     owner: any
                     usage: '01'
+                    description: Code of the error occurred at the time of settlement
                   message:
                     required: true
                     type: string
                     owner: any
                     usage: Account inactive
+                    description: Message of the error occurred at the time of settlement
               id:
                 required: true
                 type: string
                 owner: any
                 usage: ordr-123456
+                description: Id of the order
               inter_participant:
                 amount:
                   currency:
@@ -2188,32 +2351,42 @@ x-attributes:
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that is to be settled from
+                      collector to receiver
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '1000.00'
+                    description: >-
+                      Inter participant amount is what is to be settled from
+                      collector to receiver
                 status:
                   required: true
                   type: string
                   owner: any
                   usage: SETTLED
+                  description: Status of interparticipant fund settlement
                 reference_no:
                   required: true
                   type: string
                   owner: any
                   usage: '3718683618631'
+                  description: Reference number of Interparticipant fund settlement
                 error:
                   code:
                     required: true
                     type: string
                     owner: any
                     usage: '01'
+                    description: Code of the error occurred at the time of settlement
                   message:
                     required: true
                     type: string
                     owner: any
                     usage: Account inactive
+                    description: Message of the error occurred at the time of settlement
               collector:
                 amount:
                   currency:
@@ -2221,11 +2394,15 @@ x-attributes:
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that the collector keeps for
+                      themselves
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '50.00'
+                    description: Collector amount is what collector keeps for themselves
       report:
         context:
           domain:
@@ -2233,6 +2410,7 @@ x-attributes:
             type: string
             owner: any
             usage: ONDC:NTS10
+            description: Domain in which the settlement occurs
           location:
             country:
               code:
@@ -2240,84 +2418,108 @@ x-attributes:
                 type: string
                 owner: any
                 usage: IND
+                description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
             city:
               code:
                 required: true
                 type: string
                 owner: any
                 usage: '*'
+                description: 'Describes city '
           version:
             required: true
             type: string
             owner: any
             usage: 2.0.0
+            description: >-
+              Describes the version of transaction protocol being used by the
+              sender.
           action:
             required: true
             type: string
             owner: any
             usage: report
+            description: >-
+              Describes the method being called by the sender and executed at
+              the receiver.
           bap_id:
             required: true
             type: string
             owner: any
             usage: collectorapp.com
+            description: Describes the subscriber id of the BNP
           bap_uri:
             required: true
             type: string
             owner: any
             usage: https://collectorapp.com/ondc/1.0/
+            description: Describes the subscriber uri of the BNP
           bpp_id:
             required: true
             type: string
             owner: any
             usage: sa_nocs.nbbl.com
+            description: Describes the subscriber id of the SNP
           bpp_uri:
             required: true
             type: string
             owner: any
             usage: https://sa_nocs.nbbl.com/nocs_test
+            description: Describes the subscriber uri of the SNP
           transaction_id:
             required: true
             type: string
             owner: any
             usage: d73a366-aebb-4144-9314-808dda82c7e6
+            description: Describes  a unique value which persists across all API calls
           message_id:
             required: true
             type: string
             owner: any
             usage: 841ef6d7-d74d-4411-ac06-a05469c0f9ac
+            description: >-
+              Describes a unique value which persists during a request /
+              callback cycle.
           timestamp:
             required: true
             type: string
             owner: any
             usage: '2024-05-09T06:36:51.897Z'
+            description: Describes time of request generation in RFC3339 format
           ttl:
             required: true
             type: string
             owner: any
             usage: P1D
+            description: >-
+              Describes the duration in ISO8601 format after timestamp for which
+              this message holds valid
         message:
           collector_app_id:
             required: true
             type: string
             owner: any
             usage: collectorapp.com
+            description: 'Subscriber Id of Collecter '
           receiver_app_id:
             required: true
             type: string
             owner: any
             usage: receiverapp.com
+            description: Subscriber Id of Reciever
           settlement:
             type:
               required: true
               type: string
               owner: any
               usage: NP-NP
+              description: Type of Settlement
             id:
               required: true
               type: string
               owner: any
               usage: settlement-id-abc
+              description: Id of Settlement
             orders:
               self:
                 amount:
@@ -2326,91 +2528,116 @@ x-attributes:
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that is to be moved to the API
+                      caller's operating account
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '200.00'
+                    description: >-
+                      Self amount is the amount that is to be moved to the API
+                      caller's operating account
                 status:
                   required: true
                   type: string
                   owner: any
                   usage: NOT-SETTLED
+                  description: Status of self fund settlement
                 reference_no:
                   required: true
                   type: string
                   owner: any
                   usage: '1238683618634'
+                  description: Reference number of self fund settlement
                 error:
                   code:
                     required: true
                     type: string
                     owner: any
                     usage: '01'
+                    description: Code of the error occurred at the time of settlement
                   message:
                     required: true
                     type: string
                     owner: any
                     usage: Account inactive
+                    description: Message of the error occurred at the time of settlement
               provider:
                 id:
                   required: true
                   type: string
                   owner: any
                   usage: prvdr-id-789
+                  description: Id of Provider
                 name:
                   required: true
                   type: string
                   owner: any
                   usage: Kirana Pvt Ltd
+                  description: Name of Provider
                 bank_details:
                   account_no:
                     required: true
                     type: string
                     owner: any
                     usage: '1234567890'
+                    description: Account number of the provider
                   ifsc_code:
                     required: true
                     type: string
                     owner: any
                     usage: IFSC0001
+                    description: IFSC code of the provider
                 amount:
                   currency:
                     required: true
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that is to be transferred to the
+                      provider's provided account
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '800.00'
+                    description: >-
+                      Provider amount is the amount that is to be transferred to
+                      the provider's provided account
                 status:
                   required: true
                   type: string
                   owner: any
                   usage: NOT-SETTLED
+                  description: Status of provider fund settlement
                 reference_no:
                   required: true
                   type: string
                   owner: any
                   usage: '3718683618631'
+                  description: Reference number of provider fund settlement
                 error:
                   code:
                     required: true
                     type: string
                     owner: any
                     usage: '01'
+                    description: Code of the error occurred at the time of settlement
                   message:
                     required: true
                     type: string
                     owner: any
                     usage: Account inactive
+                    description: Message of the error occurred at the time of settlement
               id:
                 required: true
                 type: string
                 owner: any
                 usage: ordr-123456
+                description: Id of the order
               inter_participant:
                 amount:
                   currency:
@@ -2418,32 +2645,42 @@ x-attributes:
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that is to be settled from
+                      collector to receiver
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '1000.00'
+                    description: >-
+                      Inter participant amount is what is to be settled from
+                      collector to receiver
                 status:
                   required: true
                   type: string
                   owner: any
                   usage: SETTLED
+                  description: Status of interparticipant fund settlement
                 reference_no:
                   required: true
                   type: string
                   owner: any
                   usage: '3718683618631'
+                  description: Reference number of Interparticipant fund settlement
                 error:
                   code:
                     required: true
                     type: string
                     owner: any
                     usage: '01'
+                    description: Code of the error occurred at the time of settlement
                   message:
                     required: true
                     type: string
                     owner: any
                     usage: Account inactive
+                    description: Message of the error occurred at the time of settlement
               collector:
                 amount:
                   currency:
@@ -2451,21 +2688,27 @@ x-attributes:
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that the collector keeps for
+                      themselves
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '50.00'
+                    description: Collector amount is what collector keeps for themselves
           ref_transaction_id:
             required: true
             type: string
             owner: any
             usage: bd73a366-aebb-4144-9314-808dda82c7e6
+            description: Reference transaction ID of the settlement instruction
           ref_message_id:
             required: true
             type: string
             owner: any
             usage: 941ef6d7-d74d-4411-ac06-469c0f9ac
+            description: Reference message ID of the settlement instruction
       on_report:
         context:
           domain:
@@ -2473,6 +2716,7 @@ x-attributes:
             type: string
             owner: any
             usage: ONDC:NTS10
+            description: Domain in which the settlement occurs
           location:
             country:
               code:
@@ -2480,84 +2724,108 @@ x-attributes:
                 type: string
                 owner: any
                 usage: IND
+                description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
             city:
               code:
                 required: true
                 type: string
                 owner: any
                 usage: '*'
+                description: 'Describes city '
           version:
             required: true
             type: string
             owner: any
             usage: 2.0.0
+            description: >-
+              Describes the version of transaction protocol being used by the
+              sender.
           action:
             required: true
             type: string
             owner: any
             usage: on_report
+            description: >-
+              Describes the method being called by the sender and executed at
+              the receiver.
           bap_id:
             required: true
             type: string
             owner: any
             usage: collectorapp.com
+            description: Describes the subscriber id of the BNP
           bap_uri:
             required: true
             type: string
             owner: any
             usage: https://collectorapp.com/ondc/1.0/
+            description: Describes the subscriber uri of the BNP
           bpp_id:
             required: true
             type: string
             owner: any
             usage: sa_nocs.nbbl.com
+            description: Describes the subscriber id of the SNP
           bpp_uri:
             required: true
             type: string
             owner: any
             usage: https://sa_nocs.nbbl.com/nocs_test
+            description: Describes the subscriber uri of the SNP
           transaction_id:
             required: true
             type: string
             owner: any
             usage: cd73a366-aebb-4144-9314-808dda82c7e6
+            description: Describes  a unique value which persists across all API calls
           message_id:
             required: true
             type: string
             owner: any
             usage: 841ef6d7-d74d-4411-ac06-a05469c0f9ac
+            description: >-
+              Describes a unique value which persists during a request /
+              callback cycle.
           timestamp:
             required: true
             type: string
             owner: any
             usage: '2024-05-07T06:36:51.900Z'
+            description: Describes time of request generation in RFC3339 format
           ttl:
             required: true
             type: string
             owner: any
             usage: P1D
+            description: >-
+              Describes the duration in ISO8601 format after timestamp for which
+              this message holds valid
         message:
           collector_app_id:
             required: true
             type: string
             owner: any
             usage: collectorapp.com
+            description: ID of the collector
           receiver_app_id:
             required: true
             type: string
             owner: any
             usage: receiverapp.com
+            description: ID of the reciever
           settlement:
             type:
               required: true
               type: string
               owner: any
               usage: NP-NP
+              description: Type of Interparticipant Settlement
             id:
               required: true
               type: string
               owner: any
               usage: settlement-id-123
+              description: Id of Interpartcipant settlement
             orders:
               self:
                 amount:
@@ -2566,91 +2834,116 @@ x-attributes:
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that is to be moved to the API
+                      caller's operating account
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '200.00'
+                    description: >-
+                      Self amount is the amount that is to be moved to the API
+                      caller's operating account
                 status:
                   required: true
                   type: string
                   owner: any
                   usage: NOT-SETTLED
+                  description: Status of self fund settlement
                 reference_no:
                   required: true
                   type: string
                   owner: any
                   usage: '3718683618631'
+                  description: Reference number of self fund settlement
                 error:
                   code:
                     required: true
                     type: string
                     owner: any
                     usage: '01'
+                    description: Code of the error occurred at the time of settlement
                   message:
                     required: true
                     type: string
                     owner: any
                     usage: Account inactive
+                    description: Message of the error occurred at the time of settlement
               provider:
                 id:
                   required: true
                   type: string
                   owner: any
                   usage: provider-id-789
+                  description: Id of the provider
                 name:
                   required: true
                   type: string
                   owner: any
                   usage: Kirana Pvt Ltd
+                  description: Name of the provider
                 bank_details:
                   account_no:
                     required: true
                     type: string
                     owner: any
                     usage: '1234567890'
+                    description: Account number of the provider
                   ifsc_code:
                     required: true
                     type: string
                     owner: any
                     usage: IFSC0001
+                    description: IFSC code of the provider
                 amount:
                   currency:
                     required: true
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that is to be transferred to the
+                      provider's provided account
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '800.00'
+                    description: >-
+                      Provider amount is the amount that is to be transferred to
+                      the provider's provided account
                 status:
                   required: true
                   type: string
                   owner: any
                   usage: NOT-SETTLED
+                  description: Status of provider fund settlement
                 reference_no:
                   required: true
                   type: string
                   owner: any
                   usage: '3718683618631'
+                  description: Reference number of provider fund settlement
                 error:
                   code:
                     required: true
                     type: string
                     owner: any
                     usage: '01'
+                    description: Code of the error occurred at the time of settlement
                   message:
                     required: true
                     type: string
                     owner: any
                     usage: Account inactive
+                    description: Message of the error occurred at the time of settlement
               id:
                 required: true
                 type: string
                 owner: any
                 usage: order-id-456
+                description: Id of the order
               inter_participant:
                 amount:
                   currency:
@@ -2658,42 +2951,54 @@ x-attributes:
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that is to be settled from
+                      collector to receiver
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '1000.00'
+                    description: >-
+                      Inter participant amount is what is to be settled from
+                      collector to receiver
                 status:
                   required: true
                   type: string
                   owner: any
                   usage: SETTLED
+                  description: Status of interparticipant fund settlement
                 reference_no:
                   required: true
                   type: string
                   owner: any
                   usage: '3718683618631'
+                  description: Reference number of Interparticipant fund settlement
                 error:
                   code:
                     required: true
                     type: string
                     owner: any
                     usage: '01'
+                    description: Code of the error occurred at the time of settlement
                   message:
                     required: true
                     type: string
                     owner: any
                     usage: Account inactive
+                    description: Message of the error occurred at the time of settlement
                 currency:
                   required: true
                   type: string
                   owner: any
                   usage: INR
+                  description: Currency of the amount that is being settled
                 value:
                   required: true
                   type: string
                   owner: any
                   usage: '1000.00'
+                  description: Value of the amount that is being settled
               collector:
                 amount:
                   currency:
@@ -2701,21 +3006,27 @@ x-attributes:
                     type: string
                     owner: any
                     usage: INR
+                    description: >-
+                      Currency of the amount that the collector keeps for
+                      themselves
                   value:
                     required: true
                     type: string
                     owner: any
                     usage: '50.00'
+                    description: Collector amount is what collector keeps for themselves
           ref_transaction_id:
             required: true
             type: string
             owner: any
             usage: bd73a366-aebb-4144-9314-808dda82c7e6
+            description: Reference transaction ID of the settlement instruction
           ref_message_id:
             required: true
             type: string
             owner: any
             usage: 941ef6d7-d74d-4411-ac06-469c0f9ac
+            description: Reference message ID of the settlement instruction
       recon:
         context:
           action:
@@ -2723,31 +3034,39 @@ x-attributes:
             type: string
             owner: any
             usage: recon
+            description: >-
+              Describes the method being called by the sender and executed at
+              the receiver.
           bap_id:
             required: true
             type: string
             owner: any
             usage: collectorapp.com
+            description: Describes the subscriber id of the BNP
           bap_uri:
             required: true
             type: string
             owner: any
             usage: https://collectorapp.com/ondc/1.0/
+            description: Describes the subscriber uri of the BNP
           bpp_id:
             required: true
             type: string
             owner: any
             usage: receiver-app.com
+            description: Describes the subscriber id of the SNP
           bpp_uri:
             required: true
             type: string
             owner: any
             usage: https://receiver-app.com/ondc/
+            description: Describes the subscriber uri of the SNP
           domain:
             required: true
             type: string
             owner: any
             usage: ONDC:NTS10
+            description: Domain in which the settlement occurs
           location:
             city:
               code:
@@ -2755,37 +3074,50 @@ x-attributes:
                 type: string
                 owner: any
                 usage: '*'
+                description: 'Describes city '
             country:
               code:
                 required: true
                 type: string
                 owner: any
                 usage: IND
+                description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
           message_id:
             required: true
             type: string
             owner: any
             usage: 841ef6d7-d74d-4411-ac06-a05469c0f9ac
+            description: >-
+              Describes a unique value which persists during a request /
+              callback cycle.
           timestamp:
             required: true
             type: string
             owner: any
             usage: '2024-05-09T06:36:51.897Z'
+            description: Describes time of request generation in RFC3339 format
           transaction_id:
             required: true
             type: string
             owner: any
             usage: d73a366-aebb-4144-9314-808dda82c7e6
+            description: Describes  a unique value which persists across all API calls
           ttl:
             required: true
             type: string
             owner: any
             usage: P1D
+            description: >-
+              Describes the duration in ISO8601 format after timestamp for which
+              this message holds valid
           version:
             required: true
             type: string
             owner: any
             usage: 2.0.0
+            description: >-
+              Describes the version of transaction protocol being used by the
+              sender.
         message:
           orders:
             amount:
@@ -2794,16 +3126,19 @@ x-attributes:
                 type: string
                 owner: any
                 usage: INR
+                description: Currency of the amount of the Order
               value:
                 required: true
                 type: string
                 owner: any
                 usage: '300.00'
+                description: Value of the amount of the Order
             id:
               required: true
               type: string
               owner: any
               usage: order-1234
+              description: Id of the order
             settlements:
               amount:
                 currency:
@@ -2811,80 +3146,95 @@ x-attributes:
                   type: string
                   owner: any
                   usage: INR
+                  description: Currency of the amount of the settlement
                 value:
                   required: true
                   type: string
                   owner: any
                   usage: '300.00'
+                  description: Value of the amount of the settlement
               commission:
                 currency:
                   required: true
                   type: string
                   owner: any
                   usage: INR
+                  description: Currency of the commission on the order
                 value:
                   required: true
                   type: string
                   owner: any
                   usage: '300.00'
+                  description: Value of the commission on the order
               id:
                 required: true
                 type: string
                 owner: any
                 usage: settlement-id-456
+                description: Id of the settlement
               payment_id:
                 required: true
                 type: string
                 owner: any
                 usage: pymnt-1
+                description: Payment ID of the settlement
               settlement_ref_no:
                 required: false
                 type: string
                 owner: any
                 usage: utr-1234
+                description: 'Settlement Reference number of the settlement '
               status:
                 required: true
                 type: string
                 owner: any
                 usage: PENDING
+                description: Status of the settlement
               tcs:
                 currency:
                   required: true
                   type: string
                   owner: any
                   usage: INR
+                  description: Currency of tax collected at source
                 value:
                   required: true
                   type: string
                   owner: any
                   usage: '300.00'
+                  description: Value of tax collected at source
               tds:
                 currency:
                   required: true
                   type: string
                   owner: any
                   usage: INR
+                  description: Currency of tax deducted at source
                 value:
                   required: true
                   type: string
                   owner: any
                   usage: '300.00'
+                  description: Value of tax deducted at source
               updated_at:
                 required: true
                 type: string
                 owner: any
                 usage: '2024-05-09T06:36:51.897Z'
+                description: Settlement modification time
               withholding_amount:
                 currency:
                   required: true
                   type: string
                   owner: any
                   usage: INR
+                  description: Currency of the withholding amount
                 value:
                   required: true
                   type: string
                   owner: any
                   usage: '300.00'
+                  description: Value of the withholding amount
       on_recon:
         context:
           action:
@@ -2892,31 +3242,39 @@ x-attributes:
             type: string
             owner: any
             usage: on_recon
+            description: >-
+              Describes the method being called by the sender and executed at
+              the receiver.
           bap_id:
             required: true
             type: string
             owner: any
             usage: collectorapp.com
+            description: Describes the subscriber id of the BNP
           bap_uri:
             required: true
             type: string
             owner: any
             usage: https://collectorapp.com/ondc/1.0/
+            description: Describes the subscriber uri of the BNP
           bpp_id:
             required: true
             type: string
             owner: any
             usage: receiver-app.com
+            description: Describes the subscriber id of the SNP
           bpp_uri:
             required: true
             type: string
             owner: any
             usage: https://receiver-app.com/ondc/
+            description: Describes the subscriber uri of the SNP
           domain:
             required: true
             type: string
             owner: any
             usage: ONDC:NTS10
+            description: Domain in which the settlement occurs
           location:
             city:
               code:
@@ -2924,37 +3282,50 @@ x-attributes:
                 type: string
                 owner: any
                 usage: '*'
+                description: 'Describes city '
             country:
               code:
                 required: true
                 type: string
                 owner: any
                 usage: IND
+                description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
           message_id:
             required: true
             type: string
             owner: any
             usage: 841ef6d7-d74d-4411-ac06-a05469c0f9ac
+            description: >-
+              Describes a unique value which persists during a request /
+              callback cycle.
           timestamp:
             required: true
             type: string
             owner: any
             usage: '2024-05-09T06:36:51.897Z'
+            description: Describes time of request generation in RFC3339 format
           transaction_id:
             required: true
             type: string
             owner: any
             usage: d73a366-aebb-4144-9314-808dda82c7e6
+            description: Describes  a unique value which persists across all API calls
           ttl:
             required: true
             type: string
             owner: any
             usage: P1D
+            description: >-
+              Describes the duration in ISO8601 format after timestamp for which
+              this message holds valid
           version:
             required: true
             type: string
             owner: any
             usage: 2.0.0
+            description: >-
+              Describes the version of transaction protocol being used by the
+              sender.
         message:
           orders:
             amount:
@@ -2963,21 +3334,25 @@ x-attributes:
                 type: string
                 owner: any
                 usage: INR
+                description: Currency of the amount of the Order
               value:
                 required: true
                 type: string
                 owner: any
                 usage: '300.00'
+                description: Value of the amount of the Order
             id:
               required: true
               type: string
               owner: any
               usage: order-1234
+              description: Id of the order
             recon_accord:
               required: true
               type: boolean
               owner: any
               usage: true
+              description: Formal agreement of the settled amount
             settlements:
               amount:
                 currency:
@@ -2985,105 +3360,135 @@ x-attributes:
                   type: string
                   owner: any
                   usage: '10.00'
+                  description: Currency of the amount of the settlement
                 diff_amount:
                   required: true
                   type: string
                   owner: any
                   usage: '300.00'
+                  description: >-
+                    Difference in the settlement amount incase recon_accord is
+                    FALSE
                 value:
                   required: true
                   type: string
                   owner: any
                   usage: INR
+                  description: Value of the amount of the settlement
               commission:
                 currency:
                   required: false
                   type: string
                   owner: any
                   usage: '10.00'
+                  description: Currency of the commission on the order
                 diff_amount:
                   required: true
                   type: string
                   owner: any
                   usage: '300.00'
+                  description: >-
+                    Difference in the commission amount incase recon_accord is
+                    FALSE
                 value:
                   required: true
                   type: string
                   owner: any
                   usage: settlement-id-456
+                  description: Value of the commission on the order
               id:
                 required: true
                 type: string
                 owner: any
                 usage: pymnt-1
+                description: Id of the settlement
               payment_id:
                 required: false
                 type: string
                 owner: any
                 usage: utr-1234
+                description: Payment_Id of the settlement
               settlement_ref_no:
                 required: true
                 type: string
                 owner: any
                 usage: PENDING
+                description: 'Settlement Reference number of the settlement '
               status:
                 required: true
                 type: string
                 owner: any
                 usage: INR
+                description: Status of the settlement
               tcs:
                 currency:
                   required: false
                   type: string
                   owner: any
                   usage: '10.00'
+                  description: Currency of tax collected at source
                 diff_amount:
                   required: true
                   type: string
                   owner: any
                   usage: '300.00'
+                  description: >-
+                    Difference in the tax collected at the source incase
+                    recon_accord is FALSE
                 value:
                   required: true
                   type: string
                   owner: any
                   usage: INR
+                  description: Value of tax collected at source
               tds:
                 currency:
                   required: false
                   type: string
                   owner: any
                   usage: '10.00'
+                  description: Currency of tax deducted at source
                 diff_amount:
                   required: true
                   type: string
                   owner: any
                   usage: '300.00'
+                  description: >-
+                    Difference in the tax deducted at the source incase
+                    recon_accord is FALSE
                 value:
                   required: true
                   type: string
                   owner: any
                   usage: '2024-05-09T06:36:51.897Z'
+                  description: Value of tax deducted at source
               updated_at:
                 required: true
                 type: string
                 owner: any
                 usage: INR
+                description: Settlement modification time
               withholding_amount:
                 currency:
                   required: false
                   type: string
                   owner: any
                   usage: '10.00'
+                  description: Currency of the withholding amount
                 diff_amount:
                   required: true
                   type: string
                   owner: any
                   usage: '300.00'
+                  description: >-
+                    Difference in the withholding amount incase recon_accord is
+                    FALSE
                 value:
                   required: false
                   type: false
                   owner: false
                   usage: false
+                  description: Value of the withholding amount
 x-errorcodes:
   code:
     - Event: NACK
