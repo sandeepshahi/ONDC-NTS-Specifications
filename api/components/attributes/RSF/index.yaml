@@ -1525,7 +1525,7 @@ recon:
           usage: settlement-id-456
           description: Id of the settlement
         payment_id:
-          required: true
+          required: false
           type: string
           owner: any
           usage: pymnt-1
