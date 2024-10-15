@@ -664,7 +664,7 @@ x-enum:
     context: *ref_0
     message: *ref_6
 x-flows:
-  - summary: RSF NP-NP
+  - summary: NP-NP
     details:
       - description: >
           Detailed flows covering inter participant settlements. NPs (Collector
@@ -952,7 +952,7 @@ x-flows:
                end
                Settlement_Agency ->> Receiver : on_settle API
                Receiver ->> Settlement_Agency: Ack
-  - summary: RSF MISC
+  - summary: MISC
     details:
       - description: >-
           Detailed flows covering miscellaneous or self settlements.  NPs share
@@ -1047,7 +1047,7 @@ x-flows:
                         value: '200.00'
                       status: SETTLED
                       reference_no: '3718683618631'
-  - summary: RSF NIL
+  - summary: NIL
     details:
       - description: >-
           Detailed flows covering the NPs declaring that no settlements (where
@@ -1125,7 +1125,7 @@ x-flows:
             message:
               settlement:
                 type: NIL
-  - summary: RSF REPORT
+  - summary: REPORT
     details:
       - description: >-
           Detailed flows covering NPs seeking status of a settlement
@@ -1250,7 +1250,7 @@ x-flows:
                       error:
                         code: '01'
                         message: Account inactive
-  - summary: RSF RECON
+  - summary: RECON
     details:
       - description: >-
           The reconciliation process among the NPs are facilitated through the

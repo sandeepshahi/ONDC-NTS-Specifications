@@ -1,4 +1,4 @@
-summary: RSF NP-NP
+summary: NP-NP
 details:
   - description: |
       Detailed flows covering inter participant settlements. NPs (Collector and Receiver) share settlement instructions to the Settlement Agency and the settlement agency responds with whether the settlement was successful or not.
