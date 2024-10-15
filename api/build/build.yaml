@@ -1347,10 +1347,10 @@ x-flows:
                       withholding_amount:
                         currency: INR
                         value: '10.00'
-                      gst_amount:
+                      tds:
                         currency: INR
                         value: '10.00'
-                      tds_amount:
+                      tcs:
                         currency: INR
                         value: '10.00'
                       settlement_ref_no: utr-1234
@@ -1367,10 +1367,10 @@ x-flows:
                       withholding_amount:
                         currency: INR
                         value: '10.00'
-                      gst_amount:
+                      tds:
                         currency: INR
                         value: '10.00'
-                      tds_amount:
+                      tcs:
                         currency: INR
                         value: '10.00'
                       updated_at: '2024-05-07T06:36:51.897Z'
@@ -1448,10 +1448,10 @@ x-flows:
                       withholding_amount:
                         currency: INR
                         value: '10.00'
-                      gst_amount:
+                      tds:
                         currency: INR
                         value: '10.00'
-                      tds_amount:
+                      tcs:
                         currency: INR
                         value: '10.00'
                       settlement_ref_no: utr-1234
@@ -1468,10 +1468,10 @@ x-flows:
                       withholding_amount:
                         currency: INR
                         value: '10.00'
-                      gst_amount:
+                      tds:
                         currency: INR
                         value: '10.00'
-                      tds_amount:
+                      tcs:
                         currency: INR
                         value: '10.00'
                       updated_at: '2024-05-07T06:36:51.897Z'
