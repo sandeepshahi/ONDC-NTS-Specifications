@@ -82,7 +82,6 @@ paths:
                   $ref: "#/components/schemas/Error"
               required:
                 - context
-                - message
       responses:
         "200":
           description: Acknowledgement of message received
@@ -177,7 +176,6 @@ paths:
                   $ref: "#/components/schemas/Error"
               required:
                 - context
-                - message
       responses:
         "200":
           description: Acknowledgement of message received
