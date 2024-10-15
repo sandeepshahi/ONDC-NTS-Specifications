@@ -1,0 +1,47 @@
+summary: ERROR
+details:
+  - description: >-
+      Detailed flows covering the error response example where settlement agency would respond with an error code for either a settlement instruction (/settle) or a status query (/report) based on the respective error code. Refer to the Error-UI for the possible error codes. The schema for error for on_settle and on_report would be the same.
+    mermaid: >-
+      sequenceDiagram
+       participant NP
+       participant Settlement_Agency
+       NP ->> Settlement_Agency: settle API 
+       Settlement_Agency ->> NP : on_settle API
+references: if any
+steps:
+  - summary: SETTLEMENT INSTRUCTIONS
+    reference: if any
+    api: settle
+    example:
+      value:
+        $ref: ../../examples/RSF/settle(Error Flow)/settle(Error Flow).yaml
+    details:
+      - description: settlement instructions from NP to Settlement Agency
+        mermaid: |-
+          sequenceDiagram participant Collector
+           participant Settlement_Agency
+           participant Receiver
+           Collector ->> Settlement_Agency: settle API   
+           rect rgb(191, 223, 255) 
+           Receiver ->> Settlement_Agency: settle API
+           Settlement_Agency ->> Receiver: Ack
+           end    
+           Settlement_Agency ->> Collector : on_settle API
+           Settlement_Agency ->> Receiver : on_settle API
+  - summary: SETTLEMENT RESPONSE
+    api: on_settle
+    details:
+      - description: on_settle
+        mermaid: >-
+          sequenceDiagram
+           participant NP
+           participant Settlement_Agency
+           NP ->> Settlement_Agency: settle API  
+           Settlement_Agency ->> NP : Ack
+           Settlement_Agency ->> NP : on_settle API
+           NP ->> Settlement_Agency : Ack
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/RSF/on_settle(Error Flow)/on_settle(Error Flow).yaml"

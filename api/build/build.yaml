@@ -78,7 +78,6 @@ paths:
                   $ref: '#/components/schemas/Error'
               required:
                 - context
-                - message
       responses:
         '200':
           description: Acknowledgement of message received
@@ -170,7 +169,6 @@ paths:
                   $ref: '#/components/schemas/Error'
               required:
                 - context
-                - message
       responses:
         '200':
           description: Acknowledgement of message received
@@ -1475,6 +1473,113 @@ x-flows:
                         currency: INR
                         value: '10.00'
                       updated_at: '2024-05-07T06:36:51.897Z'
+  - summary: ERROR
+    details:
+      - description: >-
+          Detailed flows covering the error response example where settlement
+          agency would respond with an error code for either a settlement
+          instruction (/settle) or a status query (/report) based on the
+          respective error code. Refer to the Error-UI for the possible error
+          codes. The schema for error for on_settle and on_report would be the
+          same.
+        mermaid: |-
+          sequenceDiagram
+           participant NP
+           participant Settlement_Agency
+           NP ->> Settlement_Agency: settle API 
+           Settlement_Agency ->> NP : on_settle API
+    references: if any
+    steps:
+      - summary: SETTLEMENT INSTRUCTIONS
+        reference: if any
+        api: settle
+        example:
+          value:
+            context:
+              domain: ONDC:NTS10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
+              version: 2.0.0
+              action: settle
+              bap_id: collectorapp.com
+              bap_uri: https://collectorapp.com/ondc/1.0/
+              bpp_id: sa_nocs_abcd.nbbl.com
+              bpp_uri: https://sa_nocs_abcd.nbbl.com/nocs_test
+              transaction_id: dc34a366-aebb-4144-9314-808dda82c7e6
+              message_id: 941ed9a4-d74d-4411-ac06-469c0f9ac
+              timestamp: '2024-05-09T11:36:51.897Z'
+              ttl: P1D
+            message:
+              collector_app_id: collectorapp.com
+              receiver_app_id: receiverapp.com
+              settlement:
+                type: NP-NP
+                id: settlement-id-abc
+                orders:
+                  - id: ordr-123456
+                    inter_participant:
+                      amount:
+                        currency: INR
+                        value: '1000.00'
+                    collector:
+                      amount:
+                        currency: INR
+                        value: '50.00'
+                    self:
+                      amount:
+                        currency: INR
+                        value: '50.00'
+        details:
+          - description: settlement instructions from NP to Settlement Agency
+            mermaid: |-
+              sequenceDiagram participant Collector
+               participant Settlement_Agency
+               participant Receiver
+               Collector ->> Settlement_Agency: settle API   
+               rect rgb(191, 223, 255) 
+               Receiver ->> Settlement_Agency: settle API
+               Settlement_Agency ->> Receiver: Ack
+               end    
+               Settlement_Agency ->> Collector : on_settle API
+               Settlement_Agency ->> Receiver : on_settle API
+      - summary: SETTLEMENT RESPONSE
+        api: on_settle
+        details:
+          - description: on_settle
+            mermaid: |-
+              sequenceDiagram
+               participant NP
+               participant Settlement_Agency
+               NP ->> Settlement_Agency: settle API  
+               Settlement_Agency ->> NP : Ack
+               Settlement_Agency ->> NP : on_settle API
+               NP ->> Settlement_Agency : Ack
+        reference: if any
+        example:
+          value:
+            context:
+              domain: ONDC:NTS10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: '*'
+              version: 2.0.0
+              action: on_settle
+              bap_id: collectorapp.com
+              bap_uri: https://collector.com/ondc/1.0/
+              bpp_id: sa_nocs_abcd.nbbl.com
+              bpp_uri: https://sa_nocs_abcd.nbbl.com/nocs_test
+              transaction_id: cd73a366-aebb-4144-9314-808dda82c7e6
+              message_id: 841ef6d7-d74d-4411-ac06-a05469c0f9ac
+              timestamp: '2024-05-09T06:36:51.897Z'
+              ttl: P1D
+            error:
+              code: '70005'
+              message: Invalid bpp id
 x-examples:
   RSF:
     summary: RSF 2.0
