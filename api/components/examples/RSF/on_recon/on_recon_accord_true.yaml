@@ -6,28 +6,30 @@ context:
     city:
       code: "*"
   version: "2.0.0"
-  action: "recon"
+  action: "on_recon"
   bap_id: "collector-app.com"
   bap_uri: "https://collector-app.com/ondc/1.0/"
   bpp_id: "receiver-app.com"
   bpp_uri: "https://receiver-app.com/ondc/"
   transaction_id: "bd73a366-aebb-4144-9314-808dda82c7e6"
-  message_id: "941ef6d7-d74d-4411-ac06-a05469c0f9ac"
-  timestamp: "2024-05-07T06:36:50.897Z"
+  message_id: "990ef6d7-d74d-4411-ac06-a05469c0f9ac"
+  timestamp: "2024-05-07T06:36:53.897Z"
   ttl: "P1D"
 message:
   orders:
     - id: "order-1234"
       amount:
         currency: "INR"
-        value: "300.00"
+        value: "310.00"
+      recon_accord: true
       settlements:
         - id: "settlement-id-456"
           payment_id: "pymnt-1"
           status: "PENDING"
+          due_date: "2024-05-08"
           amount:
             currency: "INR"
-            value: "100.00"
+            value: "120.00"
           commission:
             currency: "INR"
             value: "10.00"
@@ -40,7 +42,7 @@ message:
           tds:
             currency: "INR"
             value: "10.00"
-          updated_at: "2024-05-07T07:36:50.897Z"
+          updated_at: "2024-05-07T07:36:53.897Z"
         - id: "settlement-id-789"
           payment_id: "pymnt-2"
           status: "SETTLED"
@@ -60,13 +62,15 @@ message:
             currency: "INR"
             value: "10.00"
           settlement_ref_no: "utr-1234"
-          updated_at: "2024-05-07T06:36:50.897Z"
+          updated_at: "2024-05-07T06:36:51.897Z"
         - id: "settlement-id-112"
           payment_id: "pymnt-3"
           status: "TO-BE-INITIATED"
+          due_date: "2024-05-08"
           amount:
             currency: "INR"
-            value: "100.00"
+            value: "90.00"
+            diff_value: "10.00"
           commission:
             currency: "INR"
             value: "10.00"
@@ -79,4 +83,4 @@ message:
           tcs:
             currency: "INR"
             value: "10.00"
-          updated_at: "2024-05-07T06:36:50.897Z"
+          updated_at: "2024-05-07T06:36:53.897Z"

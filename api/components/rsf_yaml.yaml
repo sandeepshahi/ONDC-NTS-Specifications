@@ -311,41 +311,44 @@ paths:
                                   type: string
                                 status:
                                   type: string
+                                due_date:
+                                  type: string
+                                  format: date
                                 amount:
                                   allOf:
-                                   - type: object
-                                     properties:
-                                      diff_value:
-                                       type: string
-                                   - $ref: "#/components/schemas/Amount"
+                                    - type: object
+                                      properties:
+                                        diff_value:
+                                          type: string
+                                    - $ref: "#/components/schemas/Amount"
                                 commision:
                                   allOf:
-                                   - type: object
-                                     properties:
-                                      diff_value:
-                                       type: string
-                                   - $ref: "#/components/schemas/Amount"
+                                    - type: object
+                                      properties:
+                                        diff_value:
+                                          type: string
+                                    - $ref: "#/components/schemas/Amount"
                                 withholding_amount:
                                   allOf:
-                                   - type: object
-                                     properties:
-                                      diff_value:
-                                       type: string
-                                   - $ref: "#/components/schemas/Amount"
+                                    - type: object
+                                      properties:
+                                        diff_value:
+                                          type: string
+                                    - $ref: "#/components/schemas/Amount"
                                 tcs:
                                   allOf:
-                                   - type: object
-                                     properties:
-                                      diff_value:
-                                       type: string
-                                   - $ref: "#/components/schemas/Amount"
+                                    - type: object
+                                      properties:
+                                        diff_value:
+                                          type: string
+                                    - $ref: "#/components/schemas/Amount"
                                 tds:
                                   allOf:
-                                   - type: object
-                                     properties:
-                                      diff_value:
-                                       type: string
-                                   - $ref: "#/components/schemas/Amount"
+                                    - type: object
+                                      properties:
+                                        diff_value:
+                                          type: string
+                                    - $ref: "#/components/schemas/Amount"
                                 updated_at:
                                   type: string
                                   format: date-time

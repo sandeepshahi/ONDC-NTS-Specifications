@@ -1760,6 +1760,12 @@ on_recon:
           owner: any
           usage: PENDING
           description: 'Settlement Reference number of the settlement '
+        due_date:
+          required: false
+          type: string
+          owner: any
+          usage: '2024-05-09'
+          description: due date of settlement in case recon_accord is true
         status:
           required: true
           type: string
