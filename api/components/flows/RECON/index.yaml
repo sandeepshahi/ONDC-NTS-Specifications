@@ -6,11 +6,11 @@ details:
       In case an NP receives an order id mismatch error code (i.e. order ID not shared by the counterparty), the NP is expected to call the /recon API of the respective counterparty with the specific order ID(s) and its breakup details. The counterparty then reconciles and responds with details specific to the order id requested. <br>
       In both cases, if the response is correctly reconciled for the requisite orders, the settlement is initiated in the next settlement cycle. Otherwise, NPs are expected to raise an IGM for resolving the differences.
     mermaid: >-
-     sequenceDiagram
-      participant Collector
-      participant Receiver
-      Receiver ->> Collector : /recon API
-      Collector ->> Receiver: /on_recon API
+      sequenceDiagram
+       participant Collector
+       participant Receiver
+       Receiver ->> Collector : /recon API
+       Collector ->> Receiver: /on_recon API
 references: if any
 steps:
   - summary: RECON
@@ -18,11 +18,13 @@ steps:
     details:
       - description: /recon
         mermaid: >-
-         sequenceDiagram
-          participant Collector
-          participant Receiver
-          Receiver ->> Collector : /recon API
-          Collector ->> Receiver: /on_recon API
+          sequenceDiagram
+           participant Collector
+           participant Receiver
+           Collector ->> Receiver : /recon API
+           Receiver ->> Collector: /on_recon API
+           Collector ->> Receiver : /recon API
+           Receiver ->> Collector: /on_recon API
     reference: if any
     example:
       value:
@@ -32,13 +34,48 @@ steps:
     details:
       - description: /on_recon
         mermaid: >-
-         sequenceDiagram
-          participant Collector
-          participant Receiver
-          Receiver ->> Collector : /recon API
-          Collector ->> Receiver: /on_recon API
+          sequenceDiagram
+           participant Collector
+           participant Receiver
+           Collector ->> Receiver : /recon API
+           Receiver ->> Collector: /on_recon API
+           Collector ->> Receiver : /recon API
+           Receiver ->> Collector: /on_recon API
 
     reference: if any
     example:
       value:
         $ref: "../../examples/RSF/on_recon/on_recon.yaml"
+  - summary: RECON
+    api: recon
+    details:
+      - description: /recon
+        mermaid: >-
+          sequenceDiagram
+           participant Collector
+           participant Receiver
+           Collector ->> Receiver : /recon API
+           Receiver ->> Collector: /on_recon API
+           Collector ->> Receiver : /recon API
+           Receiver ->> Collector: /on_recon API
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/RSF/recon/recon_accord_true.yaml"
+  - summary: ON_RECON
+    api: on_recon
+    details:
+      - description: /on_recon
+        mermaid: >-
+          sequenceDiagram
+           participant Collector
+           participant Receiver
+           Collector ->> Receiver : /recon API
+           Receiver ->> Collector: /on_recon API
+           Collector ->> Receiver : /recon API
+           Receiver ->> Collector: /on_recon API
+
+    reference: if any
+    example:
+      value:
+        $ref: "../../examples/RSF/on_recon/on_recon_accord_true.yaml"
