@@ -59,7 +59,8 @@ async function loadContracts() {
   let response1, response2;
   response1 = await fetchRequest(BRANCHES_URL)
   response2 = await fetchRequest(TAGS_URL)
-  const response = [...response1,...response2]
+  let response = [...response1,...response2]
+  response = response?.filter(branch => branch?.name !== "RSF");
   const selectedOption = document.getElementById("contract-dropdown");
   selectedOption.innerHTML = "";
   response.forEach((flow) => {
