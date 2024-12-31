@@ -3,7 +3,9 @@
 
 function onFirstLoad(build_spec) {
       let data = build_spec;
-      const xProperties = ["x-enum", "x-tags", "x-examples", "x-flows", "x-attributes", "x-errorcodes", "x-tlc","x-sandboxui"];
+      const xProperties = ["x-enum", "x-tags", "x-examples", "x-flows", "x-attributes", "x-errorcodes", "x-tlc","x-sandboxui", "x-changeLog"];
+      const dropdown =  document.getElementById("contract-dropdown");
+      const branch_name = dropdown.options[dropdown.selectedIndex].text;
       xProperties.forEach((xProperty) => {
         if (data[xProperty]) {
           switch (xProperty) {
@@ -31,13 +33,20 @@ function onFirstLoad(build_spec) {
             case "x-sandboxui":
               if(shouldDisplay(data[xProperty].dropdown,"sandbox-nav")) loadSandbox(data[xProperty])
               break;
+            case "x-changeLog":
+              if( shouldDisplay(data[xProperty].filenames, "change-log-nav")) {
+              renderChangeLogDropDown(branch_name,data[xProperty].filenames)
+              }
+              break;
             default:
               break; 
           }
         } else {
-          if(xProperty == "x-sandboxui"){ // remove sandbox when changing branch
+          // remove sandbox when changing branch
+          if(xProperty == "x-sandboxui")
             shouldDisplay([],"sandbox-nav")
-          }
+          else if(xProperty == "x-changeLog")
+            shouldDisplay([],"change-log-nav")
           console.log(`${xProperty} is not present in the build_spec.`);
         }
       });
