@@ -10,3 +10,5 @@ error_codes:
   $ref: "./error_codes/index.yaml"
 sandbox-ui:
   $ref: "./sandbox/index.yaml"
+changeLog:
+  $ref: "./docs/changeLog/index.yaml"  
