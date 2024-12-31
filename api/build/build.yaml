@@ -472,9 +472,6 @@ components:
           type: string
           format: date-time
           description: Time of request generation in RFC3339 format
-        key:
-          type: string
-          description: The encryption public key of the sender
         ttl:
           type: string
           description: >-
@@ -1225,9 +1222,6 @@ x-flows:
                         value: '1000.27'
                       status: SETTLED
                       reference_no: '3718683618631'
-                      error:
-                        code: '01'
-                        message: Account Inactive
                     collector:
                       amount:
                         currency: INR
@@ -1241,16 +1235,14 @@ x-flows:
                       error:
                         code: '01'
                         message: Account Inactive
-                      reference_no: '3718683618634'
                     self:
                       amount:
                         currency: INR
                         value: '200.00'
                       status: NOT-SETTLED
-                      reference_no: '3718683618634'
                       error:
                         code: '01'
-                        message: Account inactive
+                        message: Account Inactive
   - summary: RECON
     details:
       - description: >-
@@ -3933,6 +3925,14 @@ x-errorcodes:
       Description: Collector bank NDC breach
       From: Any
       code: 70027
+    - Event: on_report
+      Description: Invalid transaction_id
+      From: Any
+      code: 70028
+    - Event: on_report
+      Description: Invalid message_id
+      From: Any
+      code: 70029
     - Event: https error
       Description: Internal server error
       From: Any
@@ -3943,4 +3943,4 @@ x-sandboxui:
       link: https://rsf-mock-service.ondc.org/mock_ui
 x-changeLog:
   filenames:
-    - NTS10_2.0.0_311224.md
+    - NTS10_2.0.0_301224.md
