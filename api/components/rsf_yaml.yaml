@@ -482,9 +482,6 @@ components:
           type: string
           format: date-time
           description: Time of request generation in RFC3339 format
-        key:
-          type: string
-          description: The encryption public key of the sender
         ttl:
           type: string
           description: >-
