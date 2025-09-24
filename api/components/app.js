@@ -366,7 +366,7 @@ function buildSwagger(inPath, outPath) {
 
 function addEnumTag(base, layer) {
   base["x-enum"] = layer["enum"];
-  // base["x-tags"] = layer["tags"];
+  base["x-tags"] = layer["tags"];
   base["x-flows"] = layer["flows"];
   base["x-examples"] = layer["examples"];
   base["x-attributes"] = layer["attributes"];

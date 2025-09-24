@@ -61,6 +61,15 @@ issue:
           - code: AGENT
             description: The agent handling or associated with the issue.
             reference: <PR/Issue/Discussion Links md format text> 
+          - code: ISSUE
+            description: A reference to related issues or complaints.
+            reference: <PR/Issue/Discussion Links md format text>
+          - code: TRANSACTION
+            description: The transaction associated with the issue.
+            reference: <PR/Issue/Discussion Links md format text>
+          - code: TRACKING_ID
+            description: The tracking ID associated with the issue for monitoring purposes.
+            reference: <PR/Issue/Discussion Links md format text>
 
       actors: &actors
         type:      
@@ -110,6 +119,9 @@ issue:
             - code: INFO_REQUESTED
               description: Additional information has been requested to proceed with the issue.
               reference: <PR/Issue/Discussion Links md format text>   
+            - code: INFO_PROCESSING
+              description: The requested information is being processed for further action.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: INFO_PROVIDED
               description: The requested information has been provided for further action.
               reference: <PR/Issue/Discussion Links md format text>
@@ -119,6 +131,12 @@ issue:
             - code: RESOLUTION_PROPOSED
               description: Resolution(s) has been proposed and is awaiting approval.
               reference: <PR/Issue/Discussion Links md format text> 
+            - code: RESOLUTION_FORWARDED
+              description: The proposed resolution(s) has been forwarded to relevant parties for review.
+              reference: <PR/Issue/Discussion Links md format text>
+            - code: RESOLUTION_PROCESSING
+              description: The proposed resolution(s) is being processed for implementation.
+              reference: <PR/Issue/Discussion Links md format text>
             - code: RESOLUTION_CASCADED
               description: Resolution(s) has been cascaded to relevant parties.
               reference: <PR/Issue/Discussion Links md format text>  
@@ -165,6 +183,15 @@ issue:
             - code: NOT_RECONCILED
               description: Resolution for RSF
               reference: <PR/Issue/Discussion Links md format text>    
+            - code: ENACH_CANCEL
+              description: The eNACH cancellation request related to the issue.
+              reference: <PR/Issue/Discussion Links md format text> 
+            - code: CBIL_CORRECTION
+              description: The correction request related to the issue in the CBIL system.
+              reference: <PR/Issue/Discussion Links md format text>
+            - code: END_ORDER
+              description: The order has been ended as a resolution to the issue.
+              reference: <PR/Issue/Discussion Links md format text>
 
 on_issue:
   message: *message
