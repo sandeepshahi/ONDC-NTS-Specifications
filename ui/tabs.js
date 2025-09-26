@@ -3,7 +3,7 @@
 
 function onFirstLoad(build_spec) {
       let data = build_spec;
-      const xProperties = ["x-enum", "x-examples", "x-flows", "x-attributes", "x-errorcodes", "x-tlc","x-featureui","x-sandboxui", "x-testcasesui", "x-changeLog"];
+      const xProperties = ["x-enum","x-tags", "x-examples", "x-flows", "x-attributes", "x-errorcodes", "x-tlc","x-featureui","x-sandboxui", "x-testcasesui", "x-changeLog"];
       const dropdown =  document.getElementById("contract-dropdown");
       const branch_name = dropdown.options[dropdown.selectedIndex].text;
       xProperties.forEach((xProperty) => {
@@ -11,6 +11,9 @@ function onFirstLoad(build_spec) {
           switch (xProperty) {
             case "x-enum":
               initSchema(data[xProperty]);
+              break;
+            case "x-tags":
+              initTag(data[xProperty]);
               break;
             case "x-examples":
               loadExample(data[xProperty]);
