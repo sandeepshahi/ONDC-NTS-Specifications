@@ -355,6 +355,7 @@ components:
                     - RESOLUTION_PROPOSED
                     - RESOLUTION_FORWARDED
                     - RESOLUTION_PROCESSING
+                    - RESOLUTION_CASCADED
                     - RESOLUTION_ACCEPTED
                     - RESOLUTION_REJECTED
                     - RESOLVED
@@ -798,6 +799,10 @@ components:
                     - NOW-VISIBLE
                     - END_ORDER
                     - NO_ACTION
+                    - RETURN
+                    - CANCEL
+                    - RECONCILED
+                    - NOT_RECONCILED
         updated_at:
           description: >-
             timestamp for the capturing the time an issue status was last
@@ -833,6 +838,8 @@ components:
             - CONSUMER
             - AGENT
             - TRANSACTION
+            - COMPLAINT
+            - TRACKING_ID
         tags:
           description: tells abot ref details
           type: array
@@ -874,11 +881,6 @@ x-enum:
             description: >-
               Level 2 - A formal complaint that requires a more detailed review
               and resolution.
-            reference: <PR/Issue/Discussion Links md format text>
-          - code: DISPUTE
-            description: >-
-              Level 3 - A conflict or disagreement that involves multiple
-              parties and needs resolution.
             reference: <PR/Issue/Discussion Links md format text>
         refs:
           ref_type:
@@ -1086,6 +1088,8 @@ x-enum:
                 description: The order has been ended as a resolution to the issue.
                 reference: <PR/Issue/Discussion Links md format text>
   on_issue:
+    message: *ref_0
+  on_issue_status:
     message: *ref_0
 x-tags:
   issue:
