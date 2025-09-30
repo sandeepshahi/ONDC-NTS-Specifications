@@ -22,9 +22,9 @@ issue:
         - code: GRIEVANCE
           description: Level 2 - A formal complaint that requires a more detailed review and resolution.
           reference: <PR/Issue/Discussion Links md format text>  
-        - code: DISPUTE
-          description: Level 3 - A conflict or disagreement that involves multiple parties and needs resolution.
-          reference: <PR/Issue/Discussion Links md format text> 
+        # - code: DISPUTE
+        #   description: Level 3 - A conflict or disagreement that involves multiple parties and needs resolution.
+        #   reference: <PR/Issue/Discussion Links md format text> 
 
       refs:  
         ref_type: 
@@ -195,3 +195,5 @@ issue:
 
 on_issue:
   message: *message
+on_issue_status:
+  message: *message 

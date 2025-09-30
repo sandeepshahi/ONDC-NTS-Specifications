@@ -342,6 +342,7 @@ components:
                   - RESOLUTION_PROPOSED
                   - RESOLUTION_FORWARDED
                   - RESOLUTION_PROCESSING
+                  - RESOLUTION_CASCADED
                   - RESOLUTION_ACCEPTED
                   - RESOLUTION_REJECTED
                   - RESOLVED
@@ -749,7 +750,10 @@ components:
                   - NOW-VISIBLE
                   - END_ORDER
                   - NO_ACTION
-                  
+                  - RETURN
+                  - CANCEL
+                  - RECONCILED
+                  - NOT_RECONCILED
         updated_at:
           description: timestamp for the capturing the time an issue status was last updated
           type: string
@@ -785,6 +789,8 @@ components:
             - AGENT
             # - FULFILMENT
             - TRANSACTION
+            - COMPLAINT
+            - TRACKING_ID
         tags:
           description: tells abot ref details
           type: array

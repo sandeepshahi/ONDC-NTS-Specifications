@@ -355,6 +355,7 @@ components:
                     - RESOLUTION_PROPOSED
                     - RESOLUTION_FORWARDED
                     - RESOLUTION_PROCESSING
+                    - RESOLUTION_CASCADED
                     - RESOLUTION_ACCEPTED
                     - RESOLUTION_REJECTED
                     - RESOLVED
@@ -798,6 +799,10 @@ components:
                     - NOW-VISIBLE
                     - END_ORDER
                     - NO_ACTION
+                    - RETURN
+                    - CANCEL
+                    - RECONCILED
+                    - NOT_RECONCILED
         updated_at:
           description: >-
             timestamp for the capturing the time an issue status was last
@@ -833,6 +838,8 @@ components:
             - CONSUMER
             - AGENT
             - TRANSACTION
+            - COMPLAINT
+            - TRACKING_ID
         tags:
           description: tells abot ref details
           type: array
@@ -874,11 +881,6 @@ x-enum:
             description: >-
               Level 2 - A formal complaint that requires a more detailed review
               and resolution.
-            reference: <PR/Issue/Discussion Links md format text>
-          - code: DISPUTE
-            description: >-
-              Level 3 - A conflict or disagreement that involves multiple
-              parties and needs resolution.
             reference: <PR/Issue/Discussion Links md format text>
         refs:
           ref_type:
@@ -1087,6 +1089,8 @@ x-enum:
                 reference: <PR/Issue/Discussion Links md format text>
   on_issue:
     message: *ref_0
+  on_issue_status:
+    message: *ref_0
 x-tags:
   issue:
     message: &ref_1
@@ -1102,6 +1106,24 @@ x-tags:
                   reference: <PR/Issue/Discussion Links md format text>
                 - code: REFUND_AMOUNT
                   description: Refund amount for the item
+                  reference: <PR/Issue/Discussion Links md format text>
+        actions:
+          tags:
+            - code: CLOSURE_DETAILS
+              description: Closure details for the order issue
+              reference: <PR/Issue/Discussion Links md format text>
+              list:
+                - code: RATING
+                  description: Rating given by the complainant while closing the issue
+                  reference: <PR/Issue/Discussion Links md format text>
+        refs:
+          tags:
+            - code: message.order.items.id
+              description: Reference to the item id in the order
+              reference: <PR/Issue/Discussion Links md format text>
+              list:
+                - code: quantity.selected.count
+                  description: Quantity selected for the item
                   reference: <PR/Issue/Discussion Links md format text>
   on_issue:
     message: *ref_1

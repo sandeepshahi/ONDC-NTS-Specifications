@@ -13,5 +13,23 @@ issue:
               - code: REFUND_AMOUNT
                 description: Refund amount for the item
                 reference: <PR/Issue/Discussion Links md format text>
+      actions: 
+        tags:
+          - code: CLOSURE_DETAILS
+            description: Closure details for the order issue
+            reference: <PR/Issue/Discussion Links md format text>
+            list:
+              - code: RATING
+                description: Rating given by the complainant while closing the issue
+                reference: <PR/Issue/Discussion Links md format text>
+      refs:
+        tags:
+          - code: message.order.items.id
+            description: Reference to the item id in the order
+            reference: <PR/Issue/Discussion Links md format text>
+            list: 
+             - code: quantity.selected.count
+               description: Quantity selected for the item
+               reference: <PR/Issue/Discussion Links md format text>
 on_issue:
   message: *message

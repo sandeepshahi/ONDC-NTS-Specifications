@@ -53,3 +53,9 @@
 
  ****19th May 2025****
   - Updated resolver_ids in flows 1, 4, and 5
+
+ ****30th Sep 2025****
+  - Added TRACKING_ID, CBIL_CORRECTION & ENACH_CANCEL in resolution enums list
+  - Added TRACKING_ID in refs enums list
+  - Enabled Tags section
+  - Synced Enums b/w swagger-UI & Enums section
