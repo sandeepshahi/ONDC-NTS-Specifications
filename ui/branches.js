@@ -19,8 +19,8 @@ const BRANCHES = [
   },
   {
     code: "draft-PPF",
-    name: "RSF 2.0",
-    short_desc: "Reconciliation v2.0.0",
+    name: "PPF",
+    short_desc: "Payment Protection Framework (PPF)",
     status: "DRAFT",
   },
   
