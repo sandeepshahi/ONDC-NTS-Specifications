@@ -1124,7 +1124,7 @@ x-flows:
                Receiver ->> Collector: /on_recon API
         reference: if any
         example:
-          value:
+          value: &ref_9
             context:
               domain: ONDC:NTS10
               location:
@@ -1379,7 +1379,7 @@ x-examples:
             description: >-
               response to the reconciliation call,  agreeing with the
               information provided in /recon
-            value: *ref_8
+            value: *ref_9
 x-attributes:
   PPF:
     attribute_set:

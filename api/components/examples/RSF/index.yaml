@@ -14,4 +14,4 @@ on_recon:
     - summary: on_recon (recon_accord = true)
       description: response to the reconciliation call,  agreeing with the information provided in /recon
       value:
-        $ref: ./on_recon/on_recon.yaml
+        $ref: ./on_recon/on_recon_accord_true.yaml
