@@ -30,8 +30,11 @@ paths:
                           id:
                             type: string
                             description: Describes the order id
-                          amount:
-                            $ref: '#/components/schemas/Amount'
+                          status:
+                            type: string
+                            example: Completed
+                          quote:
+                            $ref: '#/components/schemas/Quote'
                           settlements:
                             type: array
                             items:
@@ -39,6 +42,15 @@ paths:
                               properties:
                                 id:
                                   type: string
+                                counterparty_id:
+                                  type: string
+                                  description: >-
+                                    Describes the counterparty of the
+                                    settlement. It should be the subscriber_id
+                                    of the receiver of the payment.
+                                type:
+                                  type: string
+                                  description: Describes the type of settlement.
                                 payment_id:
                                   type: string
                                 status:
@@ -52,6 +64,8 @@ paths:
                                 tcs:
                                   $ref: '#/components/schemas/Amount'
                                 tds:
+                                  $ref: '#/components/schemas/Amount'
+                                delay_amount:
                                   $ref: '#/components/schemas/Amount'
                                 updated_at:
                                   type: string
@@ -104,8 +118,11 @@ paths:
                           id:
                             type: string
                             description: Describes the order id
-                          amount:
-                            $ref: '#/components/schemas/Amount'
+                          status:
+                            type: string
+                            example: Completed
+                          quote:
+                            $ref: '#/components/schemas/Quote'
                           recon_accord:
                             type: boolean
                           settlements:
@@ -115,6 +132,15 @@ paths:
                               properties:
                                 id:
                                   type: string
+                                counterparty_id:
+                                  type: string
+                                  description: >-
+                                    Describes the counterparty of the
+                                    settlement. It should be the subscriber_id
+                                    of the receiver of the payment.
+                                type:
+                                  type: string
+                                  description: Describes the type of settlement.
                                 payment_id:
                                   type: string
                                 status:
@@ -157,11 +183,20 @@ paths:
                                         diff_value:
                                           type: string
                                     - $ref: '#/components/schemas/Amount'
+                                delay_amount:
+                                  allOf:
+                                    - type: object
+                                      properties:
+                                        diff_value:
+                                          type: string
+                                    - $ref: '#/components/schemas/Amount'
                                 updated_at:
                                   type: string
                                   format: date-time
                                 settlement_ref_no:
                                   type: string
+                error:
+                  $ref: '#/components/schemas/Error'
               required:
                 - context
       responses:
@@ -398,6 +433,69 @@ components:
                 type: string
               error:
                 $ref: '#/components/schemas/Error'
+    Quote:
+      type: object
+      properties:
+        price:
+          $ref: '#/components/schemas/Amount'
+        ttl:
+          type: string
+        breakup:
+          type: array
+          items:
+            type: object
+            properties:
+              '@ondc/org/item_id':
+                type: string
+              '@ondc/org/item_quantity':
+                type: object
+                properties:
+                  count:
+                    type: integer
+              title:
+                type: string
+              '@ondc/org/title_type':
+                type: string
+              price:
+                $ref: '#/components/schemas/Amount'
+              item:
+                $ref: '#/components/schemas/Item'
+    Item:
+      type: object
+      properties:
+        price:
+          $ref: '#/components/schemas/Amount'
+        quantity:
+          type: object
+          properties:
+            available:
+              type: object
+              properties:
+                count:
+                  type: string
+            maximum:
+              type: object
+              properties:
+                count:
+                  type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+    Tag:
+      type: object
+      properties:
+        code:
+          type: string
+        list:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              value:
+                type: string
     Settlement:
       description: >
         - Describes the settlement of NP -NP - Describes the miscellaneous
@@ -548,13 +646,72 @@ x-flows:
             message:
               orders:
                 - id: order-1234
-                  amount:
-                    currency: INR
-                    value: '300.00'
+                  status: COMPLETED
+                  quote:
+                    price:
+                      currency: INR
+                      value: '300.00'
+                    breakup:
+                      - '@ondc/org/item_id': I1
+                        '@ondc/org/item_quantity':
+                          count: 1
+                        title: Atta
+                        '@ondc/org/title_type': item
+                        price:
+                          currency: INR
+                          value: '206.00'
+                        item:
+                          quantity:
+                            available:
+                              count: '99'
+                            maximum:
+                              count: '99'
+                          price:
+                            currency: INR
+                            value: '206.00'
+                      - '@ondc/org/item_id': F1
+                        title: Delivery charges
+                        '@ondc/org/title_type': delivery
+                        price:
+                          currency: INR
+                          value: '50.00'
+                      - '@ondc/org/item_id': F1
+                        title: Tax
+                        '@ondc/org/title_type': tax
+                        price:
+                          currency: INR
+                          value: '9.00'
+                        item:
+                          tags:
+                            - code: quote
+                              list:
+                                - code: type
+                                  value: fulfillment
+                      - '@ondc/org/item_id': F1
+                        title: Packing charges
+                        '@ondc/org/title_type': packing
+                        price:
+                          currency: INR
+                          value: '25.00'
+                      - '@ondc/org/item_id': I1
+                        title: Tax
+                        '@ondc/org/title_type': tax
+                        price:
+                          currency: INR
+                          value: '0.00'
+                      - '@ondc/org/item_id': F1
+                        title: Convenience Fee
+                        '@ondc/org/title_type': misc
+                        price:
+                          currency: INR
+                          value: '10.00'
+                    ttl: P1D
                   settlements:
                     - id: settlement-id-456
+                      counterparty_id: receiver-app.com
                       payment_id: pymnt-1
                       status: PENDING
+                      type: ''
                       amount:
                         currency: INR
                         value: '100.00'
@@ -572,8 +729,10 @@ x-flows:
                         value: '10.00'
                       updated_at: '2024-05-07T07:36:50.897Z'
                     - id: settlement-id-789
+                      counterparty_id: receiver-app.com
                       payment_id: pymnt-2
                       status: SETTLED
+                      type: ''
                       amount:
                         currency: INR
                         value: '100.00'
@@ -592,8 +751,10 @@ x-flows:
                       settlement_ref_no: utr-1234
                       updated_at: '2024-05-07T06:36:50.897Z'
                     - id: settlement-id-112
+                      counterparty_id: receiver-app.com
                       payment_id: pymnt-3
                       status: TO_BE_INITIATED
+                      type: ''
                       amount:
                         currency: INR
                         value: '100.00'
@@ -647,14 +808,72 @@ x-flows:
             message:
               orders:
                 - id: order-1234
-                  amount:
-                    currency: INR
-                    value: '310.00'
+                  status: COMPLETED
+                  quote:
+                    price:
+                      currency: INR
+                      value: '300.00'
+                    breakup:
+                      - '@ondc/org/item_id': I1
+                        '@ondc/org/item_quantity':
+                          count: 1
+                        title: Atta
+                        '@ondc/org/title_type': item
+                        price:
+                          currency: INR
+                          value: '206.00'
+                        item:
+                          quantity:
+                            available:
+                              count: '99'
+                            maximum:
+                              count: '99'
+                          price:
+                            currency: INR
+                            value: '206.00'
+                      - '@ondc/org/item_id': F1
+                        title: Delivery charges
+                        '@ondc/org/title_type': delivery
+                        price:
+                          currency: INR
+                          value: '50.00'
+                      - '@ondc/org/item_id': F1
+                        title: Tax
+                        '@ondc/org/title_type': tax
+                        price:
+                          currency: INR
+                          value: '9.00'
+                        item:
+                          tags:
+                            - code: quote
+                              list:
+                                - code: type
+                                  value: fulfillment
+                      - '@ondc/org/item_id': F1
+                        title: Packing charges
+                        '@ondc/org/title_type': packing
+                        price:
+                          currency: INR
+                          value: '25.00'
+                      - '@ondc/org/item_id': I1
+                        title: Tax
+                        '@ondc/org/title_type': tax
+                        price:
+                          currency: INR
+                          value: '0.00'
+                      - '@ondc/org/item_id': F1
+                        title: Convenience Fee
+                        '@ondc/org/title_type': misc
+                        price:
+                          currency: INR
+                          value: '10.00'
+                    ttl: P1D
                   recon_accord: false
                   settlements:
                     - id: settlement-id-456
                       payment_id: pymnt-1
                       status: PENDING
+                      type: ''
                       amount:
                         currency: INR
                         value: '120.00'
@@ -675,10 +894,15 @@ x-flows:
                         currency: INR
                         value: '10.00'
                         diff_value: '0.00'
+                      delay_amount:
+                        currency: INR
+                        value: '20.00'
+                        diff_value: '20.00'
                       updated_at: '2024-05-07T07:36:51.897Z'
                     - id: settlement-id-789
                       payment_id: pymnt-2
                       status: SETTLED
+                      type: ''
                       amount:
                         currency: INR
                         value: '100.00'
@@ -699,6 +923,7 @@ x-flows:
                     - id: settlement-id-112
                       payment_id: pymnt-3
                       status: TO_BE_INITIATED
+                      type: ''
                       amount:
                         currency: INR
                         value: '90.00'
@@ -757,13 +982,72 @@ x-flows:
             message:
               orders:
                 - id: order-1234
-                  amount:
-                    currency: INR
-                    value: '310.00'
+                  status: COMPLETED
+                  quote:
+                    price:
+                      currency: INR
+                      value: '300.00'
+                    breakup:
+                      - '@ondc/org/item_id': I1
+                        '@ondc/org/item_quantity':
+                          count: 1
+                        title: Atta
+                        '@ondc/org/title_type': item
+                        price:
+                          currency: INR
+                          value: '206.00'
+                        item:
+                          quantity:
+                            available:
+                              count: '99'
+                            maximum:
+                              count: '99'
+                          price:
+                            currency: INR
+                            value: '206.00'
+                      - '@ondc/org/item_id': F1
+                        title: Delivery charges
+                        '@ondc/org/title_type': delivery
+                        price:
+                          currency: INR
+                          value: '50.00'
+                      - '@ondc/org/item_id': F1
+                        title: Tax
+                        '@ondc/org/title_type': tax
+                        price:
+                          currency: INR
+                          value: '9.00'
+                        item:
+                          tags:
+                            - code: quote
+                              list:
+                                - code: type
+                                  value: fulfillment
+                      - '@ondc/org/item_id': F1
+                        title: Packing charges
+                        '@ondc/org/title_type': packing
+                        price:
+                          currency: INR
+                          value: '25.00'
+                      - '@ondc/org/item_id': I1
+                        title: Tax
+                        '@ondc/org/title_type': tax
+                        price:
+                          currency: INR
+                          value: '0.00'
+                      - '@ondc/org/item_id': F1
+                        title: Convenience Fee
+                        '@ondc/org/title_type': misc
+                        price:
+                          currency: INR
+                          value: '10.00'
+                    ttl: P1D
                   settlements:
                     - id: settlement-id-456
+                      counterparty_id: receiver-app.com
                       payment_id: pymnt-1
                       status: PENDING
+                      type: ''
                       amount:
                         currency: INR
                         value: '120.00'
@@ -779,10 +1063,14 @@ x-flows:
                       tds:
                         currency: INR
                         value: '10.00'
+                      delay_amount:
+                        currency: INR
+                        value: '20.00'
                       updated_at: '2024-05-07T07:36:51.897Z'
                     - id: settlement-id-789
                       payment_id: pymnt-2
                       status: SETTLED
+                      type: ''
                       amount:
                         currency: INR
                         value: '100.00'
@@ -803,6 +1091,7 @@ x-flows:
                     - id: settlement-id-112
                       payment_id: pymnt-3
                       status: TO_BE_INITIATED
+                      type: ''
                       amount:
                         currency: INR
                         value: '90.00'
@@ -856,15 +1145,73 @@ x-flows:
             message:
               orders:
                 - id: order-1234
-                  amount:
-                    currency: INR
-                    value: '310.00'
+                  status: COMPLETED
+                  quote:
+                    price:
+                      currency: INR
+                      value: '300.00'
+                    breakup:
+                      - '@ondc/org/item_id': I1
+                        '@ondc/org/item_quantity':
+                          count: 1
+                        title: Atta
+                        '@ondc/org/title_type': item
+                        price:
+                          currency: INR
+                          value: '206.00'
+                        item:
+                          quantity:
+                            available:
+                              count: '99'
+                            maximum:
+                              count: '99'
+                          price:
+                            currency: INR
+                            value: '206.00'
+                      - '@ondc/org/item_id': F1
+                        title: Delivery charges
+                        '@ondc/org/title_type': delivery
+                        price:
+                          currency: INR
+                          value: '50.00'
+                      - '@ondc/org/item_id': F1
+                        title: Tax
+                        '@ondc/org/title_type': tax
+                        price:
+                          currency: INR
+                          value: '9.00'
+                        item:
+                          tags:
+                            - code: quote
+                              list:
+                                - code: type
+                                  value: fulfillment
+                      - '@ondc/org/item_id': F1
+                        title: Packing charges
+                        '@ondc/org/title_type': packing
+                        price:
+                          currency: INR
+                          value: '25.00'
+                      - '@ondc/org/item_id': I1
+                        title: Tax
+                        '@ondc/org/title_type': tax
+                        price:
+                          currency: INR
+                          value: '0.00'
+                      - '@ondc/org/item_id': F1
+                        title: Convenience Fee
+                        '@ondc/org/title_type': misc
+                        price:
+                          currency: INR
+                          value: '10.00'
+                    ttl: P1D
                   recon_accord: true
                   settlements:
                     - id: settlement-id-456
                       payment_id: pymnt-1
                       status: PENDING
                       due_date: '2024-05-08'
+                      type: ''
                       amount:
                         currency: INR
                         value: '120.00'
@@ -880,10 +1227,14 @@ x-flows:
                       tds:
                         currency: INR
                         value: '10.00'
+                      delay_amount:
+                        currency: INR
+                        value: '20.00'
                       updated_at: '2024-05-07T07:36:53.897Z'
                     - id: settlement-id-789
                       payment_id: pymnt-2
                       status: SETTLED
+                      type: ''
                       amount:
                         currency: INR
                         value: '100.00'
@@ -903,6 +1254,7 @@ x-flows:
                       updated_at: '2024-05-07T06:36:51.897Z'
                     - id: settlement-id-112
                       payment_id: pymnt-3
+                      type: ''
                       status: TO_BE_INITIATED
                       due_date: '2024-05-08'
                       amount:

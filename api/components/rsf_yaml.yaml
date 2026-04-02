@@ -6,197 +6,6 @@ info:
 security:
   - SubscriberAuth: []
 paths:
-  # /settle:
-  #   post:
-  #     tags:
-  #       # - Collector
-  #       # - Receiver
-  #       - Settlement Agency
-  #     requestBody:
-  #       content:
-  #         application/json:
-  #           schema:
-  #             type: object
-  #             properties:
-  #               context:
-  #                 $ref: "#/components/schemas/Context"
-  #               message:
-  #                 type: object
-  #                 properties:
-  #                   collector_app_id:
-  #                     type: string
-  #                   receiver_app_id:
-  #                     type: string
-  #                   settlement:
-  #                     $ref: "#/components/schemas/Settlement"
-
-  #             required:
-  #               - context
-  #               - message
-  #     responses:
-  #       "200":
-  #         description: Acknowledgement of message received
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: object
-  #               properties:
-  #                 message:
-  #                   type: object
-  #                   properties:
-  #                     ack:
-  #                       $ref: "#/components/schemas/Ack"
-  #                   required:
-  #                     - ack
-  #                 error:
-  #                   $ref: "#/components/schemas/Error"
-  #               required:
-  #                 - message
-  # /on_settle:
-  #   post:
-  #     tags:
-  #       - Collector
-  #       - Receiver
-  #       # - Settlement Agency
-  #     requestBody:
-  #       description: SA responds with /on_settle
-  #       content:
-  #         application/json:
-  #           schema:
-  #             type: object
-  #             properties:
-  #               context:
-  #                 $ref: "#/components/schemas/Context"
-  #               message:
-  #                 type: object
-  #                 properties:
-  #                   collector_app_id:
-  #                     type: string
-  #                   receiver_app_id:
-  #                     type: string
-  #                   settlement:
-  #                     $ref: "#/components/schemas/Settlement"
-  #                 required:
-  #                   - settlement
-  #               error:
-  #                 $ref: "#/components/schemas/Error"
-  #             required:
-  #               - context
-  #     responses:
-  #       "200":
-  #         description: Acknowledgement of message received
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: object
-  #               properties:
-  #                 message:
-  #                   type: object
-  #                   properties:
-  #                     ack:
-  #                       $ref: "#/components/schemas/Ack"
-  #                   required:
-  #                     - ack
-  #                 error:
-  #                   $ref: "#/components/schemas/Error"
-  #               required:
-  #                 - message
-  
-  # /report:
-  #   post:
-  #     tags:
-  #       # - Collector
-  #       # - Receiver
-  #       - Settlement Agency
-  #     requestBody:
-  #       content:
-  #         application/json:
-  #           schema:
-  #             type: object
-  #             properties:
-  #               context:
-  #                 $ref: "#/components/schemas/Context"
-  #               message:
-  #                 type: object
-  #                 properties:
-  #                   ref_transaction_id:
-  #                     type: string
-  #                   ref_message_id:
-  #                     type: string
-  #               error:
-  #                 $ref: "#/components/schemas/Error"
-  #             required:
-  #               - context
-  #               - message
-  #     responses:
-  #       "200":
-  #         description: Acknowledgement of message received
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: object
-  #               properties:
-  #                 message:
-  #                   type: object
-  #                   properties:
-  #                     ack:
-  #                       $ref: "#/components/schemas/Ack"
-  #                   required:
-  #                     - ack
-  #                 error:
-  #                   $ref: "#/components/schemas/Error"
-  #               required:
-  #                 - message
-  # # /on_report:
-  #   post:
-  #     tags:
-  #       - Collector
-  #       - Receiver
-  #     # - Settlement Agency
-  #     requestBody:
-  #       description: SA responds with /on_report
-  #       content:
-  #         application/json:
-  #           schema:
-  #             type: object
-  #             properties:
-  #               context:
-  #                 $ref: "#/components/schemas/Context"
-  #               message:
-  #                 type: object
-  #                 properties:
-  #                   collector_app_id:
-  #                     type: string
-  #                   receiver_app_id:
-  #                     type: string
-  #                   settlement:
-  #                     $ref: "#/components/schemas/Settlement"
-  #                 required:
-  #                   - settlement
-  #               error:
-  #                 $ref: "#/components/schemas/Error"
-  #             required:
-  #               - context
-  #     responses:
-  #       "200":
-  #         description: Acknowledgement of message received
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: object
-  #               properties:
-  #                 message:
-  #                   type: object
-  #                   properties:
-  #                     ack:
-  #                       $ref: "#/components/schemas/Ack"
-  #                   required:
-  #                     - ack
-  #                 error:
-  #                   $ref: "#/components/schemas/Error"
-  #               required:
-  #                 - message
-  
   /recon:
     post:
       tags:
@@ -222,8 +31,11 @@ paths:
                           id:
                             type: string
                             description: Describes the order id
-                          amount:
-                            $ref: "#/components/schemas/Amount"
+                          status:
+                            type: string
+                            example: "Completed"
+                          quote:
+                            $ref: "#/components/schemas/Quote"
                           settlements:
                             type: array
                             items:
@@ -231,6 +43,12 @@ paths:
                               properties:
                                 id:
                                   type: string
+                                counterparty_id:
+                                  type: string
+                                  description: "Describes the counterparty of the settlement. It should be the subscriber_id of the receiver of the payment."
+                                type: #to be defined
+                                  type: string
+                                  description: "Describes the type of settlement."
                                 payment_id:
                                   type: string
                                 status:
@@ -244,6 +62,8 @@ paths:
                                 tcs:
                                   $ref: "#/components/schemas/Amount"
                                 tds:
+                                  $ref: "#/components/schemas/Amount"
+                                delay_amount:
                                   $ref: "#/components/schemas/Amount"
                                 updated_at:
                                   type: string
@@ -272,7 +92,6 @@ paths:
                     $ref: "#/components/schemas/Error"
                 required:
                   - message
-
   /on_recon:
     post:
       tags:
@@ -298,8 +117,11 @@ paths:
                           id:
                             type: string
                             description: Describes the order id
-                          amount:
-                            $ref: "#/components/schemas/Amount"
+                          status:
+                            type: string
+                            example: "Completed"
+                          quote:
+                            $ref: "#/components/schemas/Quote"
                           recon_accord:
                             type: boolean
                           settlements:
@@ -309,6 +131,12 @@ paths:
                               properties:
                                 id:
                                   type: string
+                                counterparty_id:
+                                  type: string
+                                  description: "Describes the counterparty of the settlement. It should be the subscriber_id of the receiver of the payment."
+                                type: #to be defined
+                                  type: string
+                                  description: "Describes the type of settlement."
                                 payment_id:
                                   type: string
                                 status:
@@ -351,11 +179,20 @@ paths:
                                         diff_value:
                                           type: string
                                     - $ref: "#/components/schemas/Amount"
+                                delay_amount:
+                                  allOf:
+                                    - type: object
+                                      properties:
+                                        diff_value:
+                                          type: string
+                                    - $ref: "#/components/schemas/Amount"
                                 updated_at:
                                   type: string
                                   format: date-time
                                 settlement_ref_no:
                                   type: string
+                error:
+                  $ref: "#/components/schemas/Error"
               required:
                 - context
       responses:
@@ -580,6 +417,69 @@ components:
                 type: string
               error:
                 $ref: "#/components/schemas/Error"
+    Quote:
+      type: object
+      properties:
+        price:
+          $ref: "#/components/schemas/Amount"
+        ttl:
+          type: string
+        breakup:
+          type: array
+          items:
+            type: object
+            properties:
+              "@ondc/org/item_id":
+                type: string
+              "@ondc/org/item_quantity":
+                type: object
+                properties:
+                  count:
+                    type: integer
+              title:
+                type: string
+              "@ondc/org/title_type":
+                type: string
+              price:
+                $ref: "#/components/schemas/Amount"
+              item:
+                $ref: "#/components/schemas/Item"
+    Item:
+      type: object
+      properties:
+        price:
+          $ref: "#/components/schemas/Amount"
+        quantity:
+          type: object
+          properties:
+            available:
+              type: object
+              properties:
+                count:
+                  type: string
+            maximum:
+              type: object
+              properties:
+                count:
+                  type: string
+        tags:
+          type: array
+          items:
+            $ref: "#/components/schemas/Tag"
+    Tag:
+      type: object
+      properties:
+        code:
+          type: string
+        list:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              value:
+                type: string
     Settlement:
       description: >
         - Describes the settlement of NP -NP

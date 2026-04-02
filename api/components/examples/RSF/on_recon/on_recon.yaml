@@ -18,14 +18,72 @@ context:
 message:
   orders:
     - id: "order-1234"
-      amount:
-        currency: "INR"
-        value: "310.00"
+      status: "COMPLETED"
+      quote:
+        price:
+          currency: INR
+          value: "300.00"
+        breakup:
+          - "@ondc/org/item_id": I1
+            "@ondc/org/item_quantity":
+              count: 1
+            title: Atta
+            "@ondc/org/title_type": item
+            price:
+              currency: INR
+              value: "206.00"
+            item:
+              quantity:
+                available:
+                  count: "99"
+                maximum:
+                  count: "99"
+              price:
+                currency: INR
+                value: "206.00"
+          - "@ondc/org/item_id": F1
+            title: Delivery charges
+            "@ondc/org/title_type": delivery
+            price:
+              currency: INR
+              value: "50.00"
+          - "@ondc/org/item_id": F1
+            title: Tax
+            "@ondc/org/title_type": tax
+            price:
+              currency: INR
+              value: "9.00"
+            item:
+              tags:
+                - code: quote
+                  list:
+                    - code: type
+                      value: fulfillment
+          - "@ondc/org/item_id": F1
+            title: Packing charges
+            "@ondc/org/title_type": packing
+            price:
+              currency: INR
+              value: "25.00"
+          - "@ondc/org/item_id": I1
+            title: Tax
+            "@ondc/org/title_type": tax
+            price:
+              currency: INR
+              value: "0.00"
+          - "@ondc/org/item_id": F1
+            title: Convenience Fee
+            "@ondc/org/title_type": misc
+            price:
+              currency: INR
+              value: "10.00"
+        ttl: P1D
       recon_accord: false
       settlements:
         - id: "settlement-id-456"
           payment_id: "pymnt-1"
           status: "PENDING"
+          type: ""
           amount:
             currency: "INR"
             value: "120.00"
@@ -46,10 +104,15 @@ message:
             currency: "INR"
             value: "10.00"
             diff_value: "0.00"
+          delay_amount:
+            currency: "INR"
+            value: "20.00"
+            diff_value: "20.00"
           updated_at: "2024-05-07T07:36:51.897Z"
         - id: "settlement-id-789"
           payment_id: "pymnt-2"
           status: "SETTLED"
+          type: ""
           amount:
             currency: "INR"
             value: "100.00"
@@ -70,6 +133,7 @@ message:
         - id: "settlement-id-112"
           payment_id: "pymnt-3"
           status: "TO_BE_INITIATED"
+          type: ""
           amount:
             currency: "INR"
             value: "90.00"
