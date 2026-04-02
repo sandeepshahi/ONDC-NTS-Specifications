@@ -871,6 +871,7 @@ x-flows:
                   recon_accord: false
                   settlements:
                     - id: settlement-id-456
+                      counterparty_id: receiver-app.com
                       payment_id: pymnt-1
                       status: PENDING
                       type: ''
@@ -900,6 +901,7 @@ x-flows:
                         diff_value: '20.00'
                       updated_at: '2024-05-07T07:36:51.897Z'
                     - id: settlement-id-789
+                      counterparty_id: receiver-app.com
                       payment_id: pymnt-2
                       status: SETTLED
                       type: ''
@@ -921,6 +923,7 @@ x-flows:
                       settlement_ref_no: utr-1234
                       updated_at: '2024-05-07T06:36:51.897Z'
                     - id: settlement-id-112
+                      counterparty_id: receiver-app.com
                       payment_id: pymnt-3
                       status: TO_BE_INITIATED
                       type: ''
@@ -1068,6 +1071,7 @@ x-flows:
                         value: '20.00'
                       updated_at: '2024-05-07T07:36:51.897Z'
                     - id: settlement-id-789
+                      counterparty_id: receiver-app.com
                       payment_id: pymnt-2
                       status: SETTLED
                       type: ''
@@ -1089,6 +1093,7 @@ x-flows:
                       settlement_ref_no: utr-1234
                       updated_at: '2024-05-07T06:36:51.897Z'
                     - id: settlement-id-112
+                      counterparty_id: receiver-app.com
                       payment_id: pymnt-3
                       status: TO_BE_INITIATED
                       type: ''
@@ -1208,6 +1213,7 @@ x-flows:
                   recon_accord: true
                   settlements:
                     - id: settlement-id-456
+                      counterparty_id: receiver-app.com
                       payment_id: pymnt-1
                       status: PENDING
                       due_date: '2024-05-08'
@@ -1232,6 +1238,7 @@ x-flows:
                         value: '20.00'
                       updated_at: '2024-05-07T07:36:53.897Z'
                     - id: settlement-id-789
+                      counterparty_id: receiver-app.com
                       payment_id: pymnt-2
                       status: SETTLED
                       type: ''
@@ -1253,6 +1260,7 @@ x-flows:
                       settlement_ref_no: utr-1234
                       updated_at: '2024-05-07T06:36:51.897Z'
                     - id: settlement-id-112
+                      counterparty_id: receiver-app.com
                       payment_id: pymnt-3
                       type: ''
                       status: TO_BE_INITIATED
