@@ -1,13 +1,13 @@
-on_report:
-  examples:
-    - summary: on_report (with provider)
-      description: Response from settlement agency including provider details
-      value:
-        $ref: ./on_report/on_report (with provider).yaml
-    - summary: on_report
-      description: Response from settlement agency
-      value:
-        $ref: ./on_report/on_report.yaml
+# on_report:
+#   examples:
+#     - summary: on_report (with provider)
+#       description: Response from settlement agency including provider details
+#       value:
+#         $ref: ./on_report/on_report (with provider).yaml
+#     - summary: on_report
+#       description: Response from settlement agency
+#       value:
+#         $ref: ./on_report/on_report.yaml
 # on_settle:
 #   examples:
 #     - summary: on_settle np_np
@@ -28,11 +28,11 @@ on_report:
 #       value:
 #         $ref: ./on_settle/on_settle nil.yaml
 
-report:
-  examples:
-    - summary: report
-      value:
-        $ref: ./report/report.yaml
+# report:
+#   examples:
+#     - summary: report
+#       value:
+#         $ref: ./report/report.yaml
 # settle:
 #   examples:
 #     - summary: settle np_np
