@@ -6,6 +6,97 @@ info:
 security:
   - SubscriberAuth: []
 paths:
+  /report:
+    post:
+      tags:
+        - Settlement Agency
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    ref_transaction_id:
+                      type: string
+                    ref_message_id:
+                      type: string
+                error:
+                  $ref: "#/components/schemas/Error"
+              required:
+                - context
+                - message
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "#/components/schemas/Error"
+                required:
+                  - message
+  /on_report:
+    post:
+      tags:
+        - Collector
+        - Receiver
+      requestBody:
+        description: SA responds with /on_report
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    collector_app_id:
+                      type: string
+                    receiver_app_id:
+                      type: string
+                    settlement:
+                      $ref: "#/components/schemas/Settlement"
+                  required:
+                    - settlement
+                error:
+                  $ref: "#/components/schemas/Error"
+              required:
+                - context
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "#/components/schemas/Error"
+                required:
+                  - message
   /recon:
     post:
       tags:
@@ -18,7 +109,7 @@ paths:
               type: object
               properties:
                 context:
-                  $ref: '#/components/schemas/Context'
+                  $ref: "#/components/schemas/Context"
                 message:
                   type: object
                   properties:
@@ -34,7 +125,7 @@ paths:
                             type: string
                             example: Completed
                           quote:
-                            $ref: '#/components/schemas/Quote'
+                            $ref: "#/components/schemas/Quote"
                           settlements:
                             type: array
                             items:
@@ -56,17 +147,17 @@ paths:
                                 status:
                                   type: string
                                 amount:
-                                  $ref: '#/components/schemas/Amount'
+                                  $ref: "#/components/schemas/Amount"
                                 commision:
-                                  $ref: '#/components/schemas/Amount'
+                                  $ref: "#/components/schemas/Amount"
                                 withholding_amount:
-                                  $ref: '#/components/schemas/Amount'
+                                  $ref: "#/components/schemas/Amount"
                                 tcs:
-                                  $ref: '#/components/schemas/Amount'
+                                  $ref: "#/components/schemas/Amount"
                                 tds:
-                                  $ref: '#/components/schemas/Amount'
+                                  $ref: "#/components/schemas/Amount"
                                 delay_amount:
-                                  $ref: '#/components/schemas/Amount'
+                                  $ref: "#/components/schemas/Amount"
                                 updated_at:
                                   type: string
                                   format: date-time
@@ -76,7 +167,7 @@ paths:
                 - context
                 - message
       responses:
-        '200':
+        "200":
           description: Acknowledgement of message received
           content:
             application/json:
@@ -87,11 +178,11 @@ paths:
                     type: object
                     properties:
                       ack:
-                        $ref: '#/components/schemas/Ack'
+                        $ref: "#/components/schemas/Ack"
                     required:
                       - ack
                   error:
-                    $ref: '#/components/schemas/Error'
+                    $ref: "#/components/schemas/Error"
                 required:
                   - message
   /on_recon:
@@ -106,7 +197,7 @@ paths:
               type: object
               properties:
                 context:
-                  $ref: '#/components/schemas/Context'
+                  $ref: "#/components/schemas/Context"
                 message:
                   type: object
                   properties:
@@ -122,7 +213,7 @@ paths:
                             type: string
                             example: Completed
                           quote:
-                            $ref: '#/components/schemas/Quote'
+                            $ref: "#/components/schemas/Quote"
                           recon_accord:
                             type: boolean
                           settlements:
@@ -154,53 +245,53 @@ paths:
                                       properties:
                                         diff_value:
                                           type: string
-                                    - $ref: '#/components/schemas/Amount'
+                                    - $ref: "#/components/schemas/Amount"
                                 commision:
                                   allOf:
                                     - type: object
                                       properties:
                                         diff_value:
                                           type: string
-                                    - $ref: '#/components/schemas/Amount'
+                                    - $ref: "#/components/schemas/Amount"
                                 withholding_amount:
                                   allOf:
                                     - type: object
                                       properties:
                                         diff_value:
                                           type: string
-                                    - $ref: '#/components/schemas/Amount'
+                                    - $ref: "#/components/schemas/Amount"
                                 tcs:
                                   allOf:
                                     - type: object
                                       properties:
                                         diff_value:
                                           type: string
-                                    - $ref: '#/components/schemas/Amount'
+                                    - $ref: "#/components/schemas/Amount"
                                 tds:
                                   allOf:
                                     - type: object
                                       properties:
                                         diff_value:
                                           type: string
-                                    - $ref: '#/components/schemas/Amount'
+                                    - $ref: "#/components/schemas/Amount"
                                 delay_amount:
                                   allOf:
                                     - type: object
                                       properties:
                                         diff_value:
                                           type: string
-                                    - $ref: '#/components/schemas/Amount'
+                                    - $ref: "#/components/schemas/Amount"
                                 updated_at:
                                   type: string
                                   format: date-time
                                 settlement_ref_no:
                                   type: string
                 error:
-                  $ref: '#/components/schemas/Error'
+                  $ref: "#/components/schemas/Error"
               required:
                 - context
       responses:
-        '200':
+        "200":
           description: Acknowledgement of message received
           content:
             application/json:
@@ -211,11 +302,11 @@ paths:
                     type: object
                     properties:
                       ack:
-                        $ref: '#/components/schemas/Ack'
+                        $ref: "#/components/schemas/Ack"
                     required:
                       - ack
                   error:
-                    $ref: '#/components/schemas/Error'
+                    $ref: "#/components/schemas/Error"
                 required:
                   - message
 components:
@@ -251,16 +342,16 @@ components:
           example: INR
         value:
           type: string
-          example: ''
+          example: ""
     BankDetails:
       type: object
       properties:
         account_no:
           type: string
-          example: ''
+          example: ""
         ifsc_code:
           type: string
-          example: ''
+          example: ""
     Context:
       description: Describes a beckn message context
       type: object
@@ -281,7 +372,7 @@ components:
               properties:
                 code:
                   type: string
-                  example: '*'
+                  example: "*"
         action:
           type: string
           description: >-
@@ -373,9 +464,9 @@ components:
             type: object
             properties:
               settled_amount:
-                $ref: '#/components/schemas/Amount'
+                $ref: "#/components/schemas/Amount"
               amount:
-                $ref: '#/components/schemas/Amount'
+                $ref: "#/components/schemas/Amount"
               status:
                 type: string
                 enum:
@@ -384,13 +475,13 @@ components:
               reference_no:
                 type: string
               error:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
           collector:
             description: Provides details about the amount to be retained by the collector
             type: object
             properties:
               amount:
-                $ref: '#/components/schemas/Amount'
+                $ref: "#/components/schemas/Amount"
           provider:
             description: >-
               Provides details about the amount to be settled to the Provider of
@@ -399,23 +490,23 @@ components:
             properties:
               id:
                 type: string
-                example: ''
+                example: ""
               name:
                 type: string
-                example: ''
+                example: ""
               bank_details:
-                $ref: '#/components/schemas/BankDetails'
+                $ref: "#/components/schemas/BankDetails"
               status:
                 type: string
                 enum:
                   - SETTLED
                   - NOT_SETTLED
               amount:
-                $ref: '#/components/schemas/Amount'
+                $ref: "#/components/schemas/Amount"
               reference_no:
                 type: string
               error:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
           self:
             type: object
             description: >-
@@ -423,7 +514,7 @@ components:
               operative account
             properties:
               amount:
-                $ref: '#/components/schemas/Amount'
+                $ref: "#/components/schemas/Amount"
               status:
                 type: string
                 enum:
@@ -432,12 +523,12 @@ components:
               reference_no:
                 type: string
               error:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     Quote:
       type: object
       properties:
         price:
-          $ref: '#/components/schemas/Amount'
+          $ref: "#/components/schemas/Amount"
         ttl:
           type: string
         breakup:
@@ -445,26 +536,26 @@ components:
           items:
             type: object
             properties:
-              '@ondc/org/item_id':
+              "@ondc/org/item_id":
                 type: string
-              '@ondc/org/item_quantity':
+              "@ondc/org/item_quantity":
                 type: object
                 properties:
                   count:
                     type: integer
               title:
                 type: string
-              '@ondc/org/title_type':
+              "@ondc/org/title_type":
                 type: string
               price:
-                $ref: '#/components/schemas/Amount'
+                $ref: "#/components/schemas/Amount"
               item:
-                $ref: '#/components/schemas/Item'
+                $ref: "#/components/schemas/Item"
     Item:
       type: object
       properties:
         price:
-          $ref: '#/components/schemas/Amount'
+          $ref: "#/components/schemas/Amount"
         quantity:
           type: object
           properties:
@@ -481,7 +572,7 @@ components:
         tags:
           type: array
           items:
-            $ref: '#/components/schemas/Tag'
+            $ref: "#/components/schemas/Tag"
     Tag:
       type: object
       properties:
@@ -510,7 +601,7 @@ components:
             * settlement id of the settlement file
           type: string
         order:
-          $ref: '#/components/schemas/Orders'
+          $ref: "#/components/schemas/Orders"
 x-enum:
   settle:
     context: &ref_0
@@ -521,7 +612,7 @@ x-enum:
               description: Represents the country
         city:
           code:
-            - code: '*'
+            - code: "*"
               description: city
       domain:
         - code: ONDC:NTS10
@@ -577,6 +668,185 @@ x-enum:
     context: *ref_0
     message: *ref_6
 x-flows:
+  - summary: REPORT
+    details:
+      - description: >-
+          Detailed flows covering NPs seeking status of a settlement
+          instructions previously shared with reference to a transaction id and/
+          or message id. The settlement agency responds with the status of the
+          respective settlement instructions referred.
+        mermaid: |-
+          sequenceDiagram
+           participant NP
+           participant Settlement_Agency
+           NP ->> Settlement_Agency: report API 
+           Settlement_Agency ->> NP : on_report API
+    references: if any
+    steps:
+      - summary: REPORT
+        api: report
+        details:
+          - description: report api
+            mermaid: |-
+              sequenceDiagram
+               participant NP
+               participant Settlement_Agency      
+               NP ->> Settlement_Agency: report API 
+               Settlement_Agency ->> NP : ACK
+               Settlement_Agency ->> NP : on_report API
+               NP ->> Settlement_Agency : Ack
+        reference: if any
+        example:
+          value: &ref_10
+            context:
+              domain: ONDC:NTS10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: "*"
+              version: 2.0.0
+              action: report
+              bap_id: collectorapp.com
+              bap_uri: https://collector.com/ondc/1.0/
+              bpp_id: sa_nocs.nbbl.com
+              bpp_uri: https://nbbl.org.in/nocs_test
+              transaction_id: cd73a366-aebb-4144-9314-808dda82c7e6
+              message_id: 841ef6d7-d74d-4411-ac06-a05469c0f9ac
+              timestamp: "2024-05-09T06:36:51.897Z"
+              ttl: P1D
+            message:
+              ref_transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
+              ref_message_id: 941ef6d7-d74d-4411-ac06-469c0f9ac
+      - summary: ON_REPORT (with provider)
+        api: on_report
+        details:
+          - description: Response from settlement agency (including provider details)
+            mermaid: |-
+              sequenceDiagram
+               participant NP
+               participant Settlement_Agency
+               NP ->> Settlement_Agency: report API  
+               Settlement_Agency ->> NP : Ack
+               Settlement_Agency ->> NP : on_ report API
+               NP ->> Settlement_Agency : Ack
+        reference: if any
+        example:
+          value: &ref_8
+            context:
+              domain: ONDC:NTS10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: "*"
+              version: 2.0.0
+              action: on_report
+              bap_id: collectorapp.com
+              bap_uri: https://collectorapp.com/ondc/1.0/
+              bpp_id: sa_nocs.nbbl.com
+              bpp_uri: https://sa_nocs.nbbl.com/nocs_test
+              transaction_id: cd73a366-aebb-4144-9314-808dda82c7e6
+              message_id: 841ef6d7-d74d-4411-ac06-a05469c0f9ac
+              timestamp: "2024-05-07T06:36:51.900Z"
+              ttl: P1D
+            message:
+              collector_app_id: collectorapp.com
+              receiver_app_id: receiverapp.com
+              settlement:
+                type: NP-NP
+                id: settlement-id-123
+                orders:
+                  - id: order-id-456
+                    inter_participant:
+                      settled_amount:
+                        currency: INR
+                        value: "1000.00"
+                      amount:
+                        currency: INR
+                        value: "1000.27"
+                      status: SETTLED
+                      reference_no: "3718683618631"
+                    collector:
+                      amount:
+                        currency: INR
+                        value: "50.00"
+                    provider:
+                      id: provider-id-789
+                      amount:
+                        currency: INR
+                        value: "800.00"
+                      status: NOT_SETTLED
+                      error:
+                        code: "01"
+                        message: Account Inactive
+                    self:
+                      amount:
+                        currency: INR
+                        value: "200.00"
+                      status: NOT_SETTLED
+                      error:
+                        code: "01"
+                        message: Account Inactive
+      - summary: ON_REPORT
+        api: on_report
+        details:
+          - description: Response from settlement agency (if no provider is specified)
+            mermaid: |-
+              sequenceDiagram
+               participant NP
+               participant Settlement_Agency
+               NP ->> Settlement_Agency: report API  
+               Settlement_Agency ->> NP : Ack
+               Settlement_Agency ->> NP : on_ report API
+               NP ->> Settlement_Agency : Ack
+        reference: if any
+        example:
+          value: &ref_9
+            context:
+              domain: ONDC:NTS10
+              location:
+                country:
+                  code: IND
+                city:
+                  code: "*"
+              version: 2.0.0
+              action: on_report
+              bap_id: collectorapp.com
+              bap_uri: https://collectorapp.com/ondc/1.0/
+              bpp_id: sa_nocs.nbbl.com
+              bpp_uri: https://sa_nocs.nbbl.com/nocs_test
+              transaction_id: cd73a366-aebb-4144-9314-808dda82c7e6
+              message_id: 841ef6d7-d74d-4411-ac06-a05469c0f9ac
+              timestamp: "2024-05-07T06:36:51.900Z"
+              ttl: P1D
+            message:
+              collector_app_id: collectorapp.com
+              receiver_app_id: receiverapp.com
+              settlement:
+                type: NP-NP
+                id: settlement-id-123
+                orders:
+                  - id: order-id-456
+                    inter_participant:
+                      settled_amount:
+                        currency: INR
+                        value: "1000.00"
+                      amount:
+                        currency: INR
+                        value: "1000.27"
+                      status: SETTLED
+                      reference_no: "3718683618631"
+                    collector:
+                      amount:
+                        currency: INR
+                        value: "50.00"
+                    self:
+                      amount:
+                        currency: INR
+                        value: "50.00"
+                      status: SETTLED
+                      reference_no: "1238683618634"
   - summary: RECON
     details:
       - description: >-
@@ -632,7 +902,7 @@ x-flows:
                 country:
                   code: IND
                 city:
-                  code: '*'
+                  code: "*"
               version: 2.0.0
               action: recon
               bap_id: collector-app.com
@@ -641,7 +911,7 @@ x-flows:
               bpp_uri: https://receiver-app.com/ondc/
               transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
               message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
-              timestamp: '2024-05-07T06:36:50.897Z'
+              timestamp: "2024-05-07T06:36:50.897Z"
               ttl: P1D
             message:
               orders:
@@ -650,127 +920,127 @@ x-flows:
                   quote:
                     price:
                       currency: INR
-                      value: '300.00'
+                      value: "300.00"
                     breakup:
-                      - '@ondc/org/item_id': I1
-                        '@ondc/org/item_quantity':
+                      - "@ondc/org/item_id": I1
+                        "@ondc/org/item_quantity":
                           count: 1
                         title: Atta
-                        '@ondc/org/title_type': item
+                        "@ondc/org/title_type": item
                         price:
                           currency: INR
-                          value: '206.00'
+                          value: "206.00"
                         item:
                           quantity:
                             available:
-                              count: '99'
+                              count: "99"
                             maximum:
-                              count: '99'
+                              count: "99"
                           price:
                             currency: INR
-                            value: '206.00'
-                      - '@ondc/org/item_id': F1
+                            value: "206.00"
+                      - "@ondc/org/item_id": F1
                         title: Delivery charges
-                        '@ondc/org/title_type': delivery
+                        "@ondc/org/title_type": delivery
                         price:
                           currency: INR
-                          value: '50.00'
-                      - '@ondc/org/item_id': F1
+                          value: "50.00"
+                      - "@ondc/org/item_id": F1
                         title: Tax
-                        '@ondc/org/title_type': tax
+                        "@ondc/org/title_type": tax
                         price:
                           currency: INR
-                          value: '9.00'
+                          value: "9.00"
                         item:
                           tags:
                             - code: quote
                               list:
                                 - code: type
                                   value: fulfillment
-                      - '@ondc/org/item_id': F1
+                      - "@ondc/org/item_id": F1
                         title: Packing charges
-                        '@ondc/org/title_type': packing
+                        "@ondc/org/title_type": packing
                         price:
                           currency: INR
-                          value: '25.00'
-                      - '@ondc/org/item_id': I1
+                          value: "25.00"
+                      - "@ondc/org/item_id": I1
                         title: Tax
-                        '@ondc/org/title_type': tax
+                        "@ondc/org/title_type": tax
                         price:
                           currency: INR
-                          value: '0.00'
-                      - '@ondc/org/item_id': F1
+                          value: "0.00"
+                      - "@ondc/org/item_id": F1
                         title: Convenience Fee
-                        '@ondc/org/title_type': misc
+                        "@ondc/org/title_type": misc
                         price:
                           currency: INR
-                          value: '10.00'
+                          value: "10.00"
                     ttl: P1D
                   settlements:
                     - id: settlement-id-456
                       counterparty_id: receiver-app.com
                       payment_id: pymnt-1
                       status: PENDING
-                      type: ''
+                      type: ""
                       amount:
                         currency: INR
-                        value: '100.00'
+                        value: "100.00"
                       commission:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       withholding_amount:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tcs:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tds:
                         currency: INR
-                        value: '10.00'
-                      updated_at: '2024-05-07T07:36:50.897Z'
+                        value: "10.00"
+                      updated_at: "2024-05-07T07:36:50.897Z"
                     - id: settlement-id-789
                       counterparty_id: receiver-app.com
                       payment_id: pymnt-2
                       status: SETTLED
-                      type: ''
+                      type: ""
                       amount:
                         currency: INR
-                        value: '100.00'
+                        value: "100.00"
                       commission:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       withholding_amount:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tds:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tcs:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       settlement_ref_no: utr-1234
-                      updated_at: '2024-05-07T06:36:50.897Z'
+                      updated_at: "2024-05-07T06:36:50.897Z"
                     - id: settlement-id-112
                       counterparty_id: receiver-app.com
                       payment_id: pymnt-3
                       status: TO_BE_INITIATED
-                      type: ''
+                      type: ""
                       amount:
                         currency: INR
-                        value: '100.00'
+                        value: "100.00"
                       commission:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       withholding_amount:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tds:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tcs:
                         currency: INR
-                        value: '10.00'
-                      updated_at: '2024-05-07T06:36:50.897Z'
+                        value: "10.00"
+                      updated_at: "2024-05-07T06:36:50.897Z"
       - summary: ON_RECON
         api: on_recon
         details:
@@ -787,14 +1057,14 @@ x-flows:
                Receiver ->> Collector: /on_recon API
         reference: if any
         example:
-          value: &ref_8
+          value: &ref_11
             context:
               domain: ONDC:NTS10
               location:
                 country:
                   code: IND
                 city:
-                  code: '*'
+                  code: "*"
               version: 2.0.0
               action: on_recon
               bap_id: collector-app.com
@@ -803,7 +1073,7 @@ x-flows:
               bpp_uri: https://receiver-app.com/ondc/
               transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
               message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
-              timestamp: '2024-05-07T06:36:51.897Z'
+              timestamp: "2024-05-07T06:36:51.897Z"
               ttl: P1D
             message:
               orders:
@@ -812,61 +1082,61 @@ x-flows:
                   quote:
                     price:
                       currency: INR
-                      value: '300.00'
+                      value: "300.00"
                     breakup:
-                      - '@ondc/org/item_id': I1
-                        '@ondc/org/item_quantity':
+                      - "@ondc/org/item_id": I1
+                        "@ondc/org/item_quantity":
                           count: 1
                         title: Atta
-                        '@ondc/org/title_type': item
+                        "@ondc/org/title_type": item
                         price:
                           currency: INR
-                          value: '206.00'
+                          value: "206.00"
                         item:
                           quantity:
                             available:
-                              count: '99'
+                              count: "99"
                             maximum:
-                              count: '99'
+                              count: "99"
                           price:
                             currency: INR
-                            value: '206.00'
-                      - '@ondc/org/item_id': F1
+                            value: "206.00"
+                      - "@ondc/org/item_id": F1
                         title: Delivery charges
-                        '@ondc/org/title_type': delivery
+                        "@ondc/org/title_type": delivery
                         price:
                           currency: INR
-                          value: '50.00'
-                      - '@ondc/org/item_id': F1
+                          value: "50.00"
+                      - "@ondc/org/item_id": F1
                         title: Tax
-                        '@ondc/org/title_type': tax
+                        "@ondc/org/title_type": tax
                         price:
                           currency: INR
-                          value: '9.00'
+                          value: "9.00"
                         item:
                           tags:
                             - code: quote
                               list:
                                 - code: type
                                   value: fulfillment
-                      - '@ondc/org/item_id': F1
+                      - "@ondc/org/item_id": F1
                         title: Packing charges
-                        '@ondc/org/title_type': packing
+                        "@ondc/org/title_type": packing
                         price:
                           currency: INR
-                          value: '25.00'
-                      - '@ondc/org/item_id': I1
+                          value: "25.00"
+                      - "@ondc/org/item_id": I1
                         title: Tax
-                        '@ondc/org/title_type': tax
+                        "@ondc/org/title_type": tax
                         price:
                           currency: INR
-                          value: '0.00'
-                      - '@ondc/org/item_id': F1
+                          value: "0.00"
+                      - "@ondc/org/item_id": F1
                         title: Convenience Fee
-                        '@ondc/org/title_type': misc
+                        "@ondc/org/title_type": misc
                         price:
                           currency: INR
-                          value: '10.00'
+                          value: "10.00"
                     ttl: P1D
                   recon_accord: false
                   settlements:
@@ -874,80 +1144,80 @@ x-flows:
                       counterparty_id: receiver-app.com
                       payment_id: pymnt-1
                       status: PENDING
-                      type: ''
+                      type: ""
                       amount:
                         currency: INR
-                        value: '120.00'
-                        diff_value: '20.00'
+                        value: "120.00"
+                        diff_value: "20.00"
                       commission:
                         currency: INR
-                        value: '10.00'
-                        diff_value: '0.00'
+                        value: "10.00"
+                        diff_value: "0.00"
                       withholding_amount:
                         currency: INR
-                        value: '10.00'
-                        diff_value: '0.00'
+                        value: "10.00"
+                        diff_value: "0.00"
                       tcs:
                         currency: INR
-                        value: '10.00'
-                        diff_value: '0.00'
+                        value: "10.00"
+                        diff_value: "0.00"
                       tds:
                         currency: INR
-                        value: '10.00'
-                        diff_value: '0.00'
+                        value: "10.00"
+                        diff_value: "0.00"
                       delay_amount:
                         currency: INR
-                        value: '20.00'
-                        diff_value: '20.00'
-                      updated_at: '2024-05-07T07:36:51.897Z'
+                        value: "20.00"
+                        diff_value: "20.00"
+                      updated_at: "2024-05-07T07:36:51.897Z"
                     - id: settlement-id-789
                       counterparty_id: receiver-app.com
                       payment_id: pymnt-2
                       status: SETTLED
-                      type: ''
+                      type: ""
                       amount:
                         currency: INR
-                        value: '100.00'
+                        value: "100.00"
                       commission:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       withholding_amount:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tds:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tcs:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       settlement_ref_no: utr-1234
-                      updated_at: '2024-05-07T06:36:51.897Z'
+                      updated_at: "2024-05-07T06:36:51.897Z"
                     - id: settlement-id-112
                       counterparty_id: receiver-app.com
                       payment_id: pymnt-3
                       status: TO_BE_INITIATED
-                      type: ''
+                      type: ""
                       amount:
                         currency: INR
-                        value: '90.00'
-                        diff_value: '10.00'
+                        value: "90.00"
+                        diff_value: "10.00"
                       commission:
                         currency: INR
-                        value: '10.00'
-                        diff_value: '0.00'
+                        value: "10.00"
+                        diff_value: "0.00"
                       withholding_amount:
                         currency: INR
-                        value: '10.00'
-                        diff_value: '0.00'
+                        value: "10.00"
+                        diff_value: "0.00"
                       tds:
                         currency: INR
-                        value: '10.00'
-                        diff_value: '0.00'
+                        value: "10.00"
+                        diff_value: "0.00"
                       tcs:
                         currency: INR
-                        value: '10.00'
-                        diff_value: '0.00'
-                      updated_at: '2024-05-07T06:36:51.897Z'
+                        value: "10.00"
+                        diff_value: "0.00"
+                      updated_at: "2024-05-07T06:36:51.897Z"
       - summary: RECON
         api: recon
         details:
@@ -971,7 +1241,7 @@ x-flows:
                 country:
                   code: IND
                 city:
-                  code: '*'
+                  code: "*"
               version: 2.0.0
               action: recon
               bap_id: collector-app.com
@@ -980,7 +1250,7 @@ x-flows:
               bpp_uri: https://receiver-app.com/ondc/
               transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
               message_id: 990ef6d7-d74d-4411-ac06-a05469c0f9ac
-              timestamp: '2024-05-07T06:36:52.897Z'
+              timestamp: "2024-05-07T06:36:52.897Z"
               ttl: P1D
             message:
               orders:
@@ -989,130 +1259,130 @@ x-flows:
                   quote:
                     price:
                       currency: INR
-                      value: '300.00'
+                      value: "300.00"
                     breakup:
-                      - '@ondc/org/item_id': I1
-                        '@ondc/org/item_quantity':
+                      - "@ondc/org/item_id": I1
+                        "@ondc/org/item_quantity":
                           count: 1
                         title: Atta
-                        '@ondc/org/title_type': item
+                        "@ondc/org/title_type": item
                         price:
                           currency: INR
-                          value: '206.00'
+                          value: "206.00"
                         item:
                           quantity:
                             available:
-                              count: '99'
+                              count: "99"
                             maximum:
-                              count: '99'
+                              count: "99"
                           price:
                             currency: INR
-                            value: '206.00'
-                      - '@ondc/org/item_id': F1
+                            value: "206.00"
+                      - "@ondc/org/item_id": F1
                         title: Delivery charges
-                        '@ondc/org/title_type': delivery
+                        "@ondc/org/title_type": delivery
                         price:
                           currency: INR
-                          value: '50.00'
-                      - '@ondc/org/item_id': F1
+                          value: "50.00"
+                      - "@ondc/org/item_id": F1
                         title: Tax
-                        '@ondc/org/title_type': tax
+                        "@ondc/org/title_type": tax
                         price:
                           currency: INR
-                          value: '9.00'
+                          value: "9.00"
                         item:
                           tags:
                             - code: quote
                               list:
                                 - code: type
                                   value: fulfillment
-                      - '@ondc/org/item_id': F1
+                      - "@ondc/org/item_id": F1
                         title: Packing charges
-                        '@ondc/org/title_type': packing
+                        "@ondc/org/title_type": packing
                         price:
                           currency: INR
-                          value: '25.00'
-                      - '@ondc/org/item_id': I1
+                          value: "25.00"
+                      - "@ondc/org/item_id": I1
                         title: Tax
-                        '@ondc/org/title_type': tax
+                        "@ondc/org/title_type": tax
                         price:
                           currency: INR
-                          value: '0.00'
-                      - '@ondc/org/item_id': F1
+                          value: "0.00"
+                      - "@ondc/org/item_id": F1
                         title: Convenience Fee
-                        '@ondc/org/title_type': misc
+                        "@ondc/org/title_type": misc
                         price:
                           currency: INR
-                          value: '10.00'
+                          value: "10.00"
                     ttl: P1D
                   settlements:
                     - id: settlement-id-456
                       counterparty_id: receiver-app.com
                       payment_id: pymnt-1
                       status: PENDING
-                      type: ''
+                      type: ""
                       amount:
                         currency: INR
-                        value: '120.00'
+                        value: "120.00"
                       commission:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       withholding_amount:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tcs:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tds:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       delay_amount:
                         currency: INR
-                        value: '20.00'
-                      updated_at: '2024-05-07T07:36:51.897Z'
+                        value: "20.00"
+                      updated_at: "2024-05-07T07:36:51.897Z"
                     - id: settlement-id-789
                       counterparty_id: receiver-app.com
                       payment_id: pymnt-2
                       status: SETTLED
-                      type: ''
+                      type: ""
                       amount:
                         currency: INR
-                        value: '100.00'
+                        value: "100.00"
                       commission:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       withholding_amount:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tds:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tcs:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       settlement_ref_no: utr-1234
-                      updated_at: '2024-05-07T06:36:51.897Z'
+                      updated_at: "2024-05-07T06:36:51.897Z"
                     - id: settlement-id-112
                       counterparty_id: receiver-app.com
                       payment_id: pymnt-3
                       status: TO_BE_INITIATED
-                      type: ''
+                      type: ""
                       amount:
                         currency: INR
-                        value: '90.00'
+                        value: "90.00"
                       commission:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       withholding_amount:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tds:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tcs:
                         currency: INR
-                        value: '10.00'
-                      updated_at: '2024-05-07T06:36:51.897Z'
+                        value: "10.00"
+                      updated_at: "2024-05-07T06:36:51.897Z"
       - summary: ON_RECON
         api: on_recon
         details:
@@ -1136,7 +1406,7 @@ x-flows:
                 country:
                   code: IND
                 city:
-                  code: '*'
+                  code: "*"
               version: 2.0.0
               action: on_recon
               bap_id: collector-app.com
@@ -1145,7 +1415,7 @@ x-flows:
               bpp_uri: https://receiver-app.com/ondc/
               transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
               message_id: 990ef6d7-d74d-4411-ac06-a05469c0f9ac
-              timestamp: '2024-05-07T06:36:53.897Z'
+              timestamp: "2024-05-07T06:36:53.897Z"
               ttl: P1D
             message:
               orders:
@@ -1154,61 +1424,61 @@ x-flows:
                   quote:
                     price:
                       currency: INR
-                      value: '300.00'
+                      value: "300.00"
                     breakup:
-                      - '@ondc/org/item_id': I1
-                        '@ondc/org/item_quantity':
+                      - "@ondc/org/item_id": I1
+                        "@ondc/org/item_quantity":
                           count: 1
                         title: Atta
-                        '@ondc/org/title_type': item
+                        "@ondc/org/title_type": item
                         price:
                           currency: INR
-                          value: '206.00'
+                          value: "206.00"
                         item:
                           quantity:
                             available:
-                              count: '99'
+                              count: "99"
                             maximum:
-                              count: '99'
+                              count: "99"
                           price:
                             currency: INR
-                            value: '206.00'
-                      - '@ondc/org/item_id': F1
+                            value: "206.00"
+                      - "@ondc/org/item_id": F1
                         title: Delivery charges
-                        '@ondc/org/title_type': delivery
+                        "@ondc/org/title_type": delivery
                         price:
                           currency: INR
-                          value: '50.00'
-                      - '@ondc/org/item_id': F1
+                          value: "50.00"
+                      - "@ondc/org/item_id": F1
                         title: Tax
-                        '@ondc/org/title_type': tax
+                        "@ondc/org/title_type": tax
                         price:
                           currency: INR
-                          value: '9.00'
+                          value: "9.00"
                         item:
                           tags:
                             - code: quote
                               list:
                                 - code: type
                                   value: fulfillment
-                      - '@ondc/org/item_id': F1
+                      - "@ondc/org/item_id": F1
                         title: Packing charges
-                        '@ondc/org/title_type': packing
+                        "@ondc/org/title_type": packing
                         price:
                           currency: INR
-                          value: '25.00'
-                      - '@ondc/org/item_id': I1
+                          value: "25.00"
+                      - "@ondc/org/item_id": I1
                         title: Tax
-                        '@ondc/org/title_type': tax
+                        "@ondc/org/title_type": tax
                         price:
                           currency: INR
-                          value: '0.00'
-                      - '@ondc/org/item_id': F1
+                          value: "0.00"
+                      - "@ondc/org/item_id": F1
                         title: Convenience Fee
-                        '@ondc/org/title_type': misc
+                        "@ondc/org/title_type": misc
                         price:
                           currency: INR
-                          value: '10.00'
+                          value: "10.00"
                     ttl: P1D
                   recon_accord: true
                   settlements:
@@ -1216,72 +1486,72 @@ x-flows:
                       counterparty_id: receiver-app.com
                       payment_id: pymnt-1
                       status: PENDING
-                      due_date: '2024-05-08'
-                      type: ''
+                      due_date: "2024-05-08"
+                      type: ""
                       amount:
                         currency: INR
-                        value: '120.00'
+                        value: "120.00"
                       commission:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       withholding_amount:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tcs:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tds:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       delay_amount:
                         currency: INR
-                        value: '20.00'
-                      updated_at: '2024-05-07T07:36:53.897Z'
+                        value: "20.00"
+                      updated_at: "2024-05-07T07:36:53.897Z"
                     - id: settlement-id-789
                       counterparty_id: receiver-app.com
                       payment_id: pymnt-2
                       status: SETTLED
-                      type: ''
+                      type: ""
                       amount:
                         currency: INR
-                        value: '100.00'
+                        value: "100.00"
                       commission:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       withholding_amount:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tds:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tcs:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       settlement_ref_no: utr-1234
-                      updated_at: '2024-05-07T06:36:51.897Z'
+                      updated_at: "2024-05-07T06:36:51.897Z"
                     - id: settlement-id-112
                       counterparty_id: receiver-app.com
                       payment_id: pymnt-3
-                      type: ''
+                      type: ""
                       status: TO_BE_INITIATED
-                      due_date: '2024-05-08'
+                      due_date: "2024-05-08"
                       amount:
                         currency: INR
-                        value: '90.00'
-                        diff_value: '10.00'
+                        value: "90.00"
+                        diff_value: "10.00"
                       commission:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       withholding_amount:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tds:
                         currency: INR
-                        value: '10.00'
+                        value: "10.00"
                       tcs:
                         currency: INR
-                        value: '10.00'
-                      updated_at: '2024-05-07T06:36:53.897Z'
+                        value: "10.00"
+                      updated_at: "2024-05-07T06:36:53.897Z"
   - summary: ERROR (on_recon)
     details:
       - description: >-
@@ -1347,7 +1617,7 @@ x-flows:
                 country:
                   code: IND
                 city:
-                  code: '*'
+                  code: "*"
               version: 2.0.0
               action: on_recon
               bap_id: collector-app.com
@@ -1356,19 +1626,67 @@ x-flows:
               bpp_uri: https://receiver-app.com/ondc/
               transaction_id: bd73a366-aebb-4144-9314-808dda82c7e6
               message_id: 941ef6d7-d74d-4411-ac06-a05469c0f9ac
-              timestamp: '2024-05-07T06:36:51.897Z'
+              timestamp: "2024-05-07T06:36:51.897Z"
               ttl: P1D
             error:
-              code: '70030'
+              code: "70030"
               message: Invalid Order Id
 x-examples:
-  PPF:
-    summary: Payment Protection Framework (PPF)
+  RSF:
+    summary: RSF 2.0
     description: >
-      Payment Protection Framework description available  <a
-      href="https://ondc-ppf.readme.io/reference/ondc-payment-protection-framework"
-      target="_blank" rel="noopener noreferrer">here</a>
+      Reconciliation and Settlement Framework provides a comprehensive framework
+
+      to ensure accurate and timely settlements among participants in the
+      network.
+
+      RSF 2.0 brings an enhanced workflow where the NPs share order-level the
+
+      settlement instructions to the Settlement Agency (SA) which matches the
+      same
+
+      with the respective counterparty NP and then moves funds if the amounts
+      have
+
+      matched successfully. 
+
+
+      Explainer & BRD is documented <a href =
+      "https://docs.google.com/document/d/1IXZuqTCfEzBxdHJKzHVZ9kPm_lYk5DxjdaQ25--YH8M/edit#heading=h.7edkggo8m4oc">here</a>
+
+
+      Functional flows and use cases are documented <a href =
+      "https://docs.google.com/document/d/1Pj7e1MuObQeLczx_palbcliUPTkMRYA76esjrfAMT14/edit?usp=sharing">here</a>
+
+
+      For development of funds settlement flow for integration with settlement
+      agency, refer settle/on_settle and report/on_report API specs below
+
+
+      For development of reconciliation flow amongst network participants, refer
+      recon/on_recon API specs below
+
+
+      The instructions to leverage the mock server along with logs requirements
+      are available <a href =
+      "https://docs.google.com/document/d/1rHmQ8joTsT2HDmZdXhPlUKy5QSrJiQuEkTAjLDcNVoA/edit?usp=sharing">here</a>
+
+
+      Frequently asked questions are available <a href =
+      "https://docs.google.com/document/d/1fA9WkPjzldvJ_3qfltywzfBnadKsPWwbPF6C7ULfZk4/edit?usp=sharing">here</a>
     example_set:
+      on_report:
+        examples:
+          - summary: on_report (with provider)
+            description: Response from settlement agency including provider details
+            value: *ref_8
+          - summary: on_report
+            description: Response from settlement agency
+            value: *ref_9
+      report:
+        examples:
+          - summary: report
+            value: *ref_10
       recon:
         examples:
           - summary: recon
@@ -1382,15 +1700,681 @@ x-examples:
             description: >-
               response to the reconciliation call, expressing disagreement with
               the information provided in /recon
-            value: *ref_8
+            value: *ref_11
           - summary: on_recon (recon_accord = true)
             description: >-
               response to the reconciliation call,  agreeing with the
               information provided in /recon
-            value: *ref_9
+            value: *ref_11
 x-attributes:
-  PPF:
+  RSF:
     attribute_set:
+      report:
+        context:
+          domain:
+            required: true
+            type: string
+            owner: any
+            usage: ONDC:NTS10
+            description: Domain in which the settlement occurs
+          location:
+            country:
+              code:
+                required: true
+                type: string
+                owner: any
+                usage: IND
+                description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
+            city:
+              code:
+                required: true
+                type: string
+                owner: any
+                usage: "*"
+                description: "Describes city "
+          version:
+            required: true
+            type: string
+            owner: any
+            usage: 2.0.0
+            description: >-
+              Describes the version of transaction protocol being used by the
+              sender.
+          action:
+            required: true
+            type: string
+            owner: any
+            usage: report
+            description: >-
+              Describes the method being called by the sender and executed at
+              the receiver.
+          bap_id:
+            required: true
+            type: string
+            owner: any
+            usage: collectorapp.com
+            description: Describes the subscriber id of the BNP
+          bap_uri:
+            required: true
+            type: string
+            owner: any
+            usage: https://collectorapp.com/ondc/1.0/
+            description: Describes the subscriber uri of the BNP
+          bpp_id:
+            required: true
+            type: string
+            owner: any
+            usage: sa_nocs.nbbl.com
+            description: Describes the subscriber id of the SNP
+          bpp_uri:
+            required: true
+            type: string
+            owner: any
+            usage: https://sa_nocs.nbbl.com/nocs_test
+            description: Describes the subscriber uri of the SNP
+          transaction_id:
+            required: true
+            type: string
+            owner: any
+            usage: d73a366-aebb-4144-9314-808dda82c7e6
+            description: Describes  a unique value which persists across all API calls
+          message_id:
+            required: true
+            type: string
+            owner: any
+            usage: 841ef6d7-d74d-4411-ac06-a05469c0f9ac
+            description: >-
+              Describes a unique value which persists during a request /
+              callback cycle.
+          timestamp:
+            required: true
+            type: string
+            owner: any
+            usage: "2024-05-09T06:36:51.897Z"
+            description: Describes time of request generation in RFC3339 format
+          ttl:
+            required: true
+            type: string
+            owner: any
+            usage: P1D
+            description: >-
+              Describes the duration in ISO8601 format after timestamp for which
+              this message holds valid
+        message:
+          collector_app_id:
+            required: true
+            type: string
+            owner: any
+            usage: collectorapp.com
+            description: "Subscriber Id of Collecter "
+          receiver_app_id:
+            required: true
+            type: string
+            owner: any
+            usage: receiverapp.com
+            description: Subscriber Id of Reciever
+          settlement:
+            type:
+              required: true
+              type: string
+              owner: any
+              usage: NP-NP
+              description: Type of Settlement
+            id:
+              required: true
+              type: string
+              owner: any
+              usage: settlement-id-abc
+              description: Id of Settlement
+            orders:
+              self:
+                amount:
+                  currency:
+                    required: true
+                    type: string
+                    owner: any
+                    usage: INR
+                    description: >-
+                      Currency of the amount that is to be moved to the API
+                      caller's operating account
+                  value:
+                    required: true
+                    type: string
+                    owner: any
+                    usage: "200.00"
+                    description: >-
+                      Self amount is the amount that is to be moved to the API
+                      caller's operating account
+                status:
+                  required: true
+                  type: string
+                  owner: any
+                  usage: NOT_SETTLED
+                  description: Status of self fund settlement
+                reference_no:
+                  required: Conditional
+                  type: string
+                  owner: any
+                  usage: "1238683618634"
+                  description: >-
+                    Reference number of self fund settlement if status is
+                    NOT_SETTLED not required if settlement is not settled
+                error:
+                  code:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: "01"
+                    description: Code of the error occurred at the time of settlement
+                  message:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: Account inactive
+                    description: Message of the error occurred at the time of settlement
+              provider:
+                id:
+                  required: Conditional
+                  type: string
+                  owner: any
+                  usage: prvdr-id-789
+                  description: >-
+                    The provider ID must be provided if settlement is being made
+                    to the provider
+                name:
+                  required: optional
+                  type: string
+                  owner: any
+                  usage: Kirana Pvt Ltd
+                  description: >-
+                    The Name of the provider must be provided if settlement is
+                    being made to the provider
+                bank_details:
+                  account_no:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: "1234567890"
+                    description: >-
+                      The Account number of the provider must be provided if
+                      settlement is being made to the provider
+                  ifsc_code:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: IFSC0001
+                    description: >-
+                      IFSC code of the provider must be provided if settlement
+                      is being made to the provider
+                amount:
+                  currency:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: INR
+                    description: >-
+                      Currency of the amount that is to be transferred to the
+                      provider's provided account must be provided if settlement
+                      is being made to the provider
+                  value:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: "800.00"
+                    description: >-
+                      Provider amount is the amount that is to be transferred to
+                      the provider's provided account must be provided if
+                      settlement is being made to the provider
+                status:
+                  required: Conditional
+                  type: string
+                  owner: any
+                  usage: NOT_SETTLED
+                  description: >-
+                    Status of provider fund settlement must be provided if
+                    settlement is being made to the provider
+                reference_no:
+                  required: Conditional
+                  type: string
+                  owner: any
+                  usage: "3718683618631"
+                  description: >-
+                    Reference number of provider fund settlement if amount is
+                    SETTLED
+                error:
+                  code:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: "01"
+                    description: >-
+                      Code of the error occurred at the time of settlement if
+                      settlement is not settled
+                  message:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: Account inactive
+                    description: >-
+                      Message of the error occurred at the time of settlement if
+                      settlement is not settled
+              id:
+                required: true
+                type: string
+                owner: any
+                usage: ordr-123456
+                description: Id of the order
+              inter_participant:
+                amount:
+                  currency:
+                    required: true
+                    type: string
+                    owner: any
+                    usage: INR
+                    description: >-
+                      Currency of the amount that is to be settled from
+                      collector to receiver
+                  value:
+                    required: true
+                    type: string
+                    owner: any
+                    usage: "1000.00"
+                    description: >-
+                      Inter participant amount is what is to be settled from
+                      collector to receiver
+                status:
+                  required: true
+                  type: string
+                  owner: any
+                  usage: SETTLED
+                  description: Status of interparticipant fund settlement
+                reference_no:
+                  required: Conditional
+                  type: string
+                  owner: any
+                  usage: "3718683618631"
+                  description: >-
+                    Reference number of Interparticipant fund settlement not
+                    required if settlement is not settled
+                error:
+                  code:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: "01"
+                    description: Code of the error occurred at the time of settlement
+                  message:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: Account inactive
+                    description: Message of the error occurred at the time of settlement
+              collector:
+                amount:
+                  currency:
+                    required: true
+                    type: string
+                    owner: any
+                    usage: INR
+                    description: >-
+                      Currency of the amount that the collector keeps for
+                      themselves
+                  value:
+                    required: true
+                    type: string
+                    owner: any
+                    usage: "50.00"
+                    description: Collector amount is what collector keeps for themselves
+          ref_transaction_id:
+            required: true
+            type: string
+            owner: any
+            usage: bd73a366-aebb-4144-9314-808dda82c7e6
+            description: Reference transaction ID of the settlement instruction
+          ref_message_id:
+            required: true
+            type: string
+            owner: any
+            usage: 941ef6d7-d74d-4411-ac06-469c0f9ac
+            description: Reference message ID of the settlement instruction
+      on_report:
+        context:
+          domain:
+            required: true
+            type: string
+            owner: any
+            usage: ONDC:NTS10
+            description: Domain in which the settlement occurs
+          location:
+            country:
+              code:
+                required: true
+                type: string
+                owner: any
+                usage: IND
+                description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
+            city:
+              code:
+                required: true
+                type: string
+                owner: any
+                usage: "*"
+                description: "Describes city "
+          version:
+            required: true
+            type: string
+            owner: any
+            usage: 2.0.0
+            description: >-
+              Describes the version of transaction protocol being used by the
+              sender.
+          action:
+            required: true
+            type: string
+            owner: any
+            usage: on_report
+            description: >-
+              Describes the method being called by the sender and executed at
+              the receiver.
+          bap_id:
+            required: true
+            type: string
+            owner: any
+            usage: collectorapp.com
+            description: Describes the subscriber id of the BNP
+          bap_uri:
+            required: true
+            type: string
+            owner: any
+            usage: https://collectorapp.com/ondc/1.0/
+            description: Describes the subscriber uri of the BNP
+          bpp_id:
+            required: true
+            type: string
+            owner: any
+            usage: sa_nocs.nbbl.com
+            description: Describes the subscriber id of the SNP
+          bpp_uri:
+            required: true
+            type: string
+            owner: any
+            usage: https://sa_nocs.nbbl.com/nocs_test
+            description: Describes the subscriber uri of the SNP
+          transaction_id:
+            required: true
+            type: string
+            owner: any
+            usage: cd73a366-aebb-4144-9314-808dda82c7e6
+            description: Describes  a unique value which persists across all API calls
+          message_id:
+            required: true
+            type: string
+            owner: any
+            usage: 841ef6d7-d74d-4411-ac06-a05469c0f9ac
+            description: >-
+              Describes a unique value which persists during a request /
+              callback cycle.
+          timestamp:
+            required: true
+            type: string
+            owner: any
+            usage: "2024-05-07T06:36:51.900Z"
+            description: Describes time of request generation in RFC3339 format
+          ttl:
+            required: true
+            type: string
+            owner: any
+            usage: P1D
+            description: >-
+              Describes the duration in ISO8601 format after timestamp for which
+              this message holds valid
+        message:
+          collector_app_id:
+            required: true
+            type: string
+            owner: any
+            usage: collectorapp.com
+            description: ID of the collector
+          receiver_app_id:
+            required: true
+            type: string
+            owner: any
+            usage: receiverapp.com
+            description: ID of the reciever
+          settlement:
+            type:
+              required: true
+              type: string
+              owner: any
+              usage: NP-NP
+              description: Type of Interparticipant Settlement
+            id:
+              required: true
+              type: string
+              owner: any
+              usage: settlement-id-123
+              description: Id of Interpartcipant settlement
+            orders:
+              self:
+                amount:
+                  currency:
+                    required: true
+                    type: string
+                    owner: any
+                    usage: INR
+                    description: >-
+                      Currency of the amount that is to be moved to the API
+                      caller's operating account
+                  value:
+                    required: true
+                    type: string
+                    owner: any
+                    usage: "200.00"
+                    description: >-
+                      Self amount is the amount that is to be moved to the API
+                      caller's operating account
+                status:
+                  required: true
+                  type: string
+                  owner: any
+                  usage: NOT_SETTLED
+                  description: Status of self fund settlement
+                reference_no:
+                  required: Conditional
+                  type: string
+                  owner: any
+                  usage: "3718683618631"
+                  description: >-
+                    Reference number of self fund settlement not required if
+                    settlement is not settled
+                error:
+                  code:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: "01"
+                    description: Code of the error occurred at the time of settlement
+                  message:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: Account inactive
+                    description: Message of the error occurred at the time of settlement
+              provider:
+                id:
+                  required: Conditional
+                  type: string
+                  owner: any
+                  usage: provider-id-789
+                  description: >-
+                    The provider ID must be provided if settlement is being made
+                    to the provider
+                name:
+                  required: optional
+                  type: string
+                  owner: any
+                  usage: Kirana Pvt Ltd
+                  description: >-
+                    The Name of the provider must be provided if settlement is
+                    being made to the provider
+                bank_details:
+                  account_no:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: "1234567890"
+                    description: >-
+                      The Account number of the provider must be provided if
+                      settlement is being made to the provider
+                  ifsc_code:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: IFSC0001
+                    description: >-
+                      IFSC code of the provider must be provided if settlement
+                      is being made to the provider
+                amount:
+                  currency:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: INR
+                    description: >-
+                      Currency of the amount that is to be transferred to the
+                      provider's provided account must be provided if settlement
+                      is being made to the provider
+                  value:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: "800.00"
+                    description: >-
+                      Provider amount is the amount that is to be transferred to
+                      the provider's provided account must be provided if
+                      settlement is being made to the provider
+                status:
+                  required: Conditional
+                  type: string
+                  owner: any
+                  usage: NOT_SETTLED
+                  description: Status of provider fund settlement
+                reference_no:
+                  required: Conditional
+                  type: string
+                  owner: any
+                  usage: "3718683618631"
+                  description: >-
+                    Reference number of provider fund settlement if settlement
+                    is Settled
+                error:
+                  code:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: "01"
+                    description: >-
+                      Code of the error occurred at the time of settlement if
+                      settlement is not Settled
+                  message:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: Account inactive
+                    description: >-
+                      Message of the error occurred at the time of settlement if
+                      settlement is not Settled
+              id:
+                required: true
+                type: string
+                owner: any
+                usage: order-id-456
+                description: Id of the order
+              inter_participant:
+                amount:
+                  currency:
+                    required: true
+                    type: string
+                    owner: any
+                    usage: INR
+                    description: >-
+                      Currency of the amount that is to be settled from
+                      collector to receiver
+                  value:
+                    required: true
+                    type: string
+                    owner: any
+                    usage: "1000.00"
+                    description: >-
+                      Inter participant amount is what is to be settled from
+                      collector to receiver
+                status:
+                  required: true
+                  type: string
+                  owner: any
+                  usage: SETTLED
+                  description: Status of interparticipant fund settlement
+                reference_no:
+                  required: Conditional
+                  type: string
+                  owner: any
+                  usage: "3718683618631"
+                  description: >-
+                    Reference number of Interparticipant fund settlement not
+                    required if settlement is not settled
+                error:
+                  code:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: "01"
+                    description: Code of the error occurred at the time of settlement
+                  message:
+                    required: Conditional
+                    type: string
+                    owner: any
+                    usage: Account inactive
+                    description: Message of the error occurred at the time of settlement
+                currency:
+                  required: Conditional
+                  type: string
+                  owner: any
+                  usage: INR
+                  description: Currency of the amount that is being settled
+                value:
+                  required: Conditional
+                  type: string
+                  owner: any
+                  usage: "1000.00"
+                  description: Value of the amount that is being settled
+              collector:
+                amount:
+                  currency:
+                    required: true
+                    type: string
+                    owner: any
+                    usage: INR
+                    description: >-
+                      Currency of the amount that the collector keeps for
+                      themselves
+                  value:
+                    required: true
+                    type: string
+                    owner: any
+                    usage: "50.00"
+                    description: Collector amount is what collector keeps for themselves
+          ref_transaction_id:
+            required: true
+            type: string
+            owner: any
+            usage: bd73a366-aebb-4144-9314-808dda82c7e6
+            description: Reference transaction ID of the settlement instruction
+          ref_message_id:
+            required: true
+            type: string
+            owner: any
+            usage: 941ef6d7-d74d-4411-ac06-469c0f9ac
+            description: Reference message ID of the settlement instruction
       recon:
         context:
           action:
@@ -1437,8 +2421,8 @@ x-attributes:
                 required: true
                 type: string
                 owner: any
-                usage: '*'
-                description: 'Describes city '
+                usage: "*"
+                description: "Describes city "
             country:
               code:
                 required: true
@@ -1458,7 +2442,7 @@ x-attributes:
             required: true
             type: string
             owner: any
-            usage: '2024-05-09T06:36:51.897Z'
+            usage: "2024-05-09T06:36:51.897Z"
             description: Describes time of request generation in RFC3339 format
           transaction_id:
             required: true
@@ -1495,7 +2479,7 @@ x-attributes:
                 required: true
                 type: string
                 owner: any
-                usage: '300.00'
+                usage: "300.00"
                 description: Value of the amount of the Order
             id:
               required: true
@@ -1515,7 +2499,7 @@ x-attributes:
                   required: true
                   type: string
                   owner: any
-                  usage: '300.00'
+                  usage: "300.00"
                   description: Value of the amount of the settlement
               commission:
                 currency:
@@ -1528,7 +2512,7 @@ x-attributes:
                   required: true
                   type: string
                   owner: any
-                  usage: '300.00'
+                  usage: "300.00"
                   description: Value of the commission on the order
               id:
                 required: true
@@ -1567,7 +2551,7 @@ x-attributes:
                   required: true
                   type: string
                   owner: any
-                  usage: '300.00'
+                  usage: "300.00"
                   description: Value of tax collected at source
               tds:
                 currency:
@@ -1580,13 +2564,13 @@ x-attributes:
                   required: true
                   type: string
                   owner: any
-                  usage: '300.00'
+                  usage: "300.00"
                   description: Value of tax deducted at source
               updated_at:
                 required: true
                 type: string
                 owner: any
-                usage: '2024-05-09T06:36:51.897Z'
+                usage: "2024-05-09T06:36:51.897Z"
                 description: Settlement modification time
               withholding_amount:
                 currency:
@@ -1599,7 +2583,7 @@ x-attributes:
                   required: true
                   type: string
                   owner: any
-                  usage: '300.00'
+                  usage: "300.00"
                   description: Value of the withholding amount
       on_recon:
         context:
@@ -1647,8 +2631,8 @@ x-attributes:
                 required: true
                 type: string
                 owner: any
-                usage: '*'
-                description: 'Describes city '
+                usage: "*"
+                description: "Describes city "
             country:
               code:
                 required: true
@@ -1668,7 +2652,7 @@ x-attributes:
             required: true
             type: string
             owner: any
-            usage: '2024-05-09T06:36:51.897Z'
+            usage: "2024-05-09T06:36:51.897Z"
             description: Describes time of request generation in RFC3339 format
           transaction_id:
             required: true
@@ -1705,7 +2689,7 @@ x-attributes:
                 required: true
                 type: string
                 owner: any
-                usage: '300.00'
+                usage: "300.00"
                 description: Value of the amount of the Order
             id:
               required: true
@@ -1725,13 +2709,13 @@ x-attributes:
                   required: false
                   type: string
                   owner: any
-                  usage: '10.00'
+                  usage: "10.00"
                   description: Currency of the amount of the settlement
                 diff_amount:
                   required: true
                   type: string
                   owner: any
-                  usage: '300.00'
+                  usage: "300.00"
                   description: >-
                     Difference in the settlement amount incase recon_accord is
                     FALSE
@@ -1746,13 +2730,13 @@ x-attributes:
                   required: false
                   type: string
                   owner: any
-                  usage: '10.00'
+                  usage: "10.00"
                   description: Currency of the commission on the order
                 diff_amount:
                   required: true
                   type: string
                   owner: any
-                  usage: '300.00'
+                  usage: "300.00"
                   description: >-
                     Difference in the commission amount incase recon_accord is
                     FALSE
@@ -1781,12 +2765,12 @@ x-attributes:
                 usage: PENDING
                 description: >-
                   Settlement Reference number of the settlement is required if
-                  settlement is settled 
+                  settlement is settled
               due_date:
                 required: false
                 type: string
                 owner: any
-                usage: '2024-05-09'
+                usage: "2024-05-09"
                 description: due date of settlement in case recon_accord is true
               status:
                 required: true
@@ -1799,13 +2783,13 @@ x-attributes:
                   required: false
                   type: string
                   owner: any
-                  usage: '10.00'
+                  usage: "10.00"
                   description: Currency of tax collected at source
                 diff_amount:
                   required: true
                   type: string
                   owner: any
-                  usage: '300.00'
+                  usage: "300.00"
                   description: >-
                     Difference in the tax collected at the source incase
                     recon_accord is FALSE
@@ -1820,13 +2804,13 @@ x-attributes:
                   required: false
                   type: string
                   owner: any
-                  usage: '10.00'
+                  usage: "10.00"
                   description: Currency of tax deducted at source
                 diff_amount:
                   required: true
                   type: string
                   owner: any
-                  usage: '300.00'
+                  usage: "300.00"
                   description: >-
                     Difference in the tax deducted at the source incase
                     recon_accord is FALSE
@@ -1834,7 +2818,7 @@ x-attributes:
                   required: true
                   type: string
                   owner: any
-                  usage: '2024-05-09T06:36:51.897Z'
+                  usage: "2024-05-09T06:36:51.897Z"
                   description: Value of tax deducted at source
               updated_at:
                 required: true
@@ -1847,13 +2831,13 @@ x-attributes:
                   required: false
                   type: string
                   owner: any
-                  usage: '10.00'
+                  usage: "10.00"
                   description: Currency of the withholding amount
                 diff_amount:
                   required: true
                   type: string
                   owner: any
-                  usage: '300.00'
+                  usage: "300.00"
                   description: >-
                     Difference in the withholding amount incase recon_accord is
                     FALSE
